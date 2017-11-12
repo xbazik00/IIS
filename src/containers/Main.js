@@ -1,9 +1,12 @@
-import React from 'react';
+import React from "react";
 
-const Main = () => {
+import Header from "../components/Header";
+
+const Main = ({ history }) => {
   return (
     <div>
-      HOMEPAGE
+      <Header history={history} />
+      <div className="container">HOMEPAGE</div>
     </div>
   );
 };

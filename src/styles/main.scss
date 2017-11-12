@@ -1,0 +1,67 @@
+/* FLEX */
+
+.flex-row {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.flex-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.flex-center {
+  justify-content: center;
+  align-items: center;
+}
+
+.flex-right {
+  justify-content: flex-end;
+}
+
+/* PAGE CONTAINER */
+
+.container {
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  padding-top: 5em;
+  width: 100%;
+  max-width: $max-page-width;
+}
+
+/* MARGIN */
+
+.margin {
+  &-bottom {
+    margin-bottom: 2em;
+
+    &-small {
+      margin-bottom: 1em;
+    }
+  }
+}
+
+/* OTHER */
+
+.row-label {
+  width: 200px;
+  font-weight: bold;
+}
+
+.form {
+  width: 100%;
+  max-width: 600px;
+
+  .button {
+    margin-left: 0.5em;
+  }
+}
+
+.error {
+  &-text {
+    color: $c-error;
+  }
+}
