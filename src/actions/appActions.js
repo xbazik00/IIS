@@ -10,6 +10,19 @@ export const setActiveForm = (activeForm, activeFormData = null) => ({
   payload: { activeForm, activeFormData }
 });
 
+export const setDialog = (name, data) => ({
+  type: c.DIALOG,
+  payload: {
+    name,
+    data
+  }
+});
+
+export const closeDialog = () => ({
+  type: c.DIALOG,
+  payload: { name: null, data: null }
+});
+
 export const signIn = () => async () => {
   return true;
 };

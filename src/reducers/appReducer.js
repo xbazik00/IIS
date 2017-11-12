@@ -8,7 +8,8 @@ const initialState = {
     activeFormData: null
   },
   user: null,
-  role: JSON.parse(storage.get("role")) || []
+  role: JSON.parse(storage.get("role")) || [],
+  dialog: { name: null, data: null }
 };
 
 const reducer = (state = initialState, action) => {
@@ -19,6 +20,8 @@ const reducer = (state = initialState, action) => {
       return { ...state, ...action.payload };
     case c.APP_FORM:
       return { ...state, form: { ...state.form, ...action.payload } };
+    case c.DIALOG:
+      return { ...state, dialog: action.payload };
     default:
       return state;
   }
