@@ -2,28 +2,38 @@
   position: fixed;
   display: flex;
   align-items: center;
+  justify-content: center;
   margin: 0 auto;
-  justify-content: space-between;
-  padding: 0 1em;
   height: 4em;
   width: 100vw;
   background-color: $c-blue;
   z-index: 1000;
 
-  &.authStyle {
-    justify-content: center;
-  }
+  .inner {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    max-width: $max-page-width;
+    justify-content: space-between;
+    padding: 0em 1em;
+    height: 4em;
+    background-color: $c-blue;
 
-  &.normal {
-    h1 {
-      width: 80vw;
-      max-width: 80vw;
+    &.authStyle {
+      justify-content: center;
+    }
+  
+    &.normal {
+      .title {
+        width: 80vw;
+        max-width: 80vw;
+        cursor: pointer;
+      }
     }
   }
 
-  h1 {
+  .title {
     color: $c-white;
-    cursor: pointer;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;

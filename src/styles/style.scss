@@ -30,6 +30,11 @@ body {
   color: $c-text;
 }
 
+@import "../../node_modules/react-md/src/scss/react-md";
+$md-primary-color: $c-blue-dark;
+$md-secondary-color: $c-blue;
+@include react-md-everything;
+
 @import "main.scss";
 @import "components/header.scss";
 @import "components/profile.scss";

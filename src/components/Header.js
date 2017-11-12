@@ -8,30 +8,37 @@ import { signOut } from "../actions/appActions";
 
 const Header = ({ history, authStyle, signOut }) => {
   return (
-    <header className={classNames("header", { normal: !authStyle, authStyle })}>
-      <h1 onClick={() => history.push("/main")}>Evidence hráčů e-sportu</h1>
-      {!authStyle && (
-        <DropdownButton
-          title={<Glyphicon glyph="user" />}
-          bsStyle="primary"
-          noCaret
-          id="drop-down-menu"
-          pullRight
+    <header className="header">
+      <div className={classNames("inner", { normal: !authStyle, authStyle })}>
+        <h1
+          className="title"
+          onClick={() => !authStyle && history.push("/main")}
         >
-          <MenuItem eventKey="1" onClick={() => history.push("/profile")}>
-            Profil
-          </MenuItem>
-          <MenuItem
-            eventKey="2"
-            onClick={() => {
-              signOut();
-              history.push("/");
-            }}
+          Evidence hráčů e-sportu
+        </h1>
+        {!authStyle && (
+          <DropdownButton
+            title={<Glyphicon glyph="user" />}
+            bsStyle="primary"
+            noCaret
+            id="drop-down-menu"
+            pullRight
           >
-            Odhlásit
-          </MenuItem>
-        </DropdownButton>
-      )}
+            <MenuItem eventKey="1" onClick={() => history.push("/profile")}>
+              Profil
+            </MenuItem>
+            <MenuItem
+              eventKey="2"
+              onClick={() => {
+                signOut();
+                history.push("/");
+              }}
+            >
+              Odhlásit
+            </MenuItem>
+          </DropdownButton>
+        )}
+      </div>
     </header>
   );
 };

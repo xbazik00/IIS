@@ -17,6 +17,14 @@
   align-items: center;
 }
 
+.flex-space {
+  justify-content: space-around;
+}
+
+.flex-space-between {
+  justify-content: space-between;
+}
+
 .flex-right {
   justify-content: flex-end;
 }
@@ -64,4 +72,9 @@
   &-text {
     color: $c-error;
   }
+}
+
+.card {
+  cursor: pointer;
+  margin: 1em;
 }
