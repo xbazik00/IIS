@@ -144,3 +144,33 @@ CREATE TABLE IF NOT EXISTS `pozvanka_do_tymu` {
     `stav` int(1) NOT NULL,
     PRIMARY KEY (`nazev_tymu`, `prezdivka_uzivatele`)
 }
+
+ALTER TABLE `hrac` ADD FOREIGN KEY (`prezdivka`) REFERENCES `uzivatel` (`prezdivka`) ON DELETE CASCADE;
+ALTER TABLE `trener` ADD FOREIGN KEY (`prezdivka`) REFERENCES `uzivatel` (`prezdivka`) ON DELETE CASCADE;
+ALTER TABLE `specializace_uzivatele_na_hru` ADD FOREIGN KEY (`prezdivka_uzivatele`) REFERENCES `uzivatel` (`prezdivka`) ON DELETE CASCADE;
+ALTER TABLE `specializace_uzivatele_na_hru` ADD FOREIGN KEY (`nazev_hry`) REFERENCES `hra` (`nazev`) ON DELETE CASCADE;
+ALTER TABLE `tym` ADD FOREIGN KEY (`nazev_hry`) REFERENCES `hra` (`nazev`) ON DELETE CASCADE;
+ALTER TABLE `tymy_v_turnaji` ADD FOREIGN KEY (`nazev_tymu`) REFERENCES `tym` (`nazev`) ON DELETE CASCADE;
+ALTER TABLE `tymy_v_turnaji` ADD FOREIGN KEY (`id_turnaje`) REFERENCES `turnaj` (`id`) ON DELETE CASCADE;
+ALTER TABLE `uzivatele_v_tymech` ADD FOREIGN KEY (`nazev_tymu`) REFERENCES `tym` (`nazev`) ON DELETE CASCADE;
+ALTER TABLE `uzivatele_v_tymech` ADD FOREIGN KEY (`prezdivka_uzivatele`) REFERENCES `uzivatel` (`prezdivka`) ON DELETE CASCADE;
+ALTER TABLE `hlavni_sponzor_turnaje` ADD FOREIGN KEY (`zkratka_sponzora`) REFERENCES `sponzor` (`zkratka`) ON DELETE CASCADE;
+ALTER TABLE `hlavni_sponzor_turnaje` ADD FOREIGN KEY (`id_turnaj`) REFERENCES `turnaj` (`id`) ON DELETE CASCADE;
+ALTER TABLE `sponzor_turnaje` ADD FOREIGN KEY (`zkratka_sponzora`) REFERENCES `sponzor` (`zkratka`) ON DELETE CASCADE;
+ALTER TABLE `sponzor_turnaje` ADD FOREIGN KEY (`id_turnaj`) REFERENCES `turnaj` (`id`) ON DELETE CASCADE;
+ALTER TABLE `zapas` ADD FOREIGN KEY (`nazev_tymu`) REFERENCES `tym` (`nazev`) ON DELETE CASCADE;
+ALTER TABLE `zapas` ADD FOREIGN KEY (`nazev_druheho_tymu`) REFERENCES `tym` (`nazev`) ON DELETE CASCADE;
+ALTER TABLE `turnaj` ADD FOREIGN KEY (`nazev_hry`) REFERENCES `hra` (`nazev`) ON DELETE CASCADE;
+ALTER TABLE `turnaj` ADD FOREIGN KEY (`vitez`) REFERENCES `tym` (`nazev`) ON DELETE CASCADE;
+ALTER TABLE `turnaj` ADD FOREIGN KEY (`id_organizator_turnaje`) REFERENCES `organizator_turnaje` (`id`) ON DELETE CASCADE;
+ALTER TABLE `klan` ADD FOREIGN KEY (`vudce_klanu`) REFERENCES `uzivatel` (`prezdivka`) ON DELETE CASCADE;
+ALTER TABLE `uzivatele_v_klanu` ADD FOREIGN KEY (`prezdivka_uzivatele`) REFERENCES `uzivatel` (`prezdivka`) ON DELETE CASCADE;
+ALTER TABLE `uzivatele_v_klanu` ADD FOREIGN KEY (`tag_klanu`) REFERENCES `klan` (`tag`) ON DELETE CASCADE;
+ALTER TABLE `specializace_klanu_na_hru` ADD FOREIGN KEY (`tag_klanu`) REFERENCES `klan` (`tag`) ON DELETE CASCADE;
+ALTER TABLE `specializace_klanu_na_hru` ADD FOREIGN KEY (`nazev_hry`) REFERENCES `hra` (`nazev`) ON DELETE CASCADE;
+ALTER TABLE `financovani_klanu` ADD FOREIGN KEY (`tag_klanu`) REFERENCES `klan` (`tag`) ON DELETE CASCADE;
+ALTER TABLE `financovani_klanu` ADD FOREIGN KEY (`zkratka_sponzora`) REFERENCES `sponzor` (`zkratka`) ON DELETE CASCADE;
+ALTER TABLE `pozvanka_do_klanu` ADD FOREIGN KEY (`tag_klanu`) REFERENCES `klan` (`tag`) ON DELETE CASCADE;
+ALTER TABLE `pozvanka_do_klanu` ADD FOREIGN KEY (`prezdivka_uzivatele`) REFERENCES `uzivatel` (`prezdivka`) ON DELETE CASCADE;
+ALTER TABLE `pozvanka_do_tymu` ADD FOREIGN KEY (`nazev_tymu`) REFERENCES `tym` (`nazev`) ON DELETE CASCADE;
+ALTER TABLE `pozvanka_do_tymu` ADD FOREIGN KEY (`prezdivka_uzivatele`) REFERENCES `uzivatel` (`prezdivka`) ON DELETE CASCADE;
