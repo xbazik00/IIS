@@ -9,8 +9,11 @@ const Main = ({ history }) => {
     <div>
       <Header history={history} />
       <div className="container">
-        <MainHeader />
-        <Table history={history} />;
+        <div className="margin-bottom">
+          <MainHeader />
+        </div>
+        <h2>Hry</h2>
+        <Table history={history} />
       </div>
     </div>
   );

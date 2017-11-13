@@ -35,9 +35,14 @@
   display: flex;
   flex-direction: column;
   margin: 0 auto;
-  padding-top: 5em;
+  padding-top: 6em;
   width: 100%;
   max-width: $max-page-width;
+  background-color: $c-white;
+  min-height: calc(100vh - 4em);
+  &.center {
+    padding-top: 4em;
+  }
 }
 
 /* MARGIN */
@@ -77,4 +82,21 @@
 .card {
   cursor: pointer;
   margin: 1em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 10em;
+  height: 10em;
+  &-page {
+    padding: 1em;
+  }
+}
+
+.table {
+  &-body {
+    .table-row {
+      cursor: pointer;
+    }
+  }
 }

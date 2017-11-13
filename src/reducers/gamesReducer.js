@@ -2,14 +2,70 @@ import * as c from "../actions/constants";
 
 const initialState = {
   list: [
-    { id: "1", name: "Fotbal", type: "BALL_GAME" },
-    { id: "2", name: "Basketbal", type: "BALL_GAME" },
-    { id: "3", name: "Hokej", type: "BALL_GAME" },
-    { id: "4", name: "Hra", type: "GAME" },
-    { id: "5", name: "Hra", type: "GAME" },
-    { id: "6", name: "Hra", type: "GAME" },
-    { id: "7", name: "Hra", type: "GAME" },
-    { id: "8", name: "Hra", type: "GAME" }
+    {
+      id: "1",
+      name: "Fotbal",
+      genre: "BALL_GAME",
+      created: 1510000000000,
+      modes: "Nějaké módy",
+      publisher: "Vydavatel hry"
+    },
+    {
+      id: "2",
+      name: "Basketbal",
+      genre: "BALL_GAME",
+      created: 1510000000000,
+      modes: "Nějaké módy",
+      publisher: "Vydavatel hry"
+    },
+    {
+      id: "3",
+      name: "Hokej",
+      genre: "BALL_GAME",
+      created: 1510000000000,
+      modes: "Nějaké módy",
+      publisher: "Vydavatel hry"
+    },
+    {
+      id: "4",
+      name: "Hra",
+      genre: "GAME",
+      created: 1510000000000,
+      modes: "Nějaké módy",
+      publisher: "Vydavatel hry"
+    },
+    {
+      id: "5",
+      name: "Hra",
+      genre: "GAME",
+      created: 1510000000000,
+      modes: "Nějaké módy",
+      publisher: "Vydavatel hry"
+    },
+    {
+      id: "6",
+      name: "Hra",
+      genre: "GAME",
+      created: 1510000000000,
+      modes: "Nějaké módy",
+      publisher: "Vydavatel hry"
+    },
+    {
+      id: "7",
+      name: "Hra",
+      genre: "GAME",
+      created: 1510000000000,
+      modes: "Nějaké módy",
+      publisher: "Vydavatel hry"
+    },
+    {
+      id: "8",
+      name: "Hra",
+      genre: "GAME",
+      created: 1510000000000,
+      modes: "Nějaké módy",
+      publisher: "Vydavatel hry"
+    }
   ],
   activeGame: null
 };
