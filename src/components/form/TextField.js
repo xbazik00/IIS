@@ -7,12 +7,18 @@ const TextField = ({
   input,
   placeholder,
   type,
-  label
+  label,
+  componentClass
 }) => (
   <div>
     <FormGroup controlId="formControlsTextField">
       {label && <ControlLabel>{label}</ControlLabel>}
-      <FormControl {...input} type={type || "text"} placeholder={placeholder} />
+      <FormControl
+        {...input}
+        type={type || "text"}
+        componentClass={componentClass}
+        placeholder={placeholder}
+      />
     </FormGroup>
     {touched && error ? <span className="error-text">{error}</span> : <div />}
   </div>

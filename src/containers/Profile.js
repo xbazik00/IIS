@@ -9,31 +9,31 @@ import Form from "../components/profile/Form";
 
 import { setActiveForm } from "../actions/appActions";
 
-const Profile = ({ history, activeForm, setActiveForm }) => {
+const Profile = ({ history, activeForm, setActiveForm, user }) => {
   return (
     <div>
       <Header history={history} />
       <div className="container">
-        <div className="flex-row flex-center">
-          <Card className="card-page">
-            <CardText>
-              {activeForm === "profileEditForm" ? (
-                <Form
-                  initialValues={{ firstName: "Jméno", surname: "Příjmení" }}
-                />
-              ) : (
-                <Info />
-              )}
-            </CardText>
-          </Card>
-        </div>
+        {user && (
+          <div className="flex-row flex-center">
+            <Card className="card-page">
+              <CardText>
+                {activeForm === "profileEditForm" ? (
+                  <Form initialValues={{ ...user }} user={user} />
+                ) : (
+                  <Info user={user} />
+                )}
+              </CardText>
+            </Card>
+          </div>
+        )}
       </div>
     </div>
   );
 };
 
 export default compose(
-  connect(({ app: { form: { activeForm } } }) => ({ activeForm }), {
+  connect(({ app: { form: { activeForm }, user } }) => ({ activeForm, user }), {
     setActiveForm
   })
 )(Profile);

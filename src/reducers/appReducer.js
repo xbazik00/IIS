@@ -1,5 +1,4 @@
 import * as c from "../actions/constants";
-import * as storage from "../utils/storage";
 
 const initialState = {
   sample: {},
@@ -7,8 +6,14 @@ const initialState = {
     activeForm: null,
     activeFormData: null
   },
-  user: null,
-  role: JSON.parse(storage.get("role")) || [],
+  user: {
+    firstName: "Jméno",
+    surname: "Příjmení",
+    userName: "Přezdívka",
+    role: ["ROLE_USER", "ROLE_COACH", "ROLE_ADMIN"],
+    country: "CZ",
+    notes: "Poznámky trenéra"
+  },
   dialog: { name: null, data: null }
 };
 
