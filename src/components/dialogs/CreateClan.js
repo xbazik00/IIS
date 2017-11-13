@@ -5,8 +5,11 @@ import { reduxForm, Field } from "redux-form";
 import { withRouter } from "react-router-dom";
 
 import TextField from "../form/TextField";
+import SelectField from "../form/SelectField";
 import * as Validation from "../form/Validation";
 import DialogContainer from "./DialogContainer";
+
+import { countries } from "../../enums";
 
 const CreateClan = ({ handleSubmit, data }) => (
   <DialogContainer
@@ -18,8 +21,27 @@ const CreateClan = ({ handleSubmit, data }) => (
     <form onSubmit={handleSubmit}>
       <Field
         component={TextField}
+        label="Tag klanu"
+        name="tag"
+        validate={[Validation.required]}
+      />
+      <Field
+        component={TextField}
         label="Název klanu"
         name="name"
+        validate={[Validation.required]}
+      />
+      <Field
+        component={TextField}
+        label="Hymna"
+        name="anthem"
+        validate={[Validation.required]}
+      />
+      <Field
+        component={SelectField}
+        label="Země působení"
+        name="country"
+        options={countries}
         validate={[Validation.required]}
       />
     </form>
