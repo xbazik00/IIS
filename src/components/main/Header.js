@@ -6,9 +6,12 @@ import { setDialog } from "../../actions/appActions";
 
 const Header = ({ setDialog }) => {
   return (
-    <div className="flex-row">
-      <Button bsStyle="primary" onClick={() => setDialog("CreateClan")}>
+    <div className="flex-row flex-space">
+      <Button onClick={() => setDialog("CreateClan")}>
         Založit klan
+      </Button>
+      <Button onClick={() => setDialog("CreateTeam")}>
+        Založit tým
       </Button>
     </div>
   );
