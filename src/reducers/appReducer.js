@@ -10,7 +10,7 @@ const initialState = {
     firstName: "Jméno",
     surname: "Příjmení",
     userName: "Přezdívka",
-    role: ["ROLE_USER", "ROLE_COACH", "ROLE_ADMIN"],
+    role: "ADMIN",
     country: "CZ",
     notes: "Poznámky trenéra"
   },
