@@ -1,8 +1,8 @@
 <?php
 class Database{
 
-    private $host = "localhost";
-    private $db_name = "api_db";
+    private $host = "localhost:8080";
+    private $db_name = "db_iis";
     private $username = "root";
     private $password = "";
     public $conn;
