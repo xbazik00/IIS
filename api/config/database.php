@@ -1,10 +1,10 @@
 <?php
 class Database{
 
-    private $host = "localhost:8080";
+    private $host = "localhost";
     private $db_name = "db_iis";
-    private $username = "root";
-    private $password = "";
+    private $username = "user";
+    private $password = "user";
     public $conn;
 
     public function getConnection(){
