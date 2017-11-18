@@ -21,22 +21,25 @@ const Header = ({ history, authStyle, signOut, user }) => {
         </h1>
         {!authStyle && (
           <DropdownButton
-            title={<Glyphicon glyph="user" />}
+            title={<Glyphicon glyph="menu-hamburger" />}
             bsStyle="primary"
             noCaret
             id="drop-down-menu"
             pullRight
           >
-            <MenuItem eventKey="1" onClick={() => history.push("/profile")}>
+            <MenuItem eventKey="1" onClick={() => history.push("/main")}>
+              Domů
+            </MenuItem>
+            <MenuItem eventKey="2" onClick={() => history.push("/profile")}>
               Profil
             </MenuItem>
             {admin && (
-              <MenuItem eventKey="2" onClick={() => history.push("/admin")}>
+              <MenuItem eventKey="3" onClick={() => history.push("/admin")}>
                 Admin zone
               </MenuItem>
             )}
             <MenuItem
-              eventKey="3"
+              eventKey="4"
               onClick={() => {
                 signOut();
                 history.push("/");
