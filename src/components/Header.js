@@ -9,7 +9,7 @@ import { signOut } from "../actions/appActions";
 import { isAdmin } from "../utils";
 
 const Header = ({ history, authStyle, signOut, user }) => {
-  const admin = isAdmin(user.role);
+  const admin = user ? isAdmin(user.role) : false;
   return (
     <header className="header">
       <div className={classNames("inner", { normal: !authStyle, authStyle })}>

@@ -1,4 +1,5 @@
 import * as c from "./constants";
+import * as storage from "../utils/storage";
 
 export const setSample = () => ({
   type: c.CONSTANT,
@@ -23,8 +24,38 @@ export const closeDialog = () => ({
   payload: { name: null, data: null }
 });
 
-export const signIn = () => async () => {
-  return true;
+export const signIn = (userName, password) => async dispatch => {
+  try {
+    const response = await fetch("/api/signIn.php", {
+      method: "POST",
+      headers: new Headers({
+        "Content-Type": "application/json"
+      }),
+      body: JSON.stringify({ userName, password })
+    });
+
+    if (response.status === 200) {
+      const content = await response.json();
+
+      dispatch({
+        type: c.APP,
+        payload: { user: content }
+      });
+
+      storage.set("user", JSON.stringify(content));
+    }
+
+    return response.status === 200;
+  } catch (err) {
+    console.log(err);
+    return false;
+  }
 };
 
-export const signOut = () => async () => {};
+export const signOut = () => async dispatch => {
+  dispatch({
+    type: c.APP,
+    payload: { user: null }
+  });
+  storage.remove("user");
+};

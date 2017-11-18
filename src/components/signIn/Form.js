@@ -14,8 +14,8 @@ const Form = ({ handleSubmit, setActiveForm }) => {
     <form onSubmit={handleSubmit} className="form">
       <Field
         component={TextField}
-        label="Username"
-        name="username"
+        label="Uživatelské jméno"
+        name="userName"
         validate={[Validation.required]}
       />
       <Field
@@ -37,10 +37,10 @@ export default compose(
   connect(null, { signIn }),
   withHandlers({
     onSubmit: () => async (formData, dispatch, props) => {
-      const { username, password } = formData;
+      const { userName, password } = formData;
       const { signIn, history } = props;
 
-      if (await signIn(username, password)) {
+      if (await signIn(userName, password)) {
         history.push("/main");
       } else {
         throw new SubmissionError({

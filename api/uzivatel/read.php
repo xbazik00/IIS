@@ -26,7 +26,7 @@ if($num>0){
             "surname" => $prijmeni,
             "country" => $zeme_puvodu,
             "role" => $role,
-            "password" => $password
+            "password" => $heslo
         );
  
         array_push($arr["items"], $uzivatel_item);

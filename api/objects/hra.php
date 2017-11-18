@@ -2,7 +2,6 @@
 class Hra{
 
     private $conn;
-    private $table_name = "hra";
 
     public $nazev;
     public $datum_vydani;

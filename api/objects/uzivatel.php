@@ -2,14 +2,13 @@
 class Uzivatel{
 
     private $conn;
-    private $table_name = "uzivatel";
 
     public $prezdivka;
     public $jmeno;
     public $prijmeni;
     public $zeme_puvodu;
     public $role;
-    public $password;
+    public $heslo;
 
     public function __construct($db){
         $this->conn = $db;

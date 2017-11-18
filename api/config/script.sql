@@ -4,7 +4,7 @@ CREATE TABLE IF NOT EXISTS `uzivatel` (
     `prijmeni` varchar(30) NOT NULL,
     `zeme_puvodu` varchar(30) NOT NULL,
     `role` varchar(30) NOT NULL,
-    `password` varchar(30) NOT NULL,
+    `heslo` varchar(30) NOT NULL,
     PRIMARY KEY (`prezdivka`)
 );
 
@@ -178,31 +178,31 @@ ALTER TABLE `pozvanka_do_tymu` ADD FOREIGN KEY (`nazev_tymu`) REFERENCES `tym` (
 ALTER TABLE `pozvanka_do_tymu` ADD FOREIGN KEY (`prezdivka_uzivatele`) REFERENCES `uzivatel` (`prezdivka`) ON DELETE CASCADE;
 
 -- admin
-INSERT INTO `uzivatel` (`prezdivka`, `jmeno`, `prijmeni`, `zeme_puvodu`, `role`, `password`) VALUES ('admin', 'admin', 'admin', 'CZ', 'ADMIN', 'admin');
+INSERT INTO `uzivatel` (`prezdivka`, `jmeno`, `prijmeni`, `zeme_puvodu`, `role`, `heslo`) VALUES ('admin', 'admin', 'admin', 'CZ', 'ADMIN', 'admin');
 
-INSERT INTO `uzivatel` (`prezdivka`, `jmeno`, `prijmeni`, `zeme_puvodu`, `role`, `password`) VALUES ('Dumbledore', 'Michael', 'Gambon', 'GB', 'COACH', '');
+INSERT INTO `uzivatel` (`prezdivka`, `jmeno`, `prijmeni`, `zeme_puvodu`, `role`, `heslo`) VALUES ('Dumbledore', 'Michael', 'Gambon', 'GB', 'COACH', '');
 INSERT INTO `trener` (`prezdivka`, `poznamky`) VALUES ('Dumbledore', 'Harry is a wizard.');
-INSERT INTO `uzivatel` (`prezdivka`, `jmeno`, `prijmeni`, `zeme_puvodu`, `role`, `password`) VALUES ('Harry_Potter', 'Daniel', 'Radcliffe', 'GB', 'PLAYER', '');
+INSERT INTO `uzivatel` (`prezdivka`, `jmeno`, `prijmeni`, `zeme_puvodu`, `role`, `heslo`) VALUES ('Harry_Potter', 'Daniel', 'Radcliffe', 'GB', 'PLAYER', '');
 INSERT INTO `hrac` (`prezdivka`, `herni_mys`, `klavesnice`) VALUES ('Harry_Potter', 'Magic Mouse', 'Magic Keyboard');
-INSERT INTO `uzivatel` (`prezdivka`, `jmeno`, `prijmeni`, `zeme_puvodu`, `role`, `password`) VALUES ('Ron_Weasley', 'Rupert', 'Grint', 'GB', 'PLAYER', '');
+INSERT INTO `uzivatel` (`prezdivka`, `jmeno`, `prijmeni`, `zeme_puvodu`, `role`, `heslo`) VALUES ('Ron_Weasley', 'Rupert', 'Grint', 'GB', 'PLAYER', '');
 INSERT INTO `hrac` (`prezdivka`, `herni_mys`, `klavesnice`) VALUES ('Ron_Weasley', 'Magic Mouse', 'Magic Keyboard');
-INSERT INTO `uzivatel` (`prezdivka`, `jmeno`, `prijmeni`, `zeme_puvodu`, `role`, `password`) VALUES ('Hermione_Granger', 'Emma', 'Watson', 'GB', 'PLAYER', '');
+INSERT INTO `uzivatel` (`prezdivka`, `jmeno`, `prijmeni`, `zeme_puvodu`, `role`, `heslo`) VALUES ('Hermione_Granger', 'Emma', 'Watson', 'GB', 'PLAYER', '');
 INSERT INTO `hrac` (`prezdivka`, `herni_mys`, `klavesnice`) VALUES ('Hermione_Granger', 'Magic Mouse', 'Magic Keyboard');
-INSERT INTO `uzivatel` (`prezdivka`, `jmeno`, `prijmeni`, `zeme_puvodu`, `role`, `password`) VALUES ('Neville_Longbottom', 'Matthew', 'Lewis', 'GB', 'PLAYER', '');
+INSERT INTO `uzivatel` (`prezdivka`, `jmeno`, `prijmeni`, `zeme_puvodu`, `role`, `heslo`) VALUES ('Neville_Longbottom', 'Matthew', 'Lewis', 'GB', 'PLAYER', '');
 INSERT INTO `hrac` (`prezdivka`, `herni_mys`, `klavesnice`) VALUES ('Neville_Longbottom', 'Magic Mouse', 'Magic Keyboard');
-INSERT INTO `uzivatel` (`prezdivka`, `jmeno`, `prijmeni`, `zeme_puvodu`, `role`, `password`) VALUES ('Draco_Malfoy', 'Tom', 'Felton', 'GB', 'PLAYER', '');
+INSERT INTO `uzivatel` (`prezdivka`, `jmeno`, `prijmeni`, `zeme_puvodu`, `role`, `heslo`) VALUES ('Draco_Malfoy', 'Tom', 'Felton', 'GB', 'PLAYER', '');
 INSERT INTO `hrac` (`prezdivka`, `herni_mys`, `klavesnice`) VALUES ('Draco_Malfoy', 'Magic Mouse', 'Magic Keyboard');
-INSERT INTO `uzivatel` (`prezdivka`, `jmeno`, `prijmeni`, `zeme_puvodu`, `role`, `password`) VALUES ('Miles_Bletchley', 'No', 'Name', 'GB', 'PLAYER', '');
+INSERT INTO `uzivatel` (`prezdivka`, `jmeno`, `prijmeni`, `zeme_puvodu`, `role`, `heslo`) VALUES ('Miles_Bletchley', 'No', 'Name', 'GB', 'PLAYER', '');
 INSERT INTO `hrac` (`prezdivka`, `herni_mys`, `klavesnice`) VALUES ('Miles_Bletchley', 'Magic Mouse', 'Magic Keyboard');
-INSERT INTO `uzivatel` (`prezdivka`, `jmeno`, `prijmeni`, `zeme_puvodu`, `role`, `password`) VALUES ('Gregory_Goyle', 'Josh', 'Herdman', 'GB', 'PLAYER', '');
+INSERT INTO `uzivatel` (`prezdivka`, `jmeno`, `prijmeni`, `zeme_puvodu`, `role`, `heslo`) VALUES ('Gregory_Goyle', 'Josh', 'Herdman', 'GB', 'PLAYER', '');
 INSERT INTO `hrac` (`prezdivka`, `herni_mys`, `klavesnice`) VALUES ('Gregory_Goyle', 'Magic Mouse', 'Magic Keyboard');
-INSERT INTO `uzivatel` (`prezdivka`, `jmeno`, `prijmeni`, `zeme_puvodu`, `role`, `password`) VALUES ('TyrionLanister', 'Peter', 'Dinklage', 'US', 'COACH', '');
+INSERT INTO `uzivatel` (`prezdivka`, `jmeno`, `prijmeni`, `zeme_puvodu`, `role`, `heslo`) VALUES ('TyrionLanister', 'Peter', 'Dinklage', 'US', 'COACH', '');
 INSERT INTO `trener` (`prezdivka`, `poznamky`) VALUES ('TyrionLanister', 'Khaleesi FTW');
-INSERT INTO `uzivatel` (`prezdivka`, `jmeno`, `prijmeni`, `zeme_puvodu`, `role`, `password`) VALUES ('Rick_Grimes', 'Andrew', 'Lincoln', 'GB', 'COACH', '');
+INSERT INTO `uzivatel` (`prezdivka`, `jmeno`, `prijmeni`, `zeme_puvodu`, `role`, `heslo`) VALUES ('Rick_Grimes', 'Andrew', 'Lincoln', 'GB', 'COACH', '');
 INSERT INTO `trener` (`prezdivka`, `poznamky`) VALUES ('Rick_Grimes', 'Negan must die.');
-INSERT INTO `uzivatel` (`prezdivka`, `jmeno`, `prijmeni`, `zeme_puvodu`, `role`, `password`) VALUES ('DarylDixon', 'Norman', 'Reedus', 'US', 'PLAYER', '');
+INSERT INTO `uzivatel` (`prezdivka`, `jmeno`, `prijmeni`, `zeme_puvodu`, `role`, `heslo`) VALUES ('DarylDixon', 'Norman', 'Reedus', 'US', 'PLAYER', '');
 INSERT INTO `hrac` (`prezdivka`, `herni_mys`, `klavesnice`) VALUES ('DarylDixon', 'Zombie Mouse', 'Zombie Keyboard');
-INSERT INTO `uzivatel` (`prezdivka`, `jmeno`, `prijmeni`, `zeme_puvodu`, `role`, `password`) VALUES ('Negan', 'Jeffrey Dean', 'Morgan', 'US', 'PLAYER', '');
+INSERT INTO `uzivatel` (`prezdivka`, `jmeno`, `prijmeni`, `zeme_puvodu`, `role`, `heslo`) VALUES ('Negan', 'Jeffrey Dean', 'Morgan', 'US', 'PLAYER', '');
 INSERT INTO `hrac` (`prezdivka`, `herni_mys`, `klavesnice`) VALUES ('Negan', 'Lucille Mouse', 'Lucille Keyboard');
 
 INSERT INTO `klan` (`tag`, `nazev`, `logo`, `hymna`, `zeme_pusobeni`, `vudce_klanu`) VALUES ('Hogwarts', 'Hogwarts', 'The Hogwarts Logo', 'The Hogwarts Song', 'GB', 'Dumbledore');

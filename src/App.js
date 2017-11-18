@@ -1,8 +1,10 @@
 import React from "react";
 import { connect } from "react-redux";
-import { Route, BrowserRouter as Router } from "react-router-dom";
+import { compose, lifecycle } from "recompose";
+import { BrowserRouter as Router } from "react-router-dom";
 import { Provider } from "react-redux";
 
+import Route from "./Route";
 import Dialogs from "./containers/Dialogs";
 import SignIn from "./containers/SignIn";
 import Main from "./containers/Main";
@@ -13,7 +15,7 @@ import Admin from "./containers/Admin";
 import { isAdmin } from "./utils";
 
 const App = ({ store, user }) => {
-  const admin = isAdmin(user.role);
+  const admin = user ? isAdmin(user.role) : false;
   return (
     <Provider store={store}>
       <Router>
@@ -30,4 +32,9 @@ const App = ({ store, user }) => {
   );
 };
 
-export default connect(({ app: { user } }) => ({ user }), null)(App);
+export default compose(
+  connect(({ app: { user } }) => ({ user }), null),
+  lifecycle({
+    componentWillMount() {}
+  })
+)(App);
