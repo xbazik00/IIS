@@ -16,7 +16,7 @@ const Info = ({ history, list }) => {
         <TableHeader className="table-header">
           <TableRow className="table-row">
             <TableColumn className="table-col">Název</TableColumn>
-            <TableColumn className="table-col">Typ</TableColumn>
+            <TableColumn className="table-col">Žánr</TableColumn>
             <TableColumn className="table-col">Vydavatel</TableColumn>
           </TableRow>
         </TableHeader>
@@ -25,7 +25,7 @@ const Info = ({ history, list }) => {
             <TableRow
               key={i}
               className="table-row"
-              onClick={() => history.push(`/games/${game.id}`)}
+              onClick={() => history.push(`/games/${game.name}`)}
             >
               <TableColumn className="table-col">{game.name}</TableColumn>
               <TableColumn className="table-col">{game.genre}</TableColumn>

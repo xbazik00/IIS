@@ -3,12 +3,12 @@ header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json; charset=UTF-8");
 
 include_once '../config/database.php';
-include_once '../objects/uzivatel.php';
+include_once '../objects/hra.php';
 
 $database = new Database();
 $db = $database->getConnection();
-$uzivatel = new Uzivatel($db);
-$stmt = $uzivatel->read();
+$hra = new Hra($db);
+$stmt = $hra->read();
 $num = $stmt->rowCount();
 
 if($num>0){
@@ -20,16 +20,15 @@ if($num>0){
     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
         extract($row);
  
-        $uzivatel_item=array(
-            "userName" => $prezdivka,
-            "firstName" => $jmeno,
-            "surname" => $prijmeni,
-            "country" => $zeme_puvodu,
-            "role" => $role,
-            "password" => $password
+        $hra_item=array(
+            "name" => $nazev,
+            "created" => $datum_vydani,
+            "genre" => $zanr,
+            "modes" => $mody,
+            "publisher" => $vydavatel
         );
  
-        array_push($arr["items"], $uzivatel_item);
+        array_push($arr["items"], $hra_item);
     }
  
     echo json_encode($arr);
@@ -37,7 +36,7 @@ if($num>0){
  
 else{
     echo json_encode(
-        array("message" => "Žádní uživatelé nenalezeni.")
+        array("message" => "Žádné hry nenalezeny.")
     );
 }
 ?>

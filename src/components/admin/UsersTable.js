@@ -20,21 +20,35 @@ const Info = ({ history, users }) => {
             <TableColumn className="table-col">Jméno</TableColumn>
             <TableColumn className="table-col">Příjmení</TableColumn>
             <TableColumn className="table-col">Země původu</TableColumn>
+            <TableColumn className="table-col">Role</TableColumn>
           </TableRow>
         </TableHeader>
         <TableBody className="table-body">
-          {map(users, (user, i) => (
-            <TableRow key={i} className="table-row">
-              <TableColumn className="table-col">{user.prezdivka}</TableColumn>
-              <TableColumn className="table-col">{user.jmeno}</TableColumn>
-              <TableColumn className="table-col">{user.prijmeni}</TableColumn>
-              <TableColumn className="table-col">
-                {find(countries, c => c.value === user.zeme_puvodu)
-                  ? find(countries, c => c.value === user.zeme_puvodu).label
-                  : user.zeme_puvodu}
-              </TableColumn>
-            </TableRow>
-          ))}
+          {map(
+            users,
+            (user, i) =>
+              user.role !== "ADMIN" && (
+                <TableRow key={i} className="table-row">
+                  <TableColumn className="table-col">
+                    {user.userName}
+                  </TableColumn>
+                  <TableColumn className="table-col">
+                    {user.firstName}
+                  </TableColumn>
+                  <TableColumn className="table-col">
+                    {user.surname}
+                  </TableColumn>
+                  <TableColumn className="table-col">
+                    {find(countries, c => c.value === user.country)
+                      ? find(countries, c => c.value === user.country).label
+                      : user.country}
+                  </TableColumn>
+                  <TableColumn className="table-col">
+                    {user.role === "COACH" ? "Trenér" : "Hráč"}
+                  </TableColumn>
+                </TableRow>
+              )
+          )}
         </TableBody>
       </DataTable>
     </div>

@@ -1,4 +1,5 @@
 import fetch from "../utils/fetch";
+
 import * as c from "./constants";
 
 export const getUsers = () => async dispatch => {
