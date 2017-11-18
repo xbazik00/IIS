@@ -11,7 +11,7 @@ class SignIn{
     }
 
     function signIn(){
-           $stmt = $this->conn->prepare("SELECT * FROM uzivatel WHERE prezdivka = :prezdivka AND heslo = :heslo");
+           $stmt = $this->conn->prepare("SELECT * FROM uzivatel WHERE prezdivka=:prezdivka AND heslo=:heslo");
 
            $stmt->bindParam(":prezdivka", htmlspecialchars(strip_tags($this->prezdivka)));
            $stmt->bindParam(":heslo", htmlspecialchars(strip_tags($this->heslo)));
