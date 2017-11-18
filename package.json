@@ -39,7 +39,7 @@
   },
   "proxy": {
     "/api": {
-      "target": "http://localhost:8080",
+      "target": "http://iis-e-sport.jecool.net",
       "secure": false,
       "changeOrigin": true
     }

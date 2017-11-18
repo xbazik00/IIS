@@ -1,4 +1,5 @@
 import React from "react";
+import { connect } from "react-redux";
 import { Route, BrowserRouter as Router } from "react-router-dom";
 import { Provider } from "react-redux";
 
@@ -7,8 +8,12 @@ import SignIn from "./containers/SignIn";
 import Main from "./containers/Main";
 import Profile from "./containers/Profile";
 import Game from "./containers/Game";
+import Admin from "./containers/Admin";
 
-const App = ({ store }) => {
+import { isAdmin } from "./utils";
+
+const App = ({ store, user }) => {
+  const admin = isAdmin(user.role);
   return (
     <Provider store={store}>
       <Router>
@@ -18,10 +23,11 @@ const App = ({ store }) => {
           <Route exact path="/main" component={Main} />
           <Route exact path="/profile" component={Profile} />
           <Route path="/games/:id" component={Game} />
+          {admin && <Route path="/admin" component={Admin} />}
         </div>
       </Router>
     </Provider>
   );
 };
 
-export default App;
+export default connect(({ app: { user } }) => ({ user }), null)(App);

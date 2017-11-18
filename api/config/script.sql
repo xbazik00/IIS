@@ -178,36 +178,36 @@ ALTER TABLE `pozvanka_do_tymu` ADD FOREIGN KEY (`nazev_tymu`) REFERENCES `tym` (
 ALTER TABLE `pozvanka_do_tymu` ADD FOREIGN KEY (`prezdivka_uzivatele`) REFERENCES `uzivatel` (`prezdivka`) ON DELETE CASCADE;
 
 -- admin
-INSERT INTO `uzivatel` (`prezdivka`, `jmeno`, `prijmeni`, `zeme_puvodu`, `role`, `password`) VALUES ('admin', 'admin', 'admin', 'adminland', 'ADMIN', 'admin');
+INSERT INTO `uzivatel` (`prezdivka`, `jmeno`, `prijmeni`, `zeme_puvodu`, `role`, `password`) VALUES ('admin', 'admin', 'admin', 'CZ', 'ADMIN', 'admin');
 
-INSERT INTO `uzivatel` (`prezdivka`, `jmeno`, `prijmeni`, `zeme_puvodu`, `role`, `password`) VALUES ('Dumbledore', 'Michael', 'Gambon', 'VelkĂˇ BritĂˇnie', 'COACH', '');
+INSERT INTO `uzivatel` (`prezdivka`, `jmeno`, `prijmeni`, `zeme_puvodu`, `role`, `password`) VALUES ('Dumbledore', 'Michael', 'Gambon', 'GB', 'COACH', '');
 INSERT INTO `trener` (`prezdivka`, `poznamky`) VALUES ('Dumbledore', 'Harry is a wizard.');
-INSERT INTO `uzivatel` (`prezdivka`, `jmeno`, `prijmeni`, `zeme_puvodu`, `role`, `password`) VALUES ('Harry_Potter', 'Daniel', 'Radcliffe', 'VelkĂˇ BritĂˇnie', 'PLAYER', '');
+INSERT INTO `uzivatel` (`prezdivka`, `jmeno`, `prijmeni`, `zeme_puvodu`, `role`, `password`) VALUES ('Harry_Potter', 'Daniel', 'Radcliffe', 'GB', 'PLAYER', '');
 INSERT INTO `hrac` (`prezdivka`, `herni_mys`, `klavesnice`) VALUES ('Harry_Potter', 'Magic Mouse', 'Magic Keyboard');
-INSERT INTO `uzivatel` (`prezdivka`, `jmeno`, `prijmeni`, `zeme_puvodu`, `role`, `password`) VALUES ('Ron_Weasley', 'Rupert', 'Grint', 'VelkĂˇ BritĂˇnie', 'PLAYER', '');
+INSERT INTO `uzivatel` (`prezdivka`, `jmeno`, `prijmeni`, `zeme_puvodu`, `role`, `password`) VALUES ('Ron_Weasley', 'Rupert', 'Grint', 'GB', 'PLAYER', '');
 INSERT INTO `hrac` (`prezdivka`, `herni_mys`, `klavesnice`) VALUES ('Ron_Weasley', 'Magic Mouse', 'Magic Keyboard');
-INSERT INTO `uzivatel` (`prezdivka`, `jmeno`, `prijmeni`, `zeme_puvodu`, `role`, `password`) VALUES ('Hermione_Granger', 'Emma', 'Watson', 'VelkĂˇ BritĂˇnie', 'PLAYER', '');
+INSERT INTO `uzivatel` (`prezdivka`, `jmeno`, `prijmeni`, `zeme_puvodu`, `role`, `password`) VALUES ('Hermione_Granger', 'Emma', 'Watson', 'GB', 'PLAYER', '');
 INSERT INTO `hrac` (`prezdivka`, `herni_mys`, `klavesnice`) VALUES ('Hermione_Granger', 'Magic Mouse', 'Magic Keyboard');
-INSERT INTO `uzivatel` (`prezdivka`, `jmeno`, `prijmeni`, `zeme_puvodu`, `role`, `password`) VALUES ('Neville_Longbottom', 'Matthew', 'Lewis', 'VelkĂˇ BritĂˇnie', 'PLAYER', '');
+INSERT INTO `uzivatel` (`prezdivka`, `jmeno`, `prijmeni`, `zeme_puvodu`, `role`, `password`) VALUES ('Neville_Longbottom', 'Matthew', 'Lewis', 'GB', 'PLAYER', '');
 INSERT INTO `hrac` (`prezdivka`, `herni_mys`, `klavesnice`) VALUES ('Neville_Longbottom', 'Magic Mouse', 'Magic Keyboard');
-INSERT INTO `uzivatel` (`prezdivka`, `jmeno`, `prijmeni`, `zeme_puvodu`, `role`, `password`) VALUES ('Draco_Malfoy', 'Tom', 'Felton', 'VelkĂˇ BritĂˇnie', 'PLAYER', '');
+INSERT INTO `uzivatel` (`prezdivka`, `jmeno`, `prijmeni`, `zeme_puvodu`, `role`, `password`) VALUES ('Draco_Malfoy', 'Tom', 'Felton', 'GB', 'PLAYER', '');
 INSERT INTO `hrac` (`prezdivka`, `herni_mys`, `klavesnice`) VALUES ('Draco_Malfoy', 'Magic Mouse', 'Magic Keyboard');
-INSERT INTO `uzivatel` (`prezdivka`, `jmeno`, `prijmeni`, `zeme_puvodu`, `role`, `password`) VALUES ('Miles_Bletchley', 'No', 'Name', 'VelkĂˇ BritĂˇnie', 'PLAYER', '');
+INSERT INTO `uzivatel` (`prezdivka`, `jmeno`, `prijmeni`, `zeme_puvodu`, `role`, `password`) VALUES ('Miles_Bletchley', 'No', 'Name', 'GB', 'PLAYER', '');
 INSERT INTO `hrac` (`prezdivka`, `herni_mys`, `klavesnice`) VALUES ('Miles_Bletchley', 'Magic Mouse', 'Magic Keyboard');
-INSERT INTO `uzivatel` (`prezdivka`, `jmeno`, `prijmeni`, `zeme_puvodu`, `role`, `password`) VALUES ('Gregory_Goyle', 'Josh', 'Herdman', 'VelkĂˇ BritĂˇnie', 'PLAYER', '');
+INSERT INTO `uzivatel` (`prezdivka`, `jmeno`, `prijmeni`, `zeme_puvodu`, `role`, `password`) VALUES ('Gregory_Goyle', 'Josh', 'Herdman', 'GB', 'PLAYER', '');
 INSERT INTO `hrac` (`prezdivka`, `herni_mys`, `klavesnice`) VALUES ('Gregory_Goyle', 'Magic Mouse', 'Magic Keyboard');
-INSERT INTO `uzivatel` (`prezdivka`, `jmeno`, `prijmeni`, `zeme_puvodu`, `role`, `password`) VALUES ('TyrionLanister', 'Peter', 'Dinklage', 'USA', 'COACH', '');
+INSERT INTO `uzivatel` (`prezdivka`, `jmeno`, `prijmeni`, `zeme_puvodu`, `role`, `password`) VALUES ('TyrionLanister', 'Peter', 'Dinklage', 'US', 'COACH', '');
 INSERT INTO `trener` (`prezdivka`, `poznamky`) VALUES ('TyrionLanister', 'Khaleesi FTW');
-INSERT INTO `uzivatel` (`prezdivka`, `jmeno`, `prijmeni`, `zeme_puvodu`, `role`, `password`) VALUES ('Rick_Grimes', 'Andrew', 'Lincoln', 'VelkĂˇ BritĂˇnie', 'COACH', '');
+INSERT INTO `uzivatel` (`prezdivka`, `jmeno`, `prijmeni`, `zeme_puvodu`, `role`, `password`) VALUES ('Rick_Grimes', 'Andrew', 'Lincoln', 'GB', 'COACH', '');
 INSERT INTO `trener` (`prezdivka`, `poznamky`) VALUES ('Rick_Grimes', 'Negan must die.');
-INSERT INTO `uzivatel` (`prezdivka`, `jmeno`, `prijmeni`, `zeme_puvodu`, `role`, `password`) VALUES ('DarylDixon', 'Norman', 'Reedus', 'USA', 'PLAYER', '');
+INSERT INTO `uzivatel` (`prezdivka`, `jmeno`, `prijmeni`, `zeme_puvodu`, `role`, `password`) VALUES ('DarylDixon', 'Norman', 'Reedus', 'US', 'PLAYER', '');
 INSERT INTO `hrac` (`prezdivka`, `herni_mys`, `klavesnice`) VALUES ('DarylDixon', 'Zombie Mouse', 'Zombie Keyboard');
-INSERT INTO `uzivatel` (`prezdivka`, `jmeno`, `prijmeni`, `zeme_puvodu`, `role`, `password`) VALUES ('Negan', 'Jeffrey Dean', 'Morgan', 'USA', 'PLAYER', '');
+INSERT INTO `uzivatel` (`prezdivka`, `jmeno`, `prijmeni`, `zeme_puvodu`, `role`, `password`) VALUES ('Negan', 'Jeffrey Dean', 'Morgan', 'US', 'PLAYER', '');
 INSERT INTO `hrac` (`prezdivka`, `herni_mys`, `klavesnice`) VALUES ('Negan', 'Lucille Mouse', 'Lucille Keyboard');
 
-INSERT INTO `klan` (`tag`, `nazev`, `logo`, `hymna`, `zeme_pusobeni`, `vudce_klanu`) VALUES ('Hogwarts', 'Hogwarts', 'The Hogwarts Logo', 'The Hogwarts Song', 'VelkĂˇ BritĂˇnie', 'Dumbledore');
-INSERT INTO `klan` (`tag`, `nazev`, `logo`, `hymna`, `zeme_pusobeni`, `vudce_klanu`) VALUES ('GOT', 'Game of Thrones', 'Logo with dragon', 'The song of ice and fire', 'USA', 'TyrionLanister');
-INSERT INTO `klan` (`tag`, `nazev`, `logo`, `hymna`, `zeme_pusobeni`, `vudce_klanu`) VALUES ('TWD', 'The Walking Dead', 'Zombie logo', 'TWD soundtrack', 'USA', 'Rick_Grimes');
+INSERT INTO `klan` (`tag`, `nazev`, `logo`, `hymna`, `zeme_pusobeni`, `vudce_klanu`) VALUES ('Hogwarts', 'Hogwarts', 'The Hogwarts Logo', 'The Hogwarts Song', 'GB', 'Dumbledore');
+INSERT INTO `klan` (`tag`, `nazev`, `logo`, `hymna`, `zeme_pusobeni`, `vudce_klanu`) VALUES ('GOT', 'Game of Thrones', 'Logo with dragon', 'The song of ice and fire', 'US', 'TyrionLanister');
+INSERT INTO `klan` (`tag`, `nazev`, `logo`, `hymna`, `zeme_pusobeni`, `vudce_klanu`) VALUES ('TWD', 'The Walking Dead', 'Zombie logo', 'TWD soundtrack', 'US', 'Rick_Grimes');
 
 INSERT INTO `pozvanka_do_klanu` (`tag_klanu`, `prezdivka_uzivatele`, `datum_a_cas_odeslani`, `stav`) VALUES ('Hogwarts', 'Harry_Potter', '2013-08-05 18:19:03', 1);
 
@@ -225,7 +225,7 @@ INSERT INTO `uzivatele_v_klanu` (`prezdivka_uzivatele`, `tag_klanu`) VALUES ('Ne
 
 INSERT INTO `hra` (`nazev`, `datum_vydani`, `zanr`, `vydavatel`, `mody`) VALUES ('Quidditch', '2015-12-17', 'Magic ball game', 'Unknown', '');
 INSERT INTO `hra` (`nazev`, `datum_vydani`, `zanr`, `vydavatel`, `mody`) VALUES ('Killing White Walkers', '2011-01-30', 'Killing game', 'Old Gods', '');
-INSERT INTO `hra` (`nazev`, `datum_vydani`, `zanr`, `vydavatel`, `mody`) VALUES ('Killing Zombies', '2010-10-12', 'Killing game', 'vlĂˇda USA', '');
+INSERT INTO `hra` (`nazev`, `datum_vydani`, `zanr`, `vydavatel`, `mody`) VALUES ('Killing Zombies', '2010-10-12', 'Killing game', 'vlĂˇda US', '');
 
 INSERT INTO `specializace_klanu_na_hru` (`tag_klanu`,`nazev_hry`) VALUES ('Hogwarts','Quidditch');
 INSERT INTO `specializace_klanu_na_hru` (`tag_klanu`,`nazev_hry`) VALUES ('GOT','Killing White Walkers');
@@ -274,8 +274,8 @@ INSERT INTO `tymy_v_turnaji` (`nazev_tymu`, `id_turnaj`) VALUES ('Gryffindor',2)
 INSERT INTO `tymy_v_turnaji` (`nazev_tymu`, `id_turnaj`) VALUES ('Team Rick',10);
 INSERT INTO `tymy_v_turnaji` (`nazev_tymu`, `id_turnaj`) VALUES ('Team Negan',10);
 
-INSERT INTO `sponzor` (`zkratka`, `cislo_uctu`, `sidlo`, `nazev`) VALUES ('GM', 456435735734, 'Detroid, USA', 'General Motors');
-INSERT INTO `sponzor` (`zkratka`, `cislo_uctu`, `sidlo`, `nazev`) VALUES ('MG', 456435735735, 'New York, USA', 'Motor General');
+INSERT INTO `sponzor` (`zkratka`, `cislo_uctu`, `sidlo`, `nazev`) VALUES ('GM', 456435735734, 'Detroid, US', 'General Motors');
+INSERT INTO `sponzor` (`zkratka`, `cislo_uctu`, `sidlo`, `nazev`) VALUES ('MG', 456435735735, 'New York, US', 'Motor General');
 
 INSERT INTO `sponzor_turnaje` (`zkratka_sponzora`, `id_turnaj`) VALUES ('GM', 2);
 INSERT INTO `sponzor_turnaje` (`zkratka_sponzora`, `id_turnaj`) VALUES ('MG', 2);

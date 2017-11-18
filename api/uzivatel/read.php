@@ -4,7 +4,7 @@ header("Content-Type: application/json; charset=UTF-8");
 
 include_once '../config/database.php';
 include_once '../objects/uzivatel.php';
-fwrite(fopen('php://stdout', 'w'), "\n\n\n\n\n\n\n\n\n\nSTART\n");
+
 $database = new Database();
 $db = $database->getConnection();
 $uzivatel = new Uzivatel($db);
@@ -15,6 +15,7 @@ if($num>0){
 
     $arr=array();
     $arr["items"]=array();
+    $arr["count"]=$num;
 
     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
         extract($row);

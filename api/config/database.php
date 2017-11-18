@@ -1,23 +1,22 @@
 <?php
-class Database{
-
+class Database {
     private $host = "localhost";
-    private $db_name = "db_iis";
-    private $username = "user";
-    private $password = "user";
+    private $db_name = "dbiis";
+    private $username = "useriis";
+    private $password = "userIIS123456";
     public $conn;
 
-    public function getConnection(){
+    public function getConnection() {
  
         $this->conn = null;
- 
-        try{
+
+        try {
             $this->conn = new PDO("mysql:host=" . $this->host . ";dbname=" . $this->db_name, $this->username, $this->password);
             $this->conn->exec("set names utf8");
-        }catch(PDOException $exception){
+        } catch(PDOException $exception) {
             echo "Connection error: " . $exception->getMessage();
         }
- 
+
         return $this->conn;
     }
 }
