@@ -22,6 +22,16 @@ class Klan{
            return $stmt;
     }
 
+    function readOne(){
+        $stmt = $this->conn->prepare("SELECT * FROM klan WHERE tag=:tag");
+
+        $stmt->bindParam(":tag", htmlspecialchars(strip_tags($this->tag)));
+
+        $stmt->execute();
+     
+        return $stmt;
+    }
+
     function create(){
         $stmt = $this->conn->prepare("SELECT * FROM klan WHERE tag=:tag");
         

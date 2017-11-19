@@ -1,4 +1,5 @@
 import fetch from "../utils/fetch";
+import * as c from "./constants";
 
 export const createClan = (
   tag,
@@ -7,7 +8,7 @@ export const createClan = (
   anthem,
   country,
   boss
-) => async dispatch => {
+) => async () => {
   try {
     const response = await fetch("/api/klan/create.php", {
       method: "POST",
@@ -21,6 +22,35 @@ export const createClan = (
       const content = await response.json();
 
       if (content.message === "OK") {
+        return true;
+      }
+    }
+
+    return false;
+  } catch (err) {
+    console.log(err);
+    return false;
+  }
+};
+
+export const getClan = tag => async dispatch => {
+  try {
+    const response = await fetch("/api/klan/readOne.php", {
+      method: "POST",
+      headers: new Headers({
+        "Content-Type": "application/json"
+      }),
+      body: JSON.stringify({ tag })
+    });
+
+    if (response.status === 200) {
+      const content = await response.json();
+
+      if (!content.error) {
+        dispatch({
+          type: c.CLAN,
+          payload: { activeClan: content }
+        });
         return true;
       }
     }

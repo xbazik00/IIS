@@ -10,7 +10,7 @@ import {
 
 import { countries } from "../../enums";
 
-const Info = ({ history, users }) => {
+const Table = ({ history, users }) => {
   return (
     <div className="flex-row flex-center">
       <DataTable plain className="table">
@@ -21,6 +21,7 @@ const Info = ({ history, users }) => {
             <TableColumn className="table-col">Příjmení</TableColumn>
             <TableColumn className="table-col">Země původu</TableColumn>
             <TableColumn className="table-col">Role</TableColumn>
+            <TableColumn className="table-col">Klan</TableColumn>
           </TableRow>
         </TableHeader>
         <TableBody className="table-body">
@@ -46,6 +47,9 @@ const Info = ({ history, users }) => {
                   <TableColumn className="table-col">
                     {user.role === "COACH" ? "Trenér" : "Hráč"}
                   </TableColumn>
+                  <TableColumn className="table-col">
+                    {user.clan ? user.clan : ""}
+                  </TableColumn>
                 </TableRow>
               )
           )}
@@ -55,4 +59,4 @@ const Info = ({ history, users }) => {
   );
 };
 
-export default Info;
+export default Table;

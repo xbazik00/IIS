@@ -11,6 +11,9 @@ import Main from "./containers/Main";
 import Profile from "./containers/Profile";
 import Game from "./containers/Game";
 import Admin from "./containers/Admin";
+import Clan from "./containers/Clan";
+
+import { getUser } from "./actions/usersActions";
 
 import { isAdmin } from "./utils";
 
@@ -25,6 +28,7 @@ const App = ({ store, user }) => {
           <Route exact path="/main" component={Main} />
           <Route exact path="/profile" component={Profile} />
           <Route path="/games/:id" component={Game} />
+          <Route path="/clan/:tag" component={Clan} />
           {admin && <Route path="/admin" component={Admin} />}
         </div>
       </Router>
@@ -33,8 +37,11 @@ const App = ({ store, user }) => {
 };
 
 export default compose(
-  connect(({ app: { user } }) => ({ user }), null),
+  connect(({ app: { user } }) => ({ user }), { getUser }),
   lifecycle({
-    componentWillMount() {}
+    componentWillMount() {
+      const { user, getUser } = this.props;
+      if (user && user.userName) getUser(user.userName);
+    }
   })
 )(App);

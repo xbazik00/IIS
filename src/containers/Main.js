@@ -14,7 +14,7 @@ const Main = ({ history }) => {
       <Header history={history} />
       <div className="container">
         <div className="margin-bottom">
-          <MainHeader />
+          <MainHeader history={history} />
         </div>
         <h2>Hry</h2>
         <Table history={history} />

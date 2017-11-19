@@ -1,6 +1,8 @@
 import * as c from "./constants";
 import * as storage from "../utils/storage";
 
+import {getUser} from "./usersActions";
+
 export const setSample = () => ({
   type: c.CONSTANT,
   payload: { sample: true }
@@ -36,14 +38,9 @@ export const signIn = (userName, password) => async dispatch => {
 
     if (response.status === 200) {
       const content = await response.json();
-
+      
       if (content.userName) {
-        dispatch({
-          type: c.APP,
-          payload: { user: content }
-        });
-
-        storage.set("user", JSON.stringify(content));
+        dispatch(getUser(content.userName));
 
         return true;
       }

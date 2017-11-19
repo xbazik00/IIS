@@ -9,7 +9,7 @@ import {
   TableColumn
 } from "react-md";
 
-const Info = ({ history, list }) => {
+const Table = ({ history, list }) => {
   return (
     <div className="flex-row flex-center">
       <DataTable plain className="table">
@@ -38,4 +38,4 @@ const Info = ({ history, list }) => {
   );
 };
 
-export default connect(({ games: { list } }) => ({ list }), null)(Info);
+export default connect(({ games: { list } }) => ({ list }), null)(Table);
