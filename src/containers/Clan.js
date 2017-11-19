@@ -2,7 +2,9 @@ import React from "react";
 import { connect } from "react-redux";
 import { compose, lifecycle } from "recompose";
 import { withRouter } from "react-router-dom";
+import classNames from "classnames";
 import { Card, CardText } from "react-md";
+import { Button } from "react-bootstrap";
 
 import Header from "../components/Header";
 import ContainerHeader from "../components/ContainerHeader";
@@ -10,8 +12,9 @@ import Info from "../components/clan/Info";
 import Table from "../components/clan/Table";
 
 import { getClan } from "../actions/clanActions";
+import { setDialog } from "../actions/appActions";
 
-const Clan = ({ history, activeClan, user }) => {
+const Clan = ({ history, activeClan, user, setDialog }) => {
   return (
     <div>
       <Header history={history} />
@@ -24,7 +27,23 @@ const Clan = ({ history, activeClan, user }) => {
           <Card className="margin-bottom">
             <CardText>
               <h3>Uživatelé</h3>
-              <Table history={history} clan={activeClan} />
+              <div
+                className={classNames({
+                  "margin-bottom-small": user.userName === activeClan.boss
+                })}
+              >
+                <Table history={history} clan={activeClan} />
+              </div>
+              {user.userName === activeClan.boss && (
+                <Button
+                  bsStyle="primary"
+                  onClick={() =>
+                    setDialog("InviteUserToClan", { clanTag: activeClan.tag })
+                  }
+                >
+                  Pozvat hráče
+                </Button>
+              )}
             </CardText>
           </Card>
         </div>
@@ -40,7 +59,7 @@ export default compose(
       activeClan,
       user
     }),
-    { getClan }
+    { getClan, setDialog }
   ),
   lifecycle({
     async componentWillMount() {

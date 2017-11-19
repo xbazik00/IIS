@@ -61,3 +61,28 @@ export const getClan = tag => async dispatch => {
     return false;
   }
 };
+
+export const inviteUser = (tag, userName) => async () => {
+  try {
+    const response = await fetch("/api/pozvanka_do_klanu/create.php", {
+      method: "POST",
+      headers: new Headers({
+        "Content-Type": "application/json"
+      }),
+      body: JSON.stringify({ tag, userName })
+    });
+
+    if (response.status === 200) {
+      const content = await response.json();
+
+      if (content.message === "OK") {
+        return true;
+      }
+    }
+
+    return false;
+  } catch (err) {
+    console.log(err);
+    return false;
+  }
+};

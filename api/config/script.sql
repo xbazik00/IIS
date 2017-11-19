@@ -134,7 +134,7 @@ CREATE TABLE IF NOT EXISTS `organizator_turnaje` (
 CREATE TABLE IF NOT EXISTS `pozvanka_do_klanu` (
     `tag_klanu` varchar(30) NOT NULL,
     `prezdivka_uzivatele` varchar(20) NOT NULL,
-    `datum_a_cas_odeslani` timestamp NOT NULL,
+    `datum_a_cas_odeslani` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
     `stav` int(1) NOT NULL,
     PRIMARY KEY (`tag_klanu`, `prezdivka_uzivatele`)
 );
@@ -142,7 +142,7 @@ CREATE TABLE IF NOT EXISTS `pozvanka_do_klanu` (
 CREATE TABLE IF NOT EXISTS `pozvanka_do_tymu` (
     `nazev_tymu` varchar(30) NOT NULL,
     `prezdivka_uzivatele` varchar(20) NOT NULL,
-    `datum_a_cas_odeslani` timestamp NOT NULL,
+    `datum_a_cas_odeslani` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
     `stav` int(1) NOT NULL,
     PRIMARY KEY (`nazev_tymu`, `prezdivka_uzivatele`)
 );
@@ -209,8 +209,6 @@ INSERT INTO `klan` (`tag`, `nazev`, `logo`, `hymna`, `zeme_pusobeni`, `vudce_kla
 INSERT INTO `klan` (`tag`, `nazev`, `logo`, `hymna`, `zeme_pusobeni`, `vudce_klanu`) VALUES ('GOT', 'Game of Thrones', 'Logo with dragon', 'The song of ice and fire', 'US', 'TyrionLanister');
 INSERT INTO `klan` (`tag`, `nazev`, `logo`, `hymna`, `zeme_pusobeni`, `vudce_klanu`) VALUES ('TWD', 'The Walking Dead', 'Zombie logo', 'TWD soundtrack', 'US', 'Rick_Grimes');
 
-INSERT INTO `pozvanka_do_klanu` (`tag_klanu`, `prezdivka_uzivatele`, `datum_a_cas_odeslani`, `stav`) VALUES ('Hogwarts', 'Harry_Potter', '2013-08-05 18:19:03', 1);
-
 INSERT INTO `uzivatele_v_klanu` (`prezdivka_uzivatele`, `tag_klanu`) VALUES ('Dumbledore', 'Hogwarts');
 INSERT INTO `uzivatele_v_klanu` (`prezdivka_uzivatele`, `tag_klanu`) VALUES ('Harry_Potter', 'Hogwarts');
 INSERT INTO `uzivatele_v_klanu` (`prezdivka_uzivatele`, `tag_klanu`) VALUES ('Ron_Weasley', 'Hogwarts');
@@ -248,8 +246,6 @@ INSERT INTO `tym` (`nazev_tymu`, `pocet_hracu`, `nazev_hry`) VALUES ('Slytherin'
 INSERT INTO `tym` (`nazev_tymu`, `pocet_hracu`, `nazev_hry`) VALUES ('Team Khaleesi', 1, 'Killing White Walkers');
 INSERT INTO `tym` (`nazev_tymu`, `pocet_hracu`, `nazev_hry`) VALUES ('Team Rick', 2, 'Killing Zombies');
 INSERT INTO `tym` (`nazev_tymu`, `pocet_hracu`, `nazev_hry`) VALUES ('Team Negan', 1, 'Killing Zombies');
-
-INSERT INTO `pozvanka_do_tymu` (`nazev_tymu`, `prezdivka_uzivatele`, `datum_a_cas_odeslani`, `stav`) VALUES ('Gryffindor', 'Ron_Weasley', '2013-08-05 18:19:03', 1);
 
 INSERT INTO `uzivatele_v_tymech` (`nazev_tymu`, `prezdivka_uzivatele`) VALUES ('Gryffindor', 'Harry_Potter');
 INSERT INTO `uzivatele_v_tymech` (`nazev_tymu`, `prezdivka_uzivatele`) VALUES ('Gryffindor', 'Ron_Weasley');
