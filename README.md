@@ -4,6 +4,7 @@
 
 - GET /api/uzivatel/read.php - vrátí všechny uživatele, return: { items: pole s objekty uživatelů, count: počet objektů }
 - GET /api/uzivatel/readOne.php - vrátí uživatele podle prezdívky, body: { userName }, return: ok - objekt uživatele / err - { error }
+- POST /api/uzivatel/deleteOne.php - odstraní uživatele, body: { userName }, return: ok - { message: "OK" } / err - { message: "ERR" }
 
 - GET /api/hra/read.php - vrátí všechny hry, return: { items: pole s objekty her, count: počet objektů }
 - POST /api/hra/create.php - vytvoří hru, body: { name, genre, publisher, modes, created }, return: ok - { message: "OK" } / err - { message: "ERR" }

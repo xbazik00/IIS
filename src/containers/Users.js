@@ -5,20 +5,19 @@ import { Card, CardText } from "react-md";
 
 import Header from "../components/Header";
 import ContainerHeader from "../components/ContainerHeader";
-import UsersTable from "../components/admin/UsersTable";
+import Table from "../components/users/Table";
 
 import { getUsers } from "../actions/usersActions";
 
-const Admin = ({ history, users }) => {
+const Users = ({ history, users, user }) => {
   return (
     <div>
       <Header history={history} />
       <div className="container">
-        <ContainerHeader title="Admin zone" />
+        <ContainerHeader title="Uživatelé" />
         <Card className="margin-bottom">
           <CardText>
-            <h3>Uživatelé</h3>
-            <UsersTable history={history} users={users.list} />
+            <Table history={history} users={users.list} user={user} />
           </CardText>
         </Card>
       </div>
@@ -28,7 +27,8 @@ const Admin = ({ history, users }) => {
 
 export default compose(
   connect(
-    ({ users }) => ({
+    ({ app: { user }, users }) => ({
+      user,
       users
     }),
     { getUsers }
@@ -39,4 +39,4 @@ export default compose(
       await getUsers();
     }
   })
-)(Admin);
+)(Users);

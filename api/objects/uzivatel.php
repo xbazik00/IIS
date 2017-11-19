@@ -31,4 +31,16 @@ class Uzivatel{
      
         return $stmt;
     }
+
+    function deleteOne(){
+        $stmt = $this->conn->prepare("DELETE FROM uzivatel WHERE prezdivka=:prezdivka");
+
+        $stmt->bindParam(":prezdivka", htmlspecialchars(strip_tags($this->prezdivka)));
+    
+        if($stmt->execute()){
+            return true;
+        }
+    
+        return false;
+    }
 }

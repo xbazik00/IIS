@@ -9,6 +9,7 @@ import DeleteClan from "../components/dialogs/DeleteClan";
 import DeleteUserFromClan from "../components/dialogs/DeleteUserFromClan";
 import DeleteGame from "../components/dialogs/DeleteGame";
 import NewGame from "../components/dialogs/NewGame";
+import DeleteUser from "../components/dialogs/DeleteUser";
 
 import { closeDialog } from "../actions/appActions";
 
@@ -23,6 +24,7 @@ const Dialogs = props => {
       <DeleteUserFromClan {...props} />
       <DeleteGame {...props} />
       <NewGame {...props} />
+      <DeleteUser {...props} />
     </div>
   );
 };

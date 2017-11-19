@@ -13,9 +13,11 @@ export const getUsers = () => async dispatch => {
         type: c.USERS,
         payload: { list: content.items, count: content.count }
       });
+
+      return true;
     }
 
-    return response.status === 200;
+    return false;
   } catch (err) {
     console.log(err);
     return false;
@@ -67,13 +69,42 @@ export const getUserByUserName = userName => async dispatch => {
     if (response.status === 200) {
       const content = await response.json();
 
-      dispatch({
-        type: c.USERS,
-        payload: { activeUser: content }
-      });
+      if (content.userName) {
+        dispatch({
+          type: c.USERS,
+          payload: { activeUser: content }
+        });
+
+        return true;
+      }
     }
 
-    return response.status === 200;
+    return false;
+  } catch (err) {
+    console.log(err);
+    return false;
+  }
+};
+
+export const deleteUser = userName => async dispatch => {
+  try {
+    const response = await fetch("/api/uzivatel/deleteOne.php", {
+      method: "POST",
+      headers: new Headers({
+        "Content-Type": "application/json"
+      }),
+      body: JSON.stringify({ userName })
+    });
+
+    if (response.status === 200) {
+      const content = await response.json();
+
+      if (content.message === "OK") {
+        return true;
+      }
+    }
+
+    return false;
   } catch (err) {
     console.log(err);
     return false;

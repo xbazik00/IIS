@@ -6,10 +6,7 @@ import { DropdownButton, MenuItem, Glyphicon } from "react-bootstrap";
 
 import { signOut } from "../actions/appActions";
 
-import { isAdmin } from "../utils";
-
-const Header = ({ history, authStyle, signOut, user }) => {
-  const admin = user ? isAdmin(user.role) : false;
+const Header = ({ history, authStyle, signOut }) => {
   return (
     <header className="header">
       <div className={classNames("inner", { normal: !authStyle, authStyle })}>
@@ -33,11 +30,9 @@ const Header = ({ history, authStyle, signOut, user }) => {
             <MenuItem eventKey="2" onClick={() => history.push("/profile")}>
               Profil
             </MenuItem>
-            {admin && (
-              <MenuItem eventKey="3" onClick={() => history.push("/admin")}>
-                Admin zone
-              </MenuItem>
-            )}
+            <MenuItem eventKey="3" onClick={() => history.push("/users")}>
+              Uživatelé
+            </MenuItem>
             <MenuItem
               eventKey="4"
               onClick={() => {
@@ -54,6 +49,4 @@ const Header = ({ history, authStyle, signOut, user }) => {
   );
 };
 
-export default compose(connect(({ app: { user } }) => ({ user }), { signOut }))(
-  Header
-);
+export default compose(connect(null, { signOut }))(Header);
