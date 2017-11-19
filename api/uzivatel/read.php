@@ -11,33 +11,24 @@ $uzivatel = new Uzivatel($db);
 $stmt = $uzivatel->read();
 $num = $stmt->rowCount();
 
-if($num>0){
+$arr=array();
+$arr["items"]=array();
+$arr["count"]=$num;
 
-    $arr=array();
-    $arr["items"]=array();
-    $arr["count"]=$num;
+while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
+    extract($row);
 
-    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
-        extract($row);
- 
-        $uzivatel_item=array(
-            "userName" => $prezdivka,
-            "firstName" => $jmeno,
-            "surname" => $prijmeni,
-            "country" => $zeme_puvodu,
-            "role" => $role,
-            "password" => $heslo
-        );
- 
-        array_push($arr["items"], $uzivatel_item);
-    }
- 
-    echo json_encode($arr);
-}
- 
-else{
-    echo json_encode(
-        array("message" => "Žádní uživatelé nenalezeni.")
+    $uzivatel_item=array(
+        "userName" => $prezdivka,
+        "firstName" => $jmeno,
+        "surname" => $prijmeni,
+        "country" => $zeme_puvodu,
+        "role" => $role,
+        "password" => $heslo
     );
+
+    array_push($arr["items"], $uzivatel_item);
 }
+
+echo json_encode($arr);
 ?>

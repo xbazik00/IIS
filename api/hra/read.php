@@ -11,32 +11,23 @@ $hra = new Hra($db);
 $stmt = $hra->read();
 $num = $stmt->rowCount();
 
-if($num>0){
+$arr=array();
+$arr["items"]=array();
+$arr["count"]=$num;
 
-    $arr=array();
-    $arr["items"]=array();
-    $arr["count"]=$num;
+while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
+    extract($row);
 
-    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
-        extract($row);
- 
-        $hra_item=array(
-            "name" => $nazev,
-            "created" => $datum_vydani,
-            "genre" => $zanr,
-            "modes" => $mody,
-            "publisher" => $vydavatel
-        );
- 
-        array_push($arr["items"], $hra_item);
-    }
- 
-    echo json_encode($arr);
-}
- 
-else{
-    echo json_encode(
-        array("message" => "Žádné hry nenalezeny.")
+    $hra_item=array(
+        "name" => $nazev,
+        "created" => $datum_vydani,
+        "genre" => $zanr,
+        "modes" => $mody,
+        "publisher" => $vydavatel
     );
+
+    array_push($arr["items"], $hra_item);
 }
+
+echo json_encode($arr);
 ?>
