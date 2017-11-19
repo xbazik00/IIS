@@ -25,7 +25,11 @@ const Table = ({ history, clan }) => {
         </TableHeader>
         <TableBody className="table-body">
           {map(clan.users, (user, i) => (
-            <TableRow key={i} className="table-row">
+            <TableRow
+              key={i}
+              className="table-row"
+              onClick={() => history.push(`/user/${user.userName}`)}
+            >
               <TableColumn className="table-col">{user.userName}</TableColumn>
               <TableColumn className="table-col">{user.firstName}</TableColumn>
               <TableColumn className="table-col">{user.surname}</TableColumn>

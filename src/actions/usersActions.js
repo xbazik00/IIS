@@ -49,3 +49,29 @@ export const getUser = userName => async dispatch => {
     return false;
   }
 };
+
+export const getUserByUserName = userName => async dispatch => {
+  try {
+    const response = await fetch("/api/uzivatel/readOne.php", {
+      method: "POST",
+      headers: new Headers({
+        "Content-Type": "application/json"
+      }),
+      body: JSON.stringify({ userName })
+    });
+
+    if (response.status === 200) {
+      const content = await response.json();
+
+      dispatch({
+        type: c.USERS,
+        payload: { activeUser: content }
+      });
+    }
+
+    return response.status === 200;
+  } catch (err) {
+    console.log(err);
+    return false;
+  }
+};

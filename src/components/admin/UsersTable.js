@@ -1,5 +1,5 @@
 import React from "react";
-import { map, find } from "lodash";
+import { filter, map, find } from "lodash";
 import {
   DataTable,
   TableHeader,
@@ -25,34 +25,28 @@ const Table = ({ history, users }) => {
           </TableRow>
         </TableHeader>
         <TableBody className="table-body">
-          {map(
-            users,
-            (user, i) =>
-              user.role !== "ADMIN" && (
-                <TableRow key={i} className="table-row">
-                  <TableColumn className="table-col">
-                    {user.userName}
-                  </TableColumn>
-                  <TableColumn className="table-col">
-                    {user.firstName}
-                  </TableColumn>
-                  <TableColumn className="table-col">
-                    {user.surname}
-                  </TableColumn>
-                  <TableColumn className="table-col">
-                    {find(countries, c => c.value === user.country)
-                      ? find(countries, c => c.value === user.country).label
-                      : user.country}
-                  </TableColumn>
-                  <TableColumn className="table-col">
-                    {user.role === "COACH" ? "Trenér" : "Hráč"}
-                  </TableColumn>
-                  <TableColumn className="table-col">
-                    {user.clan ? user.clan : ""}
-                  </TableColumn>
-                </TableRow>
-              )
-          )}
+          {map(filter(users, u => u.role !== "ADMIN"), (user, i) => (
+            <TableRow
+              key={i}
+              className="table-row"
+              onClick={() => history.push(`/user/${user.userName}`)}
+            >
+              <TableColumn className="table-col">{user.userName}</TableColumn>
+              <TableColumn className="table-col">{user.firstName}</TableColumn>
+              <TableColumn className="table-col">{user.surname}</TableColumn>
+              <TableColumn className="table-col">
+                {find(countries, c => c.value === user.country)
+                  ? find(countries, c => c.value === user.country).label
+                  : user.country}
+              </TableColumn>
+              <TableColumn className="table-col">
+                {user.role === "COACH" ? "Trenér" : "Hráč"}
+              </TableColumn>
+              <TableColumn className="table-col">
+                {user.clan ? user.clan : ""}
+              </TableColumn>
+            </TableRow>
+          ))}
         </TableBody>
       </DataTable>
     </div>

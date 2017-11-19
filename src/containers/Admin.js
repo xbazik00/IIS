@@ -14,7 +14,7 @@ const Admin = ({ history, users }) => {
       <Header history={history} />
       <div className="container">
         <ContainerHeader title="Uživatelé" />
-        <UsersTable users={users.list} />
+        <UsersTable history={history} users={users.list} />
       </div>
     </div>
   );
