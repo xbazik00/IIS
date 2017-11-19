@@ -17,14 +17,12 @@ const InviteUserToClan = ({ handleSubmit, data }) => (
     handleSubmit={handleSubmit}
     submitLabel="Pozvat"
   >
-    <form onSubmit={handleSubmit}>
-      <Field
-        component={TextField}
-        label="Uživatelské jméno"
-        name="userName"
-        validate={[Validation.required]}
-      />
-    </form>
+    <Field
+      component={TextField}
+      label="Uživatelské jméno"
+      name="userName"
+      validate={[Validation.required]}
+    />
   </DialogContainer>
 );
 

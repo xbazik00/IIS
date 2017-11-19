@@ -5,74 +5,73 @@ import { reduxForm, Field, SubmissionError } from "redux-form";
 import { withRouter } from "react-router-dom";
 
 import TextField from "../form/TextField";
-import SelectField from "../form/SelectField";
+import DatePicker from "../form/DatePicker";
 import * as Validation from "../form/Validation";
 import DialogContainer from "./DialogContainer";
 
-import { createClan } from "../../actions/clanActions";
+import { newGame, getGames } from "../../actions/gamesActions";
 
-import { countries } from "../../enums";
-
-const CreateClan = ({ handleSubmit, data }) => (
+const NewGame = ({ handleSubmit, data, created, setCreated }) => (
   <DialogContainer
-    title="Založit klan"
-    name="CreateClan"
+    title="Vytvořit hru"
+    name="NewGame"
     handleSubmit={handleSubmit}
-    submitLabel="Založit"
+    submitLabel="Vytvořit"
   >
     <Field
       component={TextField}
-      label="Tag klanu"
-      name="tag"
-      validate={[Validation.required]}
-    />
-    <Field
-      component={TextField}
-      label="Název klanu"
+      label="Název hry"
       name="name"
       validate={[Validation.required]}
     />
     <Field
       component={TextField}
-      label="Logo"
-      name="logo"
+      label="Žánr"
+      name="genre"
       validate={[Validation.required]}
     />
     <Field
       component={TextField}
-      label="Hymna"
-      name="anthem"
+      label="Vydavatel"
+      name="publisher"
       validate={[Validation.required]}
     />
     <Field
-      component={SelectField}
-      label="Země působení"
-      name="country"
-      options={countries}
+      component={DatePicker}
+      label="Datum vydání"
+      name="created"
       validate={[Validation.required]}
+    />
+    <Field
+      component={TextField}
+      label="Módy"
+      name="modes"
+      componentClass="textarea"
     />
   </DialogContainer>
 );
 
 export default compose(
-  connect(({ app: { dialog: { data }, user } }) => ({ data, user }), {
-    createClan
-  }),
+  connect(({ app: { dialog: { data } } }) => ({ data }), { newGame, getGames }),
   withRouter,
   withHandlers({
     onSubmit: dialog => async (formData, dispatch, props) => {
-      const { createClan, user } = props;
-      const { tag, name, logo, anthem, country } = formData;
+      const { newGame, getGames } = props;
+      const { name, genre, publisher, modes, created } = formData;
 
-      if (await createClan(tag, name, logo, anthem, country, user.userName))
+      if (
+        await newGame(name, genre, publisher, modes, created.substring(0, 10))
+      ) {
+        getGames();
         dialog.closeDialog();
-      else
+      } else {
         throw new SubmissionError({
-          tag: "*Klan s tímto tagem již existuje."
+          name: "*Hra s tímto názvem již existuje!"
         });
+      }
     }
   }),
   reduxForm({
-    form: "createClanDialogForm"
+    form: "newGameDialogForm"
   })
-)(CreateClan);
+)(NewGame);

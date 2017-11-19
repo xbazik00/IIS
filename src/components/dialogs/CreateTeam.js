@@ -22,27 +22,25 @@ const CreateTeam = ({ handleSubmit, data }) => (
     handleSubmit={handleSubmit}
     submitLabel="Založit"
   >
-    <form onSubmit={handleSubmit}>
-      <Field
-        component={TextField}
-        label="Název týmu"
-        name="name"
-        validate={[Validation.required]}
-      />
-      <Field
-        component={TextField}
-        label="Počet hráčů"
-        name="numberOfPlayers"
-        validate={[Validation.required, Validation.isNumberGTOne]}
-      />
-      <Field
-        component={SelectField}
-        label="Hra"
-        name="game"
-        options={games}
-        validate={[Validation.required]}
-      />
-    </form>
+    <Field
+      component={TextField}
+      label="Název týmu"
+      name="name"
+      validate={[Validation.required]}
+    />
+    <Field
+      component={TextField}
+      label="Počet hráčů"
+      name="numberOfPlayers"
+      validate={[Validation.required, Validation.isNumberGTOne]}
+    />
+    <Field
+      component={SelectField}
+      label="Hra"
+      name="game"
+      options={games}
+      validate={[Validation.required]}
+    />
   </DialogContainer>
 );
 

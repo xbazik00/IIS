@@ -13,9 +13,7 @@ const Info = ({ handleSubmit, data }) => (
     handleSubmit={handleSubmit}
     submitLabel="OK"
   >
-    <form onSubmit={handleSubmit}>
-      <p>{data && data.text ? data.text : ""}</p>
-    </form>
+    <p>{data && data.text ? data.text : ""}</p>
   </DialogContainer>
 );
 

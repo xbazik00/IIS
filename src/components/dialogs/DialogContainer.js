@@ -22,7 +22,9 @@ const DialogContainer = ({
       <Modal.Body>{children}</Modal.Body>
       <Modal.Footer>
         <Button onClick={() => closeDialog()}>Storno</Button>
-        <Button onClick={() => handleSubmit()}>{submitLabel}</Button>
+        <Button bsStyle="primary" onClick={() => handleSubmit()}>
+          {submitLabel}
+        </Button>
       </Modal.Footer>
     </Modal>
   );

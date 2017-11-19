@@ -1,7 +1,7 @@
 import React from "react";
 import { Card, CardText } from "react-md";
 
-import { formatTime } from "../../utils";
+import { formatDate } from "../../utils";
 
 const Info = ({ game }) => {
   return (
@@ -18,7 +18,7 @@ const Info = ({ game }) => {
           </div>
           <div className="flex-row">
             <p className="row-label">Datum vydání:</p>
-            <p>{formatTime(game.created)}</p>
+            <p>{formatDate(game.created)}</p>
           </div>
           <div className="flex-row">
             <p className="row-label">Vydavatel:</p>

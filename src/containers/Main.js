@@ -2,14 +2,19 @@ import React from "react";
 import { connect } from "react-redux";
 import { compose, lifecycle } from "recompose";
 import { Card, CardText } from "react-md";
+import { Button } from "react-bootstrap";
 
 import Header from "../components/Header";
 import MainHeader from "../components/main/Header";
 import Table from "../components/games/Table";
 
 import { getGames } from "../actions/gamesActions";
+import { setDialog } from "../actions/appActions";
 
-const Main = ({ history, user }) => {
+import { isAdmin } from "../utils";
+
+const Main = ({ history, user, setDialog }) => {
+  const admin = user && isAdmin(user.role);
   return (
     <div>
       <Header history={history} />
@@ -20,7 +25,14 @@ const Main = ({ history, user }) => {
         <Card className="margin-bottom">
           <CardText>
             <h3>Hry</h3>
-            <Table history={history} user={user} />
+            <div className="margin-bottom-small">
+              <Table history={history} user={user} />
+            </div>
+            {admin && (
+              <Button bsStyle="primary" onClick={() => setDialog("NewGame")}>
+                Přidat hru
+              </Button>
+            )}
           </CardText>
         </Card>
       </div>
@@ -29,7 +41,7 @@ const Main = ({ history, user }) => {
 };
 
 export default compose(
-  connect(({ app: { user } }) => ({ user }), { getGames }),
+  connect(({ app: { user } }) => ({ user }), { getGames, setDialog }),
   lifecycle({
     async componentDidMount() {
       const { getGames } = this.props;
