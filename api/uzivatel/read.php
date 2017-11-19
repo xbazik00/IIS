@@ -4,10 +4,13 @@ header("Content-Type: application/json; charset=UTF-8");
 
 include_once '../config/database.php';
 include_once '../objects/uzivatel.php';
+include_once '../objects/uzivatele_v_klanu.php';
 
 $database = new Database();
 $db = $database->getConnection();
 $uzivatel = new Uzivatel($db);
+$uzivatele_v_klanu = new UzivateleVKlanu($db);
+
 $stmt = $uzivatel->read();
 $num = $stmt->rowCount();
 
@@ -24,8 +27,18 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
         "surname" => $prijmeni,
         "country" => $zeme_puvodu,
         "role" => $role,
-        "password" => $heslo
+        "clan" => null
     );
+
+    $uzivatele_v_klanu->prezdivka_uzivatele = $prezdivka;
+    $stmt1 = $uzivatele_v_klanu->getTagKlanu();
+    $num1 = $stmt1->rowCount();
+
+    if ($num1 > 0){
+        $row = $stmt1->fetch(PDO::FETCH_ASSOC);
+        extract($row);
+        $uzivatel_item["clan"] = $tag_klanu;
+    }
 
     array_push($arr["items"], $uzivatel_item);
 }
