@@ -20,7 +20,7 @@ const Clan = ({ history, activeClan, user }) => {
       <div className="container">
         <ContainerHeader title={activeClan.name} />
         <div className="margin-bottom">
-          <Info clan={activeClan} />
+          <Info history={history} clan={activeClan} />
         </div>
         <Card>
           <CardText>

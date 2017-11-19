@@ -28,7 +28,7 @@ const App = ({ store, user }) => {
           <Route exact path="/" component={SignIn} />
           <Route exact path="/main" component={Main} />
           <Route exact path="/profile" component={Profile} />
-          <Route path="/games/:id" component={Game} />
+          <Route path="/game/:id" component={Game} />
           <Route path="/clan/:tag" component={Clan} />
           <Route path="/user/:userName" component={User} />
           {admin && <Route path="/admin" component={Admin} />}

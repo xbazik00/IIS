@@ -4,7 +4,7 @@ import { find } from "lodash";
 
 import { countries } from "../../enums";
 
-const Info = ({ clan }) => {
+const Info = ({ clan, history }) => {
   return (
     <div className="flex-row flex-center">
       <Card className="card-page">
@@ -19,7 +19,14 @@ const Info = ({ clan }) => {
           </div>
           <div className="flex-row">
             <p className="row-label">Vůdce klanu:</p>
-            <p>{clan.boss}</p>
+            <p>
+              <span
+                className="link"
+                onClick={() => history.push(`/user/${clan.boss}`)}
+              >
+                {clan.boss}
+              </span>
+            </p>
           </div>
           <div className="flex-row">
             <p className="row-label">Logo:</p>

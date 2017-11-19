@@ -25,7 +25,7 @@ const Table = ({ history, list }) => {
             <TableRow
               key={i}
               className="table-row"
-              onClick={() => history.push(`/games/${game.name}`)}
+              onClick={() => history.push(`/game/${game.name}`)}
             >
               <TableColumn className="table-col">{game.name}</TableColumn>
               <TableColumn className="table-col">{game.genre}</TableColumn>
