@@ -10,14 +10,15 @@ import Info from "../components/user/Info";
 import { getUserByUserName } from "../actions/usersActions";
 
 const User = ({ history, activeUser }) => {
-  if (!activeUser) return <div />;
   return (
     <div>
       <Header history={history} />
-      <div className="container">
-        <ContainerHeader title={activeUser.userName} />
-        <Info history={history} user={activeUser} />
-      </div>
+      {activeUser && (
+        <div className="container">
+          <ContainerHeader title={activeUser.userName} />
+          <Info history={history} user={activeUser} />
+        </div>
+      )}
     </div>
   );
 };

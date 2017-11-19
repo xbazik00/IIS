@@ -12,23 +12,23 @@ import Table from "../components/clan/Table";
 import { getClan } from "../actions/clanActions";
 
 const Clan = ({ history, activeClan, user }) => {
-  if (!activeClan) return <div />;
-
   return (
     <div>
       <Header history={history} />
-      <div className="container">
-        <ContainerHeader title={activeClan.name} />
-        <div className="margin-bottom">
-          <Info history={history} clan={activeClan} />
+      {activeClan && (
+        <div className="container">
+          <ContainerHeader title={activeClan.name} />
+          <div className="margin-bottom">
+            <Info history={history} clan={activeClan} />
+          </div>
+          <Card>
+            <CardText>
+              <h3>Uživatelé</h3>
+              <Table history={history} clan={activeClan} />
+            </CardText>
+          </Card>
         </div>
-        <Card>
-          <CardText>
-            <h3>Uživatelé</h3>
-            <Table history={history} clan={activeClan} />
-          </CardText>
-        </Card>
-      </div>
+      )}
     </div>
   );
 };
