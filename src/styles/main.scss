@@ -103,8 +103,9 @@
 
 .link {
   cursor: pointer;
+  text-decoration: underline;
 
   &:hover {
-    text-decoration: underline;
+    text-decoration: none;
   }
 }
