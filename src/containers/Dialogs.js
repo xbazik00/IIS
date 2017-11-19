@@ -5,6 +5,7 @@ import Info from "../components/dialogs/Info";
 import CreateClan from "../components/dialogs/CreateClan";
 import CreateTeam from "../components/dialogs/CreateTeam";
 import InviteUserToClan from "../components/dialogs/InviteUserToClan";
+import DeleteClan from "../components/dialogs/DeleteClan";
 
 import { closeDialog } from "../actions/appActions";
 
@@ -15,6 +16,7 @@ const Dialogs = props => {
       <CreateClan {...props} />
       <CreateTeam {...props} />
       <InviteUserToClan {...props} />
+      <DeleteClan {...props} />
     </div>
   );
 };

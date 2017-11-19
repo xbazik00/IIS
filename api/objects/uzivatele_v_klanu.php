@@ -29,4 +29,16 @@ class UzivateleVKlanu{
      
         return $stmt;
     }
+
+    function deleteByTag(){
+        $stmt = $this->conn->prepare("DELETE FROM uzivatele_v_klanu WHERE tag_klanu=:tag_klanu");
+
+        $stmt->bindParam(":tag_klanu", htmlspecialchars(strip_tags($this->tag_klanu)));
+    
+        if($stmt->execute()){
+            return true;
+        }
+    
+        return false;
+    }
 }

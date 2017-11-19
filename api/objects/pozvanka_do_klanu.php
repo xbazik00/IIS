@@ -58,4 +58,16 @@ class PozvankaDoKlanu{
         
         return false;
     }
+
+    function deleteByTag(){
+        $stmt = $this->conn->prepare("DELETE FROM pozvanka_do_klanu WHERE tag_klanu=:tag_klanu");
+
+        $stmt->bindParam(":tag_klanu", htmlspecialchars(strip_tags($this->tag_klanu)));
+    
+        if($stmt->execute()){
+            return true;
+        }
+    
+        return false;
+    }
 }

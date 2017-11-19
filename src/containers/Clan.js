@@ -7,7 +7,7 @@ import { Card, CardText } from "react-md";
 import { Button } from "react-bootstrap";
 
 import Header from "../components/Header";
-import ContainerHeader from "../components/ContainerHeader";
+import ClanHeader from "../components/clan/Header";
 import Info from "../components/clan/Info";
 import Table from "../components/clan/Table";
 
@@ -20,7 +20,7 @@ const Clan = ({ history, activeClan, user, setDialog }) => {
       <Header history={history} />
       {activeClan && (
         <div className="container">
-          <ContainerHeader title={activeClan.name} />
+          <ClanHeader title={activeClan.name} tag={activeClan.tag} />
           <div className="margin-bottom">
             <Info history={history} clan={activeClan} />
           </div>

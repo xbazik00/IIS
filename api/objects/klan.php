@@ -73,4 +73,17 @@ class Klan{
 
         return false;
     }
+
+    function delete(){
+        $stmt = $this->conn->prepare("DELETE FROM klan WHERE tag=:tag");
+
+        $stmt->bindParam(":tag", htmlspecialchars(strip_tags($this->tag)));
+    
+        if($stmt->execute()){
+            return true;
+        }
+    
+        return false;
+        
+    }
 }
