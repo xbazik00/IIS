@@ -139,3 +139,28 @@ export const deleteClan = tag => async () => {
     return false;
   }
 };
+
+export const deleteUserFromClan = (tag, userName) => async () => {
+  try {
+    const response = await fetch("/api/uzivatele_v_klanu/deleteOne.php", {
+      method: "POST",
+      headers: new Headers({
+        "Content-Type": "application/json"
+      }),
+      body: JSON.stringify({ tag, userName })
+    });
+
+    if (response.status === 200) {
+      const content = await response.json();
+
+      if (content.message === "OK") {
+        return true;
+      }
+    }
+
+    return false;
+  } catch (err) {
+    console.log(err);
+    return false;
+  }
+};

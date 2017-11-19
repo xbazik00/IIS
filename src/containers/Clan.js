@@ -20,7 +20,7 @@ const Clan = ({ history, activeClan, user, setDialog }) => {
       <Header history={history} />
       {activeClan && (
         <div className="container">
-          <ClanHeader title={activeClan.name} tag={activeClan.tag} />
+          <ClanHeader clan={activeClan} user={user} />
           <div className="margin-bottom">
             <Info history={history} clan={activeClan} />
           </div>
@@ -32,7 +32,7 @@ const Clan = ({ history, activeClan, user, setDialog }) => {
                   "margin-bottom-small": user.userName === activeClan.boss
                 })}
               >
-                <Table history={history} clan={activeClan} />
+                <Table history={history} clan={activeClan} user={user} />
               </div>
               {user.userName === activeClan.boss && (
                 <Button
