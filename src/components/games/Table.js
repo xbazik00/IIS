@@ -25,7 +25,7 @@ const Table = ({ history, list, user, setDialog }) => {
             <TableColumn className="table-col">Žánr</TableColumn>
             <TableColumn className="table-col">Vydavatel</TableColumn>
             {admin && (
-              <TableColumn className="table-col">Vydavatel</TableColumn>
+              <TableColumn className="table-col">Akce</TableColumn>
             )}
           </TableRow>
         </TableHeader>
