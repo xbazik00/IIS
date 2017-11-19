@@ -4,16 +4,18 @@ import { compose, lifecycle } from "recompose";
 import { withRouter } from "react-router-dom";
 
 import Header from "../components/Header";
+import GameHeader from "../components/game/Header";
 import Info from "../components/game/Info";
 
 import { getGame, setActiveGame } from "../actions/gamesActions";
 
-const Game = ({ history, activeGame }) => {
+const Game = ({ history, activeGame, user }) => {
   return (
     <div>
       <Header history={history} />
       {activeGame && (
         <div className="container">
+          <GameHeader game={activeGame} user={user} />
           <Info game={activeGame} />
         </div>
       )}
@@ -23,10 +25,13 @@ const Game = ({ history, activeGame }) => {
 
 export default compose(
   withRouter,
-  connect(({ games: { activeGame } }) => ({ activeGame }), {
-    getGame,
-    setActiveGame
-  }),
+  connect(
+    ({ app: { user }, games: { activeGame } }) => ({ user, activeGame }),
+    {
+      getGame,
+      setActiveGame
+    }
+  ),
   lifecycle({
     componentWillMount() {
       const { getGame, match } = this.props;

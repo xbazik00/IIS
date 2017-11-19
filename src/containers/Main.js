@@ -9,7 +9,7 @@ import Table from "../components/games/Table";
 
 import { getGames } from "../actions/gamesActions";
 
-const Main = ({ history }) => {
+const Main = ({ history, user }) => {
   return (
     <div>
       <Header history={history} />
@@ -20,7 +20,7 @@ const Main = ({ history }) => {
         <Card className="margin-bottom">
           <CardText>
             <h3>Hry</h3>
-            <Table history={history} />
+            <Table history={history} user={user} />
           </CardText>
         </Card>
       </div>
@@ -29,7 +29,7 @@ const Main = ({ history }) => {
 };
 
 export default compose(
-  connect(null, { getGames }),
+  connect(({ app: { user } }) => ({ user }), { getGames }),
   lifecycle({
     async componentDidMount() {
       const { getGames } = this.props;

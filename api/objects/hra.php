@@ -14,10 +14,22 @@ class Hra{
     }
 
     function read(){
-           $stmt = $this->conn->prepare("SELECT * FROM hra");
+        $stmt = $this->conn->prepare("SELECT * FROM hra");
 
-           $stmt->execute();
-        
-           return $stmt;
-       }
+        $stmt->execute();
+    
+        return $stmt;
+    }
+
+    function deleteOne(){
+        $stmt = $this->conn->prepare("DELETE FROM hra WHERE nazev=:nazev");
+
+        $stmt->bindParam(":nazev", htmlspecialchars(strip_tags($this->nazev)));
+    
+        if($stmt->execute()){
+            return true;
+        }
+    
+        return false;
+    }
 }
