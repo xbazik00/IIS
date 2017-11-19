@@ -7,33 +7,43 @@ import { withRouter } from "react-router-dom";
 import DialogContainer from "./DialogContainer";
 
 import { deleteUserFromClan, getClan } from "../../actions/clanActions";
+import { getUser } from "../../actions/usersActions";
 
 const DeleteUserFromClan = ({ handleSubmit, data }) => (
   <DialogContainer
-    title="Vyhodit uživatele z klanu"
+    title={data && data.deleteMe ? "Opustit klan" : "Vyhodit uživatele z klanu"}
     name="DeleteUserFromClan"
     handleSubmit={handleSubmit}
-    submitLabel="Vyhodit"
+    submitLabel={data && data.deleteMe ? "Opustit klan" : "Vyhodit"}
   >
-    <p>{`Opravdu chcete vyhodit uživatele${
-      data && data.userName ? ` "${data.userName}"` : ""
-    } ze svého klanu?`}</p>
+    <p>
+      {data && data.deleteMe
+        ? `Opravdu chcete opustit klan?`
+        : `Opravdu chcete vyhodit uživatele${
+            data && data.userName ? ` "${data.userName}"` : ""
+          } ze svého klanu?`}
+    </p>
   </DialogContainer>
 );
 
 export default compose(
   connect(({ app: { dialog: { data } } }) => ({ data }), {
     deleteUserFromClan,
-    getClan
+    getClan,
+    getUser
   }),
   withRouter,
   withHandlers({
     onSubmit: dialog => async (formData, dispatch, props) => {
-      const { deleteUserFromClan, data, getClan } = props;
+      const { deleteUserFromClan, data, getClan, history, getUser } = props;
 
       if (await deleteUserFromClan(data.tag, data.userName)) {
         getClan(data.tag);
         dialog.closeDialog();
+        if (data.deleteMe) {
+          getUser();
+          history.push("/main");
+        }
       }
     }
   }),

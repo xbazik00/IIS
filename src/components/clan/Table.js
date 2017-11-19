@@ -56,7 +56,8 @@ const Table = ({ history, clan, setDialog, user }) => {
                         e.stopPropagation();
                         setDialog("DeleteUserFromClan", {
                           tag: clan.tag,
-                          userName: u.userName
+                          userName: u.userName,
+                          deleteMe: false
                         });
                       }}
                     >
