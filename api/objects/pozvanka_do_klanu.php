@@ -12,6 +12,16 @@ class PozvankaDoKlanu{
         $this->conn = $db;
     }
 
+    function getPozvankyByPrezdivka(){
+        $stmt = $this->conn->prepare("SELECT * FROM pozvanka_do_klanu WHERE prezdivka_uzivatele=:prezdivka_uzivatele");
+
+        $stmt->bindParam(":prezdivka_uzivatele", htmlspecialchars(strip_tags($this->prezdivka_uzivatele)));
+
+        $stmt->execute();
+     
+        return $stmt;
+    }
+
     function create(){
         $stmt = $this->conn->prepare("SELECT * FROM uzivatele_v_klanu WHERE tag_klanu=:tag_klanu AND prezdivka_uzivatele=:prezdivka_uzivatele");
 

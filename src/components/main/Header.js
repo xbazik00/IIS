@@ -5,9 +5,10 @@ import { Button } from "react-bootstrap";
 import { setDialog } from "../../actions/appActions";
 
 const Header = ({ history, setDialog, user }) => {
+  if (!user) return <div />;
   return (
     <div className="flex-row flex-space">
-      {user && user.clan ? (
+      {user.clan ? (
         <Button
           bsStyle="primary"
           onClick={() => history.push(`/clan/${user.clan}`)}
@@ -15,9 +16,19 @@ const Header = ({ history, setDialog, user }) => {
           Můj klan
         </Button>
       ) : (
-        <Button onClick={() => setDialog("CreateClan")}>Založit klan</Button>
+        <Button bsStyle="primary" onClick={() => setDialog("CreateClan")}>
+          Založit klan
+        </Button>
       )}
-      <Button onClick={() => setDialog("CreateTeam")}>Založit tým</Button>
+      {!user.clan && (
+        <Button onClick={() => history.push("/clan-invitations")}>
+          Pozvánky do klanu
+        </Button>
+      )}
+      <Button bsStyle="primary" onClick={() => setDialog("CreateTeam")}>
+        Založit tým
+      </Button>
+      <Button onClick={() => null}>Pozvánky do týmu</Button>
     </div>
   );
 };

@@ -12,6 +12,7 @@ import Profile from "./containers/Profile";
 import Game from "./containers/Game";
 import Admin from "./containers/Admin";
 import Clan from "./containers/Clan";
+import ClanInvitations from "./containers/ClanInvitations";
 import User from "./containers/User";
 
 import { getUser } from "./actions/usersActions";
@@ -30,6 +31,7 @@ const App = ({ store, user }) => {
           <Route exact path="/profile" component={Profile} />
           <Route path="/game/:id" component={Game} />
           <Route path="/clan/:tag" component={Clan} />
+          <Route path="/clan-invitations" component={ClanInvitations} />
           <Route path="/user/:userName" component={User} />
           {admin && <Route path="/admin" component={Admin} />}
         </div>

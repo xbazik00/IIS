@@ -13,8 +13,8 @@ const Profile = ({ history, activeForm, setActiveForm, user }) => {
   return (
     <div>
       <Header history={history} />
-      <div className="container">
-        {user && (
+      {user && (
+        <div className="container">
           <div className="flex-row flex-center">
             <Card className="card-page">
               <CardText>
@@ -26,8 +26,8 @@ const Profile = ({ history, activeForm, setActiveForm, user }) => {
               </CardText>
             </Card>
           </div>
-        )}
-      </div>
+        </div>
+      )}
     </div>
   );
 };
