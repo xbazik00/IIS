@@ -22,6 +22,7 @@ const Form = ({ handleSubmit, setActiveForm }) => {
         component={TextField}
         label="Heslo"
         name="password"
+        type="password"
       />
       <div className="flex-row flex-center">
         <Button className="button" type="submit" bsStyle="primary">
