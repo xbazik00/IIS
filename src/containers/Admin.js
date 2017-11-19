@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { compose, lifecycle } from "recompose";
+import { Card, CardText } from "react-md";
 
 import Header from "../components/Header";
 import ContainerHeader from "../components/ContainerHeader";
@@ -13,8 +14,13 @@ const Admin = ({ history, users }) => {
     <div>
       <Header history={history} />
       <div className="container">
-        <ContainerHeader title="Uživatelé" />
-        <UsersTable history={history} users={users.list} />
+        <ContainerHeader title="Admin zone" />
+        <Card className="margin-bottom">
+          <CardText>
+            <h3>Uživatelé</h3>
+            <UsersTable history={history} users={users.list} />
+          </CardText>
+        </Card>
       </div>
     </div>
   );

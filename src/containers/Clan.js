@@ -21,7 +21,7 @@ const Clan = ({ history, activeClan, user }) => {
           <div className="margin-bottom">
             <Info history={history} clan={activeClan} />
           </div>
-          <Card>
+          <Card className="margin-bottom">
             <CardText>
               <h3>Uživatelé</h3>
               <Table history={history} clan={activeClan} />

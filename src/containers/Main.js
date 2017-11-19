@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { compose, lifecycle } from "recompose";
+import { Card, CardText } from "react-md";
 
 import Header from "../components/Header";
 import MainHeader from "../components/main/Header";
@@ -16,8 +17,12 @@ const Main = ({ history }) => {
         <div className="margin-bottom">
           <MainHeader history={history} />
         </div>
-        <h2>Hry</h2>
-        <Table history={history} />
+        <Card className="margin-bottom">
+          <CardText>
+            <h3>Hry</h3>
+            <Table history={history} />
+          </CardText>
+        </Card>
       </div>
     </div>
   );
