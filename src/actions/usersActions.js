@@ -35,15 +35,19 @@ export const getUser = userName => async dispatch => {
     if (response.status === 200) {
       const content = await response.json();
 
-      dispatch({
-        type: c.APP,
-        payload: { user: content }
-      });
+      if (content.userName) {
+        dispatch({
+          type: c.APP,
+          payload: { user: content }
+        });
 
-      storage.set("user", JSON.stringify(content));
+        storage.set("user", JSON.stringify(content));
+
+        return false;
+      }
     }
 
-    return response.status === 200;
+    return false;
   } catch (err) {
     console.log(err);
     return false;

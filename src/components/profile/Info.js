@@ -28,7 +28,11 @@ const Info = ({ setActiveForm, user }) => {
           </div>
           <div className="flex-row">
             <p className="row-label">Země původu:</p>
-            <p>{find(countries, c => c.value === user.country).label}</p>
+            <p>
+              {find(countries, c => c.value === user.country)
+                ? find(countries, c => c.value === user.country).label
+                : user.country}
+            </p>
           </div>
           {coach && (
             <div className="flex-row">

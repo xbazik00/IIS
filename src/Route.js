@@ -14,7 +14,7 @@ export default compose(
     componentWillMount() {
       const { user, history, path } = this.props;
 
-      if (path !== "/" && !user) {
+      if (path !== "/" && (!user || !user.userName)) {
         history.replace("/");
       } else if (path === "/" && user) {
         history.replace("/main");

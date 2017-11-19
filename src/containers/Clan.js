@@ -41,7 +41,7 @@ const Clan = ({ history, activeClan, user, setDialog }) => {
                     setDialog("InviteUserToClan", { clanTag: activeClan.tag })
                   }
                 >
-                  Pozvat hráče
+                  Pozvat uživatele
                 </Button>
               )}
             </CardText>
