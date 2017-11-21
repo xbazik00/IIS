@@ -33,6 +33,13 @@
 
 <br />
 
+- GET /api/sponzor/read.php - vráti všetkých sponzorov, return: { items: pole s objekty sponzorov, count: počet objektů }
+- POST /api/sponzor/readOne.php - vrátí sponzora podle zkratky, body: { acronym }, return: ok - objekt sponzora / err - { error }
+- POST /api/sponzor/create.php - přidá nového sponzora, body: { acronym, name, seat, account_number }, return: ok - { message: "OK" } / err - { message: "ERR" }
+- POST /api/sponzor/delete.php - odstraní sponzora, body: { acronym }, return: ok - { message: "OK" } / err - { message: "ERR" }
+
+<br />
+
 #### TODO API
 
 <br />
