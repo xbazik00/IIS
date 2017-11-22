@@ -22,7 +22,7 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
         "acronym" => $zkratka,
         "name" => $nazev,
         "seat" => $sidlo,
-        "cislo_uctu" => $account_number
+        "account_number" => $cislo_uctu
     );
 
     array_push($arr["items"], $sponzor_item);

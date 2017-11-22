@@ -40,6 +40,12 @@
 
 <br />
 
+- POST /api/sponzor_klanu/read.php - vráti všetkých sponzorov klanu, body: { acronym }, return: { items: pole s objekty sponzorov, count: počet objektů }
+- POST /api/sponzor_klanu/create.php - přidá nového sponzora klanu, podla acronymu (zkratky sponzora) a tagu klanu , body: { acronym, tag }, return: ok - { message: "OK" } / exists - { message: "EXISTS" }  / err - { message: "ERR" }
+- POST /api/sponzor_klanu/delete.php - odstraní sponzora klanu, body: { acronym , tag }, return: ok - { message: "OK" } / err - { message: "ERR" }
+
+<br />
+
 #### TODO API
 
 <br />
@@ -53,7 +59,6 @@
 - přijetí/odmítnutí pozvánky do týmu
 - vyhodit hráče z týmu
 - přihlásit/odhlásit tým z turnaje
-- přidat sponzora klanu
 
 <br />
 
