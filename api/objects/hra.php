@@ -58,4 +58,32 @@ class Hra{
 
         return false;
     }
+
+    function update(){
+        $stmt = $this->conn->prepare("SELECT * FROM hra WHERE nazev=:nazev");
+        
+        $stmt->bindParam(":nazev", htmlspecialchars(strip_tags($this->nazev)));
+
+        $stmt->execute();
+
+        if ($stmt->rowCount() == 0){
+            return false;
+        }
+
+        $stmt = $this->conn->prepare("UPDATE hra SET datum_vydani=:datum_vydani, zanr=:zanr, mody=:mody, vydavatel=:vydavatel WHERE nazev=:nazev");
+
+        $stmt->bindParam(":nazev", htmlspecialchars(strip_tags($this->nazev)));
+        $stmt->bindParam(":datum_vydani", htmlspecialchars(strip_tags($this->datum_vydani)));
+        $stmt->bindParam(":zanr", htmlspecialchars(strip_tags($this->zanr)));
+        $stmt->bindParam(":mody", htmlspecialchars(strip_tags($this->mody)));
+        $stmt->bindParam(":vydavatel", htmlspecialchars(strip_tags($this->vydavatel)));
+
+        if ($stmt->execute()){
+            return true;
+        }
+
+        return false;
+    }
+
+
 }

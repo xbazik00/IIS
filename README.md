@@ -17,6 +17,7 @@
 - GET /api/hra/read.php - vrátí všechny hry, return: { items: pole s objekty her, count: počet objektů }
 - POST /api/hra/create.php - vytvoří hru, body: { name, genre, publisher, modes, created }, return: ok - { message: "OK" } / err - { message: "ERR" }
 - POST /api/hra/deleteOne.php - odstraní hru, body: { name }, return: ok - { message: "OK" } / err - { message: "ERR" }
+- POST /api/hra/update.php - aktualizuje hru na zaklade name, body: { name, genre, publisher, modes, created }, return: ok - { message: "OK" } / err - { message: "ERR" }
 
 <br />
 
@@ -54,8 +55,6 @@
 
 <br />
 
-- vytvoření a update uživatele
-- update hry
 - update klanu
 - přijetí/odmítnutí pozvánky do klanu
 - vytvořit/odstranit/opustit tým
