@@ -34,6 +34,8 @@
 
 - POST /api/pozvanka_do_klanu/read.php - vrátí všechny pozvánky podle přezdívky, body: { userName }, return: { items: pole s objekty pozvánek, count: počet objektů }
 - POST /api/pozvanka_do_klanu/create.php - přidá novou pozvánku do klanu, body: { tag, userName }, return: ok - { message: "OK" } / err - { message: "ERR" }
+- POST /api/pozvanka_do_klanu/accept.php - prida uzivatela do klanu a odstrani pozvanku, body: { userName, tag }, return: ok - { message: "OK" } / err - { message: "ERR" } / already_exists { message: "EXISTS" }
+- POST /api/pozvanka_do_klanu/delete.php - odstrani pozvánku do klanu, body: { tag, userName }, return: ok - { message: "OK" } / err - { message: "ERR" }
 
 <br />
 
@@ -56,7 +58,6 @@
 
 <br />
 
-- přijetí/odmítnutí pozvánky do klanu
 - vytvořit/odstranit/opustit tým
 - vytvoření pozvánky do týmu
 - přijetí/odmítnutí pozvánky do týmu

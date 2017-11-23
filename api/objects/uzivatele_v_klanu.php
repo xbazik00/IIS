@@ -66,4 +66,25 @@ class UzivateleVKlanu{
     
         return false;
     }
+
+    function add(){
+        $stmt = $this->conn->prepare("SELECT * FROM uzivatele_v_klanu WHERE prezdivka_uzivatele=:prezdivka_uzivatele");
+
+        $stmt->bindParam(":prezdivka_uzivatele", htmlspecialchars(strip_tags($this->prezdivka_uzivatele)));
+        $stmt->execute();
+        if ($stmt->rowCount() > 0){
+            return false;
+        }
+
+        $stmt = $this->conn->prepare("INSERT INTO uzivatele_v_klanu SET tag_klanu=:tag_klanu, prezdivka_uzivatele=:prezdivka_uzivatele");
+        
+        $stmt->bindParam(":tag_klanu", htmlspecialchars(strip_tags($this->tag_klanu)));
+        $stmt->bindParam(":prezdivka_uzivatele", htmlspecialchars(strip_tags($this->prezdivka_uzivatele)));
+        
+        if($stmt->execute()){
+            return true;
+        }
+    
+        return false;
+    }
 }
