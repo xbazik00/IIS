@@ -86,4 +86,30 @@ class Klan{
         return false;
         
     }
+
+    function update(){
+        $stmt = $this->conn->prepare("SELECT * FROM klan WHERE tag=:tag");
+        
+        $stmt->bindParam(":tag", htmlspecialchars(strip_tags($this->tag)));
+
+        $stmt->execute();
+
+        if ($stmt->rowCount() == 0){
+            return false;
+        }
+
+        $stmt = $this->conn->prepare("UPDATE klan SET nazev=:nazev, logo=:logo, hymna=:hymna, zeme_pusobeni=:zeme_pusobeni WHERE tag=:tag");
+
+        $stmt->bindParam(":tag", htmlspecialchars(strip_tags($this->tag)));
+        $stmt->bindParam(":nazev", htmlspecialchars(strip_tags($this->nazev)));
+        $stmt->bindParam(":logo", htmlspecialchars(strip_tags($this->logo)));
+        $stmt->bindParam(":hymna", htmlspecialchars(strip_tags($this->hymna)));
+        $stmt->bindParam(":zeme_pusobeni", htmlspecialchars(strip_tags($this->zeme_pusobeni)));
+
+        if ($stmt->execute()){
+            return true;
+        }
+
+        return false;
+    }
 }

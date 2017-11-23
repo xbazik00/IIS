@@ -24,6 +24,7 @@
 - GET /api/klan/readOne.php - vrátí klan podle tag, body: { tag }, return: ok - objekt klanu / err - { error }
 - POST /api/klan/create.php - přidá nový klan, body: { tag, name, logo, anthem, country, boss }, return: ok - { message: "OK" } / err - { message: "ERR" }
 - POST /api/klan/delete.php - odstraní klan a pozvánky do klanu, body: { tag }, return: ok - { message: "OK" } / err - { message: "ERR" }
+- POST /api/klan/update.php - aktualizuje klan na zaklade tagu, body: { tag, name, logo, anthem, country }, return: ok - { message: "OK" } / err - { message: "ERR" }
 
 <br />
 
@@ -55,7 +56,6 @@
 
 <br />
 
-- update klanu
 - přijetí/odmítnutí pozvánky do klanu
 - vytvořit/odstranit/opustit tým
 - vytvoření pozvánky do týmu
