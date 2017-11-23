@@ -6,20 +6,19 @@ header("Access-Control-Max-Age: 3600");
 header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
 
 include_once '../config/database.php';
-include_once '../objects/pozvanka_do_klanu.php';
-
-
+include_once '../objects/pozvanka_do_tymu.php';
+ 
 $database = new Database();
 $db = $database->getConnection();
-
-$pozvanka_do_klanu = new PozvankaDoKlanu($db);
+ 
+$pozvanka_do_tymu = new PozvankaDoTymu($db);
 
 $data = json_decode(file_get_contents("php://input"));
 
-$pozvanka_do_klanu->tag_klanu = $data->tag;
-$pozvanka_do_klanu->prezdivka_uzivatele = $data->userName;
+$pozvanka_do_tymu->nazev_tymu = $data->name;
+$pozvanka_do_tymu->prezdivka_uzivatele = $data->userName;
 
-if($pozvanka_do_klanu->delete()){
+if($pozvanka_do_tymu->create()){
     echo '{';
         echo '"message": "OK"';
     echo '}';

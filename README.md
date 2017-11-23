@@ -52,15 +52,23 @@
 
 <br />
 
+- POST /api/klan/create.php - přidá nový tym, body: { name, userName, game }, return: ok - { message: "OK" } / err - { message: "ERR" }
+- POST /api/klan/delete.php - odstraní tym, pozvánky do tymu a uzivatelov v tyme, body: { name }, return: ok - { message: "OK" } / err - { message: "ERR" }
 
+<br />
+
+- POST /api/pozvanka_do_tymu/read.php - vrátí všechny pozvánky podle přezdívky, body: { userName }, return: { items: pole s objekty pozvánek, count: počet objektů }
+- POST /api/pozvanka_do_tymu/create.php - přidá novou pozvánku do klanu, body: { name, userName }, return: ok - { message: "OK" } / err - { message: "ERR" }
+- POST /api/pozvanka_do_tymu/accept.php - prida uzivatela do tymu a odstrani pozvanku, body: { userName, name }, return: ok - { message: "OK" } / err - { message: "ERR" } / already_exists { message: "EXISTS" }
+- POST /api/pozvanka_do_tymu/delete.php - odstrani pozvánku do tymu, body: { name, userName }, return: ok - { message: "OK" } / err - { message: "ERR" }
+
+<br />
 
 #### TODO API
 
 <br />
 
-- vytvořit/odstranit/opustit tým
-- vytvoření pozvánky do týmu
-- přijetí/odmítnutí pozvánky do týmu
+- opustit tým
 - vyhodit hráče z týmu
 - přihlásit/odhlásit tým z turnaje
 

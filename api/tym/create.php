@@ -6,20 +6,21 @@ header("Access-Control-Max-Age: 3600");
 header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
 
 include_once '../config/database.php';
-include_once '../objects/pozvanka_do_klanu.php';
-
-
+include_once '../objects/tym.php';
+ 
 $database = new Database();
 $db = $database->getConnection();
-
-$pozvanka_do_klanu = new PozvankaDoKlanu($db);
+ 
+$tym = new tym($db);
 
 $data = json_decode(file_get_contents("php://input"));
 
-$pozvanka_do_klanu->tag_klanu = $data->tag;
-$pozvanka_do_klanu->prezdivka_uzivatele = $data->userName;
+$tym->nazev_tymu= $data->name;
+$tym->pocet_hracu = $data->number_of_players;
+$tym->nazev_hry = $data->game;
 
-if($pozvanka_do_klanu->delete()){
+
+if($tym->create()){
     echo '{';
         echo '"message": "OK"';
     echo '}';
