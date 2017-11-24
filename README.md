@@ -52,8 +52,8 @@
 
 <br />
 
-- POST /api/klan/create.php - přidá nový tym, body: { name, userName, game }, return: ok - { message: "OK" } / err - { message: "ERR" }
-- POST /api/klan/delete.php - odstraní tym, pozvánky do tymu a uzivatelov v tyme, body: { name }, return: ok - { message: "OK" } / err - { message: "ERR" }
+- POST /api/tym/create.php - přidá nový tym, body: { name, userName, game }, return: ok - { message: "OK" } / err - { message: "ERR" }
+- POST /api/tym/delete.php - odstraní tym, pozvánky do tymu a uzivatelov v tyme, body: { name }, return: ok - { message: "OK" } / err - { message: "ERR" }
 
 <br />
 
