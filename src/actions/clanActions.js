@@ -164,3 +164,53 @@ export const deleteUserFromClan = (tag, userName) => async () => {
     return false;
   }
 };
+
+export const acceptInvitation = (tag, userName) => async () => {
+  try {
+    const response = await fetch("/api/pozvanka_do_klanu/accept.php", {
+      method: "POST",
+      headers: new Headers({
+        "Content-Type": "application/json"
+      }),
+      body: JSON.stringify({ tag, userName })
+    });
+
+    if (response.status === 200) {
+      const content = await response.json();
+
+      if (content.message === "OK") {
+        return true;
+      }
+    }
+
+    return false;
+  } catch (err) {
+    console.log(err);
+    return false;
+  }
+};
+
+export const deleteInvitation = (tag, userName) => async () => {
+  try {
+    const response = await fetch("/api/pozvanka_do_klanu/delete.php", {
+      method: "POST",
+      headers: new Headers({
+        "Content-Type": "application/json"
+      }),
+      body: JSON.stringify({ tag, userName })
+    });
+
+    if (response.status === 200) {
+      const content = await response.json();
+
+      if (content.message === "OK") {
+        return true;
+      }
+    }
+
+    return false;
+  } catch (err) {
+    console.log(err);
+    return false;
+  }
+};

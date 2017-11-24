@@ -1,4 +1,5 @@
 import React from "react";
+import { connect } from "react-redux";
 import { map } from "lodash";
 import {
   DataTable,
@@ -9,9 +10,11 @@ import {
 } from "react-md";
 import { Button, Glyphicon } from "react-bootstrap";
 
+import { setDialog } from "../../actions/appActions";
+
 import { formatTime } from "../../utils";
 
-const Table = ({ history, invitations }) => {
+const Table = ({ history, invitations, setDialog }) => {
   return (
     <div className="flex-row flex-center">
       <DataTable plain className="table">
@@ -38,10 +41,24 @@ const Table = ({ history, invitations }) => {
                   {formatTime(invitation.created)}
                 </TableColumn>
                 <TableColumn className="table-col">
-                  <Button onClick={() => null}>
+                  <Button
+                    onClick={() =>
+                      setDialog("AcceptClanInvitation", {
+                        tag: invitation.tag,
+                        userName: invitation.userName
+                      })
+                    }
+                  >
                     <Glyphicon glyph="ok" />
                   </Button>
-                  <Button onClick={() => null}>
+                  <Button
+                    onClick={() =>
+                      setDialog("DeleteClanInvitation", {
+                        tag: invitation.tag,
+                        userName: invitation.userName
+                      })
+                    }
+                  >
                     <Glyphicon glyph="remove" />
                   </Button>
                 </TableColumn>
@@ -54,4 +71,4 @@ const Table = ({ history, invitations }) => {
   );
 };
 
-export default Table;
+export default connect(null, { setDialog })(Table);
