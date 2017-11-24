@@ -20,9 +20,11 @@ const Main = ({ history, user, setDialog, activeClan }) => {
     <div>
       <Header history={history} />
       <div className="container">
-        <div className="margin-bottom">
-          <MainHeader history={history} clan={activeClan} />
-        </div>
+        {!admin && (
+          <div className="margin-bottom">
+            <MainHeader history={history} clan={activeClan} />
+          </div>
+        )}
         <Card className="margin-bottom">
           <CardText>
             <h3>Hry</h3>
