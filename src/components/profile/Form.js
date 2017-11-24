@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { reduxForm, Field } from "redux-form";
+import { reduxForm, Field, SubmissionError } from "redux-form";
 import { compose, withHandlers } from "recompose";
 import { Button } from "react-bootstrap";
 
@@ -9,6 +9,8 @@ import SelectField from "../form/SelectField";
 import * as Validation from "../form/Validation";
 
 import { setActiveForm } from "../../actions/appActions";
+import { updateUser, getUser } from "../../actions/usersActions";
+
 import { isCoach } from "../../utils";
 
 import { countries } from "../../enums";
@@ -61,12 +63,25 @@ const Form = ({ handleSubmit, setActiveForm, user }) => {
 };
 
 export default compose(
-  connect(null, { setActiveForm }),
+  connect(({ app: { user } }) => ({ user }), {
+    setActiveForm,
+    updateUser,
+    getUser
+  }),
   withHandlers({
     onSubmit: () => async (formData, dispatch, props) => {
-      const { setActiveForm } = props;
+      const { setActiveForm, updateUser, getUser, user } = props;
+      const { userName, firstName, surname, country } = formData;
 
-      setActiveForm(null);
+      if (
+        await updateUser(userName, firstName, surname, country, user.password)
+      ) {
+        getUser(user.userName);
+        setActiveForm(null);
+      } else
+        throw new SubmissionError({
+          notes: "*Profil se nepodařilo aktualizovat!"
+        });
     }
   }),
   reduxForm({ form: "profileEditForm" })
