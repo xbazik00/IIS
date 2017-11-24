@@ -68,6 +68,11 @@
 
 <br />
 
+- výpis týmů konkrétního uživatele
+- uživatele nelze odstranit z klanu po přijetí pozvánky
+
+<br />
+
 - opustit tým
 - vyhodit hráče z týmu
 - přihlásit/odhlásit tým z turnaje
