@@ -10,17 +10,18 @@ import Table from "../components/games/Table";
 
 import { getGames } from "../actions/gamesActions";
 import { setDialog } from "../actions/appActions";
+import { getClan } from "../actions/clanActions";
 
 import { isAdmin } from "../utils";
 
-const Main = ({ history, user, setDialog }) => {
+const Main = ({ history, user, setDialog, activeClan }) => {
   const admin = user && isAdmin(user.role);
   return (
     <div>
       <Header history={history} />
       <div className="container">
         <div className="margin-bottom">
-          <MainHeader history={history} />
+          <MainHeader history={history} clan={activeClan} />
         </div>
         <Card className="margin-bottom">
           <CardText>
@@ -41,11 +42,16 @@ const Main = ({ history, user, setDialog }) => {
 };
 
 export default compose(
-  connect(({ app: { user } }) => ({ user }), { getGames, setDialog }),
+  connect(({ app: { user }, clan: { activeClan } }) => ({ user, activeClan }), {
+    getGames,
+    setDialog,
+    getClan
+  }),
   lifecycle({
     async componentDidMount() {
-      const { getGames } = this.props;
+      const { getGames, getClan, user } = this.props;
       await getGames();
+      if (user.clan) await getClan(user.clan);
     }
   })
 )(Main);

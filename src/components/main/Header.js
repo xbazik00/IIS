@@ -4,7 +4,7 @@ import { Button } from "react-bootstrap";
 
 import { setDialog } from "../../actions/appActions";
 
-const Header = ({ history, setDialog, user }) => {
+const Header = ({ history, setDialog, user, clan }) => {
   if (!user) return <div />;
   return (
     <div className="flex-row flex-space">
@@ -25,10 +25,15 @@ const Header = ({ history, setDialog, user }) => {
           Pozvánky do klanu
         </Button>
       )}
-      <Button bsStyle="primary" onClick={() => setDialog("CreateTeam")}>
-        Založit tým
-      </Button>
-      <Button onClick={() => null}>Pozvánky do týmu</Button>
+      {clan &&
+        clan.boss === user.userName && (
+          <Button bsStyle="primary" onClick={() => setDialog("CreateTeam")}>
+            Založit tým
+          </Button>
+        )}
+      {(!clan || (clan && clan.boss !== user.userName)) && (
+        <Button onClick={() => null}>Pozvánky do týmu</Button>
+      )}
     </div>
   );
 };
