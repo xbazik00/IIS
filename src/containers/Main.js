@@ -51,7 +51,7 @@ export default compose(
     async componentDidMount() {
       const { getGames, getClan, user } = this.props;
       await getGames();
-      if (user.clan) await getClan(user.clan);
+      if (user && user.clan) await getClan(user.clan);
     }
   })
 )(Main);

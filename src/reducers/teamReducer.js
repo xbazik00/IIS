@@ -1,13 +1,13 @@
 import * as c from "../actions/constants";
 
 const initialState = {
-  activeClan: null,
+  activeTeam: null,
   invitations: null
 };
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case c.CLAN:
+    case c.TEAM:
       return { ...state, ...action.payload };
     default:
       return state;

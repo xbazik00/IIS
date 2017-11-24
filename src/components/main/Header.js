@@ -32,7 +32,9 @@ const Header = ({ history, setDialog, user, clan }) => {
           </Button>
         )}
       {(!clan || (clan && clan.boss !== user.userName)) && (
-        <Button onClick={() => null}>Pozvánky do týmu</Button>
+        <Button onClick={() => history.push("/team-invitations")}>
+          Pozvánky do týmu
+        </Button>
       )}
     </div>
   );

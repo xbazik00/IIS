@@ -9,3 +9,5 @@ export const GAMES = "GAMES";
 export const USERS = "USERS";
 
 export const CLAN = "CLAN";
+
+export const TEAM = "TEAM";
