@@ -16,7 +16,7 @@ const Game = ({ history, activeGame, user }) => {
       {activeGame && (
         <div className="container">
           <GameHeader game={activeGame} user={user} />
-          <Info game={activeGame} />
+          <Info game={activeGame} initialValues={activeGame} />
         </div>
       )}
     </div>
