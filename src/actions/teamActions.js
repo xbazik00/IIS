@@ -111,3 +111,33 @@ export const getTeamsByUserName = userName => async dispatch => {
     return false;
   }
 };
+
+export const getTeam = name => async dispatch => {
+  try {
+    const response = await fetch("/api/tym/readOne.php", {
+      method: "POST",
+      headers: new Headers({
+        "Content-Type": "application/json"
+      }),
+      body: JSON.stringify({ name })
+    });
+
+    if (response.status === 200) {
+      const content = await response.json();
+
+      if (content.name) {
+        dispatch({
+          type: c.TEAM,
+          payload: { activeTeam: content }
+        });
+
+        return true;
+      }
+    }
+
+    return false;
+  } catch (err) {
+    console.log(err);
+    return false;
+  }
+};
