@@ -22,7 +22,12 @@ const Clan = ({ history, activeClan, user, setDialog }) => {
         <div className="container">
           <ClanHeader clan={activeClan} user={user} />
           <div className="margin-bottom">
-            <Info history={history} clan={activeClan} />
+            <Info
+              history={history}
+              clan={activeClan}
+              initialValues={activeClan}
+              user={user}
+            />
           </div>
           <Card className="margin-bottom">
             <CardText>

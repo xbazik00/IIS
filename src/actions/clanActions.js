@@ -33,6 +33,31 @@ export const createClan = (
   }
 };
 
+export const updateClan = (tag, name, logo, anthem, country) => async () => {
+  try {
+    const response = await fetch("/api/klan/update.php", {
+      method: "POST",
+      headers: new Headers({
+        "Content-Type": "application/json"
+      }),
+      body: JSON.stringify({ tag, name, logo, anthem, country })
+    });
+
+    if (response.status === 200) {
+      const content = await response.json();
+
+      if (content.message === "OK") {
+        return true;
+      }
+    }
+
+    return false;
+  } catch (err) {
+    console.log(err);
+    return false;
+  }
+};
+
 export const getClan = tag => async dispatch => {
   try {
     const response = await fetch("/api/klan/readOne.php", {
