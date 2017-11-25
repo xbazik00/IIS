@@ -7,11 +7,14 @@ header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers
 
 include_once '../config/database.php';
 include_once '../objects/tym.php';
+include_once '../objects/uzivatele_v_tymech.php';
+
  
 $database = new Database();
 $db = $database->getConnection();
  
-$tym = new tym($db);
+$tym = new Tym($db);
+$uzivatele_v_tymech = new UzivateleVTymech($db);
 
 $data = json_decode(file_get_contents("php://input"));
 
@@ -19,8 +22,10 @@ $tym->nazev_tymu= $data->name;
 $tym->pocet_hracu = $data->number_of_players;
 $tym->nazev_hry = $data->game;
 
+$uzivatele_v_tymech->nazev_tymu = $data->name;
+$uzivatele_v_tymech->prezdivka_uzivatele = $data->userName;
 
-if($tym->create()){
+if($tym->create() && $uzivatele_v_tymech->add()){
     echo '{';
         echo '"message": "OK"';
     echo '}';
