@@ -15,10 +15,14 @@ import Clan from "./containers/Clan";
 import ClanInvitations from "./containers/ClanInvitations";
 import TeamInvitations from "./containers/TeamInvitations";
 import User from "./containers/User";
+import Sponsors from "./containers/Sponsors";
 
 import { getUser } from "./actions/usersActions";
 
-const App = ({ store }) => {
+import { isAdmin } from "./utils";
+
+const App = ({ store, user }) => {
+  const admin = user && isAdmin(user.role);
   return (
     <Provider store={store}>
       <Router>
@@ -33,6 +37,7 @@ const App = ({ store }) => {
           <Route path="/team-invitations" component={TeamInvitations} />
           <Route path="/user/:userName" component={User} />
           <Route path="/users" component={Users} />
+          {admin && <Route path="/sponsors" component={Sponsors} />}
         </div>
       </Router>
     </Provider>
@@ -40,7 +45,7 @@ const App = ({ store }) => {
 };
 
 export default compose(
-  connect(null, { getUser }),
+  connect(({ app: { user } }) => ({ user }), { getUser }),
   lifecycle({
     componentWillMount() {
       const { user, getUser } = this.props;

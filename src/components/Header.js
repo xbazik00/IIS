@@ -6,7 +6,9 @@ import { DropdownButton, MenuItem, Glyphicon } from "react-bootstrap";
 
 import { signOut } from "../actions/appActions";
 
-const Header = ({ history, authStyle, signOut }) => {
+import { isAdmin } from "../utils";
+
+const Header = ({ history, authStyle, signOut, user }) => {
   return (
     <header className="header">
       <div className={classNames("inner", { normal: !authStyle, authStyle })}>
@@ -33,8 +35,13 @@ const Header = ({ history, authStyle, signOut }) => {
             <MenuItem eventKey="3" onClick={() => history.push("/users")}>
               Uživatelé
             </MenuItem>
+            {isAdmin(user.role) && (
+              <MenuItem eventKey="4" onClick={() => history.push("/sponsors")}>
+                Sponzoři
+              </MenuItem>
+            )}
             <MenuItem
-              eventKey="4"
+              eventKey="5"
               onClick={() => {
                 signOut();
                 history.push("/");
@@ -49,4 +56,6 @@ const Header = ({ history, authStyle, signOut }) => {
   );
 };
 
-export default compose(connect(null, { signOut }))(Header);
+export default compose(connect(({ app: { user } }) => ({ user }), { signOut }))(
+  Header
+);

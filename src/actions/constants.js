@@ -11,3 +11,5 @@ export const USERS = "USERS";
 export const CLAN = "CLAN";
 
 export const TEAM = "TEAM";
+
+export const SPONSOR = "SPONSOR";
