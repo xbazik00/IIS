@@ -7,14 +7,15 @@ import { Button } from "react-bootstrap";
 import Header from "../components/Header";
 import MainHeader from "../components/main/Header";
 import Table from "../components/games/Table";
+import Filter from "../components/Filter";
 
 import { getGames } from "../actions/gamesActions";
-import { setDialog } from "../actions/appActions";
+import { setDialog, setFilter } from "../actions/appActions";
 import { getClan } from "../actions/clanActions";
 
 import { isAdmin } from "../utils";
 
-const Main = ({ history, user, setDialog, activeClan }) => {
+const Main = ({ history, user, setDialog, activeClan, getGames }) => {
   const admin = user && isAdmin(user.role);
   return (
     <div>
@@ -28,6 +29,16 @@ const Main = ({ history, user, setDialog, activeClan }) => {
         <Card className="margin-bottom">
           <CardText>
             <h3>Hry</h3>
+            <div className="margin-bottom">
+              <Filter
+                selectOptions={[
+                  { label: "Název", value: "name" },
+                  { label: "Žánr", value: "genre" },
+                  { label: "Vydavatel", value: "publisher" }
+                ]}
+                handleUpdate={() => getGames()}
+              />
+            </div>
             <div className="margin-bottom-small">
               <Table history={history} user={user} />
             </div>
@@ -47,11 +58,14 @@ export default compose(
   connect(({ app: { user }, clan: { activeClan } }) => ({ user, activeClan }), {
     getGames,
     setDialog,
-    getClan
+    getClan,
+    setFilter
   }),
   lifecycle({
     async componentDidMount() {
-      const { getGames, getClan, user } = this.props;
+      const { getGames, getClan, user, setFilter } = this.props;
+      
+      setFilter({ select: "name", ascDesc: true, search: "" });
       await getGames();
       if (user && user.clan) await getClan(user.clan);
     }
