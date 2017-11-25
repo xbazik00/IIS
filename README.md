@@ -64,11 +64,15 @@
 
 <br />
 
+- POST /api/uzivatele_v_tymech/readTeams.php - vrátí všechny tymy podle přezdívky, body: { userName }, return: { items: pole s objekty pozvánek, count: počet objektů }
+
+<br />
+
+
 #### TODO API
 
 <br />
 
-- výpis týmů konkrétního uživatele
 - uživatele nelze odstranit z klanu po přijetí pozvánky
 
 <br />
