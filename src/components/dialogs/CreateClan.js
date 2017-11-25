@@ -9,7 +9,8 @@ import SelectField from "../form/SelectField";
 import * as Validation from "../form/Validation";
 import DialogContainer from "./DialogContainer";
 
-import { createClan } from "../../actions/clanActions";
+import { createClan, getClan } from "../../actions/clanActions";
+import { getUser } from "../../actions/usersActions";
 
 import { countries } from "../../enums";
 
@@ -56,17 +57,21 @@ const CreateClan = ({ handleSubmit, data }) => (
 
 export default compose(
   connect(({ app: { dialog: { data }, user } }) => ({ data, user }), {
-    createClan
+    createClan,
+    getClan,
+    getUser
   }),
   withRouter,
   withHandlers({
     onSubmit: dialog => async (formData, dispatch, props) => {
-      const { createClan, user } = props;
+      const { createClan, user, getClan, getUser } = props;
       const { tag, name, logo, anthem, country } = formData;
 
-      if (await createClan(tag, name, logo, anthem, country, user.userName))
+      if (await createClan(tag, name, logo, anthem, country, user.userName)) {
+        getUser(user.userName);
+        getClan(tag);
         dialog.closeDialog();
-      else
+      } else
         throw new SubmissionError({
           tag: "*Klan s tímto tagem již existuje."
         });

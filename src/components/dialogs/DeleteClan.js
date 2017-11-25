@@ -23,16 +23,19 @@ const DeleteClan = ({ handleSubmit, data }) => (
 );
 
 export default compose(
-  connect(({ app: { dialog: { data } } }) => ({ data }), { deleteClan, getUser }),
+  connect(({ app: { user, dialog: { data } } }) => ({ user, data }), {
+    deleteClan,
+    getUser
+  }),
   withRouter,
   withHandlers({
     onSubmit: dialog => async (formData, dispatch, props) => {
-      const { deleteClan, data, history, getUser } = props;
+      const { deleteClan, data, history, getUser, user } = props;
 
       if (await deleteClan(data.tag)) {
-          dialog.closeDialog();
-          getUser();
-          history.push("/main");
+        dialog.closeDialog();
+        getUser(user.userName);
+        history.push("/main");
       }
     }
   }),
