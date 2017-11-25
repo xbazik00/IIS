@@ -9,6 +9,7 @@ import { signOut } from "../actions/appActions";
 import { isAdmin } from "../utils";
 
 const Header = ({ history, authStyle, signOut, user }) => {
+  const admin = user && isAdmin(user.role);
   return (
     <header className="header">
       <div className={classNames("inner", { normal: !authStyle, authStyle })}>
@@ -35,7 +36,7 @@ const Header = ({ history, authStyle, signOut, user }) => {
             <MenuItem eventKey="3" onClick={() => history.push("/users")}>
               Uživatelé
             </MenuItem>
-            {isAdmin(user.role) && (
+            {admin && (
               <MenuItem eventKey="4" onClick={() => history.push("/sponsors")}>
                 Sponzoři
               </MenuItem>
