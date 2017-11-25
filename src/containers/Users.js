@@ -8,9 +8,10 @@ import ContainerHeader from "../components/ContainerHeader";
 import Filter from "../components/Filter";
 import Table from "../components/users/Table";
 
+import { setFilter } from "../actions/appActions";
 import { getUsers } from "../actions/usersActions";
 
-const Users = ({ history, users, user }) => {
+const Users = ({ history, users, user, getUsers }) => {
   return (
     <div>
       <Header history={history} />
@@ -22,9 +23,9 @@ const Users = ({ history, users, user }) => {
               { label: "Přezdívka", value: "userName" },
               { label: "Jméno", value: "firstName" },
               { label: "Příjmení", value: "surname" },
-              { label: "Země", value: "country" },
               { label: "Klan", value: "clan" }
             ]}
+            handleUpdate={() => getUsers()}
           />
         </div>
         <Card className="margin-bottom">
@@ -43,11 +44,13 @@ export default compose(
       user,
       users
     }),
-    { getUsers }
+    { getUsers, setFilter }
   ),
   lifecycle({
-    async componentDidMount() {
-      const { getUsers } = this.props;
+    async componentWillMount() {
+      const { getUsers, setFilter } = this.props;
+
+      setFilter({ select: "userName", ascDesc: true, search: "" });
       await getUsers();
     }
   })

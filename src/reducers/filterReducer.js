@@ -1,7 +1,7 @@
 import * as c from "../actions/constants";
 
 const initialState = {
-  select: "NAME",
+  select: "name",
   ascDesc: true,
   search: ""
 };

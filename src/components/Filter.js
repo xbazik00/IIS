@@ -6,13 +6,22 @@ import { FormControl, Button, Glyphicon } from "react-bootstrap";
 
 import { setFilter } from "../actions/appActions";
 
-const Filter = ({ history, filter, selectOptions, setFilter }) => (
+const Filter = ({
+  history,
+  filter,
+  selectOptions,
+  setFilter,
+  handleUpdate
+}) => (
   <div className="flex-row flex-center filter">
     {selectOptions && (
       <FormControl
         className="field"
         componentClass="select"
-        onChange={e => setFilter({ select: e.target.value })}
+        onChange={e => {
+          setFilter({ select: e.target.value });
+          if (handleUpdate) handleUpdate();
+        }}
         value={filter.select}
       >
         {map(selectOptions, (o, i) => (
@@ -22,13 +31,21 @@ const Filter = ({ history, filter, selectOptions, setFilter }) => (
         ))}
       </FormControl>
     )}
-    <Button onClick={() => setFilter({ ascDesc: !filter.ascDesc })}>
+    <Button
+      onClick={() => {
+        setFilter({ ascDesc: !filter.ascDesc });
+        if (handleUpdate) handleUpdate();
+      }}
+    >
       <Glyphicon
         glyph={filter.ascDesc ? "sort-by-alphabet" : "sort-by-alphabet-alt"}
       />
     </Button>
     <FormControl
-      onChange={e => setFilter({ search: e.target.value })}
+      onChange={e => {
+        setFilter({ search: e.target.value });
+        if (handleUpdate) handleUpdate();
+      }}
       className="field"
       type="text"
       placeholder="Hledej"
