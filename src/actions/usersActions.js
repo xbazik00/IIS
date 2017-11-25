@@ -74,21 +74,14 @@ export const getUser = userName => async dispatch => {
   }
 };
 
-export const updateUser = (
-  nick,
-  name,
-  surname,
-  country,
-  role,
-  password
-) => async () => {
+export const updateUser = user => async () => {
   try {
     const response = await fetch("/api/uzivatel/update.php", {
       method: "POST",
       headers: new Headers({
         "Content-Type": "application/json"
       }),
-      body: JSON.stringify({ nick, name, surname, country, role, password })
+      body: JSON.stringify(user)
     });
 
     if (response.status === 200) {

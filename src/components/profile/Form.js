@@ -11,12 +11,13 @@ import * as Validation from "../form/Validation";
 import { setActiveForm } from "../../actions/appActions";
 import { updateUser, getUser } from "../../actions/usersActions";
 
-import { isCoach } from "../../utils";
+import { isCoach, isPlayer } from "../../utils";
 
 import { countries } from "../../enums";
 
 const Form = ({ handleSubmit, setActiveForm, user }) => {
   const coach = isCoach(user.role);
+  const player = isPlayer(user.role);
   return (
     <form onSubmit={handleSubmit} className="form">
       <div className="flex-row">
@@ -50,6 +51,10 @@ const Form = ({ handleSubmit, setActiveForm, user }) => {
           componentClass="textarea"
         />
       )}
+      {player && <Field component={TextField} label="Myš" name="mouse" />}
+      {player && (
+        <Field component={TextField} label="Klávesnice" name="keyboard" />
+      )}
       <div className="flex-row flex-right">
         <Button className="button" onClick={() => setActiveForm(null)}>
           Zrušit
@@ -71,10 +76,19 @@ export default compose(
   withHandlers({
     onSubmit: () => async (formData, dispatch, props) => {
       const { setActiveForm, updateUser, getUser, user } = props;
-      const { userName, firstName, surname, country } = formData;
+      const { firstName, surname, country, notes, mouse, keyboard } = formData;
 
       if (
-        await updateUser(userName, firstName, surname, country, user.password)
+        await updateUser({
+          ...user,
+          nick: user.userName,
+          name: firstName,
+          surname,
+          country,
+          notes,
+          mouse,
+          keyboard
+        })
       ) {
         getUser(user.userName);
         setActiveForm(null);
