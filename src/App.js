@@ -16,6 +16,7 @@ import ClanInvitations from "./containers/ClanInvitations";
 import TeamInvitations from "./containers/TeamInvitations";
 import User from "./containers/User";
 import Sponsors from "./containers/Sponsors";
+import Teams from "./containers/Teams";
 
 import { getUser } from "./actions/usersActions";
 
@@ -37,6 +38,7 @@ const App = ({ store, user }) => {
           <Route path="/team-invitations" component={TeamInvitations} />
           <Route path="/user/:userName" component={User} />
           <Route path="/users" component={Users} />
+          <Route path="/teams" component={Teams} />
           {admin && <Route path="/sponsors" component={Sponsors} />}
         </div>
       </Router>
