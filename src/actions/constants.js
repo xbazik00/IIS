@@ -13,3 +13,5 @@ export const CLAN = "CLAN";
 export const TEAM = "TEAM";
 
 export const SPONSOR = "SPONSOR";
+
+export const FILTER = "FILTER";

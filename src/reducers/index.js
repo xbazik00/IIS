@@ -8,6 +8,7 @@ import users from "./usersReducer";
 import clan from "./clanReducer";
 import team from "./teamReducer";
 import sponsor from "./sponsorReducer";
+import filter from "./filterReducer";
 
 export default combineReducers({
   form,
@@ -16,5 +17,6 @@ export default combineReducers({
   users,
   clan,
   team,
-  sponsor
+  sponsor,
+  filter
 });
