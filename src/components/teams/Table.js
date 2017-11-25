@@ -22,34 +22,38 @@ const Table = ({ history, teams, user, setDialog }) => {
         <TableHeader className="table-header">
           <TableRow className="table-row">
             <TableColumn className="table-col">Název</TableColumn>
+            <TableColumn className="table-col">
+              Maximální počet hráčů
+            </TableColumn>
             <TableColumn className="table-col">Hra</TableColumn>
             {admin && <TableColumn className="table-col">Akce</TableColumn>}
           </TableRow>
         </TableHeader>
         <TableBody className="table-body">
-          {map(
-            filter(teams, (t, i) => (
-              <TableRow
-                key={i}
-                className="table-row"
-                onClick={() => history.push(`/team/${t.name}`)}
-              >
-                <TableColumn className="table-col">{t.name}</TableColumn>
-                <TableColumn className="table-col">{t.game}</TableColumn>
-                {admin && (
-                  <TableColumn className="table-col">
-                    <Button
-                      onClick={e => {
-                        e.stopPropagation();
-                      }}
-                    >
-                      <Glyphicon glyph="remove" />
-                    </Button>
-                  </TableColumn>
-                )}
-              </TableRow>
-            ))
-          )}
+          {map(teams, (t, i) => (
+            <TableRow
+              key={i}
+              className="table-row"
+              onClick={() => history.push(`/team/${t.name}`)}
+            >
+              <TableColumn className="table-col">{t.name}</TableColumn>
+              <TableColumn className="table-col">
+                {t.number_of_players}
+              </TableColumn>
+              <TableColumn className="table-col">{t.game}</TableColumn>
+              {admin && (
+                <TableColumn className="table-col">
+                  <Button
+                    onClick={e => {
+                      e.stopPropagation();
+                    }}
+                  >
+                    <Glyphicon glyph="remove" />
+                  </Button>
+                </TableColumn>
+              )}
+            </TableRow>
+          ))}
         </TableBody>
       </DataTable>
     </div>

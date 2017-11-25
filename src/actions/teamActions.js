@@ -1,14 +1,19 @@
 import fetch from "../utils/fetch";
 import * as c from "./constants";
 
-export const createTeam = (name, userName, game) => async () => {
+export const createTeam = (
+  name,
+  userName,
+  game,
+  number_of_players
+) => async () => {
   try {
     const response = await fetch("/api/tym/create.php", {
       method: "POST",
       headers: new Headers({
         "Content-Type": "application/json"
       }),
-      body: JSON.stringify({ name, userName, game })
+      body: JSON.stringify({ name, userName, game, number_of_players })
     });
 
     if (response.status === 200) {

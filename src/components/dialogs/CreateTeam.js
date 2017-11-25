@@ -29,12 +29,12 @@ const CreateTeam = ({ handleSubmit, data, games }) => {
         name="name"
         validate={[Validation.required]}
       />
-      {/*<Field
+      <Field
         component={TextField}
         label="Počet hráčů"
-        name="numberOfPlayers"
+        name="number_of_players"
         validate={[Validation.required, Validation.isNumberGTOne]}
-      />*/}
+      />
       <Field
         component={SelectField}
         label="Hra"
@@ -60,9 +60,9 @@ export default compose(
   withHandlers({
     onSubmit: dialog => async (formData, dispatch, props) => {
       const { createTeam, user } = props;
-      const { name, game } = formData;
+      const { name, game, number_of_players } = formData;
 
-      if (await createTeam(name, user.userName, game)) {
+      if (await createTeam(name, user.userName, game, number_of_players)) {
         dialog.closeDialog();
       }
     }
