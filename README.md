@@ -79,6 +79,10 @@
 
 <br />
 
+- při založení týmu přidat zakladatele hned mezi hráče týmu, jako prvního člena (userName v body)
+
+<br />
+
 - přihlásit/odhlásit tým z turnaje
 
 <br />
