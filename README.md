@@ -74,10 +74,6 @@
 
 <br />
 
-- uživatele nelze odstranit z klanu po přijetí pozvánky - nenasiel som problem
-
-<br />
-
 - přihlásit/odhlásit tým z turnaje
 
 <br />
