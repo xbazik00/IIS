@@ -65,6 +65,7 @@
 <br />
 
 - POST /api/uzivatele_v_tymech/readTeams.php - vrátí všechny tymy podle přezdívky, body: { userName }, return: { items: pole s objekty pozvánek, count: počet objektů }
+- POST /api/uzivatele_v_tymech/deleteOne.php - odstraní uživatele z tymu, body: { name, userName }, return: ok - { message: "OK" } / err - { message: "ERR" }
 
 <br />
 
@@ -73,12 +74,10 @@
 
 <br />
 
-- uživatele nelze odstranit z klanu po přijetí pozvánky
+- uživatele nelze odstranit z klanu po přijetí pozvánky - nenasiel som problem
 
 <br />
 
-- opustit tým
-- vyhodit hráče z týmu
 - přihlásit/odhlásit tým z turnaje
 
 <br />
