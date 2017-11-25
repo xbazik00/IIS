@@ -74,6 +74,11 @@
 
 <br />
 
+- posílat poznamky u trenéra
+- posílat herni_mys a klavesnice u hráče
+
+<br />
+
 - přihlásit/odhlásit tým z turnaje
 
 <br />
@@ -81,6 +86,7 @@
 - organizátor turnaje - bude asi uživatel s rolí ORGANIZATOR - vytvořit testovacího
 - vytvořit/editovat/zrušit turnaj
 - přidat sponzora turnaje
+- výpis všech organizátorů
 
 <br />
 
