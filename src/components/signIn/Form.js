@@ -7,9 +7,9 @@ import { Button } from "react-bootstrap";
 import TextField from "../form/TextField";
 import * as Validation from "../form/Validation";
 
-import { signIn } from "../../actions/appActions";
+import { signIn, setDialog } from "../../actions/appActions";
 
-const Form = ({ handleSubmit, setActiveForm }) => {
+const Form = ({ handleSubmit, setActiveForm, setDialog }) => {
   return (
     <form onSubmit={handleSubmit} className="form">
       <Field
@@ -25,6 +25,9 @@ const Form = ({ handleSubmit, setActiveForm }) => {
         type="password"
       />
       <div className="flex-row flex-center">
+        <Button className="button" onClick={() => setDialog("Registration")}>
+          Registrovat se
+        </Button>
         <Button className="button" type="submit" bsStyle="primary">
           Přihlásit se
         </Button>
@@ -34,7 +37,7 @@ const Form = ({ handleSubmit, setActiveForm }) => {
 };
 
 export default compose(
-  connect(null, { signIn }),
+  connect(null, { signIn, setDialog }),
   withHandlers({
     onSubmit: () => async (formData, dispatch, props) => {
       const { userName, password } = formData;

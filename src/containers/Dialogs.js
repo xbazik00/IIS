@@ -12,6 +12,7 @@ import NewGame from "../components/dialogs/NewGame";
 import DeleteUser from "../components/dialogs/DeleteUser";
 import AcceptClanInvitation from "../components/dialogs/AcceptClanInvitation";
 import DeleteClanInvitation from "../components/dialogs/DeleteClanInvitation";
+import Registration from "../components/dialogs/Registration";
 
 import { closeDialog } from "../actions/appActions";
 
@@ -29,6 +30,7 @@ const Dialogs = props => {
       <DeleteUser {...props} />
       <AcceptClanInvitation {...props} />
       <DeleteClanInvitation {...props} />
+      <Registration {...props} />
     </div>
   );
 };

@@ -1,3 +1,5 @@
+import { reset } from "redux-form";
+
 import * as c from "./constants";
 import * as storage from "../utils/storage";
 
@@ -12,6 +14,8 @@ export const setActiveForm = (activeForm, activeFormData = null) => ({
   type: c.APP_FORM,
   payload: { activeForm, activeFormData }
 });
+
+export const resetForm = form => dispatch => dispatch(reset(form));
 
 export const setDialog = (name, data) => ({
   type: c.DIALOG,
