@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { filter, map, find } from "lodash";
+import { filter, map } from "lodash";
 import {
   DataTable,
   TableHeader,

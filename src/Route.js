@@ -12,11 +12,11 @@ export default compose(
   connect(({ app: { user } }) => ({ user }), null),
   lifecycle({
     componentWillMount() {
-      const { user, history, path } = this.props;
-
+      const { user, history, path, location } = this.props;
+      
       if (path !== "/" && (!user || !user.userName)) {
         history.replace("/");
-      } else if (path === "/" && user) {
+      } else if (path === "/" && location.pathname === "/" && user) {
         history.replace("/main");
       }
     }
