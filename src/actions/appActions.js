@@ -1,7 +1,7 @@
 import * as c from "./constants";
 import * as storage from "../utils/storage";
 
-import {getUser} from "./usersActions";
+import { getUser } from "./usersActions";
 
 export const setSample = () => ({
   type: c.CONSTANT,
@@ -38,7 +38,7 @@ export const signIn = (userName, password) => async dispatch => {
 
     if (response.status === 200) {
       const content = await response.json();
-      
+
       if (content.userName) {
         dispatch(getUser(content.userName));
 
@@ -60,3 +60,8 @@ export const signOut = () => async dispatch => {
   });
   storage.remove("user");
 };
+
+export const setFilter = filter => ({
+  type: c.FILTER,
+  payload: filter
+});

@@ -1,5 +1,5 @@
 import fetch from "../utils/fetch";
-import { find } from "lodash";
+import { find, isEmpty, sortBy, filter, get } from "lodash";
 
 import * as c from "./constants";
 
@@ -8,16 +8,32 @@ export const setActiveGame = activeGame => ({
   payload: { activeGame }
 });
 
-export const getGames = () => async dispatch => {
+export const getGames = () => async (dispatch, getState) => {
   try {
     const response = await fetch("/api/hra/read.php");
 
     if (response.status === 200) {
       const content = await response.json();
 
+      const filterAll = getState().filter;
+
+      const list = !isEmpty(content.items)
+        ? sortBy(
+            filter(
+              content.items,
+              c =>
+                get(c, filterAll.select) &&
+                get(c, filterAll.select).indexOf(filterAll.search) !== -1
+            ),
+            [filterAll.select]
+          )
+        : content.items;
+
+      if (!filterAll.ascDesc) list.reverse();
+
       dispatch({
         type: c.GAMES,
-        payload: { list: content.items, count: content.count }
+        payload: { list, count: content.count }
       });
     }
 
