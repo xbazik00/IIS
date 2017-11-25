@@ -9,6 +9,10 @@ header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers
 // include database and object files
 include_once '../config/database.php';
 include_once '../objects/uzivatel.php';
+include_once '../objects/hrac.php';
+include_once '../objects/trener.php';
+
+
  
 // get database connection
 $database = new Database();
@@ -16,7 +20,9 @@ $db = $database->getConnection();
  
 // prepare uzivatel object
 $uzivatel = new Uzivatel($db);
- 
+$hrac = new Hrac($db);
+$trener = new Trener($db);
+
 // get id of uzivatel to be edited
 $data = json_decode(file_get_contents("php://input"));
  
@@ -29,9 +35,18 @@ $uzivatel->prijmeni = $data->surname;
 $uzivatel->zeme_puvodu = $data->country;
 $uzivatel->role = $data->role;
 $uzivatel->heslo = $data->password;
+
+$trener->prezdivka = $data->nick;
+$trener->poznamky = $data->notes;
+
+$hrac->prezdivka = $data->nick;
+$hrac->herni_mys = $data->mouse;
+$hrac->klavesnice = $data->keyboard;
+
+
  
 // update the uzivatel
-if($uzivatel->update()){
+if($uzivatel->update() && $trener->update() && $hrac->update()){
     echo '{';
         echo '"message": "OK"';
     echo '}';

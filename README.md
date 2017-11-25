@@ -10,7 +10,7 @@
 - GET /api/uzivatel/readOne.php - vrátí uživatele podle prezdívky, body: { userName }, return: ok - objekt uživatele + notes(trener) + mouse,keyboard(hrac) / err - { error }
 - POST /api/uzivatel/deleteOne.php - odstraní uživatele, body: { userName }, return: ok - { message: "OK" } / err - { message: "ERR" }
 - POST /api/uzivatel/create.php - vytvoří uzivatela, body: { nick, name, surname, country, role, password }, return: ok - { message: "OK" } / err - { message: "ERR" }
-- POST /api/uzivatel/update.php - aktualizuje uzivatela definovaneho v nick, body: { nick, name, surname, country, role, password }, return: ok - { message: "OK" } / err - { message: "ERR" }
+- POST /api/uzivatel/update.php - aktualizuje uzivatela definovaneho v nick, body: { nick, name, surname, country, role, password, keyboard, mouse, notes }, return: ok - { message: "OK" } / err - { message: "ERR" }
 
 <br />
 
