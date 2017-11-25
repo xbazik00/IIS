@@ -7,6 +7,7 @@ import { Button } from "react-bootstrap";
 import Header from "../components/Header";
 import MainHeader from "../components/main/Header";
 import Table from "../components/games/Table";
+import ContainerHeader from "../components/ContainerHeader";
 import Filter from "../components/Filter";
 
 import { getGames } from "../actions/gamesActions";
@@ -26,19 +27,19 @@ const Main = ({ history, user, setDialog, activeClan, getGames }) => {
             <MainHeader history={history} clan={activeClan} />
           </div>
         )}
+        <ContainerHeader title="Hry" />
+        <div className="margin-bottom">
+          <Filter
+            selectOptions={[
+              { label: "Název", value: "name" },
+              { label: "Žánr", value: "genre" },
+              { label: "Vydavatel", value: "publisher" }
+            ]}
+            handleUpdate={() => getGames()}
+          />
+        </div>
         <Card className="margin-bottom">
           <CardText>
-            <h3>Hry</h3>
-            <div className="margin-bottom">
-              <Filter
-                selectOptions={[
-                  { label: "Název", value: "name" },
-                  { label: "Žánr", value: "genre" },
-                  { label: "Vydavatel", value: "publisher" }
-                ]}
-                handleUpdate={() => getGames()}
-              />
-            </div>
             <div className="margin-bottom-small">
               <Table history={history} user={user} />
             </div>
@@ -64,7 +65,7 @@ export default compose(
   lifecycle({
     async componentDidMount() {
       const { getGames, getClan, user, setFilter } = this.props;
-      
+
       setFilter({ select: "name", ascDesc: true, search: "" });
       await getGames();
       if (user && user.clan) await getClan(user.clan);
