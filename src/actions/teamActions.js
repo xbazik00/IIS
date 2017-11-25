@@ -78,3 +78,31 @@ export const getInvitations = userName => async dispatch => {
     return false;
   }
 };
+
+export const getTeamsByUserName = userName => async dispatch => {
+  try {
+    const response = await fetch("/api/uzivatele_v_tymech/readTeams.php", {
+      method: "POST",
+      headers: new Headers({
+        "Content-Type": "application/json"
+      }),
+      body: JSON.stringify({ userName })
+    });
+
+    if (response.status === 200) {
+      const content = await response.json();
+
+      dispatch({
+        type: c.TEAM,
+        payload: { list: content.items, count: content.count }
+      });
+
+      return true;
+    }
+
+    return false;
+  } catch (err) {
+    console.log(err);
+    return false;
+  }
+};
