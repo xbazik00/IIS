@@ -21,7 +21,7 @@
 
 <br />
 
-- GET /api/klan/readOne.php - vrátí klan podle tag, body: { tag }, return: ok - objekt klanu / err - { error }
+- POST /api/klan/readOne.php - vrátí klan podle tag, body: { tag }, return: ok - objekt klanu / err - { error }
 - POST /api/klan/create.php - přidá nový klan, body: { tag, name, logo, anthem, country, boss }, return: ok - { message: "OK" } / err - { message: "ERR" }
 - POST /api/klan/delete.php - odstraní klan a pozvánky do klanu, body: { tag }, return: ok - { message: "OK" } / err - { message: "ERR" }
 - POST /api/klan/update.php - aktualizuje klan na zaklade tagu, body: { tag, name, logo, anthem, country }, return: ok - { message: "OK" } / err - { message: "ERR" }
@@ -54,6 +54,7 @@
 
 - POST /api/tym/create.php - přidá nový tym, body: { name, userName, game, number_of_players }, return: ok - { message: "OK" } / err - { message: "ERR" }
 - POST /api/tym/delete.php - odstraní tym, pozvánky do tymu a uzivatelov v tyme, body: { name }, return: ok - { message: "OK" } / err - { message: "ERR" }
+- POST /api/tym/readOne.php - vrátí klan podle name, body: { name }, return: ok - objekt klanu / err - { error }
 
 <br />
 
