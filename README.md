@@ -6,8 +6,8 @@
 
 <br />
 
-- GET /api/uzivatel/read.php - vrátí všechny uživatele, return: { items: pole s objekty uživatelů, count: počet objektů }
-- GET /api/uzivatel/readOne.php - vrátí uživatele podle prezdívky, body: { userName }, return: ok - objekt uživatele / err - { error }
+- GET /api/uzivatel/read.php - vrátí všechny uživatele, return: { items: pole s objekty uživatelů + notes(trener) + mouse,keyboard(hrac), count: počet objektů }
+- GET /api/uzivatel/readOne.php - vrátí uživatele podle prezdívky, body: { userName }, return: ok - objekt uživatele + notes(trener) + mouse,keyboard(hrac) / err - { error }
 - POST /api/uzivatel/deleteOne.php - odstraní uživatele, body: { userName }, return: ok - { message: "OK" } / err - { message: "ERR" }
 - POST /api/uzivatel/create.php - vytvoří uzivatela, body: { nick, name, surname, country, role, password }, return: ok - { message: "OK" } / err - { message: "ERR" }
 - POST /api/uzivatel/update.php - aktualizuje uzivatela definovaneho v nick, body: { nick, name, surname, country, role, password }, return: ok - { message: "OK" } / err - { message: "ERR" }
@@ -74,8 +74,7 @@
 
 <br />
 
-- posílat poznamky u trenéra
-- posílat herni_mys a klavesnice u hráče
+- editovat hraca a trenera?
 
 <br />
 
