@@ -86,6 +86,7 @@ const Info = ({ game, handleSubmit, setActiveForm, activeForm, user }) => {
                 <Button
                   bsStyle="primary"
                   onClick={() => setActiveForm("gameEditForm")}
+                  block
                 >
                   Upravit
                 </Button>

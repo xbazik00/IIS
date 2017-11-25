@@ -58,6 +58,7 @@ const Info = ({ setActiveForm, user }) => {
           <Button
             bsStyle="primary"
             onClick={() => setActiveForm("profileEditForm")}
+            block
           >
             Upravit
           </Button>

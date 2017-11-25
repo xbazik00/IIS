@@ -44,6 +44,7 @@ const Form = ({ handleSubmit, setActiveForm, activeForm }) => {
       className="button"
       bsStyle="primary"
       onClick={() => setActiveForm("passwordChangeForm")}
+      block
     >
       Změnit heslo
     </Button>

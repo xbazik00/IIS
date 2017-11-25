@@ -6,34 +6,43 @@ import { withRouter } from "react-router-dom";
 
 import DialogContainer from "./DialogContainer";
 
+import { signOut } from "../../actions/appActions";
 import { deleteUser, getUsers } from "../../actions/usersActions";
 
 const DeleteUser = ({ handleSubmit, data }) => (
   <DialogContainer
-    title="Odstranit uživatele"
+    title={data && data.deleteMe ? "Zrušit účet" : "Odstranit uživatele"}
     name="DeleteUser"
     handleSubmit={handleSubmit}
-    submitLabel="Odstranit"
+    submitLabel={data && data.deleteMe ? "Zrušit účet" : "Odstranit"}
   >
-    <p>{`Opravdu chcete odstranit uživatele${
-      data && data.userName ? ` "${data.userName}"` : ""
-    }?`}</p>
+    <p>
+      {data && data.deleteMe
+        ? "Opravdu chcete zrušit účet?"
+        : `Opravdu chcete odstranit uživatele${
+            data && data.userName ? ` "${data.userName}"` : ""
+          }?`}
+    </p>
   </DialogContainer>
 );
 
 export default compose(
   connect(({ app: { dialog: { data } } }) => ({ data }), {
     deleteUser,
-    getUsers
+    getUsers,
+    signOut
   }),
   withRouter,
   withHandlers({
     onSubmit: dialog => async (formData, dispatch, props) => {
-      const { deleteUser, data, getUsers } = props;
+      const { deleteUser, data, getUsers, signOut, history } = props;
 
       if (await deleteUser(data.userName)) {
+        if (data.deleteMe) {
+          signOut();
+          history.push("/");
+        } else getUsers();
         dialog.closeDialog();
-        getUsers();
       }
     }
   }),

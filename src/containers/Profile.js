@@ -2,15 +2,16 @@ import React from "react";
 import { connect } from "react-redux";
 import { compose } from "recompose";
 import { Card, CardText } from "react-md";
+import { Button } from "react-bootstrap";
 
 import Header from "../components/Header";
 import Info from "../components/profile/Info";
 import Form from "../components/profile/Form";
 import PasswordForm from "../components/profile/PasswordForm";
 
-import { setActiveForm } from "../actions/appActions";
+import { setActiveForm, setDialog } from "../actions/appActions";
 
-const Profile = ({ history, activeForm, setActiveForm, user }) => {
+const Profile = ({ history, activeForm, setActiveForm, user, setDialog }) => {
   return (
     <div>
       <Header history={history} />
@@ -19,15 +20,28 @@ const Profile = ({ history, activeForm, setActiveForm, user }) => {
           <div className="flex-row flex-center">
             <Card className="card-page">
               <CardText>
-                <div className="margin-bottom">
+                <div className="margin-bottom-small">
                   {activeForm === "profileEditForm" ? (
                     <Form initialValues={{ ...user }} user={user} />
                   ) : (
                     <Info user={user} />
                   )}
                 </div>
-                <div className="flex-row flex-center">
+                <div className="flex-row flex-center margin-bottom-small">
                   <PasswordForm activeForm={activeForm} />
+                </div>
+                <div className="flex-row flex-center">
+                  <Button
+                    onClick={() =>
+                      setDialog("DeleteUser", {
+                        userName: user.userName,
+                        deleteMe: true
+                      })
+                    }
+                    block
+                  >
+                    Zrušit účet
+                  </Button>
                 </div>
               </CardText>
             </Card>
@@ -40,6 +54,7 @@ const Profile = ({ history, activeForm, setActiveForm, user }) => {
 
 export default compose(
   connect(({ app: { form: { activeForm }, user } }) => ({ activeForm, user }), {
-    setActiveForm
+    setActiveForm,
+    setDialog
   })
 )(Profile);
