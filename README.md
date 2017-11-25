@@ -52,7 +52,7 @@
 
 <br />
 
-- POST /api/tym/create.php - přidá nový tym, body: { name, userName, game }, return: ok - { message: "OK" } / err - { message: "ERR" }
+- POST /api/tym/create.php - přidá nový tym, body: { name, userName, game, number_of_players }, return: ok - { message: "OK" } / err - { message: "ERR" }
 - POST /api/tym/delete.php - odstraní tym, pozvánky do tymu a uzivatelov v tyme, body: { name }, return: ok - { message: "OK" } / err - { message: "ERR" }
 
 <br />
@@ -76,10 +76,6 @@
 
 - posílat poznamky u trenéra
 - posílat herni_mys a klavesnice u hráče
-
-<br />
-
-- při založení týmu přidat zakladatele hned mezi hráče týmu, jako prvního člena (userName v body)
 
 <br />
 
