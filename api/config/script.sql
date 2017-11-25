@@ -104,7 +104,7 @@ CREATE TABLE IF NOT EXISTS `sponzor_turnaje` (
 );
 
 CREATE TABLE IF NOT EXISTS `zapas` (
-    `id` int(10) NOT NULL,
+    `id` int(10) NOT NULL AUTO_INCREMENT,
     `vysledek` varchar(30) NOT NULL,
     `datum_a_cas_konani` timestamp NOT NULL,
     `id_turnaj` int(10) NOT NULL,
@@ -114,7 +114,7 @@ CREATE TABLE IF NOT EXISTS `zapas` (
 );
 
 CREATE TABLE IF NOT EXISTS `turnaj` (
-    `id` int(10) NOT NULL,
+    `id` int(10) NOT NULL AUTO_INCREMENT,
     `nazev` varchar(30) NOT NULL,
     `datum_konani` date NOT NULL,
     `hlavni_cena` varchar(30) NOT NULL,
@@ -125,7 +125,7 @@ CREATE TABLE IF NOT EXISTS `turnaj` (
 );
 
 CREATE TABLE IF NOT EXISTS `organizator_turnaje` (
-    `id` int(10) NOT NULL,
+    `id` int(10) NOT NULL AUTO_INCREMENT,
     `jmeno` varchar(30) NOT NULL,
     `tel_cislo` varchar(20) NOT NULL,
     PRIMARY KEY (`id`)
@@ -258,12 +258,12 @@ INSERT INTO `uzivatele_v_tymech` (`nazev_tymu`, `prezdivka_uzivatele`) VALUES ('
 INSERT INTO `uzivatele_v_tymech` (`nazev_tymu`, `prezdivka_uzivatele`) VALUES ('Team Rick', 'DarylDixon');
 INSERT INTO `uzivatele_v_tymech` (`nazev_tymu`, `prezdivka_uzivatele`) VALUES ('Team Negan', 'Negan');
 
-INSERT INTO `organizator_turnaje` (`id`, `jmeno`, `tel_cislo`) VALUES (0, 'Ministry_of_Wizardry', '941111111');
-INSERT INTO `organizator_turnaje` (`id`, `jmeno`, `tel_cislo`) VALUES (1, 'The Walking Dead series', '817688721');
+INSERT INTO `organizator_turnaje` (`jmeno`, `tel_cislo`) VALUES ('Ministry_of_Wizardry', '941111111');
+INSERT INTO `organizator_turnaje` (`jmeno`, `tel_cislo`) VALUES ('The Walking Dead series', '817688721');
 
-INSERT INTO `turnaj` (`id`, `nazev`, `datum_konani`, `hlavni_cena`, `nazev_hry`, `vitez`, `id_organizator_turnaje`) VALUES (2, '3-wizard', '2015-12-17', 'CUP', 'Quidditch', 'Gryffindor', 0);
-INSERT INTO `turnaj` (`id`, `nazev`, `datum_konani`, `hlavni_cena`, `nazev_hry`, `vitez`, `id_organizator_turnaje`) VALUES (10, 'Rick vs Negan', '2011-01-30', 'Life', 'Killing Zombies', 'Team Negan', 1);
-INSERT INTO `turnaj` (`id`, `nazev`, `datum_konani`, `hlavni_cena`, `nazev_hry`, `vitez`, `id_organizator_turnaje`) VALUES (15, 'Rick vs Negan', '2010-10-12', 'Life', 'Killing Zombies', 'Team Rick', 1);
+INSERT INTO `turnaj` (`nazev`, `datum_konani`, `hlavni_cena`, `nazev_hry`, `vitez`, `id_organizator_turnaje`) VALUES ('3-wizard', '2015-12-17', 'CUP', 'Quidditch', 'Gryffindor', 0);
+INSERT INTO `turnaj` (`nazev`, `datum_konani`, `hlavni_cena`, `nazev_hry`, `vitez`, `id_organizator_turnaje`) VALUES ('Rick vs Negan', '2011-01-30', 'Life', 'Killing Zombies', 'Team Negan', 1);
+INSERT INTO `turnaj` (`nazev`, `datum_konani`, `hlavni_cena`, `nazev_hry`, `vitez`, `id_organizator_turnaje`) VALUES ('Rick vs Negan', '2010-10-12', 'Life', 'Killing Zombies', 'Team Rick', 1);
 
 INSERT INTO `tymy_v_turnaji` (`nazev_tymu`, `id_turnaj`) VALUES ('Slytherin',2);
 INSERT INTO `tymy_v_turnaji` (`nazev_tymu`, `id_turnaj`) VALUES ('Gryffindor',2);
@@ -280,7 +280,7 @@ INSERT INTO `sponzor_turnaje` (`zkratka_sponzora`, `id_turnaj`) VALUES ('MG', 10
 INSERT INTO `financovani_klanu` (`tag_klanu`,`zkratka_sponzora`) VALUES ('Hogwarts','MG');
 INSERT INTO `financovani_klanu` (`tag_klanu`,`zkratka_sponzora`) VALUES ('GOT','GM');
 
-INSERT INTO `zapas` (`id`, `vysledek`, `datum_a_cas_konani`, `id_turnaj`, `nazev_tymu`, `nazev_druheho_tymu`) VALUES (0, '16:20', '2015-12-17', 2, 'Slytherin', 'Gryffindor');
-INSERT INTO `zapas` (`id`, `vysledek`, `datum_a_cas_konani`, `id_turnaj`, `nazev_tymu`, `nazev_druheho_tymu`) VALUES (14, '0:2', '2016-12-17', 10, 'Team Rick', 'Team Negan');
-INSERT INTO `zapas` (`id`, `vysledek`, `datum_a_cas_konani`, `id_turnaj`, `nazev_tymu`, `nazev_druheho_tymu`) VALUES (15, '0:1', '2016-12-17', 10, 'Team Rick', 'Team Negan');
-INSERT INTO `zapas` (`id`, `vysledek`, `datum_a_cas_konani`, `id_turnaj`, `nazev_tymu`, `nazev_druheho_tymu`) VALUES (127, '1:0', '2010-10-12', 15, 'Team Rick', 'Team Negan');
+INSERT INTO `zapas` (`vysledek`, `datum_a_cas_konani`, `id_turnaj`, `nazev_tymu`, `nazev_druheho_tymu`) VALUES ('16:20', '2015-12-17', 2, 'Slytherin', 'Gryffindor');
+INSERT INTO `zapas` (`vysledek`, `datum_a_cas_konani`, `id_turnaj`, `nazev_tymu`, `nazev_druheho_tymu`) VALUES ('0:2', '2016-12-17', 10, 'Team Rick', 'Team Negan');
+INSERT INTO `zapas` (`vysledek`, `datum_a_cas_konani`, `id_turnaj`, `nazev_tymu`, `nazev_druheho_tymu`) VALUES ('0:1', '2016-12-17', 10, 'Team Rick', 'Team Negan');
+INSERT INTO `zapas` (`vysledek`, `datum_a_cas_konani`, `id_turnaj`, `nazev_tymu`, `nazev_druheho_tymu`) VALUES ('1:0', '2010-10-12', 15, 'Team Rick', 'Team Negan');

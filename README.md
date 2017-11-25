@@ -70,6 +70,13 @@
 
 <br />
 
+- POST /api/turnaj/create.php - přidá nový turnaj, body: { name, date, prize, game, id_organizer }, return: ok - { message: "OK" } / err - { message: "ERR" }
+- POST /api/turnaj/update.php - přidá nový turnaj, body: { name, date, prize, game, id_organizer, id }, return: ok - { message: "OK" } / err - { message: "ERR" }
+- POST /api/turnaj/delete.php - odstraní turnaj, body: { id }, return: ok - { message: "OK" } / err - { message: "ERR" }
+
+<br />
+
+
 
 #### TODO API
 
@@ -84,7 +91,6 @@
 <br />
 
 - organizátor turnaje - bude asi uživatel s rolí ORGANIZATOR - vytvořit testovacího
-- vytvořit/editovat/zrušit turnaj
 - přidat sponzora turnaje
 - výpis všech organizátorů
 
