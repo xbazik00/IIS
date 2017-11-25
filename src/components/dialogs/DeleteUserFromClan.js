@@ -38,10 +38,10 @@ export default compose(
       const { deleteUserFromClan, data, getClan, history, getUser } = props;
 
       if (await deleteUserFromClan(data.tag, data.userName)) {
-        getClan(data.tag);
+        if (!data.deleteMe) getClan(data.tag);
         dialog.closeDialog();
         if (data.deleteMe) {
-          getUser();
+          getUser(data.userName);
           history.push("/main");
         }
       }
