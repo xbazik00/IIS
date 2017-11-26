@@ -62,6 +62,7 @@ const Info = ({
                 component={SelectField}
                 label="Vítěz"
                 name="winner"
+                options={options}
                 validate={[Validation.isShorterEqual30]}
               />
               <div className="flex-row flex-right">
