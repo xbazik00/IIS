@@ -54,7 +54,7 @@
 
 - POST /api/tym/create.php - přidá nový tym, body: { name, userName, game, number_of_players }, return: ok - { message: "OK" } / err - { message: "ERR" }
 - POST /api/tym/delete.php - odstraní tym, tym z turnaja, pozvánky do tymu a uzivatelov v tyme, body: { name }, return: ok - { message: "OK" } / err - { message: "ERR" }
-- POST /api/tym/readOne.php - vrátí klan podle name, body: { name }, return: ok - objekt klanu s clenmi  / err - { error }
+- POST /api/tym/readOne.php - vrátí klan podle name, body: { name }, return: ok - objekt klanu s clenmi + pole turnajov (tourneys)  / err - { error }
 
 <br />
 
