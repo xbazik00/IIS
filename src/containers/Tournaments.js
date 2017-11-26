@@ -17,16 +17,18 @@ const Tournaments = ({ history, tournament, user, getTournaments }) => {
       <Header history={history} />
       <div className="container">
         <ContainerHeader title="Turnaje" />
-        <Filter
-          selectOptions={[
-            { label: "Název", value: "name" },
-            { label: "Datum konání", value: "date" },
-            { label: "Hlavní cena", value: "prize" },
-            { label: "Hra", value: "game" },
-            { label: "Vítěz", value: "winner" }
-          ]}
-          handleUpdate={() => getTournaments()}
-        />
+        <div className="margin-bottom">
+          <Filter
+            selectOptions={[
+              { label: "Název", value: "name" },
+              { label: "Datum konání", value: "date" },
+              { label: "Hlavní cena", value: "prize" },
+              { label: "Hra", value: "game" },
+              { label: "Vítěz", value: "winner" }
+            ]}
+            handleUpdate={() => getTournaments()}
+          />
+        </div>
         <Card className="margin-bottom">
           <CardText>
             <Table

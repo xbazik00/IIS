@@ -32,73 +32,75 @@ const Main = ({
   return (
     <div>
       <Header history={history} />
-      <div className="container">
-        {!admin &&
-          !organizer && (
-            <div className="margin-bottom">
-              <MainHeader history={history} clan={activeClan} />
-            </div>
-          )}
-        <ContainerHeader title={organizer ? "Turnaje" : "Hry"} />
-        <div className="margin-bottom">
-          <Filter
-            selectOptions={
-              organizer
-                ? [
-                    { label: "Název", value: "name" },
-                    { label: "Datum konání", value: "date" },
-                    { label: "Hlavní cena", value: "prize" },
-                    { label: "Hra", value: "game" },
-                    { label: "Vítěz", value: "winner" }
-                  ]
-                : [
-                    { label: "Název", value: "name" },
-                    { label: "Žánr", value: "genre" },
-                    { label: "Vydavatel", value: "publisher" }
-                  ]
-            }
-            handleUpdate={() => {
-              if (organizer) getTournaments();
-              else getGames();
-            }}
-          />
-        </div>
-        <Card className="margin-bottom">
-          <CardText>
-            <div className="margin-bottom-small">
-              {organizer ? (
-                <TournamentsTable
-                  history={history}
-                  user={user}
-                  tournaments={tournament.list}
-                />
-              ) : (
-                <Table history={history} user={user} />
+      {user && (
+        <div className="container">
+          {!admin &&
+            !organizer && (
+              <div className="margin-bottom">
+                <MainHeader history={history} clan={activeClan} />
+              </div>
+            )}
+          <ContainerHeader title={organizer ? "Turnaje" : "Hry"} />
+          <div className="margin-bottom">
+            <Filter
+              selectOptions={
+                organizer
+                  ? [
+                      { label: "Název", value: "name" },
+                      { label: "Datum konání", value: "date" },
+                      { label: "Hlavní cena", value: "prize" },
+                      { label: "Hra", value: "game" },
+                      { label: "Vítěz", value: "winner" }
+                    ]
+                  : [
+                      { label: "Název", value: "name" },
+                      { label: "Žánr", value: "genre" },
+                      { label: "Vydavatel", value: "publisher" }
+                    ]
+              }
+              handleUpdate={() => {
+                if (organizer) getTournaments();
+                else getGames();
+              }}
+            />
+          </div>
+          <Card className="margin-bottom">
+            <CardText>
+              <div className="margin-bottom-small">
+                {organizer ? (
+                  <TournamentsTable
+                    history={history}
+                    user={user}
+                    tournaments={tournament.list}
+                  />
+                ) : (
+                  <Table history={history} user={user} />
+                )}
+              </div>
+              {organizer && (
+                <div className="flex-row flex-center">
+                  <Button
+                    bsStyle="primary"
+                    onClick={() => setDialog("AddTournament")}
+                  >
+                    Přidat turnaj
+                  </Button>
+                </div>
               )}
-            </div>
-            {organizer && (
-              <div className="flex-row flex-center">
-                <Button
-                  bsStyle="primary"
-                  onClick={() => setDialog("AddTournament")}
-                >
-                  Přidat turnaj
-                </Button>
-              </div>
-            )}
-            {admin && (
-              <div className="flex-row flex-center">
-                <Button
-                  bsStyle="primary"
-                  onClick={() => setDialog("NewGame")}
-                >
-                  Přidat hru
-                </Button>
-              </div>
-            )}
-          </CardText>
-        </Card>
-      </div>
+              {admin && (
+                <div className="flex-row flex-center">
+                  <Button
+                    bsStyle="primary"
+                    onClick={() => setDialog("NewGame")}
+                  >
+                    Přidat hru
+                  </Button>
+                </div>
+              )}
+            </CardText>
+          </Card>
+        </div>
+      )}
     </div>
   );
 };
@@ -119,17 +121,14 @@ export default compose(
     }
   ),
   lifecycle({
-    async componentDidMount() {
+    componentDidMount() {
       const { getGames, getClan, user, setFilter, getTournaments } = this.props;
 
-      if (user && isOrganizer(user.role)) {
-        setFilter({ select: "name", ascDesc: true, search: "" });
-        getTournaments();
-      }
+      setFilter({ select: "name", ascDesc: true, search: "" });
+      getTournaments();
+      getGames();
 
-      await getGames();
-
-      if (user && user.clan) await getClan(user.clan);
+      if (user && user.clan) getClan(user.clan);
     }
   })
 )(Main);
