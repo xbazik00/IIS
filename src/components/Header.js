@@ -37,12 +37,20 @@ const Header = ({ history, authStyle, signOut, user }) => {
               Uživatelé
             </MenuItem>
             {admin && (
-              <MenuItem eventKey="4" onClick={() => history.push("/sponsors")}>
+              <MenuItem
+                eventKey="4"
+                onClick={() => history.push("/tournaments")}
+              >
+                Turnaje
+              </MenuItem>
+            )}
+            {admin && (
+              <MenuItem eventKey="5" onClick={() => history.push("/sponsors")}>
                 Sponzoři
               </MenuItem>
             )}
             <MenuItem
-              eventKey="5"
+              eventKey="6"
               onClick={() => {
                 signOut();
                 history.push("/");
