@@ -14,20 +14,22 @@ import { getGames } from "../actions/gamesActions";
 import { setDialog, setFilter } from "../actions/appActions";
 import { getClan } from "../actions/clanActions";
 
-import { isAdmin } from "../utils";
+import { isAdmin, isOrganizer } from "../utils";
 
 const Main = ({ history, user, setDialog, activeClan, getGames }) => {
   const admin = user && isAdmin(user.role);
+  const organizer = user && isOrganizer(user.role);
   return (
     <div>
       <Header history={history} />
       <div className="container">
-        {!admin && (
-          <div className="margin-bottom">
-            <MainHeader history={history} clan={activeClan} />
-          </div>
-        )}
-        <ContainerHeader title="Hry" />
+        {!admin &&
+          !organizer && (
+            <div className="margin-bottom">
+              <MainHeader history={history} clan={activeClan} />
+            </div>
+          )}
+        <ContainerHeader title={organizer ? "Turnaje" : "Hry"} />
         <div className="margin-bottom">
           <Filter
             selectOptions={[
@@ -41,8 +43,18 @@ const Main = ({ history, user, setDialog, activeClan, getGames }) => {
         <Card className="margin-bottom">
           <CardText>
             <div className="margin-bottom-small">
-              <Table history={history} user={user} />
+              {organizer ? <div /> : <Table history={history} user={user} />}
             </div>
+            {organizer && (
+              <div className="flex-row flex-center">
+                <Button
+                  bsStyle="primary"
+                  onClick={() => setDialog("NewTournament")}
+                >
+                  Přidat turnaj
+                </Button>
+              </div>
+            )}
             {admin && (
               <div className="flex-row flex-center">
                 <Button bsStyle="primary" onClick={() => setDialog("NewGame")}>
