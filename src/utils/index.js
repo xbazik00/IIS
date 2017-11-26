@@ -6,4 +6,4 @@ export const formatTime = time => format(time, "DD.MM.YYYY HH:mm:ss");
 export const isAdmin = role => role === "ADMIN";
 export const isCoach = role => role === "COACH";
 export const isPlayer = role => role === "PLAYER";
-export const isOrganizator = role => role === "ORGANIZATOR";
+export const isOrganizer = role => role === "ORGANIZER";
