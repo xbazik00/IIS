@@ -16,6 +16,7 @@ import { getTeam } from "../actions/teamActions";
 import { setDialog } from "../actions/appActions";
 import { getClan } from "../actions/clanActions";
 import { getTournaments } from "../actions/tournamentActions";
+import { getUsers } from "../actions/usersActions";
 
 const Team = ({
   history,
@@ -26,7 +27,8 @@ const Team = ({
   tableState,
   setTableState,
   tournament,
-  getTournaments
+  getTournaments,
+  getUsers
 }) => {
   return (
     <div>
@@ -70,11 +72,12 @@ const Team = ({
                     <div className="flex-row flex-center">
                       <Button
                         bsStyle="primary"
-                        onClick={() =>
+                        onClick={() => {
+                          getUsers();
                           setDialog("InviteUserToTeam", {
                             name: activeTeam.name
-                          })
-                        }
+                          });
+                        }}
                       >
                         Pozvat uživatele
                       </Button>
@@ -138,7 +141,8 @@ export default compose(
       getTeam,
       setDialog,
       getClan,
-      getTournaments
+      getTournaments,
+      getUsers
     }
   ),
   withState("tableState", "setTableState", true),
