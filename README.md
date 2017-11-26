@@ -1,7 +1,5 @@
 ### API
 
-<br />
-
 - POST /api/signIn.php - přihlášení, body: { userName, password }, return: ok - objekt uživatele / err - { error }
 
 <br />
@@ -91,8 +89,6 @@
 
 #### TODO API
 
-<br />
-
 - rozlisit hlavni sponzor/sponzor - budeme rozlišovat???
 - zapasy
 
@@ -101,7 +97,3 @@
 - až bude vše hotové, tak i další volání podle modelu případů užití
 
 #### TODO FE
-
-<br />
-
-- tabulka sponzorů klanu
