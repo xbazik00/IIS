@@ -18,7 +18,7 @@ const Table = ({ history, sponsors, setDialog }) => {
       <DataTable plain className="table">
         <TableHeader className="table-header">
           <TableRow className="table-row">
-            <TableColumn className="table-col">Přezdívka</TableColumn>
+            <TableColumn className="table-col">Zkratka</TableColumn>
             <TableColumn className="table-col">Název</TableColumn>
             <TableColumn className="table-col">Sídlo</TableColumn>
             <TableColumn className="table-col">Číslo účtu</TableColumn>

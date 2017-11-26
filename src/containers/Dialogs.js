@@ -18,6 +18,8 @@ import InviteUserToTeam from "../components/dialogs/InviteUserToTeam";
 import AcceptTeamInvitation from "../components/dialogs/AcceptTeamInvitation";
 import DeleteTeamInvitation from "../components/dialogs/DeleteTeamInvitation";
 import DeleteUserFromTeam from "../components/dialogs/DeleteUserFromTeam";
+import CreateSponsor from "../components/dialogs/CreateSponsor";
+import DeleteSponsor from "../components/dialogs/DeleteSponsor";
 
 import { closeDialog } from "../actions/appActions";
 
@@ -41,6 +43,8 @@ const Dialogs = props => {
       <AcceptTeamInvitation {...props} />
       <DeleteTeamInvitation {...props} />
       <DeleteUserFromTeam {...props} />
+      <CreateSponsor {...props} />
+      <DeleteSponsor {...props} />
     </div>
   );
 };

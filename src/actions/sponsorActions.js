@@ -33,7 +33,7 @@ export const createSponsor = (
 
 export const deleteSponsor = acronym => async () => {
   try {
-    const response = await fetch("/api/sponzor/delete.php", {
+    const response = await fetch("/api/sponzor/deleteOne.php", {
       method: "POST",
       headers: new Headers({
         "Content-Type": "application/json"
