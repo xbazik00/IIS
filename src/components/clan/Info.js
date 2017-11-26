@@ -37,7 +37,7 @@ const Info = ({
                 component={TextField}
                 label="Název klanu"
                 name="name"
-                validate={[Validation.required]}
+                validate={[Validation.required, Validation.isShorterEqual30]}
               />
               <div className="flex-row">
                 <p className="row-label">Vůdce klanu:</p>
@@ -54,13 +54,13 @@ const Info = ({
                 component={TextField}
                 label="Logo"
                 name="logo"
-                validate={[Validation.required]}
+                validate={[Validation.required, Validation.isShorterEqual30]}
               />
               <Field
                 component={TextField}
                 label="Hymna"
                 name="anthem"
-                validate={[Validation.required]}
+                validate={[Validation.required, Validation.isShorterEqual30]}
               />
               <Field
                 component={SelectField}

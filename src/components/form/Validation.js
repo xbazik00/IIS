@@ -5,3 +5,12 @@ export const isNumberGTOne = value =>
   isNaN(Number(value)) || Number(value) < 1
     ? "Zadejte kladné číslo"
     : undefined;
+
+export const isNumberLE1000 = value =>
+    isNaN(Number(value)) || Number(value) <= 1000
+      ? "Zadejte kladné číslo"
+      : undefined;
+
+export const isShorterEqual30 = value => value && value.length <= 30 ? undefined : "Maximálně 30 znaků";
+export const isShorterEqual100 = value => value && value.length <= 30 ? undefined : "Maximálně 100 znaků";
+export const isShorterEqual1000 = value => value && value.length <= 30 ? undefined : "Maximálně 1000 znaků";

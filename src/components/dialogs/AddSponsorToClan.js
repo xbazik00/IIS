@@ -49,7 +49,7 @@ const AddSponsorToClan = ({ handleSubmit, data, sponsor, setState }) => {
           label="Zkratka"
           name="acronym"
           options={options}
-          validate={[Validation.required]}
+          validate={[Validation.required, Validation.isShorterEqual30]}
         />
       )}
     </DialogContainer>

@@ -30,19 +30,19 @@ const Registration = ({ handleSubmit, data, created, setCreated }) => (
       component={TextField}
       label="Přezdívka"
       name="nick"
-      validate={[Validation.required]}
+      validate={[Validation.required, Validation.isShorterEqual30]}
     />
     <Field
       component={TextField}
       label="Jméno"
       name="name"
-      validate={[Validation.required]}
+      validate={[Validation.required, Validation.isShorterEqual30]}
     />
     <Field
       component={TextField}
       label="Příjmení"
       name="surname"
-      validate={[Validation.required]}
+      validate={[Validation.required, Validation.isShorterEqual30]}
     />
     <Field
       component={SelectField}
@@ -63,12 +63,14 @@ const Registration = ({ handleSubmit, data, created, setCreated }) => (
       label="Heslo"
       name="password"
       type="password"
+      validate={[Validation.isShorterEqual30]}
     />
     <Field
       component={TextField}
       label="Heslo znovu"
       name="password2"
       type="password"
+      validate={[Validation.isShorterEqual30]}
     />
   </DialogContainer>
 );

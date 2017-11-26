@@ -27,13 +27,17 @@ const CreateTeam = ({ handleSubmit, data, games }) => {
         component={TextField}
         label="Název týmu"
         name="name"
-        validate={[Validation.required]}
+        validate={[Validation.required, Validation.isShorterEqual30]}
       />
       <Field
         component={TextField}
         label="Počet hráčů"
         name="number_of_players"
-        validate={[Validation.required, Validation.isNumberGTOne]}
+        validate={[
+          Validation.required,
+          Validation.isNumberGTOne,
+          Validation.isNumberLE1000
+        ]}
       />
       <Field
         component={SelectField}

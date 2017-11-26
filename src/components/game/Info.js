@@ -28,7 +28,7 @@ const Info = ({ game, handleSubmit, setActiveForm, activeForm, user }) => {
                 component={TextField}
                 label="Žánr"
                 name="genre"
-                validate={[Validation.required]}
+                validate={[Validation.required, Validation.isShorterEqual30]}
               />
               <div className="flex-row">
                 <p className="row-label">Datum vydání:</p>
@@ -38,14 +38,14 @@ const Info = ({ game, handleSubmit, setActiveForm, activeForm, user }) => {
                 component={TextField}
                 label="Vydavatel"
                 name="publisher"
-                validate={[Validation.required]}
+                validate={[Validation.required, Validation.isShorterEqual30]}
               />
               <Field
                 component={TextField}
                 label="Módy"
                 name="modes"
                 componentClass="textarea"
-                validate={[Validation.required]}
+                validate={[Validation.isShorterEqual100]}
               />
               <div className="flex-row flex-right">
                 <Button className="button" onClick={() => setActiveForm(null)}>
