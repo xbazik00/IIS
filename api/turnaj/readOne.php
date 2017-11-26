@@ -45,7 +45,13 @@ if($num > 0) {
     while($row1 = $stmt1->fetch(PDO::FETCH_ASSOC)){
         extract($row1);
         
-        array_push($turnaj_item["teams"],$nazev_tymu);
+        $tym_item=array(
+            "name" => $nazev_tymu,
+            "number_of_players" => $pocet_hracu,
+            "game" => $nazev_hry
+        );
+
+        array_push($turnaj_item["teams"],$tym_item);
     }
 
     echo json_encode($turnaj_item);
