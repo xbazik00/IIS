@@ -3,7 +3,8 @@ import * as c from "../actions/constants";
 const initialState = {
   list: null,
   count: 0,
-  clanSponsors: { list: null, count: 0 }
+  clanSponsors: { list: null, count: 0 },
+  tournamentSponsors: { list: null, count: 0 }
 };
 
 const reducer = (state = initialState, action) => {

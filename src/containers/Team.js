@@ -47,13 +47,13 @@ const Team = ({
             <Card>
               <Nav
                 bsStyle="pills"
-                activeKey={tableState ? 1 : 2}
-                onSelect={value => setTableState(value === 1)}
+                activeKey={tableState}
+                onSelect={value => setTableState(value)}
               >
                 <NavItem eventKey={1}>Uživatelé</NavItem>
                 <NavItem eventKey={2}>Turnaje</NavItem>
               </Nav>
-              {tableState ? (
+              {tableState === 1 ? (
                 <CardText>
                   <h3>Uživatelé</h3>
                   <div
@@ -145,7 +145,7 @@ export default compose(
       getUsers
     }
   ),
-  withState("tableState", "setTableState", true),
+  withState("tableState", "setTableState", 1),
   lifecycle({
     async componentDidMount() {
       const { getTeam, match, getClan, user } = this.props;

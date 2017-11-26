@@ -45,13 +45,13 @@ const Clan = ({
           <Card className="margin-bottom">
             <Nav
               bsStyle="pills"
-              activeKey={tableState ? 1 : 2}
-              onSelect={value => setTableState(value === 1)}
+              activeKey={tableState}
+              onSelect={value => setTableState(value)}
             >
               <NavItem eventKey={1}>Uživatelé</NavItem>
               <NavItem eventKey={2}>Sponzoři</NavItem>
             </Nav>
-            {tableState ? (
+            {tableState === 1 ? (
               <CardText>
                 <h3>Uživatelé</h3>
                 <div
@@ -90,6 +90,7 @@ const Clan = ({
                     clan={activeClan}
                     user={user}
                     sponsors={clanSponsors.list}
+                    clanSponsors
                   />
                 </div>
                 {user.userName === activeClan.boss && (
@@ -126,7 +127,7 @@ export default compose(
     }),
     { getClan, setDialog, getSponsorsByClanTag, getSponsors, getUsers }
   ),
-  withState("tableState", "setTableState", true),
+  withState("tableState", "setTableState", 1),
   lifecycle({
     async componentWillMount() {
       const { match, getClan, getSponsorsByClanTag } = this.props;

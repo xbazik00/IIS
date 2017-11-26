@@ -14,7 +14,16 @@ import { setDialog } from "../../actions/appActions";
 
 import { isAdmin } from "../../utils";
 
-const Table = ({ history, sponsors, setDialog, user, clan }) => {
+const Table = ({
+  history,
+  sponsors,
+  setDialog,
+  user,
+  clan,
+  clanSponsors,
+  tournamentSponsors,
+  tournament
+}) => {
   const admin = user && isAdmin(user.role);
   return (
     <div className="flex-row flex-center">
@@ -50,10 +59,15 @@ const Table = ({ history, sponsors, setDialog, user, clan }) => {
                           setDialog("DeleteSponsor", {
                             acronym: sponsor.acronym
                           });
-                        else
+                        else if (clanSponsors)
                           setDialog("DeleteSponsorFromClan", {
                             acronym: sponsor.acronym,
                             tag: clan.tag
+                          });
+                        else if (tournamentSponsors)
+                          setDialog("DeleteSponsorFromTournament", {
+                            acronym: sponsor.acronym,
+                            id: tournament.id
                           });
                       }}
                     >

@@ -9,7 +9,9 @@ import { isOrganizer, isAdmin } from "../../utils";
 const Header = ({ history, tournament, user, setDialog }) => (
   <div className="flex-row flex-space-between">
     <h2>{tournament.name}</h2>
-    {user && (isOrganizer(user.role) || isAdmin(user.role)) ? (
+    {user &&
+    ((isOrganizer(user.role) && user.userName === tournament.id_organizer) ||
+      isAdmin(user.role)) ? (
       <Button
         onClick={() =>
           setDialog("DeleteTournament", {

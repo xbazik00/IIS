@@ -106,17 +106,18 @@ const Info = ({
               <p className="row-label">Vítěz:</p>
               <p>{tournament.winner}</p>
             </div>
-            {isOrganizer(user.role) && (
-              <div className="flex-row flex-center">
-                <Button
-                  bsStyle="primary"
-                  onClick={() => setActiveForm("tournamentEditForm")}
-                  block
-                >
-                  Upravit
-                </Button>
-              </div>
-            )}
+            {isOrganizer(user.role) &&
+              user.userName === tournament.id_organizer && (
+                <div className="flex-row flex-center">
+                  <Button
+                    bsStyle="primary"
+                    onClick={() => setActiveForm("tournamentEditForm")}
+                    block
+                  >
+                    Upravit
+                  </Button>
+                </div>
+              )}
           </CardText>
         </Card>
       )}

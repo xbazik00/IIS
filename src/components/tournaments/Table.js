@@ -48,17 +48,19 @@ const Table = ({ history, tournaments, user, setDialog }) => {
               {user &&
                 (organizer || admin) && (
                   <TableColumn className="table-col">
-                    <Button
-                      onClick={e => {
-                        e.stopPropagation();
-                        setDialog("DeleteTournament", {
-                          id: t.id,
-                          name: t.name
-                        });
-                      }}
-                    >
-                      <Glyphicon glyph="remove" />
-                    </Button>
+                    {user.userName === t.id_organizer && (
+                      <Button
+                        onClick={e => {
+                          e.stopPropagation();
+                          setDialog("DeleteTournament", {
+                            id: t.id,
+                            name: t.name
+                          });
+                        }}
+                      >
+                        <Glyphicon glyph="remove" />
+                      </Button>
+                    )}
                   </TableColumn>
                 )}
             </TableRow>
