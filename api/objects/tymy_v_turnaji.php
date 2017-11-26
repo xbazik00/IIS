@@ -11,7 +11,7 @@ class TymyVTurnaji{
     }
 
     function getNazevTymu(){
-        $stmt = $this->conn->prepare("SELECT * FROM tymy_v_turnaji WHERE id_turnaj=:id_turnaj");
+        $stmt = $this->conn->prepare("SELECT * FROM tymy_v_turnaji JOIN tym ON tymy_v_turnaji.nazev_tymu=tym.nazev_tymu  WHERE id_turnaj=:id_turnaj");
 
         $stmt->bindParam(":id_turnaj", htmlspecialchars(strip_tags($this->id_turnaj)));
 

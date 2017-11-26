@@ -74,7 +74,7 @@
 - POST /api/turnaj/update.php - přidá nový turnaj, body: { name, date, prize, game, id_organizer, id }, return: ok - { message: "OK" } / err - { message: "ERR" }
 - POST /api/turnaj/delete.php - odstraní turnaj, body: { id }, return: ok - { message: "OK" } / err - { message: "ERR" }
 - GET /api/turnaj/read.php - precita vsetky turnaje, return: { items: pole s objekty turnaja, count: počet objektů }
-- POST /api/turnaj/readOne.php - vrati turnaj s danym id, body: { id }, return: { objekt turnaja + pole teams }
+- POST /api/turnaj/readOne.php - vrati turnaj s danym id, body: { id }, return: { objekt turnaja + pole teams s name, number_of_players a game }
 
 <br />
 
@@ -85,10 +85,6 @@
 <br />
 
 #### TODO API
-
-<br />
-
-- POST /api/turnaj/readOne.php - vracet pole s objekty týmů a ne pouze názvy - { name, number_of_players }
 
 <br />
 
