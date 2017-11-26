@@ -39,7 +39,7 @@ const Team = ({ history, activeTeam, user, activeClan, setDialog }) => {
                 >
                   <Table
                     history={history}
-                    users={activeTeam.users}
+                    team={activeTeam}
                     user={user}
                     clan={activeClan}
                   />

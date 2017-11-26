@@ -7,8 +7,19 @@ import { setDialog } from "../../actions/appActions";
 const Header = ({ history, user, setDialog, team, clan }) => (
   <div className="flex-row flex-space-between">
     <h2>{team.name}</h2>
-    {user && clan && user.userName === clan.boss ? (
-      <Button onClick={() => setDialog("DeleteTeam", { name: team.name })}>
+    {clan ? (
+      <Button
+        onClick={() => {
+          if (clan.boss === user.userName)
+            setDialog("DeleteTeam", { name: team.name });
+          else
+            setDialog("DeleteUserFromTeam", {
+              name: team.name,
+              userName: user.userName,
+              deleteMe: true
+            });
+        }}
+      >
         <Glyphicon glyph="remove" />
       </Button>
     ) : (
