@@ -31,7 +31,7 @@ const AddTournament = ({ handleSubmit, data, games }) => {
         component={TextField}
         label="Název turnaje"
         name="name"
-        validate={[Validation.required]}
+        validate={[Validation.required, Validation.isShorterEqual30]}
       />
       <Field
         component={DatePicker}
@@ -43,7 +43,7 @@ const AddTournament = ({ handleSubmit, data, games }) => {
         component={TextField}
         label="Hlavní cena"
         name="prize"
-        validate={[Validation.required]}
+        validate={[Validation.required, Validation.isShorterEqual30]}
       />
       <Field component={TextField} label="Vítěz" name="winner" />
       <Field

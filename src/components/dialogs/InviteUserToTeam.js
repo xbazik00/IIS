@@ -21,7 +21,7 @@ const InviteUserToTeam = ({ handleSubmit, data }) => (
       component={TextField}
       label="Uživatelské jméno"
       name="userName"
-      validate={[Validation.required]}
+      validate={[Validation.required, Validation.isShorterEqual30]}
     />
   </DialogContainer>
 );

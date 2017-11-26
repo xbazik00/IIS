@@ -22,19 +22,19 @@ const NewGame = ({ handleSubmit, data, created, setCreated }) => (
       component={TextField}
       label="Název hry"
       name="name"
-      validate={[Validation.required]}
+      validate={[Validation.required, Validation.isShorterEqual30]}
     />
     <Field
       component={TextField}
       label="Žánr"
       name="genre"
-      validate={[Validation.required]}
+      validate={[Validation.required, Validation.isShorterEqual30]}
     />
     <Field
       component={TextField}
       label="Vydavatel"
       name="publisher"
-      validate={[Validation.required]}
+      validate={[Validation.required, Validation.isShorterEqual30]}
     />
     <Field
       component={DatePicker}
@@ -47,6 +47,7 @@ const NewGame = ({ handleSubmit, data, created, setCreated }) => (
       label="Módy"
       name="modes"
       componentClass="textarea"
+      validate={[Validation.isShorterEqual100]}
     />
   </DialogContainer>
 );

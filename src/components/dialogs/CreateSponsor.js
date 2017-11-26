@@ -21,25 +21,29 @@ const CreateSponsor = ({ handleSubmit, data }) => (
       component={TextField}
       label="Zkratka"
       name="acronym"
-      validate={[Validation.required]}
+      validate={[Validation.required, Validation.isShorterEqual30]}
     />
     <Field
       component={TextField}
       label="Název"
       name="name"
-      validate={[Validation.required]}
+      validate={[Validation.required, Validation.isShorterEqual30]}
     />
     <Field
       component={TextField}
       label="Sídlo"
       name="seat"
-      validate={[Validation.required]}
+      validate={[Validation.required, Validation.isShorterEqual30]}
     />
     <Field
       component={TextField}
       label="Číslo účtu"
       name="account_number"
-      validate={[Validation.required, Validation.isNumberGTOne]}
+      validate={[
+        Validation.required,
+        Validation.isNumberGTOne,
+        Validation.isShorterEqual30
+      ]}
     />
   </DialogContainer>
 );

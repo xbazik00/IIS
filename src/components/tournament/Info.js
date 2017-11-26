@@ -41,7 +41,7 @@ const Info = ({
                 component={TextField}
                 label="Název"
                 name="name"
-                validate={[Validation.required]}
+                validate={[Validation.required, Validation.isShorterEqual30]}
               />
               <div className="flex-row">
                 <p className="row-label">Datum konání:</p>
@@ -51,7 +51,7 @@ const Info = ({
                 component={TextField}
                 label="Hlavní cena"
                 name="prize"
-                validate={[Validation.required]}
+                validate={[Validation.required, Validation.isShorterEqual30]}
               />
               <div className="flex-row">
                 <p className="row-label">Hra:</p>
@@ -61,6 +61,7 @@ const Info = ({
                 component={SelectField}
                 label="Vítěz"
                 name="winner"
+                validate={[Validation.isShorterEqual30]}
               />
               <div className="flex-row flex-right">
                 <Button className="button" onClick={() => setActiveForm(null)}>

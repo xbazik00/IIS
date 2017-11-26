@@ -28,13 +28,13 @@ const Form = ({ handleSubmit, setActiveForm, user }) => {
         component={TextField}
         label="Jméno"
         name="firstName"
-        validate={[Validation.required]}
+        validate={[Validation.required, Validation.isShorterEqual30]}
       />
       <Field
         component={TextField}
         label="Příjmení"
         name="surname"
-        validate={[Validation.required]}
+        validate={[Validation.required, Validation.isShorterEqual30]}
       />
       <Field
         component={SelectField}
@@ -49,11 +49,24 @@ const Form = ({ handleSubmit, setActiveForm, user }) => {
           label="Poznámky"
           name="notes"
           componentClass="textarea"
+          validate={[Validation.isShorterEqual1000]}
         />
       )}
-      {player && <Field component={TextField} label="Myš" name="mouse" />}
       {player && (
-        <Field component={TextField} label="Klávesnice" name="keyboard" />
+        <Field
+          component={TextField}
+          label="Myš"
+          name="mouse"
+          validate={[Validation.isShorterEqual30]}
+        />
+      )}
+      {player && (
+        <Field
+          component={TextField}
+          label="Klávesnice"
+          name="keyboard"
+          validate={[Validation.isShorterEqual30]}
+        />
       )}
       <div className="flex-row flex-right">
         <Button className="button" onClick={() => setActiveForm(null)}>
