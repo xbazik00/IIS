@@ -91,7 +91,7 @@ const Team = ({
                   >
                     <TournamentTable
                       history={history}
-                      tournaments={null}
+                      tournaments={activeTeam.tourneys}
                       user={user}
                     />
                   </div>

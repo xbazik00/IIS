@@ -88,7 +88,10 @@
 
 <br />
 
-- organizátor turnaje - bude asi uživatel s rolí ORGANIZATOR - vytvořit testovacího
+- POST /api/turnaj/readOne.php - vracet pole s objekty týmů a ne pouze názvy - { name, number_of_players }
+
+<br />
+
 - přidat sponzora turnaje
 - výpis všech organizátorů
 
