@@ -9,14 +9,24 @@ import MainHeader from "../components/main/Header";
 import Table from "../components/games/Table";
 import ContainerHeader from "../components/ContainerHeader";
 import Filter from "../components/Filter";
+import TournamentsTable from "../components/tournaments/Table";
 
 import { getGames } from "../actions/gamesActions";
 import { setDialog, setFilter } from "../actions/appActions";
 import { getClan } from "../actions/clanActions";
+import { getTournaments } from "../actions/tournamentActions";
 
 import { isAdmin, isOrganizer } from "../utils";
 
-const Main = ({ history, user, setDialog, activeClan, getGames }) => {
+const Main = ({
+  history,
+  user,
+  setDialog,
+  activeClan,
+  getGames,
+  tournament,
+  getTournaments
+}) => {
   const admin = user && isAdmin(user.role);
   const organizer = user && isOrganizer(user.role);
   return (
@@ -32,18 +42,39 @@ const Main = ({ history, user, setDialog, activeClan, getGames }) => {
         <ContainerHeader title={organizer ? "Turnaje" : "Hry"} />
         <div className="margin-bottom">
           <Filter
-            selectOptions={[
-              { label: "Název", value: "name" },
-              { label: "Žánr", value: "genre" },
-              { label: "Vydavatel", value: "publisher" }
-            ]}
-            handleUpdate={() => getGames()}
+            selectOptions={
+              organizer
+                ? [
+                    { label: "Název", value: "name" },
+                    { label: "Datum konání", value: "date" },
+                    { label: "Hlavní cena", value: "prize" },
+                    { label: "Hra", value: "game" },
+                    { label: "Vítěz", value: "winner" }
+                  ]
+                : [
+                    { label: "Název", value: "name" },
+                    { label: "Žánr", value: "genre" },
+                    { label: "Vydavatel", value: "publisher" }
+                  ]
+            }
+            handleUpdate={() => {
+              if (organizer) getTournaments();
+              else getGames();
+            }}
           />
         </div>
         <Card className="margin-bottom">
           <CardText>
             <div className="margin-bottom-small">
-              {organizer ? <div /> : <Table history={history} user={user} />}
+              {organizer ? (
+                <TournamentsTable
+                  history={history}
+                  user={user}
+                  tournaments={tournament.list}
+                />
+              ) : (
+                <Table history={history} user={user} />
+              )}
             </div>
             {organizer && (
               <div className="flex-row flex-center">
@@ -70,18 +101,32 @@ const Main = ({ history, user, setDialog, activeClan, getGames }) => {
 };
 
 export default compose(
-  connect(({ app: { user }, clan: { activeClan } }) => ({ user, activeClan }), {
-    getGames,
-    setDialog,
-    getClan,
-    setFilter
-  }),
+  connect(
+    ({ app: { user }, clan: { activeClan }, tournament }) => ({
+      user,
+      activeClan,
+      tournament
+    }),
+    {
+      getGames,
+      setDialog,
+      getClan,
+      setFilter,
+      getTournaments
+    }
+  ),
   lifecycle({
     async componentDidMount() {
-      const { getGames, getClan, user, setFilter } = this.props;
+      const { getGames, getClan, user, setFilter, getTournaments } = this.props;
 
-      setFilter({ select: "name", ascDesc: true, search: "" });
-      await getGames();
+      if (user && isOrganizer(user.role)) {
+        setFilter({ select: "name", ascDesc: true, search: "" });
+        getTournaments();
+      } else {
+        setFilter({ select: "name", ascDesc: true, search: "" });
+        await getGames();
+      }
+
       if (user && user.clan) await getClan(user.clan);
     }
   })

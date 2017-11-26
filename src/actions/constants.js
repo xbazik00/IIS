@@ -15,3 +15,5 @@ export const TEAM = "TEAM";
 export const SPONSOR = "SPONSOR";
 
 export const FILTER = "FILTER";
+
+export const TOURNAMENT = "TOURNAMENT";
