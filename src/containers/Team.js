@@ -45,14 +45,16 @@ const Team = ({ history, activeTeam, user, activeClan, setDialog }) => {
                   />
                 </div>
                 {user.userName === activeClan.boss && (
-                  <Button
-                    bsStyle="primary"
-                    onClick={() =>
-                      setDialog("InviteUserToTeam", { name: activeTeam.name })
-                    }
-                  >
-                    Pozvat uživatele
-                  </Button>
+                  <div className="flex-row flex-center">
+                    <Button
+                      bsStyle="primary"
+                      onClick={() =>
+                        setDialog("InviteUserToTeam", { name: activeTeam.name })
+                      }
+                    >
+                      Pozvat uživatele
+                    </Button>
+                  </div>
                 )}
               </CardText>
             </Card>

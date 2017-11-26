@@ -40,14 +40,16 @@ const Clan = ({ history, activeClan, user, setDialog }) => {
                 <Table history={history} clan={activeClan} user={user} />
               </div>
               {user.userName === activeClan.boss && (
-                <Button
-                  bsStyle="primary"
-                  onClick={() =>
-                    setDialog("InviteUserToClan", { clanTag: activeClan.tag })
-                  }
-                >
-                  Pozvat uživatele
-                </Button>
+                <div className="flex-row flex-center">
+                  <Button
+                    bsStyle="primary"
+                    onClick={() =>
+                      setDialog("InviteUserToClan", { clanTag: activeClan.tag })
+                    }
+                  >
+                    Pozvat uživatele
+                  </Button>
+                </div>
               )}
             </CardText>
           </Card>
