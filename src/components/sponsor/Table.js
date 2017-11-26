@@ -14,7 +14,7 @@ import { setDialog } from "../../actions/appActions";
 
 import { isAdmin } from "../../utils";
 
-const Table = ({ history, sponsors, setDialog, user }) => {
+const Table = ({ history, sponsors, setDialog, user, clan }) => {
   const admin = user && isAdmin(user.role);
   return (
     <div className="flex-row flex-center">
@@ -25,7 +25,9 @@ const Table = ({ history, sponsors, setDialog, user }) => {
             <TableColumn className="table-col">Název</TableColumn>
             <TableColumn className="table-col">Sídlo</TableColumn>
             <TableColumn className="table-col">Číslo účtu</TableColumn>
-            {admin && <TableColumn className="table-col">Akce</TableColumn>}
+            {(admin || (clan && clan.boss === user.userName)) && (
+              <TableColumn className="table-col">Akce</TableColumn>
+            )}
           </TableRow>
         </TableHeader>
         {sponsors && (
@@ -40,14 +42,20 @@ const Table = ({ history, sponsors, setDialog, user }) => {
                 <TableColumn className="table-col">
                   {sponsor.account_number}
                 </TableColumn>
-                {admin && (
+                {(admin || (clan && clan.boss === user.userName)) && (
                   <TableColumn className="table-col">
                     <Button
-                      onClick={() =>
-                        setDialog("DeleteSponsor", {
-                          acronym: sponsor.acronym
-                        })
-                      }
+                      onClick={() => {
+                        if (admin)
+                          setDialog("DeleteSponsor", {
+                            acronym: sponsor.acronym
+                          });
+                        else
+                          setDialog("DeleteSponsorFromClan", {
+                            acronym: sponsor.acronym,
+                            clanTag: clan.tag
+                          });
+                      }}
                     >
                       <Glyphicon glyph="remove" />
                     </Button>
