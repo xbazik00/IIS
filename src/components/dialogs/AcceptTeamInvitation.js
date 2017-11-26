@@ -6,38 +6,38 @@ import { withRouter } from "react-router-dom";
 
 import DialogContainer from "./DialogContainer";
 
-import { deleteInvitation, getInvitations } from "../../actions/clanActions";
+import { acceptInvitation, getInvitations } from "../../actions/teamActions";
 
-const DeleteClanInvitation = ({ handleSubmit, data }) => (
+const AcceptTeamInvitation = ({ handleSubmit, data }) => (
   <DialogContainer
-    title="Odstranit pozvánku"
-    name="DeleteClanInvitation"
+    title="Vstoupit do týmu"
+    name="AcceptTeamInvitation"
     handleSubmit={handleSubmit}
-    submitLabel="Odstranit"
+    submitLabel="Vstoupit"
   >
-    <p>{`Opravdu chcete odstranit pozvánku do klanu${
-      data && data.tag ? ` "${data.tag}"` : ""
+    <p>{`Přijetím pozvánky vstoupíte do týmu${
+      data && data.name ? ` "${data.name}"` : ""
     }?`}</p>
   </DialogContainer>
 );
 
 export default compose(
   connect(({ app: { dialog: { data } } }) => ({ data }), {
-    deleteInvitation,
+    acceptInvitation,
     getInvitations
   }),
   withRouter,
   withHandlers({
     onSubmit: dialog => async (formData, dispatch, props) => {
-      const { deleteInvitation, data, getInvitations } = props;
+      const { acceptInvitation, data, getInvitations } = props;
 
-      if (await deleteInvitation(data.tag, data.userName)) {
+      if (await acceptInvitation(data.name, data.userName)) {
         getInvitations(data.userName);
         dialog.closeDialog();
       }
     }
   }),
   reduxForm({
-    form: "deleteClanInvitationDialogForm"
+    form: "acceptTeamInvitationDialogForm"
   })
-)(DeleteClanInvitation);
+)(AcceptTeamInvitation);
