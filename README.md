@@ -93,9 +93,15 @@
 
 <br />
 
-- rozlisit hlavni sponzor/sponzor
+- rozlisit hlavni sponzor/sponzor - budeme rozlišovat???
 - zapasy
 
 <br />
 
 - až bude vše hotové, tak i další volání podle modelu případů užití
+
+#### TODO FE
+
+<br />
+
+- tabulka sponzorů klanu
