@@ -97,3 +97,5 @@
 - až bude vše hotové, tak i další volání podle modelu případů užití
 
 #### TODO FE
+
+- upravit styl hlavičky
