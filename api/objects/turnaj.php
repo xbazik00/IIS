@@ -11,6 +11,8 @@ class Turnaj{
     public $vitez;
     public $prezdivka_organizator_turnaje;
 
+    public $nazev_tymu;
+
     public function __construct($db){
         $this->conn = $db;
     }
@@ -113,5 +115,17 @@ class Turnaj{
 
         return $stmt;
     }
+
+    function readByTeam(){
+
+        $stmt = $this->conn->prepare("SELECT * FROM `tymy_v_turnaji` JOIN `turnaj` ON tymy_v_turnaji.id_turnaj=turnaj.id WHERE nazev_tymu=:nazev_tymu");
+
+        $stmt->bindParam(":nazev_tymu", htmlspecialchars(strip_tags($this->nazev_tymu)));
+
+        $stmt->execute();
+
+        return $stmt;
+    }
+    
 }
 ?>

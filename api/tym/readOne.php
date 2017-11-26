@@ -9,23 +9,32 @@ include_once '../config/database.php';
 include_once '../objects/tym.php';
 include_once '../objects/uzivatele_v_tymech.php';
 include_once '../objects/uzivatel.php';
+include_once '../objects/turnaj.php';
+
 
 $database = new Database();
 $db = $database->getConnection();
 $tym = new Tym($db);
 $uzivatele_v_tymech = new UzivateleVTymech($db);
 $uzivatel = new Uzivatel($db);
+$turnaj = new Turnaj($db);
 
 $data = json_decode(file_get_contents("php://input"));
 
 $tym->nazev_tymu = $data->name;
 $uzivatele_v_tymech->nazev_tymu = $data->name;
+$turnaj->nazev_tymu = $data->name;
+
 
 $stmt = $tym->readOne();
 $num = $stmt->rowCount();
 
 $stmt1 = $uzivatele_v_tymech->getUsers();
 $num1 = $stmt1->rowCount();
+
+$stmt2 = $turnaj->readByTeam();
+$num2 = $stmt2->rowCount();
+
 
 if($num > 0) {
     $row = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -35,7 +44,8 @@ if($num > 0) {
         "name" => $nazev_tymu,
         "number_of_players" => $pocet_hracu,
         "game" => $nazev_hry,
-        "users" => array()
+        "users" => array(),
+        "tourneys" => array()
     );
     
     if ($num1 > 0){
@@ -61,6 +71,24 @@ if($num > 0) {
 
                 array_push($tym["users"], $uzivatel_item);
             }
+        }
+    }
+
+    if ($num2 > 0){
+        while ($row = $stmt2->fetch(PDO::FETCH_ASSOC)){
+            extract($row);
+
+            $turnaj_item=array(
+                "id" => $id,
+                "name" => $nazev,
+                "date" => $datum_konani,
+                "prize" => $hlavni_cena,
+                "game" => $nazev_hry,
+                "winner" => $vitez,
+                "id_organizer" => $prezdivka_organizator_turnaje,
+            );
+
+            array_push($tym["tourneys"], $turnaj_item);
         }
     }
     
