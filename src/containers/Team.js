@@ -48,7 +48,7 @@ const Team = ({ history, activeTeam, user, activeClan, setDialog }) => {
                   <Button
                     bsStyle="primary"
                     onClick={() =>
-                      setDialog("InviteUserToClan", { clanTag: activeClan.tag })
+                      setDialog("InviteUserToTeam", { name: activeTeam.name })
                     }
                   >
                     Pozvat uživatele
