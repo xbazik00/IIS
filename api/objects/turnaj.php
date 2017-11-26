@@ -27,25 +27,6 @@ class Turnaj{
             return false;
         }
 
-        $stmt = $this->conn->prepare("SELECT * FROM tym WHERE nazev_tymu=:nazev_tymu");
-        
-        $stmt->bindParam(":nazev_tymu", htmlspecialchars(strip_tags($this->vitez)));
-
-        $stmt->execute();
-
-        if ($stmt->rowCount() == 0){
-            return false;
-        }
-
-        $stmt = $this->conn->prepare("SELECT * FROM hra WHERE nazev=:nazev_hry");
-        
-        $stmt->bindParam(":nazev_hry", htmlspecialchars(strip_tags($this->nazev_hry)));
-
-        $stmt->execute();
-
-        if ($stmt->rowCount() == 0){
-            return false;
-        }
         
         $stmt = $this->conn->prepare("INSERT INTO turnaj SET nazev=:nazev, datum_konani=:datum_konani, hlavni_cena=:hlavni_cena, nazev_hry=:nazev_hry, vitez=:vitez, prezdivka_organizator_turnaje=:prezdivka_organizator_turnaje");
 
@@ -74,25 +55,6 @@ class Turnaj{
             return false;
         }
 
-        $stmt = $this->conn->prepare("SELECT * FROM tym WHERE nazev_tymu=:nazev_tymu");
-        
-        $stmt->bindParam(":nazev_tymu", htmlspecialchars(strip_tags($this->vitez)));
-
-        $stmt->execute();
-
-        if ($stmt->rowCount() == 0){
-            return false;
-        }
-
-        $stmt = $this->conn->prepare("SELECT * FROM hra WHERE nazev=:nazev_hry");
-        
-        $stmt->bindParam(":nazev_hry", htmlspecialchars(strip_tags($this->nazev_hry)));
-
-        $stmt->execute();
-
-        if ($stmt->rowCount() == 0){
-            return false;
-        }
 
         $stmt = $this->conn->prepare("SELECT * FROM turnaj WHERE id=:id");
         

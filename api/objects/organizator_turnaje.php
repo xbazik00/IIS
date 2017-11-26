@@ -3,7 +3,7 @@ class OrganizatorTurnaje{
 
     private $conn;
 
-    public $id;
+    public $prezdivka;
     public $jmeno;
     public $tel_cislo;
 
@@ -35,19 +35,19 @@ class OrganizatorTurnaje{
     }
 
     function update(){
-        $stmt = $this->conn->prepare("SELECT * FROM organizator_turnaje WHERE id=:id");
+        $stmt = $this->conn->prepare("SELECT * FROM uzivatel WHERE prezdivka=:prezdivka");
         
-        $stmt->bindParam(":id", htmlspecialchars(strip_tags($this->id)));
+        $stmt->bindParam(":prezdivka", htmlspecialchars(strip_tags($this->prezdivka)));
 
         $stmt->execute();
 
         if ($stmt->rowCount() == 0){
-            return false;
+            return true;
         }
 
-        $stmt = $this->conn->prepare("UPDATE organizator_turnaje SET jmeno=:jmeno, tel_cislo=:tel_cislo WHERE id=:id");
+        $stmt = $this->conn->prepare("UPDATE organizator_turnaje SET jmeno=:jmeno, tel_cislo=:tel_cislo WHERE prezdivka=:prezdivka");
 
-        $stmt->bindParam(":id", htmlspecialchars(strip_tags($this->id)));
+        $stmt->bindParam(":prezdivka", htmlspecialchars(strip_tags($this->prezdivka)));
         $stmt->bindParam(":jmeno", htmlspecialchars(strip_tags($this->jmeno)));
         $stmt->bindParam(":tel_cislo", htmlspecialchars(strip_tags($this->tel_cislo)));
 

@@ -11,7 +11,7 @@ include_once '../config/database.php';
 include_once '../objects/uzivatel.php';
 include_once '../objects/hrac.php';
 include_once '../objects/trener.php';
-
+include_once '../objects/organizator_turnaje.php';
 
  
 // get database connection
@@ -22,6 +22,7 @@ $db = $database->getConnection();
 $uzivatel = new Uzivatel($db);
 $hrac = new Hrac($db);
 $trener = new Trener($db);
+$organizator_turnaje = new OrganizatorTurnaje($db);
 
 // get id of uzivatel to be edited
 $data = json_decode(file_get_contents("php://input"));
@@ -43,10 +44,13 @@ $hrac->prezdivka = $data->nick;
 $hrac->herni_mys = $data->mouse;
 $hrac->klavesnice = $data->keyboard;
 
+$organizator_turnaje->prezdivka = $data->nick;
+$organizator_turnaje->jmeno = $data->org_name;
+$organizator_turnaje->tel_cislo = $data->phone;
 
  
 // update the uzivatel
-if($uzivatel->update() && $trener->update() && $hrac->update()){
+if($uzivatel->update() && $trener->update() && $hrac->update() && $organizator_turnaje->update()){
     echo '{';
         echo '"message": "OK"';
     echo '}';
