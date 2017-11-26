@@ -24,7 +24,8 @@ const Info = ({
   handleSubmit,
   setActiveForm,
   activeForm,
-  user
+  user,
+  history
 }) => {
   const options = [{ label: "", value: "" }];
   forEach(tournament.teams, t =>
@@ -91,7 +92,14 @@ const Info = ({
             </div>
             <div className="flex-row">
               <p className="row-label">Hra:</p>
-              <p>{tournament.game}</p>
+              <p>
+                <span
+                  className="link"
+                  onClick={() => history.push(`/game/${tournament.game}`)}
+                >
+                  {tournament.game}
+                </span>
+              </p>
             </div>
             <div className="flex-row">
               <p className="row-label">Vítěz:</p>
