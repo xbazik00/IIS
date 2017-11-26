@@ -92,8 +92,8 @@
 
 <br />
 
-- přidat sponzora turnaje
-- výpis všech organizátorů
+- přidat/odebrat sponzora turnaje
+- výpis všech sponzorů turnaje podle id turnaje
 
 <br />
 
