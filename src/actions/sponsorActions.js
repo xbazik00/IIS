@@ -187,3 +187,53 @@ export const getTournamentSponsors = id => async dispatch => {
     return false;
   }
 };
+
+export const deleteSponsorFromTournament = (acronym, id) => async () => {
+  try {
+    const response = await fetch("/api/sponzor_turnaje/delete.php", {
+      method: "POST",
+      headers: new Headers({
+        "Content-Type": "application/json"
+      }),
+      body: JSON.stringify({ acronym, id })
+    });
+
+    if (response.status === 200) {
+      const content = await response.json();
+
+      if (content.message === "OK") {
+        return true;
+      }
+    }
+
+    return false;
+  } catch (err) {
+    console.log(err);
+    return false;
+  }
+};
+
+export const addSponsorToTournament = (acronym, id) => async () => {
+  try {
+    const response = await fetch("/api/sponzor_turnaje/add.php", {
+      method: "POST",
+      headers: new Headers({
+        "Content-Type": "application/json"
+      }),
+      body: JSON.stringify({ acronym, id })
+    });
+
+    if (response.status === 200) {
+      const content = await response.json();
+
+      if (content.message === "OK") {
+        return true;
+      }
+    }
+
+    return false;
+  } catch (err) {
+    console.log(err);
+    return false;
+  }
+};

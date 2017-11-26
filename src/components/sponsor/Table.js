@@ -12,7 +12,7 @@ import { Button, Glyphicon } from "react-bootstrap";
 
 import { setDialog } from "../../actions/appActions";
 
-import { isAdmin } from "../../utils";
+import { isAdmin, isOrganizer } from "../../utils";
 
 const Table = ({
   history,
@@ -25,6 +25,7 @@ const Table = ({
   tournament
 }) => {
   const admin = user && isAdmin(user.role);
+  const organizer = user && isOrganizer(user.role);
   return (
     <div className="flex-row flex-center">
       <DataTable plain className="table">
@@ -34,7 +35,9 @@ const Table = ({
             <TableColumn className="table-col">Název</TableColumn>
             <TableColumn className="table-col">Sídlo</TableColumn>
             <TableColumn className="table-col">Číslo účtu</TableColumn>
-            {(admin || (clan && clan.boss === user.userName)) && (
+            {(admin ||
+              (clanSponsors && clan && clan.boss === user.userName) ||
+              (tournamentSponsors && organizer)) && (
               <TableColumn className="table-col">Akce</TableColumn>
             )}
           </TableRow>
@@ -51,7 +54,9 @@ const Table = ({
                 <TableColumn className="table-col">
                   {sponsor.account_number}
                 </TableColumn>
-                {(admin || (clan && clan.boss === user.userName)) && (
+                {(admin ||
+                  (clanSponsors && clan && clan.boss === user.userName) ||
+                  (tournamentSponsors && organizer)) && (
                   <TableColumn className="table-col">
                     <Button
                       onClick={() => {

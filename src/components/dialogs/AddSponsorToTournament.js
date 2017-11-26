@@ -10,21 +10,25 @@ import * as Validation from "../form/Validation";
 import DialogContainer from "./DialogContainer";
 
 import {
-  addSponsorToClan,
-  getSponsorsByClanTag
+  addSponsorToTournament,
+  getTournamentSponsors
 } from "../../actions/sponsorActions";
 
-const AddSponsorToClan = ({ handleSubmit, data, sponsor, setState }) => {
+const AddSponsorToTournament = ({ handleSubmit, data, sponsor, setState }) => {
   const options = [];
-  if (sponsor && !isEmpty(sponsor.list) && sponsor.clanSponsors)
+  if (sponsor && !isEmpty(sponsor.list) && sponsor.tournamentSponsors) {
     forEach(
       filter(
         sponsor.list,
         item =>
-          !find(sponsor.clanSponsors.list, s => s.acronym === item.acronym)
+          !find(
+            sponsor.tournamentSponsors.list,
+            s => s.acronym === item.acronym
+          )
       ),
       s => options.push({ label: s.acronym, value: s.acronym })
     );
+  }
 
   if (isEmpty(options)) setState(false);
   else setState(true);
@@ -32,7 +36,7 @@ const AddSponsorToClan = ({ handleSubmit, data, sponsor, setState }) => {
   return (
     <DialogContainer
       title="Přidat sponzora"
-      name="AddSponsorToClan"
+      name="AddSponsorToTournament"
       handleSubmit={handleSubmit}
       submitLabel={isEmpty(options) ? "OK" : "Přidat"}
     >
@@ -53,19 +57,24 @@ const AddSponsorToClan = ({ handleSubmit, data, sponsor, setState }) => {
 
 export default compose(
   connect(({ app: { dialog: { data } }, sponsor }) => ({ data, sponsor }), {
-    addSponsorToClan,
-    getSponsorsByClanTag
+    addSponsorToTournament,
+    getTournamentSponsors
   }),
   withRouter,
   withState("state", "setState", false),
   withHandlers({
     onSubmit: dialog => async (formData, dispatch, props) => {
-      const { addSponsorToClan, getSponsorsByClanTag, data, state } = props;
+      const {
+        addSponsorToTournament,
+        getTournamentSponsors,
+        data,
+        state
+      } = props;
       const { acronym } = formData;
 
       if (state) {
-        if (await addSponsorToClan(acronym, data.clanTag)) {
-          getSponsorsByClanTag(data.clanTag);
+        if (await addSponsorToTournament(acronym, data.id)) {
+          getTournamentSponsors(data.id);
           dialog.closeDialog();
         } else
           throw new SubmissionError({
@@ -75,6 +84,6 @@ export default compose(
     }
   }),
   reduxForm({
-    form: "addSponsorToClanDialogForm"
+    form: "addSponsorToTournamentDialogForm"
   })
-)(AddSponsorToClan);
+)(AddSponsorToTournament);

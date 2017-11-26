@@ -26,6 +26,8 @@ import DeleteTournament from "../components/dialogs/DeleteTournament";
 import AddTournament from "../components/dialogs/AddTournament";
 import AddTeamToTournament from "../components/dialogs/AddTeamToTournament";
 import DeleteTeamFromTournament from "../components/dialogs/DeleteTeamFromTournament";
+import DeleteSponsorFromTournament from "../components/dialogs/DeleteSponsorFromTournament";
+import AddSponsorToTournament from "../components/dialogs/AddSponsorToTournament";
 
 import { closeDialog } from "../actions/appActions";
 
@@ -57,6 +59,8 @@ const Dialogs = props => {
       <AddTournament {...props} />
       <AddTeamToTournament {...props} />
       <DeleteTeamFromTournament {...props} />
+      <DeleteSponsorFromTournament {...props} />
+      <AddSponsorToTournament {...props} />
     </div>
   );
 };
