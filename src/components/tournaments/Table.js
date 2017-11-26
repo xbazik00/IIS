@@ -12,9 +12,10 @@ import { Button, Glyphicon } from "react-bootstrap";
 
 import { setDialog } from "../../actions/appActions";
 
-import { isOrganizer } from "../../utils";
+import { isOrganizer, isAdmin } from "../../utils";
 
 const Table = ({ history, tournaments, user, setDialog }) => {
+  const admin = user && isAdmin(user.role);
   const organizer = user && isOrganizer(user.role);
   return (
     <div className="flex-row flex-center">
@@ -27,7 +28,7 @@ const Table = ({ history, tournaments, user, setDialog }) => {
             <TableColumn className="table-col">Hra</TableColumn>
             <TableColumn className="table-col">Vítěz</TableColumn>
             {user &&
-              organizer && (
+              (organizer || admin) && (
                 <TableColumn className="table-col">Akce</TableColumn>
               )}
           </TableRow>
@@ -41,13 +42,14 @@ const Table = ({ history, tournaments, user, setDialog }) => {
               <TableColumn className="table-col">{t.game}</TableColumn>
               <TableColumn className="table-col">{t.winner}</TableColumn>
               {user &&
-                organizer && (
+                (organizer || admin) && (
                   <TableColumn className="table-col">
                     <Button
                       onClick={e => {
                         e.stopPropagation();
                         setDialog("DeleteTournament", {
-                          id: t.id
+                          id: t.id,
+                          name: t.name
                         });
                       }}
                     >

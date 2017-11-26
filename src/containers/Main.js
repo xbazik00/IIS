@@ -80,7 +80,7 @@ const Main = ({
               <div className="flex-row flex-center">
                 <Button
                   bsStyle="primary"
-                  onClick={() => setDialog("NewTournament")}
+                  onClick={() => setDialog("AddTournament")}
                 >
                   Přidat turnaj
                 </Button>
@@ -88,7 +88,10 @@ const Main = ({
             )}
             {admin && (
               <div className="flex-row flex-center">
-                <Button bsStyle="primary" onClick={() => setDialog("NewGame")}>
+                <Button
+                  bsStyle="primary"
+                  onClick={() => setDialog("NewGame")}
+                >
                   Přidat hru
                 </Button>
               </div>
@@ -122,10 +125,9 @@ export default compose(
       if (user && isOrganizer(user.role)) {
         setFilter({ select: "name", ascDesc: true, search: "" });
         getTournaments();
-      } else {
-        setFilter({ select: "name", ascDesc: true, search: "" });
-        await getGames();
       }
+
+      await getGames();
 
       if (user && user.clan) await getClan(user.clan);
     }
