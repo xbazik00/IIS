@@ -53,7 +53,7 @@ const Table = ({ history, sponsors, setDialog, user, clan }) => {
                         else
                           setDialog("DeleteSponsorFromClan", {
                             acronym: sponsor.acronym,
-                            clanTag: clan.tag
+                            tag: clan.tag
                           });
                       }}
                     >

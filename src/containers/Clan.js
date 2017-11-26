@@ -14,7 +14,7 @@ import SponsorTable from "../components/sponsor/Table";
 
 import { getClan } from "../actions/clanActions";
 import { setDialog } from "../actions/appActions";
-import { getSponsorsByClanTag } from "../actions/sponsorActions";
+import { getSponsorsByClanTag, getSponsors } from "../actions/sponsorActions";
 
 const Clan = ({
   history,
@@ -23,7 +23,8 @@ const Clan = ({
   setDialog,
   tableState,
   setTableState,
-  sponsor
+  clanSponsors,
+  getSponsors
 }) => {
   return (
     <div>
@@ -85,18 +86,19 @@ const Clan = ({
                     history={history}
                     clan={activeClan}
                     user={user}
-                    sponsors={sponsor.list}
+                    sponsors={clanSponsors.list}
                   />
                 </div>
                 {user.userName === activeClan.boss && (
                   <div className="flex-row flex-center">
                     <Button
                       bsStyle="primary"
-                      onClick={() =>
+                      onClick={() => {
+                        getSponsors();
                         setDialog("AddSponsorToClan", {
                           clanTag: activeClan.tag
-                        })
-                      }
+                        });
+                      }}
                     >
                       Přidat sponzora
                     </Button>
@@ -114,12 +116,12 @@ const Clan = ({
 export default compose(
   withRouter,
   connect(
-    ({ clan: { activeClan }, app: { user }, sponsor }) => ({
-      sponsor,
+    ({ clan: { activeClan }, app: { user }, sponsor: { clanSponsors } }) => ({
+      clanSponsors,
       activeClan,
       user
     }),
-    { getClan, setDialog, getSponsorsByClanTag }
+    { getClan, setDialog, getSponsorsByClanTag, getSponsors }
   ),
   withState("tableState", "setTableState", true),
   lifecycle({

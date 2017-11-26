@@ -19,7 +19,7 @@ const CreateSponsor = ({ handleSubmit, data }) => (
   >
     <Field
       component={TextField}
-      label="Přezdívka"
+      label="Zkratka"
       name="acronym"
       validate={[Validation.required]}
     />
