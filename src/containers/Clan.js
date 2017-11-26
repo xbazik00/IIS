@@ -15,6 +15,7 @@ import SponsorTable from "../components/sponsor/Table";
 import { getClan } from "../actions/clanActions";
 import { setDialog } from "../actions/appActions";
 import { getSponsorsByClanTag, getSponsors } from "../actions/sponsorActions";
+import { getUsers } from "../actions/usersActions";
 
 const Clan = ({
   history,
@@ -24,7 +25,8 @@ const Clan = ({
   tableState,
   setTableState,
   clanSponsors,
-  getSponsors
+  getSponsors,
+  getUsers
 }) => {
   return (
     <div>
@@ -63,11 +65,12 @@ const Clan = ({
                   <div className="flex-row flex-center">
                     <Button
                       bsStyle="primary"
-                      onClick={() =>
+                      onClick={() => {
+                        getUsers();
                         setDialog("InviteUserToClan", {
                           clanTag: activeClan.tag
-                        })
-                      }
+                        });
+                      }}
                     >
                       Pozvat uživatele
                     </Button>
@@ -121,7 +124,7 @@ export default compose(
       activeClan,
       user
     }),
-    { getClan, setDialog, getSponsorsByClanTag, getSponsors }
+    { getClan, setDialog, getSponsorsByClanTag, getSponsors, getUsers }
   ),
   withState("tableState", "setTableState", true),
   lifecycle({

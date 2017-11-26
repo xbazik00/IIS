@@ -13,17 +13,18 @@ export const getUsers = () => async (dispatch, getState) => {
 
       const filterAll = getState().filter;
 
-      const list = !isEmpty(content.items)
-        ? sortBy(
-            filter(
-              content.items,
-              c =>
-                get(c, filterAll.select) &&
-                get(c, filterAll.select).indexOf(filterAll.search) !== -1
-            ),
-            [filterAll.select]
-          )
-        : content.items;
+      const list =
+        !isEmpty(content.items) && get(content.items[0], filterAll.select)
+          ? sortBy(
+              filter(
+                content.items,
+                c =>
+                  get(c, filterAll.select) &&
+                  get(c, filterAll.select).indexOf(filterAll.search) !== -1
+              ),
+              [filterAll.select]
+            )
+          : content.items;
 
       if (!filterAll.ascDesc) list.reverse();
 
