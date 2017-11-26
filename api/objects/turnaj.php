@@ -73,5 +73,13 @@ class Turnaj{
 
         return false;
     }
+
+    function read(){
+        $stmt = $this->conn->prepare("SELECT * FROM turnaj");
+
+        $stmt->execute();
+
+        return $stmt;
+    }
 }
 ?>

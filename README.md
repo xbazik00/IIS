@@ -73,7 +73,7 @@
 - POST /api/turnaj/create.php - přidá nový turnaj, body: { name, date, prize, game, id_organizer }, return: ok - { message: "OK" } / err - { message: "ERR" }
 - POST /api/turnaj/update.php - přidá nový turnaj, body: { name, date, prize, game, id_organizer, id }, return: ok - { message: "OK" } / err - { message: "ERR" }
 - POST /api/turnaj/delete.php - odstraní turnaj, body: { id }, return: ok - { message: "OK" } / err - { message: "ERR" }
-
+- GET /api/turnaj/read.php - precita vsetky turnaje, return: { items: pole s objekty turnaja, count: počet objektů }
 <br />
 
 - POST /api/tymy_v_turnaji/deleteOne.php - odstraní tym z turnaja, body: { name, id }, return: ok - { message: "OK" } / err - { message: "ERR" }
@@ -83,10 +83,6 @@
 <br />
 
 #### TODO API
-
-<br />
-
-- editovat hraca a trenera?
 
 <br />
 
