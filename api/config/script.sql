@@ -206,9 +206,9 @@ INSERT INTO `hrac` (`prezdivka`, `herni_mys`, `klavesnice`) VALUES ('DarylDixon'
 INSERT INTO `uzivatel` (`prezdivka`, `jmeno`, `prijmeni`, `zeme_puvodu`, `role`, `heslo`) VALUES ('Negan', 'Jeffrey Dean', 'Morgan', 'US', 'PLAYER', '');
 INSERT INTO `hrac` (`prezdivka`, `herni_mys`, `klavesnice`) VALUES ('Negan', 'Lucille Mouse', 'Lucille Keyboard');
 
-INSERT INTO `uzivatel` (`prezdivka`, `jmeno`, `prijmeni`, `zeme_puvodu`, `role`, `heslo`) VALUES ('Jones', 'Jeff', 'Jones', 'US', 'ORGANIZER', '');
+INSERT INTO `uzivatel` (`prezdivka`, `jmeno`, `prijmeni`, `zeme_puvodu`, `role`, `heslo`) VALUES ('Jones', 'Jeff', 'Jones', 'US', 'ORGANIZATOR', '');
 INSERT INTO `organizator_turnaje` (`prezdivka`,`jmeno`, `tel_cislo`) VALUES ('Jones','UBER', '941111111');
-INSERT INTO `uzivatel` (`prezdivka`, `jmeno`, `prijmeni`, `zeme_puvodu`, `role`, `heslo`) VALUES ('gates', 'Bill', 'Gates', 'US', 'ORGANIZER', '');
+INSERT INTO `uzivatel` (`prezdivka`, `jmeno`, `prijmeni`, `zeme_puvodu`, `role`, `heslo`) VALUES ('gates', 'Bill', 'Gates', 'US', 'ORGANIZATOR', '');
 INSERT INTO `organizator_turnaje` (`prezdivka`,`jmeno`, `tel_cislo`) VALUES ('gates','Microsoft', '945411213');
 
 
