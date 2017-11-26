@@ -103,5 +103,15 @@ class Turnaj{
 
         return $stmt;
     }
+
+    function readOne(){
+        $stmt = $this->conn->prepare("SELECT * FROM turnaj WHERE id=:id");
+
+        $stmt->bindParam(":id", htmlspecialchars(strip_tags($this->id)));
+
+        $stmt->execute();
+
+        return $stmt;
+    }
 }
 ?>
