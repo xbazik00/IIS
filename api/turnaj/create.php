@@ -21,7 +21,7 @@ $turnaj->datum_konani = $data->date;
 $turnaj->hlavni_cena = $data->prize;
 $turnaj->nazev_hry = $data->game;
 $turnaj->vitez = $data->winner;
-$turnaj->id_organizator_turnaje = $data->id_organizer;
+$turnaj->prezdivka_organizator_turnaje = $data->id_organizer;
 
 
 if($turnaj->create()){
