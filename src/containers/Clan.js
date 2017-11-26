@@ -1,20 +1,30 @@
 import React from "react";
 import { connect } from "react-redux";
-import { compose, lifecycle } from "recompose";
+import { compose, lifecycle, withState } from "recompose";
 import { withRouter } from "react-router-dom";
 import classNames from "classnames";
 import { Card, CardText } from "react-md";
-import { Button } from "react-bootstrap";
+import { Button, Nav, NavItem } from "react-bootstrap";
 
 import Header from "../components/Header";
 import ClanHeader from "../components/clan/Header";
 import Info from "../components/clan/Info";
 import Table from "../components/clan/Table";
+import SponsorTable from "../components/sponsor/Table";
 
 import { getClan } from "../actions/clanActions";
 import { setDialog } from "../actions/appActions";
+import { getSponsorsByClanTag } from "../actions/sponsorActions";
 
-const Clan = ({ history, activeClan, user, setDialog }) => {
+const Clan = ({
+  history,
+  activeClan,
+  user,
+  setDialog,
+  tableState,
+  setTableState,
+  sponsor
+}) => {
   return (
     <div>
       <Header history={history} />
@@ -30,28 +40,70 @@ const Clan = ({ history, activeClan, user, setDialog }) => {
             />
           </div>
           <Card className="margin-bottom">
-            <CardText>
-              <h3>Uživatelé</h3>
-              <div
-                className={classNames({
-                  "margin-bottom-small": user.userName === activeClan.boss
-                })}
-              >
-                <Table history={history} clan={activeClan} user={user} />
-              </div>
-              {user.userName === activeClan.boss && (
-                <div className="flex-row flex-center">
-                  <Button
-                    bsStyle="primary"
-                    onClick={() =>
-                      setDialog("InviteUserToClan", { clanTag: activeClan.tag })
-                    }
-                  >
-                    Pozvat uživatele
-                  </Button>
+            <Nav
+              bsStyle="pills"
+              activeKey={tableState ? 1 : 2}
+              onSelect={value => setTableState(value === 1)}
+            >
+              <NavItem eventKey={1}>Uživatelé</NavItem>
+              <NavItem eventKey={2}>Sponzoři</NavItem>
+            </Nav>
+            {tableState ? (
+              <CardText>
+                <h3>Uživatelé</h3>
+                <div
+                  className={classNames({
+                    "margin-bottom-small": user.userName === activeClan.boss
+                  })}
+                >
+                  <Table history={history} clan={activeClan} user={user} />
                 </div>
-              )}
-            </CardText>
+                {user.userName === activeClan.boss && (
+                  <div className="flex-row flex-center">
+                    <Button
+                      bsStyle="primary"
+                      onClick={() =>
+                        setDialog("InviteUserToClan", {
+                          clanTag: activeClan.tag
+                        })
+                      }
+                    >
+                      Pozvat uživatele
+                    </Button>
+                  </div>
+                )}
+              </CardText>
+            ) : (
+              <CardText>
+                <h3>Sponzoři</h3>
+                <div
+                  className={classNames({
+                    "margin-bottom-small": user.userName === activeClan.boss
+                  })}
+                >
+                  <SponsorTable
+                    history={history}
+                    clan={activeClan}
+                    user={user}
+                    sponsors={sponsor.list}
+                  />
+                </div>
+                {user.userName === activeClan.boss && (
+                  <div className="flex-row flex-center">
+                    <Button
+                      bsStyle="primary"
+                      onClick={() =>
+                        setDialog("AddSponsorToClan", {
+                          clanTag: activeClan.tag
+                        })
+                      }
+                    >
+                      Přidat sponzora
+                    </Button>
+                  </div>
+                )}
+              </CardText>
+            )}
           </Card>
         </div>
       )}
@@ -62,16 +114,19 @@ const Clan = ({ history, activeClan, user, setDialog }) => {
 export default compose(
   withRouter,
   connect(
-    ({ clan: { activeClan }, app: { user } }) => ({
+    ({ clan: { activeClan }, app: { user }, sponsor }) => ({
+      sponsor,
       activeClan,
       user
     }),
-    { getClan, setDialog }
+    { getClan, setDialog, getSponsorsByClanTag }
   ),
+  withState("tableState", "setTableState", true),
   lifecycle({
     async componentWillMount() {
-      const { match, getClan } = this.props;
+      const { match, getClan, getSponsorsByClanTag } = this.props;
       await getClan(match.params.tag);
+      await getSponsorsByClanTag(match.params.tag);
     }
   })
 )(Clan);

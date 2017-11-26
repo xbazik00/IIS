@@ -12,7 +12,10 @@ import { Button, Glyphicon } from "react-bootstrap";
 
 import { setDialog } from "../../actions/appActions";
 
-const Table = ({ history, sponsors, setDialog }) => {
+import { isAdmin } from "../../utils";
+
+const Table = ({ history, sponsors, setDialog, user }) => {
+  const admin = user && isAdmin(user.role);
   return (
     <div className="flex-row flex-center">
       <DataTable plain className="table">
@@ -22,7 +25,7 @@ const Table = ({ history, sponsors, setDialog }) => {
             <TableColumn className="table-col">Název</TableColumn>
             <TableColumn className="table-col">Sídlo</TableColumn>
             <TableColumn className="table-col">Číslo účtu</TableColumn>
-            <TableColumn className="table-col">Akce</TableColumn>
+            {admin && <TableColumn className="table-col">Akce</TableColumn>}
           </TableRow>
         </TableHeader>
         {sponsors && (
@@ -37,17 +40,19 @@ const Table = ({ history, sponsors, setDialog }) => {
                 <TableColumn className="table-col">
                   {sponsor.account_number}
                 </TableColumn>
-                <TableColumn className="table-col">
-                  <Button
-                    onClick={() =>
-                      setDialog("DeleteSponsor", {
-                        acronym: sponsor.acronym
-                      })
-                    }
-                  >
-                    <Glyphicon glyph="remove" />
-                  </Button>
-                </TableColumn>
+                {admin && (
+                  <TableColumn className="table-col">
+                    <Button
+                      onClick={() =>
+                        setDialog("DeleteSponsor", {
+                          acronym: sponsor.acronym
+                        })
+                      }
+                    >
+                      <Glyphicon glyph="remove" />
+                    </Button>
+                  </TableColumn>
+                )}
               </TableRow>
             ))}
           </TableBody>
