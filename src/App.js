@@ -20,6 +20,7 @@ import Teams from "./containers/Teams";
 import Team from "./containers/Team";
 
 import { getUser } from "./actions/usersActions";
+import { getClan } from "./actions/clanActions";
 
 import { isAdmin } from "./utils";
 
@@ -49,11 +50,12 @@ const App = ({ store, user }) => {
 };
 
 export default compose(
-  connect(({ app: { user } }) => ({ user }), { getUser }),
+  connect(({ app: { user } }) => ({ user }), { getUser, getClan }),
   lifecycle({
-    componentWillMount() {
-      const { user, getUser } = this.props;
-      if (user && user.userName) getUser(user.userName);
+    async componentWillMount() {
+      const { user, getUser, getClan } = this.props;
+      if (user && user.userName) await getUser(user.userName);
+      if (user && user.clan) await getClan(user.clan);
     }
   })
 )(App);

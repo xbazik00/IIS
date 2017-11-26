@@ -2,21 +2,46 @@ import React from "react";
 import { connect } from "react-redux";
 import { compose, lifecycle } from "recompose";
 import { withRouter } from "react-router-dom";
+import { Card, CardText } from "react-md";
 
 import Header from "../components/Header";
-import ContainerHeader from "../components/ContainerHeader";
+import TeamHeader from "../components/team/Header";
 import Info from "../components/team/Info";
+import Table from "../components/team/Table";
 
 import { getTeam } from "../actions/teamActions";
 
-const Team = ({ history, activeTeam }) => {
+const Team = ({ history, activeTeam, user, activeClan }) => {
   return (
     <div>
       <Header history={history} />
       {activeTeam && (
         <div className="container">
-          <ContainerHeader title={activeTeam.name} />
-          <Info history={history} team={activeTeam} />
+          <TeamHeader
+            team={activeTeam}
+            user={user}
+            clan={activeClan}
+          />
+          <div className="flex-row flex-center margin-bottom">
+            <Card>
+              <CardText>
+                <Info history={history} team={activeTeam} />
+              </CardText>
+            </Card>
+          </div>
+          <div className="flex-row flex-center margin-bottom">
+            <Card>
+              <CardText>
+                <h3>Uživatelé</h3>
+                <Table
+                  history={history}
+                  users={activeTeam.users}
+                  user={user}
+                  clan={activeClan}
+                />
+              </CardText>
+            </Card>
+          </div>
         </div>
       )}
     </div>
@@ -25,9 +50,16 @@ const Team = ({ history, activeTeam }) => {
 
 export default compose(
   withRouter,
-  connect(({ team: { activeTeam } }) => ({ activeTeam }), {
-    getTeam
-  }),
+  connect(
+    ({ app: { user }, team: { activeTeam }, clan: { activeClan } }) => ({
+      user,
+      activeTeam,
+      activeClan
+    }),
+    {
+      getTeam
+    }
+  ),
   lifecycle({
     async componentDidMount() {
       const { getTeam, match } = this.props;

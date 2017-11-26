@@ -13,6 +13,7 @@ import DeleteUser from "../components/dialogs/DeleteUser";
 import AcceptClanInvitation from "../components/dialogs/AcceptClanInvitation";
 import DeleteClanInvitation from "../components/dialogs/DeleteClanInvitation";
 import Registration from "../components/dialogs/Registration";
+import DeleteTeam from "../components/dialogs/DeleteTeam";
 
 import { closeDialog } from "../actions/appActions";
 
@@ -31,6 +32,7 @@ const Dialogs = props => {
       <AcceptClanInvitation {...props} />
       <DeleteClanInvitation {...props} />
       <Registration {...props} />
+      <DeleteTeam {...props} />
     </div>
   );
 };
