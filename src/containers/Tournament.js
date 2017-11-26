@@ -33,7 +33,7 @@ const Tournament = ({ history, activeTournament, user, setDialog }) => {
                 <div>
                   <Table
                     history={history}
-                    tournament={activeTournament.teams}
+                    tournament={activeTournament}
                     user={user}
                   />
                 </div>

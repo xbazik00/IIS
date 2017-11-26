@@ -193,3 +193,31 @@ export const addTeamToTournament = (id, name) => async () => {
     return false;
   }
 };
+
+export const deleteTeamFromTournament = (id, name) => async () => {
+  try {
+    const response = await fetch("/api/tymy_v_turnaji/deleteOne.php", {
+      method: "POST",
+      headers: new Headers({
+        "Content-Type": "application/json"
+      }),
+      body: JSON.stringify({
+        id,
+        name
+      })
+    });
+
+    if (response.status === 200) {
+      const content = await response.json();
+
+      if (content.message === "OK") {
+        return true;
+      }
+    }
+
+    return false;
+  } catch (err) {
+    console.log(err);
+    return false;
+  }
+};
