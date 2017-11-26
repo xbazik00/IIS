@@ -25,7 +25,7 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
         "prize" => $hlavni_cena,
         "game" => $nazev_hry,
         "winner" => $vitez,
-        "id_organizer" => $id_organizator_turnaje
+        "id_organizer" => $prezdivka_organizator_turnaje
     );
 
     array_push($arr["items"], $turnaj_item);

@@ -120,15 +120,15 @@ CREATE TABLE IF NOT EXISTS `turnaj` (
     `hlavni_cena` varchar(30) NOT NULL,
     `nazev_hry` varchar(30) NOT NULL,
     `vitez` varchar(30) NOT NULL,
-    `id_organizator_turnaje` int(10) NOT NULL,
+    `prezdivka_organizator_turnaje` varchar(30) NOT NULL,
     PRIMARY KEY (`id`)
 );
 
 CREATE TABLE IF NOT EXISTS `organizator_turnaje` (
-    `id` int(10) NOT NULL AUTO_INCREMENT,
+    `prezdivka` varchar(30) NOT NULL,
     `jmeno` varchar(30) NOT NULL,
     `tel_cislo` varchar(20) NOT NULL,
-    PRIMARY KEY (`id`)
+    PRIMARY KEY (`prezdivka`)
 );
 
 CREATE TABLE IF NOT EXISTS `pozvanka_do_klanu` (
@@ -149,6 +149,7 @@ CREATE TABLE IF NOT EXISTS `pozvanka_do_tymu` (
 
 ALTER TABLE `hrac` ADD FOREIGN KEY (`prezdivka`) REFERENCES `uzivatel` (`prezdivka`) ON DELETE CASCADE;
 ALTER TABLE `trener` ADD FOREIGN KEY (`prezdivka`) REFERENCES `uzivatel` (`prezdivka`) ON DELETE CASCADE;
+ALTER TABLE `organizator_turnaje` ADD FOREIGN KEY (`prezdivka`) REFERENCES `uzivatel` (`prezdivka`) ON DELETE CASCADE;
 ALTER TABLE `specializace_uzivatele_na_hru` ADD FOREIGN KEY (`prezdivka_uzivatele`) REFERENCES `uzivatel` (`prezdivka`) ON DELETE CASCADE;
 ALTER TABLE `specializace_uzivatele_na_hru` ADD FOREIGN KEY (`nazev_hry`) REFERENCES `hra` (`nazev`) ON DELETE CASCADE;
 ALTER TABLE `tym` ADD FOREIGN KEY (`nazev_hry`) REFERENCES `hra` (`nazev`) ON DELETE CASCADE;
@@ -164,7 +165,7 @@ ALTER TABLE `zapas` ADD FOREIGN KEY (`nazev_tymu`) REFERENCES `tym` (`nazev_tymu
 ALTER TABLE `zapas` ADD FOREIGN KEY (`nazev_druheho_tymu`) REFERENCES `tym` (`nazev_tymu`) ON DELETE CASCADE;
 ALTER TABLE `turnaj` ADD FOREIGN KEY (`nazev_hry`) REFERENCES `hra` (`nazev`) ON DELETE CASCADE;
 ALTER TABLE `turnaj` ADD FOREIGN KEY (`vitez`) REFERENCES `tym` (`nazev_tymu`) ON DELETE CASCADE;
-ALTER TABLE `turnaj` ADD FOREIGN KEY (`id_organizator_turnaje`) REFERENCES `organizator_turnaje` (`id`) ON DELETE CASCADE;
+ALTER TABLE `turnaj` ADD FOREIGN KEY (`prezdivka_organizator_turnaje`) REFERENCES `organizator_turnaje` (`prezdivka`) ON DELETE CASCADE;
 ALTER TABLE `klan` ADD FOREIGN KEY (`vudce_klanu`) REFERENCES `uzivatel` (`prezdivka`) ON DELETE CASCADE;
 ALTER TABLE `uzivatele_v_klanu` ADD FOREIGN KEY (`prezdivka_uzivatele`) REFERENCES `uzivatel` (`prezdivka`) ON DELETE CASCADE;
 ALTER TABLE `uzivatele_v_klanu` ADD FOREIGN KEY (`tag_klanu`) REFERENCES `klan` (`tag`) ON DELETE CASCADE;
@@ -204,6 +205,12 @@ INSERT INTO `uzivatel` (`prezdivka`, `jmeno`, `prijmeni`, `zeme_puvodu`, `role`,
 INSERT INTO `hrac` (`prezdivka`, `herni_mys`, `klavesnice`) VALUES ('DarylDixon', 'Zombie Mouse', 'Zombie Keyboard');
 INSERT INTO `uzivatel` (`prezdivka`, `jmeno`, `prijmeni`, `zeme_puvodu`, `role`, `heslo`) VALUES ('Negan', 'Jeffrey Dean', 'Morgan', 'US', 'PLAYER', '');
 INSERT INTO `hrac` (`prezdivka`, `herni_mys`, `klavesnice`) VALUES ('Negan', 'Lucille Mouse', 'Lucille Keyboard');
+
+INSERT INTO `uzivatel` (`prezdivka`, `jmeno`, `prijmeni`, `zeme_puvodu`, `role`, `heslo`) VALUES ('Jones', 'Jeff', 'Jones', 'US', 'ORGANIZER', '');
+INSERT INTO `organizator_turnaje` (`prezdivka`,`jmeno`, `tel_cislo`) VALUES ('Jones','UBER', '941111111');
+INSERT INTO `uzivatel` (`prezdivka`, `jmeno`, `prijmeni`, `zeme_puvodu`, `role`, `heslo`) VALUES ('gates', 'Bill', 'Gates', 'US', 'ORGANIZER', '');
+INSERT INTO `organizator_turnaje` (`prezdivka`,`jmeno`, `tel_cislo`) VALUES ('gates','Microsoft', '945411213');
+
 
 INSERT INTO `klan` (`tag`, `nazev`, `logo`, `hymna`, `zeme_pusobeni`, `vudce_klanu`) VALUES ('Hogwarts', 'Hogwarts', 'The Hogwarts Logo', 'The Hogwarts Song', 'GB', 'Dumbledore');
 INSERT INTO `klan` (`tag`, `nazev`, `logo`, `hymna`, `zeme_pusobeni`, `vudce_klanu`) VALUES ('GOT', 'Game of Thrones', 'Logo with dragon', 'The song of ice and fire', 'US', 'TyrionLanister');
@@ -258,12 +265,9 @@ INSERT INTO `uzivatele_v_tymech` (`nazev_tymu`, `prezdivka_uzivatele`) VALUES ('
 INSERT INTO `uzivatele_v_tymech` (`nazev_tymu`, `prezdivka_uzivatele`) VALUES ('Team Rick', 'DarylDixon');
 INSERT INTO `uzivatele_v_tymech` (`nazev_tymu`, `prezdivka_uzivatele`) VALUES ('Team Negan', 'Negan');
 
-INSERT INTO `organizator_turnaje` (`jmeno`, `tel_cislo`) VALUES ('Ministry_of_Wizardry', '941111111');
-INSERT INTO `organizator_turnaje` (`jmeno`, `tel_cislo`) VALUES ('The Walking Dead series', '817688721');
-
-INSERT INTO `turnaj` (`nazev`, `datum_konani`, `hlavni_cena`, `nazev_hry`, `vitez`, `id_organizator_turnaje`) VALUES ('3-wizard', '2015-12-17', 'CUP', 'Quidditch', 'Gryffindor', 0);
-INSERT INTO `turnaj` (`nazev`, `datum_konani`, `hlavni_cena`, `nazev_hry`, `vitez`, `id_organizator_turnaje`) VALUES ('Rick vs Negan', '2011-01-30', 'Life', 'Killing Zombies', 'Team Negan', 1);
-INSERT INTO `turnaj` (`nazev`, `datum_konani`, `hlavni_cena`, `nazev_hry`, `vitez`, `id_organizator_turnaje`) VALUES ('Rick vs Negan', '2010-10-12', 'Life', 'Killing Zombies', 'Team Rick', 1);
+INSERT INTO `turnaj` (`nazev`, `datum_konani`, `hlavni_cena`, `nazev_hry`, `vitez`, `prezdivka_organizator_turnaje`) VALUES ('3-wizard', '2015-12-17', 'CUP', 'Quidditch', 'Gryffindor', 'Jones');
+INSERT INTO `turnaj` (`nazev`, `datum_konani`, `hlavni_cena`, `nazev_hry`, `vitez`, `prezdivka_organizator_turnaje`) VALUES ('Rick vs Negan', '2011-01-30', 'Life', 'Killing Zombies', 'Team Negan', 'Jones');
+INSERT INTO `turnaj` (`nazev`, `datum_konani`, `hlavni_cena`, `nazev_hry`, `vitez`, `prezdivka_organizator_turnaje`) VALUES ('Rick vs Negan', '2010-10-12', 'Life', 'Killing Zombies', 'Team Rick', 'gates');
 
 INSERT INTO `tymy_v_turnaji` (`nazev_tymu`, `id_turnaj`) VALUES ('Slytherin',2);
 INSERT INTO `tymy_v_turnaji` (`nazev_tymu`, `id_turnaj`) VALUES ('Gryffindor',2);

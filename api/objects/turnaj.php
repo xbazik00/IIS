@@ -9,7 +9,7 @@ class Turnaj{
     public $hlavni_cena;
     public $nazev_hry;
     public $vitez;
-    public $id_organizator_turnaje;
+    public $prezdivka_organizator_turnaje;
 
     public function __construct($db){
         $this->conn = $db;
@@ -17,14 +17,44 @@ class Turnaj{
 
 
     function create(){
-        $stmt = $this->conn->prepare("INSERT INTO turnaj SET nazev=:nazev, datum_konani=:datum_konani, hlavni_cena=:hlavni_cena, nazev_hry=:nazev_hry, vitez=:vitez, id_organizator_turnaje=:id_organizator_turnaje");
+        $stmt = $this->conn->prepare("SELECT * FROM uzivatel WHERE prezdivka=:prezdivka");
+        
+        $stmt->bindParam(":prezdivka", htmlspecialchars(strip_tags($this->prezdivka_organizator_turnaje)));
+
+        $stmt->execute();
+
+        if ($stmt->rowCount() == 0){
+            return false;
+        }
+
+        $stmt = $this->conn->prepare("SELECT * FROM tym WHERE nazev_tymu=:nazev_tymu");
+        
+        $stmt->bindParam(":nazev_tymu", htmlspecialchars(strip_tags($this->vitez)));
+
+        $stmt->execute();
+
+        if ($stmt->rowCount() == 0){
+            return false;
+        }
+
+        $stmt = $this->conn->prepare("SELECT * FROM hra WHERE nazev=:nazev_hry");
+        
+        $stmt->bindParam(":nazev_hry", htmlspecialchars(strip_tags($this->nazev_hry)));
+
+        $stmt->execute();
+
+        if ($stmt->rowCount() == 0){
+            return false;
+        }
+        
+        $stmt = $this->conn->prepare("INSERT INTO turnaj SET nazev=:nazev, datum_konani=:datum_konani, hlavni_cena=:hlavni_cena, nazev_hry=:nazev_hry, vitez=:vitez, prezdivka_organizator_turnaje=:prezdivka_organizator_turnaje");
 
         $stmt->bindParam(":datum_konani", htmlspecialchars(strip_tags($this->datum_konani)));
         $stmt->bindParam(":nazev", htmlspecialchars(strip_tags($this->nazev)));
         $stmt->bindParam(":hlavni_cena", htmlspecialchars(strip_tags($this->hlavni_cena)));
         $stmt->bindParam(":nazev_hry", htmlspecialchars(strip_tags($this->nazev_hry)));
         $stmt->bindParam(":vitez", htmlspecialchars(strip_tags($this->vitez)));
-        $stmt->bindParam(":id_organizator_turnaje", htmlspecialchars(strip_tags($this->id_organizator_turnaje)));
+        $stmt->bindParam(":prezdivka_organizator_turnaje", htmlspecialchars(strip_tags($this->prezdivka_organizator_turnaje)));
 
         if ($stmt->execute()){
             return true;
@@ -34,6 +64,36 @@ class Turnaj{
     }
 
     function update(){
+        $stmt = $this->conn->prepare("SELECT * FROM uzivatel WHERE prezdivka=:prezdivka");
+        
+        $stmt->bindParam(":prezdivka", htmlspecialchars(strip_tags($this->prezdivka_organizator_turnaje)));
+
+        $stmt->execute();
+
+        if ($stmt->rowCount() == 0){
+            return false;
+        }
+
+        $stmt = $this->conn->prepare("SELECT * FROM tym WHERE nazev_tymu=:nazev_tymu");
+        
+        $stmt->bindParam(":nazev_tymu", htmlspecialchars(strip_tags($this->vitez)));
+
+        $stmt->execute();
+
+        if ($stmt->rowCount() == 0){
+            return false;
+        }
+
+        $stmt = $this->conn->prepare("SELECT * FROM hra WHERE nazev=:nazev_hry");
+        
+        $stmt->bindParam(":nazev_hry", htmlspecialchars(strip_tags($this->nazev_hry)));
+
+        $stmt->execute();
+
+        if ($stmt->rowCount() == 0){
+            return false;
+        }
+
         $stmt = $this->conn->prepare("SELECT * FROM turnaj WHERE id=:id");
         
         $stmt->bindParam(":id", htmlspecialchars(strip_tags($this->id)));
@@ -44,7 +104,7 @@ class Turnaj{
             return false;
         }
 
-        $stmt = $this->conn->prepare("UPDATE turnaj SET nazev=:nazev, datum_konani=:datum_konani, hlavni_cena=:hlavni_cena, nazev_hry=:nazev_hry, vitez=:vitez, id_organizator_turnaje=:id_organizator_turnaje WHERE id=:id");
+        $stmt = $this->conn->prepare("UPDATE turnaj SET nazev=:nazev, datum_konani=:datum_konani, hlavni_cena=:hlavni_cena, nazev_hry=:nazev_hry, vitez=:vitez, prezdivka_organizator_turnaje=:prezdivka_organizator_turnaje WHERE id=:id");
 
         $stmt->bindParam(":id", htmlspecialchars(strip_tags($this->id)));
 
@@ -53,7 +113,7 @@ class Turnaj{
         $stmt->bindParam(":hlavni_cena", htmlspecialchars(strip_tags($this->hlavni_cena)));
         $stmt->bindParam(":nazev_hry", htmlspecialchars(strip_tags($this->nazev_hry)));
         $stmt->bindParam(":vitez", htmlspecialchars(strip_tags($this->vitez)));
-        $stmt->bindParam(":id_organizator_turnaje", htmlspecialchars(strip_tags($this->id_organizator_turnaje)));
+        $stmt->bindParam(":prezdivka_organizator_turnaje", htmlspecialchars(strip_tags($this->prezdivka_organizator_turnaje)));
 
         if ($stmt->execute()){
             return true;
