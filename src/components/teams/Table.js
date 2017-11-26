@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { filter, map } from "lodash";
+import { map } from "lodash";
 import {
   DataTable,
   TableHeader,
@@ -12,10 +12,7 @@ import { Button, Glyphicon } from "react-bootstrap";
 
 import { setDialog } from "../../actions/appActions";
 
-import { isAdmin } from "../../utils";
-
-const Table = ({ history, teams, user, setDialog }) => {
-  const admin = user && isAdmin(user.role);
+const Table = ({ history, teams, user, setDialog, clan }) => {
   return (
     <div className="flex-row flex-center">
       <DataTable plain className="table">
@@ -26,7 +23,11 @@ const Table = ({ history, teams, user, setDialog }) => {
               Maximální počet hráčů
             </TableColumn>
             <TableColumn className="table-col">Hra</TableColumn>
-            {admin && <TableColumn className="table-col">Akce</TableColumn>}
+            {user &&
+              clan &&
+              user.userName === clan.boss && (
+                <TableColumn className="table-col">Akce</TableColumn>
+              )}
           </TableRow>
         </TableHeader>
         <TableBody className="table-body">
@@ -41,17 +42,20 @@ const Table = ({ history, teams, user, setDialog }) => {
                 {t.number_of_players}
               </TableColumn>
               <TableColumn className="table-col">{t.game}</TableColumn>
-              {admin && (
-                <TableColumn className="table-col">
-                  <Button
-                    onClick={e => {
-                      e.stopPropagation();
-                    }}
-                  >
-                    <Glyphicon glyph="remove" />
-                  </Button>
-                </TableColumn>
-              )}
+              {user &&
+                clan &&
+                user.userName === clan.boss && (
+                  <TableColumn className="table-col">
+                    <Button
+                      onClick={e => {
+                        e.stopPropagation();
+                        setDialog("DeleteTeam", { name: t.name });
+                      }}
+                    >
+                      <Glyphicon glyph="remove" />
+                    </Button>
+                  </TableColumn>
+                )}
             </TableRow>
           ))}
         </TableBody>

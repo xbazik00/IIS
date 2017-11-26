@@ -86,6 +86,14 @@
 
 <br />
 
+<<<<<<< HEAD
+=======
+- editovat hraca a trenera?
+
+<br />
+
+- výpis všech turnajů
+>>>>>>> cf6465d1bf027774dccb8c306ab9430cc1ce934e
 - organizátor turnaje - bude asi uživatel s rolí ORGANIZATOR - vytvořit testovacího
 - přidat sponzora turnaje
 - výpis všech organizátorů

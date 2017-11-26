@@ -9,7 +9,7 @@ import Table from "../components/teams/Table";
 
 import { getTeamsByUserName } from "../actions/teamActions";
 
-const Teams = ({ history, team, user }) => {
+const Teams = ({ history, team, user, activeClan }) => {
   return (
     <div>
       <Header history={history} />
@@ -17,7 +17,12 @@ const Teams = ({ history, team, user }) => {
         <ContainerHeader title="Týmy" />
         <Card className="margin-bottom">
           <CardText>
-            <Table history={history} teams={team.list} user={user} />
+            <Table
+              history={history}
+              teams={team.list}
+              user={user}
+              clan={activeClan}
+            />
           </CardText>
         </Card>
       </div>
@@ -27,9 +32,10 @@ const Teams = ({ history, team, user }) => {
 
 export default compose(
   connect(
-    ({ app: { user }, team }) => ({
+    ({ app: { user }, team, clan: { activeClan } }) => ({
       user,
-      team
+      team,
+      activeClan
     }),
     { getTeamsByUserName }
   ),
