@@ -1,36 +1,41 @@
 <?php
+// required headers
 header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json; charset=UTF-8");
 header("Access-Control-Allow-Methods: POST");
 header("Access-Control-Max-Age: 3600");
 header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
-
+ 
+// include database and object files
 include_once '../config/database.php';
-include_once '../objects/tym.php';
-include_once '../objects/uzivatele_v_tymech.php';
-include_once '../objects/pozvanka_do_tymu.php';
 include_once '../objects/tymy_v_turnaji.php';
 
+
+ 
+// get database connection
 $database = new Database();
 $db = $database->getConnection();
-
-$tym = new Tym($db);
-$uzivatele_v_tymech = new UzivateleVTymech($db);
-$pozvanka_do_tymu = new PozvankaDoTymu($db);
+ 
+// prepare tymy_v_turnaji object
 $tymy_v_turnaji = new TymyVTurnaji($db);
 
+
+// get id of tymy_v_turnaji to be edited
 $data = json_decode(file_get_contents("php://input"));
-
-$tym->nazev_tymu = $data->name;
-$uzivatele_v_tymech->nazev_tymu = $data->name;
-$pozvanka_do_tymu->nazev_tymu = $data->name;
+ 
+// set ID property of tymy_v_turnaji to be edited
 $tymy_v_turnaji->nazev_tymu = $data->name;
-
-if($tym->delete() && $uzivatele_v_tymech->deleteByNazevTymu() && $pozvanka_do_tymu->deleteByNazevTymu() && $tymy_v_turnaji->deleteByNazevTymu()){
+$tymy_v_turnaji->id_turnaj = $data->id;
+ 
+// update the tymy_v_turnaji
+if($tymy_v_turnaji->add()){
     echo '{';
         echo '"message": "OK"';
     echo '}';
-}else{
+}
+ 
+// if unable to update the tymy_v_turnaji, tell the user
+else{
     echo '{';
         echo '"message": "ERR"';
     echo '}';
