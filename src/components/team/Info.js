@@ -1,6 +1,6 @@
 import React from "react";
 
-const Info = ({ setActiveForm, team }) => {
+const Info = ({ setActiveForm, team, history }) => {
   return (
     <div className="info">
       <div className="flex-col">
@@ -14,7 +14,14 @@ const Info = ({ setActiveForm, team }) => {
         </div>
         <div className="flex-row">
           <p className="row-label">Hra:</p>
-          <p>{team.game}</p>
+          <p>
+            <span
+              className="link"
+              onClick={() => history.push(`/game/${team.game}`)}
+            >
+              {team.game}
+            </span>
+          </p>
         </div>
       </div>
     </div>

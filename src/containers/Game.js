@@ -7,7 +7,7 @@ import Header from "../components/Header";
 import GameHeader from "../components/game/Header";
 import Info from "../components/game/Info";
 
-import { getGame, setActiveGame } from "../actions/gamesActions";
+import { getGames, getGame, setActiveGame } from "../actions/gamesActions";
 
 const Game = ({ history, activeGame, user }) => {
   return (
@@ -28,14 +28,16 @@ export default compose(
   connect(
     ({ app: { user }, games: { activeGame } }) => ({ user, activeGame }),
     {
+      getGames,
       getGame,
       setActiveGame
     }
   ),
   lifecycle({
-    componentWillMount() {
-      const { getGame, match } = this.props;
+    async componentWillMount() {
+      const { getGames, getGame, match } = this.props;
 
+      await getGames();
       getGame(match.params.id);
     },
     componentWillUnmount() {
