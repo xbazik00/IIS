@@ -81,6 +81,11 @@
 - POST /api/tymy_v_turnaji/deleteOne.php - odstraní tym z turnaja, body: { name, id }, return: ok - { message: "OK" } / err - { message: "ERR" }
 - POST /api/tymy_v_turnaji/add.php - přidá nový tym do turnaja, body: { name, id }, return: ok - { message: "OK" } / err - { message: "ERR" }
 
+<br />
+
+- POST /api/sponzor_turnaje/read.php - vráti všetkých sponzorov turnaja, body: { id }, return: { items: pole s objekty sponzorov, count: počet objektů }
+- POST /api/sponzor_turnaje/create.php - přidá nového sponzora klanu, podla acronymu (zkratky sponzora) a id turnaja , body: { acronym, id }, return: ok - { message: "OK" } / exists - { message: "EXISTS" }  / err - { message: "ERR" }
+- POST /api/sponzor_turnaje/delete.php - odstraní sponzora turnaje, body: { acronym , id }, return: ok - { message: "OK" } / err - { message: "ERR" }
 
 <br />
 
@@ -88,8 +93,8 @@
 
 <br />
 
-- přidat/odebrat sponzora turnaje
-- výpis všech sponzorů turnaje podle id turnaje
+- rozlisit hlavni sponzor/sponzor
+- zapasy
 
 <br />
 
