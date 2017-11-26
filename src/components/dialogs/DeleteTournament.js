@@ -11,6 +11,8 @@ import {
   deleteTournament
 } from "../../actions/tournamentActions";
 
+import { isOrganizer } from "../../utils";
+
 const DeleteTournament = ({ handleSubmit, data }) => (
   <DialogContainer
     title="Odstranit turnaj"
@@ -32,11 +34,13 @@ export default compose(
   withRouter,
   withHandlers({
     onSubmit: dialog => async (formData, dispatch, props) => {
-      const { deleteTournament, data, getTournaments } = props;
+      const { deleteTournament, data, getTournaments, history, user } = props;
 
       if (await deleteTournament(data.id)) {
         getTournaments();
         dialog.closeDialog();
+        if (isOrganizer(user.role)) history.push("/main");
+        else history.push("/tournaments");
       }
     }
   }),

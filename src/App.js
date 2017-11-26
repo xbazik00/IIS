@@ -19,6 +19,7 @@ import Sponsors from "./containers/Sponsors";
 import Teams from "./containers/Teams";
 import Team from "./containers/Team";
 import Tournaments from "./containers/Tournaments";
+import Tournament from "./containers/Tournament";
 
 import { getUser } from "./actions/usersActions";
 import { getClan } from "./actions/clanActions";
@@ -43,8 +44,9 @@ const App = ({ store, user }) => {
           <Route path="/users" component={Users} />
           <Route path="/teams" component={Teams} />
           <Route path="/team/:name" component={Team} />
+          <Route path="/tournaments" component={Tournaments} />
+          <Route path="/tournament/:id" component={Tournament} />
           {admin && <Route path="/sponsors" component={Sponsors} />}
-          {admin && <Route path="/tournaments" component={Tournaments} />}
         </div>
       </Router>
     </Provider>

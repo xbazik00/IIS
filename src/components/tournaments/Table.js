@@ -35,7 +35,11 @@ const Table = ({ history, tournaments, user, setDialog }) => {
         </TableHeader>
         <TableBody className="table-body">
           {map(tournaments, (t, i) => (
-            <TableRow key={i} className="table-row" onClick={() => null}>
+            <TableRow
+              key={i}
+              className="table-row"
+              onClick={() => history.push(`/tournament/${t.id}`)}
+            >
               <TableColumn className="table-col">{t.name}</TableColumn>
               <TableColumn className="table-col">{t.date}</TableColumn>
               <TableColumn className="table-col">{t.prize}</TableColumn>
