@@ -50,7 +50,7 @@ export default compose(
     async componentWillMount() {
       const { getUsers, setFilter } = this.props;
 
-      setFilter({ select: "userName", ascDesc: true, search: "" });
+      await setFilter({ select: "userName", ascDesc: true, search: "" });
       await getUsers();
     }
   })

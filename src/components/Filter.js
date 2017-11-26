@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { compose, lifecycle } from "recompose";
+import { compose } from "recompose";
 import { map } from "lodash";
 import { FormControl, Button, Glyphicon } from "react-bootstrap";
 
@@ -54,13 +54,6 @@ const Filter = ({
   </div>
 );
 
-export default compose(
-  connect(({ filter }) => ({ filter }), { setFilter }),
-  lifecycle({
-    componentWillUnmount() {
-      const { setFilter } = this.props;
-
-      setFilter({ select: "name", ascDesc: true, search: "" });
-    }
-  })
-)(Filter);
+export default compose(connect(({ filter }) => ({ filter }), { setFilter }))(
+  Filter
+);
