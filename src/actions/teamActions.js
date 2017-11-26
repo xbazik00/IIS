@@ -141,3 +141,28 @@ export const getTeam = name => async dispatch => {
     return false;
   }
 };
+
+export const inviteUser = (name, userName) => async () => {
+  try {
+    const response = await fetch("/api/pozvanka_do_tymu/create.php", {
+      method: "POST",
+      headers: new Headers({
+        "Content-Type": "application/json"
+      }),
+      body: JSON.stringify({ name, userName })
+    });
+
+    if (response.status === 200) {
+      const content = await response.json();
+
+      if (content.message === "OK") {
+        return true;
+      }
+    }
+
+    return false;
+  } catch (err) {
+    console.log(err);
+    return false;
+  }
+};

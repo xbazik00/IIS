@@ -90,6 +90,7 @@
 
 <br />
 
+- výpis všech turnajů
 - organizátor turnaje - bude asi uživatel s rolí ORGANIZATOR - vytvořit testovacího
 - přidat sponzora turnaje
 - výpis všech organizátorů
