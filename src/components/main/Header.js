@@ -32,23 +32,28 @@ const Header = ({ history, setDialog, user, clan }) => {
           )}
         </ButtonGroup>
         <ButtonGroup bsSize="large">
-          {clan &&
+          {user.clan &&
+            clan &&
             clan.boss === user.userName && (
               <Button bsStyle="primary" onClick={() => setDialog("CreateTeam")}>
                 Založit tým
               </Button>
             )}
-          <Button bsStyle="primary" onClick={() => history.push("/teams")}>
-            Moje týmy
-          </Button>
-          {(!clan || (clan && clan.boss !== user.userName)) && (
-            <Button
-              bsStyle="primary"
-              onClick={() => history.push("/team-invitations")}
-            >
-              Pozvánky do týmu
+          {user.clan && (
+            <Button bsStyle="primary" onClick={() => history.push("/teams")}>
+              Moje týmy
             </Button>
           )}
+          {user.clan &&
+            clan &&
+            clan.boss !== user.userName && (
+              <Button
+                bsStyle="primary"
+                onClick={() => history.push("/team-invitations")}
+              >
+                Pozvánky do týmu
+              </Button>
+            )}
         </ButtonGroup>
       </ButtonToolbar>
     </div>

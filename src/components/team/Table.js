@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { filter, map, find } from "lodash";
+import { map, find } from "lodash";
 import {
   DataTable,
   TableHeader,
@@ -14,7 +14,7 @@ import { setDialog } from "../../actions/appActions";
 
 import { countries } from "../../enums";
 
-const Table = ({ history, users, user, clan, setDialog }) => {
+const Table = ({ history, team, user, clan, setDialog }) => {
   return (
     <div className="flex-row flex-center">
       <DataTable plain className="table">
@@ -33,7 +33,7 @@ const Table = ({ history, users, user, clan, setDialog }) => {
           </TableRow>
         </TableHeader>
         <TableBody className="table-body">
-          {map(filter(users, u => u.role !== "ADMIN"), (u, i) => (
+          {map(team.users, (u, i) => (
             <TableRow
               key={i}
               className="table-row"
@@ -59,6 +59,7 @@ const Table = ({ history, users, user, clan, setDialog }) => {
                         onClick={e => {
                           e.stopPropagation();
                           setDialog("DeleteUserFromTeam", {
+                            name: team.name,
                             userName: u.userName
                           });
                         }}

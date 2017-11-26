@@ -44,9 +44,11 @@ const Main = ({ history, user, setDialog, activeClan, getGames }) => {
               <Table history={history} user={user} />
             </div>
             {admin && (
-              <Button bsStyle="primary" onClick={() => setDialog("NewGame")}>
-                Přidat hru
-              </Button>
+              <div className="flex-row flex-center">
+                <Button bsStyle="primary" onClick={() => setDialog("NewGame")}>
+                  Přidat hru
+                </Button>
+              </div>
             )}
           </CardText>
         </Card>

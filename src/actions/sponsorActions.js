@@ -33,7 +33,7 @@ export const createSponsor = (
 
 export const deleteSponsor = acronym => async () => {
   try {
-    const response = await fetch("/api/sponzor/delete.php", {
+    const response = await fetch("/api/sponzor/deleteOne.php", {
       method: "POST",
       headers: new Headers({
         "Content-Type": "application/json"
@@ -59,6 +59,34 @@ export const deleteSponsor = acronym => async () => {
 export const getSponsors = () => async dispatch => {
   try {
     const response = await fetch("/api/sponzor/read.php");
+
+    if (response.status === 200) {
+      const content = await response.json();
+
+      dispatch({
+        type: c.SPONSOR,
+        payload: { list: content.items, count: content.count }
+      });
+
+      return true;
+    }
+
+    return false;
+  } catch (err) {
+    console.log(err);
+    return false;
+  }
+};
+
+export const getSponsorsByClanTag = tag => async dispatch => {
+  try {
+    const response = await fetch("/api/sponzor_klanu/read.php", {
+      method: "POST",
+      headers: new Headers({
+        "Content-Type": "application/json"
+      }),
+      body: JSON.stringify({ tag })
+    });
 
     if (response.status === 200) {
       const content = await response.json();

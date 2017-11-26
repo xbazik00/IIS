@@ -39,20 +39,22 @@ const Team = ({ history, activeTeam, user, activeClan, setDialog }) => {
                 >
                   <Table
                     history={history}
-                    users={activeTeam.users}
+                    team={activeTeam}
                     user={user}
                     clan={activeClan}
                   />
                 </div>
                 {user.userName === activeClan.boss && (
-                  <Button
-                    bsStyle="primary"
-                    onClick={() =>
-                      setDialog("InviteUserToTeam", { name: activeTeam.name })
-                    }
-                  >
-                    Pozvat uživatele
-                  </Button>
+                  <div className="flex-row flex-center">
+                    <Button
+                      bsStyle="primary"
+                      onClick={() =>
+                        setDialog("InviteUserToTeam", { name: activeTeam.name })
+                      }
+                    >
+                      Pozvat uživatele
+                    </Button>
+                  </div>
                 )}
               </CardText>
             </Card>

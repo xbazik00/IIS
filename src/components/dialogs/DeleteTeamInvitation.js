@@ -6,17 +6,17 @@ import { withRouter } from "react-router-dom";
 
 import DialogContainer from "./DialogContainer";
 
-import { deleteInvitation, getInvitations } from "../../actions/clanActions";
+import { deleteInvitation, getInvitations } from "../../actions/teamActions";
 
-const DeleteClanInvitation = ({ handleSubmit, data }) => (
+const DeleteTeamInvitation = ({ handleSubmit, data }) => (
   <DialogContainer
     title="Odstranit pozvánku"
-    name="DeleteClanInvitation"
+    name="DeleteTeamInvitation"
     handleSubmit={handleSubmit}
     submitLabel="Odstranit"
   >
-    <p>{`Opravdu chcete odstranit pozvánku do klanu${
-      data && data.tag ? ` "${data.tag}"` : ""
+    <p>{`Opravdu chcete odstranit pozvánku do týmu${
+      data && data.name ? ` "${data.name}"` : ""
     }?`}</p>
   </DialogContainer>
 );
@@ -31,13 +31,13 @@ export default compose(
     onSubmit: dialog => async (formData, dispatch, props) => {
       const { deleteInvitation, data, getInvitations } = props;
 
-      if (await deleteInvitation(data.tag, data.userName)) {
+      if (await deleteInvitation(data.name, data.userName)) {
         getInvitations(data.userName);
         dialog.closeDialog();
       }
     }
   }),
   reduxForm({
-    form: "deleteClanInvitationDialogForm"
+    form: "deleteTeamInvitationDialogForm"
   })
-)(DeleteClanInvitation);
+)(DeleteTeamInvitation);
