@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { compose, withHandlers } from "recompose";
-import { reduxForm, Field } from "redux-form";
+import { reduxForm, Field, SubmissionError } from "redux-form";
 import { withRouter } from "react-router-dom";
 import { forEach, isEmpty } from "lodash";
 
@@ -68,7 +68,10 @@ export default compose(
 
       if (await createTeam(name, user.userName, game, number_of_players)) {
         dialog.closeDialog();
-      }
+      } else
+        throw new SubmissionError({
+          game: "*Tým se nepodařilo vytvořit!"
+        });
     }
   }),
   reduxForm({

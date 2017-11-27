@@ -17,3 +17,5 @@ export const SPONSOR = "SPONSOR";
 export const FILTER = "FILTER";
 
 export const TOURNAMENT = "TOURNAMENT";
+
+export const MATCH = "MATCH";

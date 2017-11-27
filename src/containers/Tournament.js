@@ -10,6 +10,7 @@ import Header from "../components/Header";
 import TournamentHeader from "../components/tournament/Header";
 import Info from "../components/tournament/Info";
 import Table from "../components/tournament/Table";
+import MatchTable from "../components/tournament/MatchTable";
 import SponsorsTable from "../components/sponsor/Table";
 
 import { getTournament } from "../actions/tournamentActions";
@@ -50,7 +51,8 @@ const Tournament = ({
                 onSelect={value => setTableState(value)}
               >
                 <NavItem eventKey={1}>Týmy</NavItem>
-                <NavItem eventKey={2}>Sponzoři</NavItem>
+                <NavItem eventKey={2}>Zápasy</NavItem>
+                <NavItem eventKey={3}>Sponzoři</NavItem>
               </Nav>
               {tableState === 1 ? (
                 <CardText>
@@ -60,6 +62,39 @@ const Tournament = ({
                     tournament={activeTournament}
                     user={user}
                   />
+                </CardText>
+              ) : tableState === 2 ? (
+                <CardText>
+                  <h3>Zápasy</h3>
+                  <div
+                    className={classNames({
+                      "margin-bottom-small":
+                        organizer &&
+                        activeTournament.id_organizer === user.userName
+                    })}
+                  >
+                    <MatchTable
+                      history={history}
+                      matches={activeTournament.matches}
+                      user={user}
+                      tournament={activeTournament}
+                    />
+                  </div>
+                  {organizer &&
+                    activeTournament.id_organizer === user.userName && (
+                      <div className="flex-row flex-center">
+                        <Button
+                          bsStyle="primary"
+                          onClick={() =>
+                            setDialog("NewMatch", {
+                              id: activeTournament.id
+                            })
+                          }
+                        >
+                          Přidat zápas
+                        </Button>
+                      </div>
+                    )}
                 </CardText>
               ) : (
                 <CardText>

@@ -3,14 +3,9 @@ import { find, isEmpty, sortBy, filter, get } from "lodash";
 import fetch from "../utils/fetch";
 import * as c from "./constants";
 
-export const setActiveGame = activeGame => ({
-  type: c.GAMES,
-  payload: { activeGame }
-});
-
-export const getGames = () => async (dispatch, getState) => {
+export const getMatches = () => async (dispatch, getState) => {
   try {
-    const response = await fetch("/api/hra/read.php");
+    const response = await fetch("/api/zapas/read.php");
 
     if (response.status === 200) {
       const content = await response.json();
@@ -32,7 +27,7 @@ export const getGames = () => async (dispatch, getState) => {
       if (!filterAll.ascDesc) list.reverse();
 
       dispatch({
-        type: c.GAMES,
+        type: c.MATCH,
         payload: { list, count: content.count }
       });
     }
@@ -44,50 +39,25 @@ export const getGames = () => async (dispatch, getState) => {
   }
 };
 
-export const getGame = name => async (dispatch, getState) => {
-  const activeGame = find(getState().games.list, game => game.name === name);
-
-  dispatch(setActiveGame(activeGame));
-};
-
-export const deleteGame = name => async () => {
+export const newMatch = (
+  result,
+  date,
+  id_tourney,
+  name1,
+  name2
+) => async () => {
   try {
-    const response = await fetch("/api/hra/deleteOne.php", {
-      method: "POST",
-      headers: new Headers({
-        "Content-Type": "application/json"
-      }),
-      body: JSON.stringify({ name })
-    });
-
-    if (response.status === 200) {
-      const content = await response.json();
-
-      if (content.message === "OK") {
-        return true;
-      }
-    }
-
-    return false;
-  } catch (err) {
-    console.log(err);
-    return false;
-  }
-};
-
-export const newGame = (name, genre, publisher, modes, created) => async () => {
-  try {
-    const response = await fetch("/api/hra/create.php", {
+    const response = await fetch("/api/zapas/create.php", {
       method: "POST",
       headers: new Headers({
         "Content-Type": "application/json"
       }),
       body: JSON.stringify({
-        name,
-        genre,
-        publisher,
-        modes,
-        created
+        result,
+        date,
+        id_tourney,
+        name1,
+        name2
       })
     });
 
@@ -106,25 +76,15 @@ export const newGame = (name, genre, publisher, modes, created) => async () => {
   }
 };
 
-export const updateGame = (
-  name,
-  genre,
-  publisher,
-  modes,
-  created
-) => async () => {
+export const deleteMatch = id => async () => {
   try {
-    const response = await fetch("/api/hra/update.php", {
+    const response = await fetch("/api/zapas/deleteOne.php", {
       method: "POST",
       headers: new Headers({
         "Content-Type": "application/json"
       }),
       body: JSON.stringify({
-        name,
-        genre,
-        publisher,
-        modes,
-        created
+        id
       })
     });
 

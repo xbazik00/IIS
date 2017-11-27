@@ -10,6 +10,7 @@ import team from "./teamReducer";
 import sponsor from "./sponsorReducer";
 import filter from "./filterReducer";
 import tournament from "./tournamentReducer";
+import match from "./matchReducer";
 
 export default combineReducers({
   form,
@@ -20,5 +21,6 @@ export default combineReducers({
   team,
   sponsor,
   filter,
-  tournament
+  tournament,
+  match
 });
