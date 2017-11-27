@@ -7,6 +7,8 @@ include_once '../objects/uzivatel.php';
 include_once '../objects/uzivatele_v_klanu.php';
 include_once '../objects/trener.php';
 include_once '../objects/hrac.php';
+include_once '../objects/organizator_turnaje.php';
+
 
 $database = new Database();
 $db = $database->getConnection();
@@ -14,6 +16,7 @@ $uzivatel = new Uzivatel($db);
 $uzivatele_v_klanu = new UzivateleVKlanu($db);
 $trener = new Trener($db);
 $hrac = new Hrac($db);
+$organizator_turnaje = new OrganizatorTurnaje($db);
 
 $stmt = $uzivatel->read();
 $num = $stmt->rowCount();
@@ -38,6 +41,7 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
     $uzivatele_v_klanu->prezdivka_uzivatele = $prezdivka;
     $trener->prezdivka = $prezdivka;
     $hrac->prezdivka = $prezdivka;
+    $organizator_turnaje->prezdivka = $prezdivka;
     
 
     $stmt1 = $uzivatele_v_klanu->getTagKlanu();
@@ -48,6 +52,9 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
     
     $stmt3 = $hrac->readOne();
     $num3 = $stmt3->rowCount();
+
+    $stmt4 = $organizator_turnaje->readOne();
+    $num4 = $stmt4->rowCount();
 
     if ($num1 > 0){
         $row = $stmt1->fetch(PDO::FETCH_ASSOC);
@@ -68,6 +75,12 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
         $uzivatel_item["keyboard"] = $klavesnice;
     }
 
+    if ($num4 > 0){
+        $row = $stmt4->fetch(PDO::FETCH_ASSOC);
+        extract($row);
+        $uzivatel_item["org_name"] = $jmeno;
+        $uzivatel_item["phone"] = $tel_cislo;
+    }
 
     array_push($arr["items"], $uzivatel_item);
 }

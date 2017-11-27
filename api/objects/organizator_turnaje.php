@@ -19,6 +19,16 @@ class OrganizatorTurnaje{
         return $stmt;
     }
 
+    function readOne(){
+        $stmt = $this->conn->prepare("SELECT * FROM organizator_turnaje WHERE prezdivka=:prezdivka");
+
+        $stmt->bindParam(":prezdivka", htmlspecialchars(strip_tags($this->prezdivka)));
+        
+        $stmt->execute();
+    
+        return $stmt;
+    }
+
 
     function create(){
 

@@ -10,6 +10,7 @@ include_once '../objects/uzivatel.php';
 include_once '../objects/uzivatele_v_klanu.php';
 include_once '../objects/trener.php';
 include_once '../objects/hrac.php';
+include_once '../objects/organizator_turnaje.php';
 
 
 $database = new Database();
@@ -18,6 +19,7 @@ $uzivatel = new Uzivatel($db);
 $uzivatele_v_klanu = new UzivateleVKlanu($db);
 $trener = new Trener($db);
 $hrac = new Hrac($db);
+$organizator_turnaje = new OrganizatorTurnaje($db);
 
 $data = json_decode(file_get_contents("php://input"));
 
@@ -25,6 +27,7 @@ $uzivatel->prezdivka = $data->userName;
 $uzivatele_v_klanu->prezdivka_uzivatele = $data->userName;
 $trener->prezdivka = $data->userName;
 $hrac->prezdivka = $data->userName;
+$organizator_turnaje->prezdivka = $data->userName;
 
 $stmt = $uzivatel->readOne();
 $num = $stmt->rowCount();
@@ -37,6 +40,9 @@ $num2 = $stmt2->rowCount();
 
 $stmt3 = $hrac->readOne();
 $num3 = $stmt3->rowCount();
+
+$stmt4 = $organizator_turnaje->readOne();
+$num4 = $stmt4->rowCount();
 
 if($num > 0) {
     $row = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -69,6 +75,13 @@ if($num > 0) {
         extract($row);
         $uzivatel["mouse"] = $herni_mys;
         $uzivatel["keyboard"] = $klavesnice;
+    }
+
+    if ($num4 > 0){
+        $row = $stmt4->fetch(PDO::FETCH_ASSOC);
+        extract($row);
+        $uzivatel["org_name"] = $jmeno;
+        $uzivatel["phone"] = $tel_cislo;
     }
 
     echo json_encode($uzivatel);
