@@ -102,6 +102,3 @@
 - až bude vše hotové, tak i další volání podle modelu případů užití
 
 #### TODO FE
-
-- odstranit možnost opustit klan/tým u nečlenů
-- co vše si může vylistovat admin?
