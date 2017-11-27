@@ -13,7 +13,7 @@ import Table from "../components/clan/Table";
 import SponsorTable from "../components/sponsor/Table";
 
 import { getClan } from "../actions/clanActions";
-import { setDialog } from "../actions/appActions";
+import { setDialog, setFilter } from "../actions/appActions";
 import { getSponsorsByClanTag, getSponsors } from "../actions/sponsorActions";
 import { getUsers } from "../actions/usersActions";
 
@@ -26,7 +26,8 @@ const Clan = ({
   setTableState,
   clanSponsors,
   getSponsors,
-  getUsers
+  getUsers,
+  setFilter
 }) => {
   return (
     <div>
@@ -66,6 +67,11 @@ const Clan = ({
                     <Button
                       bsStyle="primary"
                       onClick={() => {
+                        setFilter({
+                          select: "userName",
+                          ascDesc: true,
+                          search: ""
+                        });
                         getUsers();
                         setDialog("InviteUserToClan", {
                           clanTag: activeClan.tag
@@ -98,6 +104,11 @@ const Clan = ({
                     <Button
                       bsStyle="primary"
                       onClick={() => {
+                        setFilter({
+                          select: "acronym",
+                          ascDesc: true,
+                          search: ""
+                        });
                         getSponsors();
                         setDialog("AddSponsorToClan", {
                           clanTag: activeClan.tag
@@ -125,7 +136,14 @@ export default compose(
       activeClan,
       user
     }),
-    { getClan, setDialog, getSponsorsByClanTag, getSponsors, getUsers }
+    {
+      getClan,
+      setDialog,
+      getSponsorsByClanTag,
+      getSponsors,
+      getUsers,
+      setFilter
+    }
   ),
   withState("tableState", "setTableState", 1),
   lifecycle({

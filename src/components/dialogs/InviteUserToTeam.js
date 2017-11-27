@@ -30,6 +30,7 @@ const InviteUserToTeam = ({
             u =>
               !isAdmin(u.role) &&
               !isOrganizer(u.role) &&
+              activeTeam.users[0].clan === u.clan &&
               !find(activeTeam.users, us => us.userName === u.userName)
           ),
           u => {

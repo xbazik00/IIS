@@ -14,7 +14,7 @@ import MatchTable from "../components/tournament/MatchTable";
 import SponsorsTable from "../components/sponsor/Table";
 
 import { getTournament } from "../actions/tournamentActions";
-import { setDialog } from "../actions/appActions";
+import { setDialog, setFilter } from "../actions/appActions";
 import { getTournamentSponsors, getSponsors } from "../actions/sponsorActions";
 
 import { isOrganizer } from "../utils";
@@ -27,7 +27,8 @@ const Tournament = ({
   tableState,
   setTableState,
   sponsor,
-  getSponsors
+  getSponsors,
+  setFilter
 }) => {
   const organizer = user && isOrganizer(user.role);
   return (
@@ -120,6 +121,11 @@ const Tournament = ({
                         <Button
                           bsStyle="primary"
                           onClick={() => {
+                            setFilter({
+                              select: "acronym",
+                              ascDesc: true,
+                              search: ""
+                            });
                             getSponsors();
                             setDialog("AddSponsorToTournament", {
                               id: activeTournament.id
@@ -152,7 +158,8 @@ export default compose(
       getTournament,
       setDialog,
       getTournamentSponsors,
-      getSponsors
+      getSponsors,
+      setFilter
     }
   ),
   withState("tableState", "setTableState", 1),

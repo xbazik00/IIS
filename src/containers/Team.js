@@ -13,7 +13,7 @@ import Table from "../components/team/Table";
 import TournamentTable from "../components/tournaments/Table";
 
 import { getTeam } from "../actions/teamActions";
-import { setDialog } from "../actions/appActions";
+import { setDialog, setFilter } from "../actions/appActions";
 import { getClan } from "../actions/clanActions";
 import { getTournaments } from "../actions/tournamentActions";
 import { getUsers } from "../actions/usersActions";
@@ -28,7 +28,8 @@ const Team = ({
   setTableState,
   tournament,
   getTournaments,
-  getUsers
+  getUsers,
+  setFilter
 }) => {
   return (
     <div>
@@ -73,6 +74,11 @@ const Team = ({
                       <Button
                         bsStyle="primary"
                         onClick={() => {
+                          setFilter({
+                            select: "userName",
+                            ascDesc: true,
+                            search: ""
+                          });
                           getUsers();
                           setDialog("InviteUserToTeam", {
                             name: activeTeam.name
@@ -103,6 +109,11 @@ const Team = ({
                       <Button
                         bsStyle="primary"
                         onClick={() => {
+                          setFilter({
+                            select: "name",
+                            ascDesc: true,
+                            search: ""
+                          });
                           getTournaments();
                           setDialog("AddTeamToTournament", {
                             name: activeTeam.name
@@ -142,7 +153,8 @@ export default compose(
       setDialog,
       getClan,
       getTournaments,
-      getUsers
+      getUsers,
+      setFilter
     }
   ),
   withState("tableState", "setTableState", 1),
