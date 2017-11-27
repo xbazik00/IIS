@@ -4,13 +4,14 @@ import { Button } from "react-bootstrap";
 import { find } from "lodash";
 
 import { setActiveForm } from "../../actions/appActions";
-import { isCoach, isPlayer } from "../../utils";
+import { isCoach, isPlayer, isOrganizer } from "../../utils";
 
 import { countries } from "../../enums";
 
 const Info = ({ setActiveForm, user }) => {
   const coach = isCoach(user.role);
   const player = isPlayer(user.role);
+  const organizer = isOrganizer(user.role);
   return (
     <div className="info">
       <div className="flex-col">
@@ -51,6 +52,18 @@ const Info = ({ setActiveForm, user }) => {
             <div className="flex-row">
               <p className="row-label">Klávesnice:</p>
               <p>{user.keyboard}</p>
+            </div>
+          )}
+          {organizer && (
+            <div className="flex-row">
+              <p className="row-label">Název organizátora:</p>
+              <p>{user.org_name}</p>
+            </div>
+          )}
+          {organizer && (
+            <div className="flex-row">
+              <p className="row-label">Telefonní číslo:</p>
+              <p>{user.phone}</p>
             </div>
           )}
         </div>

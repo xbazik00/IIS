@@ -11,13 +11,14 @@ import * as Validation from "../form/Validation";
 import { setActiveForm } from "../../actions/appActions";
 import { updateUser, getUser } from "../../actions/usersActions";
 
-import { isCoach, isPlayer } from "../../utils";
+import { isCoach, isPlayer, isOrganizer } from "../../utils";
 
 import { countries } from "../../enums";
 
 const Form = ({ handleSubmit, setActiveForm, user }) => {
   const coach = isCoach(user.role);
   const player = isPlayer(user.role);
+  const organizer = isOrganizer(user.role);
   return (
     <form onSubmit={handleSubmit} className="form">
       <div className="flex-row">
@@ -68,6 +69,22 @@ const Form = ({ handleSubmit, setActiveForm, user }) => {
           validate={[Validation.isShorterEqual30]}
         />
       )}
+      {organizer && (
+        <Field
+          component={TextField}
+          label="Název organizátora"
+          name="org_name"
+          validate={[Validation.isShorterEqual30]}
+        />
+      )}
+      {organizer && (
+        <Field
+          component={TextField}
+          label="Telefonní číslo"
+          name="phone"
+          validate={[Validation.isPhone]}
+        />
+      )}
       <div className="flex-row flex-right">
         <Button className="button" onClick={() => setActiveForm(null)}>
           Zrušit
@@ -89,7 +106,16 @@ export default compose(
   withHandlers({
     onSubmit: () => async (formData, dispatch, props) => {
       const { setActiveForm, updateUser, getUser, user } = props;
-      const { firstName, surname, country, notes, mouse, keyboard } = formData;
+      const {
+        firstName,
+        surname,
+        country,
+        notes,
+        mouse,
+        keyboard,
+        org_name,
+        phone
+      } = formData;
 
       if (
         await updateUser({
@@ -100,7 +126,9 @@ export default compose(
           country,
           notes,
           mouse,
-          keyboard
+          keyboard,
+          org_name,
+          phone
         })
       ) {
         getUser(user.userName);
