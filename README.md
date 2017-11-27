@@ -90,7 +90,7 @@
 #### TODO API
 
 - rozlisit hlavni sponzor/sponzor - budeme rozlišovat???
-- zapasy
+- zapasy - asi jen vytvoření/zrušení zápasu organizátorem + vracet pole objektů zápasů v objektu turnaje podle id
 
 <br />
 
