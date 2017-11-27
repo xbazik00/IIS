@@ -10,6 +10,7 @@ include_once '../objects/tym.php';
 include_once '../objects/uzivatele_v_tymech.php';
 include_once '../objects/uzivatel.php';
 include_once '../objects/turnaj.php';
+include_once '../objects/uzivatele_v_klanu.php';
 
 
 $database = new Database();
@@ -18,6 +19,7 @@ $tym = new Tym($db);
 $uzivatele_v_tymech = new UzivateleVTymech($db);
 $uzivatel = new Uzivatel($db);
 $turnaj = new Turnaj($db);
+$uzivatele_v_klanu = new UzivateleVKlanu($db);
 
 $data = json_decode(file_get_contents("php://input"));
 
@@ -56,6 +58,11 @@ if($num > 0) {
             $stmt = $uzivatel->readOne();
             $num = $stmt->rowCount();
 
+            $uzivatele_v_klanu->prezdivka_uzivatele = $prezdivka_uzivatele;
+
+            $stmt3 = $uzivatele_v_klanu->getTagKlanu();
+            $num3 = $stmt3->rowCount();
+
             if ($num > 0){
                 $row = $stmt->fetch(PDO::FETCH_ASSOC);
                 extract($row);
@@ -65,9 +72,14 @@ if($num > 0) {
                     "firstName" => $jmeno,
                     "surname" => $prijmeni,
                     "country" => $zeme_puvodu,
-                    "role" => $role,
-                    "clan" => $tym["name"]
+                    "role" => $role
                 );
+
+                $row = $stmt3->fetch(PDO::FETCH_ASSOC);
+                extract($row);
+
+                $uzivatel_item["clan"] = $tag_klanu;
+
 
                 array_push($tym["users"], $uzivatel_item);
             }
