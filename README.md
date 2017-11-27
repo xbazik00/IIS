@@ -99,3 +99,5 @@
 #### TODO FE
 
 - upravit styl hlavičky
+- odstranit možnost opustit klan/tým u nečlenů
+- co vše si může vylistovat admin?
