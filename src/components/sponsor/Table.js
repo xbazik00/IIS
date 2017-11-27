@@ -58,26 +58,29 @@ const Table = ({
                   (clanSponsors && clan && clan.boss === user.userName) ||
                   (tournamentSponsors && organizer)) && (
                   <TableColumn className="table-col">
-                    <Button
-                      onClick={() => {
-                        if (admin)
-                          setDialog("DeleteSponsor", {
-                            acronym: sponsor.acronym
-                          });
-                        else if (clanSponsors)
-                          setDialog("DeleteSponsorFromClan", {
-                            acronym: sponsor.acronym,
-                            tag: clan.tag
-                          });
-                        else if (tournamentSponsors)
-                          setDialog("DeleteSponsorFromTournament", {
-                            acronym: sponsor.acronym,
-                            id: tournament.id
-                          });
-                      }}
-                    >
-                      <Glyphicon glyph="remove" />
-                    </Button>
+                    {((tournamentSponsors && organizer) ||
+                      (!tournamentSponsors && (admin || clanSponsors))) && (
+                      <Button
+                        onClick={() => {
+                          if (admin)
+                            setDialog("DeleteSponsor", {
+                              acronym: sponsor.acronym
+                            });
+                          else if (clanSponsors && clan.boss === user.userName)
+                            setDialog("DeleteSponsorFromClan", {
+                              acronym: sponsor.acronym,
+                              tag: clan.tag
+                            });
+                          else if (tournamentSponsors && organizer)
+                            setDialog("DeleteSponsorFromTournament", {
+                              acronym: sponsor.acronym,
+                              id: tournament.id
+                            });
+                        }}
+                      >
+                        <Glyphicon glyph="remove" />
+                      </Button>
+                    )}
                   </TableColumn>
                 )}
               </TableRow>

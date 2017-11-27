@@ -48,7 +48,7 @@ const Table = ({ history, tournaments, user, setDialog }) => {
               {user &&
                 (organizer || admin) && (
                   <TableColumn className="table-col">
-                    {user.userName === t.id_organizer && (
+                    {(admin || user.userName === t.id_organizer) && (
                       <Button
                         onClick={e => {
                           e.stopPropagation();
