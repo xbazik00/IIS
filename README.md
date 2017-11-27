@@ -97,10 +97,4 @@
 
 #### TODO API
 
-- rozlisit hlavni sponzor/sponzor - budeme rozlišovat???
-
-<br />
-
-- až bude vše hotové, tak i další volání podle modelu případů užití
-
 #### TODO FE
