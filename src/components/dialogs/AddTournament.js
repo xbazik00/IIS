@@ -45,7 +45,6 @@ const AddTournament = ({ handleSubmit, data, games }) => {
         name="prize"
         validate={[Validation.required, Validation.isShorterEqual30]}
       />
-      <Field component={TextField} label="Vítěz" name="winner" />
       <Field
         component={SelectField}
         label="Hra"
@@ -63,7 +62,7 @@ export default compose(
       user,
       data,
       games: list,
-      initialValues: { game: !isEmpty(list) ? list[0].name : null, winner: "" }
+      initialValues: { game: !isEmpty(list) ? list[0].name : null }
     }),
     { createTournament, getTournaments }
   ),
@@ -71,11 +70,9 @@ export default compose(
   withHandlers({
     onSubmit: dialog => async (formData, dispatch, props) => {
       const { createTournament, user, getTournaments } = props;
-      const { name, date, prize, game, winner } = formData;
+      const { name, date, prize, game } = formData;
 
-      if (
-        await createTournament(name, date, prize, game, winner, user.userName)
-      ) {
+      if (await createTournament(name, date, prize, game, "", user.userName)) {
         getTournaments();
         dialog.closeDialog();
       }
