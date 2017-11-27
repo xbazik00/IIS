@@ -7,16 +7,35 @@ import { Button } from "react-bootstrap";
 import Header from "../components/Header";
 import ContainerHeader from "../components/ContainerHeader";
 import Table from "../components/sponsor/Table";
+import Filter from "../components/Filter";
 
 import { getSponsors } from "../actions/sponsorActions";
-import { setDialog } from "../actions/appActions";
+import { setDialog, setFilter } from "../actions/appActions";
 
-const Sponsors = ({ history, sponsor, user, setDialog }) => {
+const Sponsors = ({
+  history,
+  sponsor,
+  user,
+  setDialog,
+  getSponsors,
+  setFilter
+}) => {
   return (
     <div>
       <Header history={history} />
       <div className="container">
         <ContainerHeader title="Sponzoři" />
+        <div className="margin-bottom">
+          <Filter
+            selectOptions={[
+              { label: "Zkratka", value: "acronym" },
+              { label: "Název", value: "name" },
+              { label: "Sídlo", value: "seat" },
+              { label: "Číslo účtu", value: "account_number" }
+            ]}
+            handleUpdate={() => getSponsors()}
+          />
+        </div>
         <Card className="margin-bottom">
           <CardText>
             <Table history={history} sponsors={sponsor.list} user={user} />
@@ -41,11 +60,13 @@ export default compose(
       user,
       sponsor
     }),
-    { getSponsors, setDialog }
+    { getSponsors, setDialog, setFilter }
   ),
   lifecycle({
     async componentDidMount() {
-      const { getSponsors } = this.props;
+      const { getSponsors, setFilter } = this.props;
+
+      setFilter({ select: "acronym", ascDesc: true, search: "" });
       await getSponsors();
     }
   })
