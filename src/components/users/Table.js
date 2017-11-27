@@ -32,7 +32,7 @@ const Table = ({ history, users, user, setDialog }) => {
           </TableRow>
         </TableHeader>
         <TableBody className="table-body">
-          {map(filter(users, u => u.role !== "ADMIN"), (u, i) => (
+          {map(users, (u, i) => (
             <TableRow
               key={i}
               className="table-row"
@@ -56,18 +56,19 @@ const Table = ({ history, users, user, setDialog }) => {
               <TableColumn className="table-col">
                 {u.clan ? u.clan : ""}
               </TableColumn>
-              {admin && (
-                <TableColumn className="table-col">
-                  <Button
-                    onClick={e => {
-                      e.stopPropagation();
-                      setDialog("DeleteUser", { userName: u.userName });
-                    }}
-                  >
-                    <Glyphicon glyph="remove" />
-                  </Button>
-                </TableColumn>
-              )}
+              {admin &&
+                !isAdmin(u.role) && (
+                  <TableColumn className="table-col">
+                    <Button
+                      onClick={e => {
+                        e.stopPropagation();
+                        setDialog("DeleteUser", { userName: u.userName });
+                      }}
+                    >
+                      <Glyphicon glyph="remove" />
+                    </Button>
+                  </TableColumn>
+                )}
             </TableRow>
           ))}
         </TableBody>
