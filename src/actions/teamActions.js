@@ -1,3 +1,5 @@
+import { isEmpty, sortBy, get, filter } from "lodash";
+
 import fetch from "../utils/fetch";
 import * as c from "./constants";
 
@@ -84,7 +86,46 @@ export const getInvitations = userName => async dispatch => {
   }
 };
 
-export const getTeamsByUserName = userName => async dispatch => {
+export const getTeams = () => async (dispatch, getState) => {
+  try {
+    const response = await fetch("/api/tym/read.php");
+
+    if (response.status === 200) {
+      const content = await response.json();
+
+      const filterAll = getState().filter;
+
+      const list =
+        !isEmpty(content.items) && get(content.items[0], filterAll.select)
+          ? sortBy(
+              filter(
+                content.items,
+                c =>
+                  get(c, filterAll.select) &&
+                  get(c, filterAll.select).indexOf(filterAll.search) !== -1
+              ),
+              [filterAll.select]
+            )
+          : content.items;
+
+      if (!filterAll.ascDesc) list.reverse();
+
+      dispatch({
+        type: c.TEAM,
+        payload: { list, count: content.count }
+      });
+
+      return true;
+    }
+
+    return false;
+  } catch (err) {
+    console.log(err);
+    return false;
+  }
+};
+
+export const getTeamsByUserName = userName => async (dispatch, getState) => {
   try {
     const response = await fetch("/api/uzivatele_v_tymech/readTeams.php", {
       method: "POST",
@@ -97,9 +138,26 @@ export const getTeamsByUserName = userName => async dispatch => {
     if (response.status === 200) {
       const content = await response.json();
 
+      const filterAll = getState().filter;
+
+      const list =
+        !isEmpty(content.items) && get(content.items[0], filterAll.select)
+          ? sortBy(
+              filter(
+                content.items,
+                c =>
+                  get(c, filterAll.select) &&
+                  get(c, filterAll.select).indexOf(filterAll.search) !== -1
+              ),
+              [filterAll.select]
+            )
+          : content.items;
+
+      if (!filterAll.ascDesc) list.reverse();
+
       dispatch({
         type: c.TEAM,
-        payload: { list: content.items, count: content.count }
+        payload: { list, count: content.count }
       });
 
       return true;

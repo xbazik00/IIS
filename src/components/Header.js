@@ -42,20 +42,25 @@ const Header = ({ history, authStyle, signOut, user }) => {
               </MenuItem>
             )}
             {admin && (
+              <MenuItem eventKey="5" onClick={() => history.push("/teams")}>
+                Týmy
+              </MenuItem>
+            )}
+            {admin && (
               <MenuItem
-                eventKey="5"
+                eventKey="6"
                 onClick={() => history.push("/tournaments")}
               >
                 Turnaje
               </MenuItem>
             )}
             {admin && (
-              <MenuItem eventKey="6" onClick={() => history.push("/sponsors")}>
+              <MenuItem eventKey="7" onClick={() => history.push("/sponsors")}>
                 Sponzoři
               </MenuItem>
             )}
             <MenuItem
-              eventKey="7"
+              eventKey="8"
               onClick={() => {
                 signOut();
                 history.push("/");

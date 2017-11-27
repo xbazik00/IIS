@@ -12,7 +12,10 @@ import { Button, Glyphicon } from "react-bootstrap";
 
 import { setDialog } from "../../actions/appActions";
 
+import { isAdmin } from "../../utils";
+
 const Table = ({ history, teams, user, setDialog, clan }) => {
+  const admin = user && isAdmin(user.role);
   return (
     <div className="flex-row flex-center">
       <DataTable plain className="table">
@@ -25,7 +28,7 @@ const Table = ({ history, teams, user, setDialog, clan }) => {
             <TableColumn className="table-col">Hra</TableColumn>
             {user &&
               clan &&
-              user.userName === clan.boss && (
+              (admin || user.userName === clan.boss) && (
                 <TableColumn className="table-col">Akce</TableColumn>
               )}
           </TableRow>
@@ -44,7 +47,7 @@ const Table = ({ history, teams, user, setDialog, clan }) => {
               <TableColumn className="table-col">{t.game}</TableColumn>
               {user &&
                 clan &&
-                user.userName === clan.boss && (
+                (admin || user.userName === clan.boss) && (
                   <TableColumn className="table-col">
                     <Button
                       onClick={e => {
