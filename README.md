@@ -72,7 +72,7 @@
 - POST /api/turnaj/update.php - přidá nový turnaj, body: { name, date, prize, game, id_organizer, id }, return: ok - { message: "OK" } / err - { message: "ERR" }
 - POST /api/turnaj/delete.php - odstraní turnaj, body: { id }, return: ok - { message: "OK" } / err - { message: "ERR" }
 - GET /api/turnaj/read.php - precita vsetky turnaje, return: { items: pole s objekty turnaja, count: počet objektů }
-- POST /api/turnaj/readOne.php - vrati turnaj s danym id, body: { id }, return: { objekt turnaja + pole teams s name, number_of_players a game }
+- POST /api/turnaj/readOne.php - vrati turnaj s danym id, body: { id }, return: { objekt turnaja + pole teams s { name, number_of_players, game } + pole matches s objectami zapas }
 
 <br />
 
@@ -84,6 +84,12 @@
 - POST /api/sponzor_turnaje/read.php - vráti všetkých sponzorov turnaja, body: { id }, return: { items: pole s objekty sponzorov, count: počet objektů }
 - POST /api/sponzor_turnaje/create.php - přidá nového sponzora klanu, podla acronymu (zkratky sponzora) a id turnaja , body: { acronym, id }, return: ok - { message: "OK" } / exists - { message: "EXISTS" }  / err - { message: "ERR" }
 - POST /api/sponzor_turnaje/delete.php - odstraní sponzora turnaje, body: { acronym , id }, return: ok - { message: "OK" } / err - { message: "ERR" }
+
+<br />
+
+- GET /api/zapas/read.php - vráti všetký zapasy, return: { items: pole s objekty zapas, count: počet objektů }
+- POST /api/zapas/create.php - přidá novy zapas, body: { result, date, id_tourney, name1, name2 }, return: ok - { message: "OK" } / err - { message: "ERR" }
+- POST /api/zapas/deleteOne.php - odstraní zapas, body: { id } / err - { message: "ERR" }
 
 <br />
 
