@@ -16,7 +16,8 @@ import { countries } from "../../enums";
 
 const options = [
   { label: "Hráč", value: "PLAYER" },
-  { label: "Trenér", value: "COACH" }
+  { label: "Trenér", value: "COACH" },
+  { label: "Organizátor", value: "ORGANIZER" }
 ];
 
 const Registration = ({ handleSubmit, data, created, setCreated }) => (
