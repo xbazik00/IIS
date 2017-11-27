@@ -13,7 +13,7 @@ import { Button, Glyphicon } from "react-bootstrap";
 import { setDialog } from "../../actions/appActions";
 
 import { countries } from "../../enums";
-import { isAdmin } from "../../utils";
+import { isAdmin, isPlayer, isOrganizer, isCoach } from "../../utils";
 
 const Table = ({ history, users, user, setDialog }) => {
   const admin = user && isAdmin(user.role);
@@ -47,7 +47,11 @@ const Table = ({ history, users, user, setDialog }) => {
                   : u.country}
               </TableColumn>
               <TableColumn className="table-col">
-                {u.role === "COACH" ? "Trenér" : "Hráč"}
+                {isCoach(u.role)
+                  ? "Trenér"
+                  : isPlayer(u.role)
+                    ? "Hráč"
+                    : isOrganizer(u.role) ? "Organizátor" : ""}
               </TableColumn>
               <TableColumn className="table-col">
                 {u.clan ? u.clan : ""}

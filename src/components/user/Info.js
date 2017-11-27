@@ -4,7 +4,11 @@ import { Card, CardText } from "react-md";
 
 import { countries } from "../../enums";
 
+import { isPlayer, isOrganizer } from "../../utils";
+
 const Info = ({ setActiveForm, user, history }) => {
+  const player = isPlayer(user.role);
+  const organizer = isOrganizer(user.role);
   return (
     <div className="flex-row flex-center">
       <Card className="card-page">
@@ -37,6 +41,30 @@ const Info = ({ setActiveForm, user, history }) => {
                     {user.clan}
                   </span>
                 </p>
+              </div>
+            )}
+            {player && (
+              <div className="flex-row">
+                <p className="row-label">Myš:</p>
+                <p>{user.mouse}</p>
+              </div>
+            )}
+            {player && (
+              <div className="flex-row">
+                <p className="row-label">Klávesnice:</p>
+                <p>{user.keyboard}</p>
+              </div>
+            )}
+            {organizer && (
+              <div className="flex-row">
+                <p className="row-label">Název organizátora:</p>
+                <p>{user.org_name}</p>
+              </div>
+            )}
+            {organizer && (
+              <div className="flex-row">
+                <p className="row-label">Telefonní číslo:</p>
+                <p>{user.phone}</p>
               </div>
             )}
           </div>
