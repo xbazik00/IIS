@@ -19,6 +19,7 @@
 
 <br />
 
+- GET /api/tym/read.php - vráti všetký klany, return: { items: pole s objekty klan, count: počet objektů }
 - POST /api/klan/readOne.php - vrátí klan podle tag, body: { tag }, return: ok - objekt klanu / err - { error }
 - POST /api/klan/create.php - přidá nový klan, body: { tag, name, logo, anthem, country, boss }, return: ok - { message: "OK" } / err - { message: "ERR" }
 - POST /api/klan/delete.php - odstraní klan a pozvánky do klanu, body: { tag }, return: ok - { message: "OK" } / err - { message: "ERR" }
@@ -50,6 +51,7 @@
 
 <br />
 
+- GET /api/tym/read.php - vráti všetký tymy, return: { items: pole s objekty tym, count: počet objektů }
 - POST /api/tym/create.php - přidá nový tym, body: { name, userName, game, number_of_players }, return: ok - { message: "OK" } / err - { message: "ERR" }
 - POST /api/tym/delete.php - odstraní tym, tym z turnaja, pozvánky do tymu a uzivatelov v tyme, body: { name }, return: ok - { message: "OK" } / err - { message: "ERR" }
 - POST /api/tym/readOne.php - vrátí klan podle name, body: { name }, return: ok - objekt klanu s clenmi + pole turnajov (tourneys)  / err - { error }
