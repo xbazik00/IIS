@@ -16,7 +16,7 @@ const DeleteClan = ({ handleSubmit, data }) => (
     handleSubmit={handleSubmit}
     submitLabel="Odstranit"
   >
-    <p>{`Opravdu chcete odstranit svůj klan${
+    <p>{`Opravdu chcete odstranit klan${
       data && data.tag ? ` "${data.tag}"` : ""
     }?`}</p>
   </DialogContainer>

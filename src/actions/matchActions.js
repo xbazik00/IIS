@@ -1,4 +1,4 @@
-import { find, isEmpty, sortBy, filter, get } from "lodash";
+import { isEmpty, sortBy, filter, get } from "lodash";
 
 import fetch from "../utils/fetch";
 import * as c from "./constants";

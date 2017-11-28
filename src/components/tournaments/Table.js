@@ -14,7 +14,7 @@ import { setDialog } from "../../actions/appActions";
 
 import { isOrganizer, isAdmin } from "../../utils";
 
-const Table = ({ history, tournaments, user, setDialog }) => {
+const Table = ({ history, tournaments, user, setDialog, adminZone }) => {
   const admin = user && isAdmin(user.role);
   const organizer = user && isOrganizer(user.role);
   return (
@@ -28,7 +28,7 @@ const Table = ({ history, tournaments, user, setDialog }) => {
             <TableColumn className="table-col">Hra</TableColumn>
             <TableColumn className="table-col">Vítěz</TableColumn>
             {user &&
-              (organizer || admin) && (
+              (organizer || (adminZone && admin)) && (
                 <TableColumn className="table-col">Akce</TableColumn>
               )}
           </TableRow>
@@ -46,7 +46,7 @@ const Table = ({ history, tournaments, user, setDialog }) => {
               <TableColumn className="table-col">{t.game}</TableColumn>
               <TableColumn className="table-col">{t.winner}</TableColumn>
               {user &&
-                (organizer || admin) && (
+                (organizer || (adminZone && admin)) && (
                   <TableColumn className="table-col">
                     {(admin || user.userName === t.id_organizer) && (
                       <Button

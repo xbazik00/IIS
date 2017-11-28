@@ -5,13 +5,17 @@ import { find } from "lodash";
 
 import { setDialog } from "../../actions/appActions";
 
+import { isAdmin } from "../../utils";
+
 const Header = ({ history, user, setDialog, team, clan }) => (
   <div className="flex-row flex-space-between">
     <h2>{team.name}</h2>
-    {team && find(team.users, u => u.userName === user.userName) ? (
+    {team &&
+    (find(team.users, u => u.userName === user.userName) ||
+      isAdmin(user.role)) ? (
       <Button
         onClick={() => {
-          if (clan.boss === user.userName)
+          if (isAdmin(user.role) || (clan && clan.boss === user.userName))
             setDialog("DeleteTeam", { name: team.name });
           else
             setDialog("DeleteUserFromTeam", {

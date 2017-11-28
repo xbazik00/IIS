@@ -35,6 +35,7 @@ const Tournaments = ({ history, tournament, user, getTournaments }) => {
               history={history}
               tournaments={tournament.list}
               user={user}
+              adminZone
             />
           </CardText>
         </Card>

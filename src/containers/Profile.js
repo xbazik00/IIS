@@ -11,6 +11,8 @@ import PasswordForm from "../components/profile/PasswordForm";
 
 import { setActiveForm, setDialog } from "../actions/appActions";
 
+import { isAdmin } from "../utils";
+
 const Profile = ({ history, activeForm, setActiveForm, user, setDialog }) => {
   return (
     <div>
@@ -30,19 +32,21 @@ const Profile = ({ history, activeForm, setActiveForm, user, setDialog }) => {
                 <div className="flex-row flex-center margin-bottom-small">
                   <PasswordForm activeForm={activeForm} />
                 </div>
-                <div className="flex-row flex-center">
-                  <Button
-                    onClick={() =>
-                      setDialog("DeleteUser", {
-                        userName: user.userName,
-                        deleteMe: true
-                      })
-                    }
-                    block
-                  >
-                    Zrušit účet
-                  </Button>
-                </div>
+                {!isAdmin(user.role) && (
+                  <div className="flex-row flex-center">
+                    <Button
+                      onClick={() =>
+                        setDialog("DeleteUser", {
+                          userName: user.userName,
+                          deleteMe: true
+                        })
+                      }
+                      block
+                    >
+                      Zrušit účet
+                    </Button>
+                  </div>
+                )}
               </CardText>
             </Card>
           </div>

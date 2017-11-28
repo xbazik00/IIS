@@ -34,7 +34,7 @@ const Team = ({
   return (
     <div>
       <Header history={history} />
-      {activeTeam && (
+      {activeTeam ? (
         <div className="container">
           <TeamHeader team={activeTeam} user={user} clan={activeClan} />
           <div className="flex-row flex-center margin-bottom">
@@ -59,7 +59,8 @@ const Team = ({
                   <h3>Uživatelé</h3>
                   <div
                     className={classNames({
-                      "margin-bottom-small": user.userName === activeClan.boss
+                      "margin-bottom-small":
+                        user.clan && user.userName === activeClan.boss
                     })}
                   >
                     <Table
@@ -69,7 +70,7 @@ const Team = ({
                       clan={activeClan}
                     />
                   </div>
-                  {user.userName === activeClan.boss && (
+                  {user.clan && user.userName === activeClan.boss ? (
                     <div className="flex-row flex-center">
                       <Button
                         bsStyle="primary"
@@ -88,6 +89,8 @@ const Team = ({
                         Pozvat uživatele
                       </Button>
                     </div>
+                  ) : (
+                    <div />
                   )}
                 </CardText>
               ) : (
@@ -95,7 +98,8 @@ const Team = ({
                   <h3>Turnaje</h3>
                   <div
                     className={classNames({
-                      "margin-bottom-small": user.userName === activeClan.boss
+                      "margin-bottom-small":
+                        user.clan && user.userName === activeClan.boss
                     })}
                   >
                     <TournamentTable
@@ -104,7 +108,7 @@ const Team = ({
                       user={user}
                     />
                   </div>
-                  {user.userName === activeClan.boss && (
+                  {user.clan && user.userName === activeClan.boss ? (
                     <div className="flex-row flex-center">
                       <Button
                         bsStyle="primary"
@@ -123,12 +127,16 @@ const Team = ({
                         Vstoupit do turnaje
                       </Button>
                     </div>
+                  ) : (
+                    <div />
                   )}
                 </CardText>
               )}
             </Card>
           </div>
         </div>
+      ) : (
+        <div />
       )}
     </div>
   );
@@ -162,7 +170,7 @@ export default compose(
     async componentDidMount() {
       const { getTeam, match, getClan, user } = this.props;
 
-      getClan(user.clan);
+      if (user.clan) await getClan(user.clan);
       await getTeam(match.params.name);
     }
   })

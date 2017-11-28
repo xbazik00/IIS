@@ -27,8 +27,7 @@ const Table = ({ history, teams, user, setDialog, clan }) => {
             </TableColumn>
             <TableColumn className="table-col">Hra</TableColumn>
             {user &&
-              clan &&
-              (admin || user.userName === clan.boss) && (
+              (admin || (clan && user.userName === clan.boss)) && (
                 <TableColumn className="table-col">Akce</TableColumn>
               )}
           </TableRow>
@@ -46,8 +45,7 @@ const Table = ({ history, teams, user, setDialog, clan }) => {
               </TableColumn>
               <TableColumn className="table-col">{t.game}</TableColumn>
               {user &&
-                clan &&
-                (admin || user.userName === clan.boss) && (
+                (admin || (clan && user.userName === clan.boss)) && (
                   <TableColumn className="table-col">
                     <Button
                       onClick={e => {

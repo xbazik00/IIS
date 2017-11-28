@@ -4,18 +4,18 @@ import { compose, lifecycle } from "recompose";
 import { withRouter } from "react-router-dom";
 
 import Header from "../components/Header";
-import ContainerHeader from "../components/ContainerHeader";
+import UserHeader from "../components/user/Header";
 import Info from "../components/user/Info";
 
 import { getUserByUserName } from "../actions/usersActions";
 
-const User = ({ history, activeUser }) => {
+const User = ({ history, activeUser, user }) => {
   return (
     <div>
       <Header history={history} />
       {activeUser && (
         <div className="container">
-          <ContainerHeader title={activeUser.userName} />
+          <UserHeader user={activeUser} currentUser={user} />
           <Info history={history} user={activeUser} />
         </div>
       )}
@@ -25,9 +25,12 @@ const User = ({ history, activeUser }) => {
 
 export default compose(
   withRouter,
-  connect(({ users: { activeUser } }) => ({ activeUser }), {
-    getUserByUserName
-  }),
+  connect(
+    ({ users: { activeUser }, app: { user } }) => ({ activeUser, user }),
+    {
+      getUserByUserName
+    }
+  ),
   lifecycle({
     async componentDidMount() {
       const { getUserByUserName, match } = this.props;

@@ -15,7 +15,7 @@ const DeleteTeam = ({ handleSubmit, data }) => (
     handleSubmit={handleSubmit}
     submitLabel="Odstranit"
   >
-    <p>{`Opravdu chcete odstranit svůj tým${
+    <p>{`Opravdu chcete odstranit tým${
       data && data.name ? ` "${data.name}"` : ""
     }?`}</p>
   </DialogContainer>

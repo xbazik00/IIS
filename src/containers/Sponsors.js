@@ -38,7 +38,12 @@ const Sponsors = ({
         </div>
         <Card className="margin-bottom">
           <CardText>
-            <Table history={history} sponsors={sponsor.list} user={user} />
+            <Table
+              history={history}
+              sponsors={sponsor.list}
+              user={user}
+              adminZone
+            />
             <div className="flex-row flex-center">
               <Button
                 bsStyle="primary"
