@@ -113,6 +113,11 @@
 .filter {
   .field {
     max-width: 200px;
-    margin: 0px .5em;
+    margin: 0px 0.5em;
   }
+}
+
+.souhrn,
+.eq {
+  display: none;
 }
