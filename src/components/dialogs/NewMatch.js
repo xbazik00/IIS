@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { compose, withHandlers, withState } from "recompose";
+import { compose, withHandlers } from "recompose";
 import { reduxForm, Field, SubmissionError } from "redux-form";
 import { withRouter } from "react-router-dom";
 import { forEach, isEmpty } from "lodash";
@@ -14,30 +14,21 @@ import DialogContainer from "./DialogContainer";
 import { newMatch } from "../../actions/matchActions";
 import { getTournament } from "../../actions/tournamentActions";
 
-const NewMatch = ({
-  handleSubmit,
-  data,
-  activeTournament,
-  setState,
-  state
-}) => {
+const NewMatch = ({ handleSubmit, data, activeTournament, setState }) => {
   const options = [];
   if (activeTournament)
     forEach(activeTournament.teams, t =>
       options.push({ label: t.name, value: t.name })
     );
 
-  if (isEmpty(options)) setState(false);
-  else setState(true);
-
   return (
     <DialogContainer
       title="Vytvořit zápas"
       name="NewMatch"
       handleSubmit={handleSubmit}
-      submitLabel={state ? "Vytvořit" : "OK"}
+      submitLabel={!isEmpty(options) ? "Vytvořit" : "OK"}
     >
-      {state ? (
+      {!isEmpty(options) ? (
         <div>
           <Field
             component={DatePicker}
@@ -85,13 +76,12 @@ export default compose(
     }
   ),
   withRouter,
-  withState("state", "setState", false),
   withHandlers({
     onSubmit: dialog => async (formData, dispatch, props) => {
-      const { newMatch, getTournament, data, state } = props;
+      const { newMatch, getTournament, data, activeTournament } = props;
       const { result, date, name1, name2 } = formData;
 
-      if (state) {
+      if (activeTournament && !isEmpty(activeTournament.teams)) {
         if (await newMatch(result, date, data.id, name1, name2)) {
           getTournament(data.id);
           dialog.closeDialog();

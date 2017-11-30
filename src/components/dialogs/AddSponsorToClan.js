@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { compose, withHandlers, withState } from "recompose";
+import { compose, withHandlers } from "recompose";
 import { reduxForm, Field, SubmissionError } from "redux-form";
 import { withRouter } from "react-router-dom";
 import { forEach, find, filter, isEmpty } from "lodash";
@@ -25,9 +25,6 @@ const AddSponsorToClan = ({ handleSubmit, data, sponsor, setState }) => {
       ),
       s => options.push({ label: s.acronym, value: s.acronym })
     );
-
-  if (isEmpty(options)) setState(false);
-  else setState(true);
 
   return (
     <DialogContainer
@@ -57,13 +54,23 @@ export default compose(
     getSponsorsByClanTag
   }),
   withRouter,
-  withState("state", "setState", false),
   withHandlers({
     onSubmit: dialog => async (formData, dispatch, props) => {
-      const { addSponsorToClan, getSponsorsByClanTag, data, state } = props;
+      const { addSponsorToClan, getSponsorsByClanTag, data, sponsor } = props;
       const { acronym } = formData;
 
-      if (state) {
+      if (
+        sponsor &&
+        !isEmpty(sponsor.list) &&
+        sponsor.clanSponsors &&
+        !isEmpty(
+          filter(
+            sponsor.list,
+            item =>
+              !find(sponsor.clanSponsors.list, s => s.acronym === item.acronym)
+          )
+        )
+      ) {
         if (await addSponsorToClan(acronym, data.clanTag)) {
           getSponsorsByClanTag(data.clanTag);
           dialog.closeDialog();
