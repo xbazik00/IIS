@@ -98,3 +98,13 @@
 #### TODO API
 
 #### TODO FE
+- Automaticke odhlasenie po nejakom case
+- Po vytvoreni hry zostavaju vo formulari ulozene data z predchadzajucej pridanej hry
+
+#### Zmeny oproti navrhu
+- Administrator:
+  - Nepridava hracov
+  - Moze odstranit hraca, klan, tym, turnaj
+  - Moze upravit svoj profil
+  - Moze okrem pridania aj odstranit sponzora
+  - 
