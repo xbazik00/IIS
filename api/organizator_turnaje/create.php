@@ -16,6 +16,7 @@ $organizator_turnaje= new OrganizatorTurnaje($db);
 
 $data = json_decode(file_get_contents("php://input"));
 
+$organizator_turnaje->prezdivka = $data->id;
 $organizator_turnaje->jmeno = $data->name;
 $organizator_turnaje->tel_cislo = $data->phone;
 
