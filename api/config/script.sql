@@ -161,8 +161,11 @@ ALTER TABLE `hlavni_sponzor_turnaje` ADD FOREIGN KEY (`zkratka_sponzora`) REFERE
 ALTER TABLE `hlavni_sponzor_turnaje` ADD FOREIGN KEY (`id_turnaj`) REFERENCES `turnaj` (`id`) ON DELETE CASCADE;
 ALTER TABLE `sponzor_turnaje` ADD FOREIGN KEY (`zkratka_sponzora`) REFERENCES `sponzor` (`zkratka`) ON DELETE CASCADE;
 ALTER TABLE `sponzor_turnaje` ADD FOREIGN KEY (`id_turnaj`) REFERENCES `turnaj` (`id`) ON DELETE CASCADE;
+
 ALTER TABLE `zapas` ADD FOREIGN KEY (`nazev_tymu`) REFERENCES `tym` (`nazev_tymu`) ON DELETE CASCADE;
 ALTER TABLE `zapas` ADD FOREIGN KEY (`nazev_druheho_tymu`) REFERENCES `tym` (`nazev_tymu`) ON DELETE CASCADE;
+ALTER TABLE `zapas` ADD FOREIGN KEY (`id_turnaj`) REFERENCES `turnaj` (`id`) ON DELETE CASCADE;
+
 ALTER TABLE `turnaj` ADD FOREIGN KEY (`nazev_hry`) REFERENCES `hra` (`nazev`) ON DELETE CASCADE;
 ALTER TABLE `turnaj` ADD FOREIGN KEY (`vitez`) REFERENCES `tym` (`nazev_tymu`) ON DELETE CASCADE;
 ALTER TABLE `turnaj` ADD FOREIGN KEY (`prezdivka_organizator_turnaje`) REFERENCES `organizator_turnaje` (`prezdivka`) ON DELETE CASCADE;
@@ -285,6 +288,6 @@ INSERT INTO `financovani_klanu` (`tag_klanu`,`zkratka_sponzora`) VALUES ('Hogwar
 INSERT INTO `financovani_klanu` (`tag_klanu`,`zkratka_sponzora`) VALUES ('GOT','GM');
 
 INSERT INTO `zapas` (`vysledek`, `datum_a_cas_konani`, `id_turnaj`, `nazev_tymu`, `nazev_druheho_tymu`) VALUES ('16:20', '2015-12-17', 2, 'Slytherin', 'Gryffindor');
-INSERT INTO `zapas` (`vysledek`, `datum_a_cas_konani`, `id_turnaj`, `nazev_tymu`, `nazev_druheho_tymu`) VALUES ('0:2', '2016-12-17', 10, 'Team Rick', 'Team Negan');
-INSERT INTO `zapas` (`vysledek`, `datum_a_cas_konani`, `id_turnaj`, `nazev_tymu`, `nazev_druheho_tymu`) VALUES ('0:1', '2016-12-17', 10, 'Team Rick', 'Team Negan');
-INSERT INTO `zapas` (`vysledek`, `datum_a_cas_konani`, `id_turnaj`, `nazev_tymu`, `nazev_druheho_tymu`) VALUES ('1:0', '2010-10-12', 15, 'Team Rick', 'Team Negan');
+INSERT INTO `zapas` (`vysledek`, `datum_a_cas_konani`, `id_turnaj`, `nazev_tymu`, `nazev_druheho_tymu`) VALUES ('0:2', '2016-12-17', 2, 'Team Rick', 'Team Negan');
+INSERT INTO `zapas` (`vysledek`, `datum_a_cas_konani`, `id_turnaj`, `nazev_tymu`, `nazev_druheho_tymu`) VALUES ('0:1', '2016-12-17', 1, 'Team Rick', 'Team Negan');
+INSERT INTO `zapas` (`vysledek`, `datum_a_cas_konani`, `id_turnaj`, `nazev_tymu`, `nazev_druheho_tymu`) VALUES ('1:0', '2010-10-12', 1, 'Team Rick', 'Team Negan');

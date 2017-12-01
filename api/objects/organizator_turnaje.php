@@ -32,11 +32,9 @@ class OrganizatorTurnaje{
 
     function create(){
 
-        $stmt = $this->conn->prepare("INSERT INTO organizator_turnaje SET prezdivka=:prezdivka, jmeno=:jmeno, tel_cislo=:tel_cislo");
+        $stmt = $this->conn->prepare("INSERT INTO organizator_turnaje SET prezdivka=:prezdivka");
 
         $stmt->bindParam(":prezdivka", htmlspecialchars(strip_tags($this->prezdivka)));
-        $stmt->bindParam(":jmeno", htmlspecialchars(strip_tags($this->jmeno)));
-        $stmt->bindParam(":tel_cislo", htmlspecialchars(strip_tags($this->tel_cislo)));
 
         if ($stmt->execute()){
             return true;
