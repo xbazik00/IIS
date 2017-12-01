@@ -96,11 +96,13 @@
 <br />
 
 #### TODO
-- Konzistencia DB? V zadani ako priklad InnoDB
 
 #### TODO API
 
 #### TODO FE
+- zmena hesla zostava zrolovana aj pre dalsieho uzivatela
+- zmena hesla nefunguje
+
 
 #### Zmeny oproti navrhu
 - Administrator:
