@@ -4,7 +4,7 @@ import { Button } from "react-bootstrap";
 import { find } from "lodash";
 
 import { setActiveForm } from "../../actions/appActions";
-import { isCoach, isPlayer, isOrganizer } from "../../utils";
+import { isCoach, isPlayer, isOrganizer, isAdmin } from "../../utils";
 
 import { countries } from "../../enums";
 
@@ -12,6 +12,7 @@ const Info = ({ setActiveForm, user }) => {
   const coach = isCoach(user.role);
   const player = isPlayer(user.role);
   const organizer = isOrganizer(user.role);
+  const admin = isAdmin(user.role);
   return (
     <div className="info">
       <div className="flex-col">
@@ -67,15 +68,17 @@ const Info = ({ setActiveForm, user }) => {
             </div>
           )}
         </div>
-        <div className="flex-row flex-center">
-          <Button
-            bsStyle="primary"
-            onClick={() => setActiveForm("profileEditForm")}
-            block
-          >
-            Upravit
-          </Button>
-        </div>
+        {!admin && (
+          <div className="flex-row flex-center">
+            <Button
+              bsStyle="primary"
+              onClick={() => setActiveForm("profileEditForm")}
+              block
+            >
+              Upravit
+            </Button>
+          </div>
+        )}
       </div>
     </div>
   );
