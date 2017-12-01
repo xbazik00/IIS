@@ -271,15 +271,15 @@ INSERT INTO `turnaj` (`nazev`, `datum_konani`, `hlavni_cena`, `nazev_hry`, `vite
 
 INSERT INTO `tymy_v_turnaji` (`nazev_tymu`, `id_turnaj`) VALUES ('Slytherin',2);
 INSERT INTO `tymy_v_turnaji` (`nazev_tymu`, `id_turnaj`) VALUES ('Gryffindor',2);
-INSERT INTO `tymy_v_turnaji` (`nazev_tymu`, `id_turnaj`) VALUES ('Team Rick',10);
-INSERT INTO `tymy_v_turnaji` (`nazev_tymu`, `id_turnaj`) VALUES ('Team Negan',10);
+INSERT INTO `tymy_v_turnaji` (`nazev_tymu`, `id_turnaj`) VALUES ('Team Rick',1);
+INSERT INTO `tymy_v_turnaji` (`nazev_tymu`, `id_turnaj`) VALUES ('Team Negan',1);
 
 INSERT INTO `sponzor` (`zkratka`, `cislo_uctu`, `sidlo`, `nazev`) VALUES ('GM', 456435735734, 'Detroid, US', 'General Motors');
 INSERT INTO `sponzor` (`zkratka`, `cislo_uctu`, `sidlo`, `nazev`) VALUES ('MG', 456435735735, 'New York, US', 'Motor General');
 
 INSERT INTO `sponzor_turnaje` (`zkratka_sponzora`, `id_turnaj`) VALUES ('GM', 2);
 INSERT INTO `sponzor_turnaje` (`zkratka_sponzora`, `id_turnaj`) VALUES ('MG', 2);
-INSERT INTO `sponzor_turnaje` (`zkratka_sponzora`, `id_turnaj`) VALUES ('MG', 10);
+INSERT INTO `sponzor_turnaje` (`zkratka_sponzora`, `id_turnaj`) VALUES ('MG', 1);
 
 INSERT INTO `financovani_klanu` (`tag_klanu`,`zkratka_sponzora`) VALUES ('Hogwarts','MG');
 INSERT INTO `financovani_klanu` (`tag_klanu`,`zkratka_sponzora`) VALUES ('GOT','GM');

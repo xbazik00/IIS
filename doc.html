@@ -44,7 +44,61 @@
 </table>
 
 <h2>Implementace</h2>
-<p>Struèná dokumentace k implementaci, která popisuje, které PHP skripty implementují jednotlivé pøípady pou¾ití uvedené v use-case diagramu z IDS. V pøípadì, ¾e bylo nutno pøi implementaci uèinit zmìny v návrhu, musí být v dokumentaci zdùvodnìny.</p>
+<p>Webová aplikácia bola vytvorená pomocou JavaScript kni¾nice <a href="https://reactjs.org/">React</a> pre u¾ívateµské rozhranie a spracovanie u¾ívateµov. 
+	O prácu s databázovým subsystémom sa stará RESTful API napísané jazyku PHP.</p>
+<h3>PHP skripty</h3>
+<p>RESTful API je rozdelené na dva druhy skriptov. Jedna skupina skriptov umiestená v zlo¾ke <em>api/objects/</em> 
+	prestavuje objekty komunikujúce s databázou. Druhá skupina skriptov je spú¹»aná ako samotné API. Tieto skripty
+	sa v¾dy nachádzajú v zlo¾ke prislúchajúcej danému objektu, s ktorý komunikujeme, napr. <em>api/&lt;objekt&gt;/</em>.</p>
+<p>Jednotlivé prípady u¾itia sú vykonané nasledovnými skriptami:</p>
+<dl>
+	<dt>Vystúpi» z týmu</dt>
+	<dd>
+		<em>api/uzivatele_v_tymech/deleteOne.php</em> -- odstráni hráèa z týmu 
+	</dd>
+	<dt>Modifikova» profil hráèa</dt>
+	<dd>
+		<em>api/uzivatel/update.php</em> -- upraví profil u¾ívateµa, okrem hráèa mô¾e upravi» aj vodcu klanu (trénera) a organizátora turnaja.
+	</dd>
+	<dt>Vystúpi» z klanu</dt>
+	<dd>
+		<em>api/uzivatele_v_klanech/deleteOne.php</em> -- odstráni hráèa z klanu 
+	</dd>
+	<dt>Vytvori» klan</dt>
+	<dd>
+		<em>api/klan/create.php</em> -- vytvorí klan, hráè, ktorý ho vytvorí sa stáva jeho vodcom. 
+	</dd>
+	<dt>Reagova» na pozvánku</dt>
+	<dd>
+		<p>Na rozdiel od návrhu existujú pozvánky pre tým aj klan.</p>
+		<em>api/pozvanka_do_tymu/accept.php</em> -- pridá hráèa do týmu a odstráni pozvánku 
+		<em>api/pozvanka_do_tymu/delete.php</em> -- odstráni pozvánku
+		
+		<em>api/pozvanka_do_klanu/accept.php</em> -- pridá hráèa do klanu a odstráni pozvánku 
+		<em>api/pozvanka_do_klanu/delete.php</em> -- odstráni pozvánku
+	</dd>
+	<dt>Prechádza» detaily hry</dt>
+	<dd>
+		<em>api/hra/read.php</em> -- vráti polo¾ky hry 
+	</dd>
+	<dt>Zapísa» sa na odber informácií o chystaných turnajoch</dt>
+	<dd>
+		Zatiaµ neimplementované.
+	</dd>
+	<dt>Vypísa» ¹tatistiky hráèov</dt>
+	<dd>
+		<em>api/uzivatel/read.php</em> -- vráti uzivatelov
+		<em>api/uzivatel/read.php</em> -- vráti uzivatelov
+	</dd>
+	
+	
+	
+
+	<dd>
+	</dd>
+	<dd>
+	</dd>
+</dl>
 
 <h2>Instalace</h2>
 <ul>
