@@ -124,11 +124,11 @@ export default compose(
           name: firstName,
           surname,
           country,
-          notes,
-          mouse,
-          keyboard,
-          org_name,
-          phone
+          notes: notes ? notes : "",
+          mouse: mouse ? mouse : "",
+          keyboard: keyboard ? keyboard : "",
+          org_name: org_name ? org_name : "",
+          phone: phone ? phone : ""
         })
       ) {
         getUser(user.userName);

@@ -90,7 +90,7 @@ export default compose(
       const { result, date, name1, name2 } = formData;
 
       if (activeTournament && !isEmpty(activeTournament.teams)) {
-        if (await newMatch(result, date, data.id, name1, name2)) {
+        if (await newMatch(result ? result : "", date, data.id, name1, name2)) {
           getTournament(data.id);
           resetForm("newMatchDialogForm");
           dialog.closeDialog();

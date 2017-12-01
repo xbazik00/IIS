@@ -150,7 +150,7 @@ export default compose(
           tournament.date,
           prize,
           tournament.game,
-          winner,
+          winner ? winner : "",
           tournament.id_organizer
         )
       ) {

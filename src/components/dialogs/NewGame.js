@@ -66,7 +66,13 @@ export default compose(
       const { name, genre, publisher, modes, created } = formData;
 
       if (
-        await newGame(name, genre, publisher, modes, created.substring(0, 10))
+        await newGame(
+          name,
+          genre,
+          publisher,
+          modes ? modes : "",
+          created.substring(0, 10)
+        )
       ) {
         getGames();
         resetForm("newGameDialogForm");

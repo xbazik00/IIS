@@ -111,7 +111,15 @@ export default compose(
       const { setActiveForm, updateGame, getGames, getGame, game } = props;
       const { genre, publisher, modes } = formData;
 
-      if (await updateGame(game.name, genre, publisher, modes, game.created)) {
+      if (
+        await updateGame(
+          game.name,
+          genre,
+          publisher,
+          modes ? modes : "",
+          game.created
+        )
+      ) {
         await getGames();
         getGame(game.name);
         setActiveForm(null);
