@@ -28,7 +28,6 @@ $klan->nazev = $data->name;
 $klan->logo = $data->logo;
 $klan->hymna = $data->anthem;
 $klan->zeme_pusobeni = $data->country;
-$klan->vudce_klanu = $data->boss;
 
  
 // update the klan

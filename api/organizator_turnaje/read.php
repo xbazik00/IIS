@@ -19,7 +19,7 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
     extract($row);
 
     $organizator_turnaje_item=array(
-        "id" => $id,
+        "id" => $prezdivka,
         "name" => $jmeno,
         "phone" => $tel_cislo
     );
