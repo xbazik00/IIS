@@ -17,8 +17,10 @@ export const isPhone = value =>
     : undefined;
 
 export const isShorterEqual30 = value =>
-  value && value.length <= 30 ? undefined : "Maximálně 30 znaků";
+  !value || (value && value.length <= 30) ? undefined : "Maximálně 30 znaků";
 export const isShorterEqual100 = value =>
-  value && value.length <= 100 ? undefined : "Maximálně 100 znaků";
+  !value || (value && value.length <= 100) ? undefined : "Maximálně 100 znaků";
 export const isShorterEqual1000 = value =>
-  value && value.length <= 1000 ? undefined : "Maximálně 1000 znaků";
+  !value || (value && value.length <= 1000)
+    ? undefined
+    : "Maximálně 1000 znaků";
