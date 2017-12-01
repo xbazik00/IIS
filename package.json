@@ -41,14 +41,15 @@
   },
   "proxy": {
     "/api": {
-      "target": "http://iis-e-sport.jecool.net",
+      "target": "http://www.stud.fit.vutbr.cz/~xbazik00/IIS",
       "secure": false,
       "changeOrigin": true
     }
   },
   "scripts": {
     "build-css": "node-sass-chokidar src/styles/style.scss -o src/styles/",
-    "watch-css": "npm run build-css && node-sass-chokidar src/styles/ -o src/styles/ --watch --recursive",
+    "watch-css":
+      "npm run build-css && node-sass-chokidar src/styles/ -o src/styles/ --watch --recursive",
     "start-js": "react-scripts start",
     "start": "npm-run-all -p watch-css start-js",
     "build": "npm run build-css && react-scripts build",
