@@ -11,6 +11,7 @@ import DatePicker from "../form/DatePicker";
 import * as Validation from "../form/Validation";
 import DialogContainer from "./DialogContainer";
 
+import { resetForm } from "../../actions/appActions";
 import {
   createTournament,
   getTournaments
@@ -64,16 +65,17 @@ export default compose(
       games: list,
       initialValues: { game: !isEmpty(list) ? list[0].name : null }
     }),
-    { createTournament, getTournaments }
+    { createTournament, getTournaments, resetForm }
   ),
   withRouter,
   withHandlers({
     onSubmit: dialog => async (formData, dispatch, props) => {
-      const { createTournament, user, getTournaments } = props;
+      const { createTournament, user, getTournaments, resetForm } = props;
       const { name, date, prize, game } = formData;
 
       if (await createTournament(name, date, prize, game, "", user.userName)) {
         getTournaments();
+        resetForm("addTournamentDialogForm");
         dialog.closeDialog();
       }
     }

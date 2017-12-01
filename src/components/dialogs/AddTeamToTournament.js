@@ -9,6 +9,7 @@ import SelectField from "../form/SelectField";
 import * as Validation from "../form/Validation";
 import DialogContainer from "./DialogContainer";
 
+import { resetForm } from "../../actions/appActions";
 import { addTeamToTournament } from "../../actions/tournamentActions";
 import { getTeam } from "../../actions/teamActions";
 
@@ -56,7 +57,8 @@ export default compose(
     }) => ({ data, user, tournament, activeTeam }),
     {
       addTeamToTournament,
-      getTeam
+      getTeam,
+      resetForm
     }
   ),
   withRouter,
@@ -67,7 +69,8 @@ export default compose(
         data,
         getTeam,
         activeTeam,
-        tournament
+        tournament,
+        resetForm
       } = props;
       const { id } = formData;
 
@@ -78,6 +81,7 @@ export default compose(
       ) {
         if (await addTeamToTournament(id, data.name)) {
           getTeam(data.name);
+          resetForm("addTeamToTournamentDialogForm");
           dialog.closeDialog();
         } else
           throw new SubmissionError({

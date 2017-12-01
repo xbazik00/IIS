@@ -9,6 +9,7 @@ import SelectField from "../form/SelectField";
 import * as Validation from "../form/Validation";
 import DialogContainer from "./DialogContainer";
 
+import { resetForm } from "../../actions/appActions";
 import {
   addSponsorToClan,
   getSponsorsByClanTag
@@ -51,12 +52,19 @@ const AddSponsorToClan = ({ handleSubmit, data, sponsor, setState }) => {
 export default compose(
   connect(({ app: { dialog: { data } }, sponsor }) => ({ data, sponsor }), {
     addSponsorToClan,
-    getSponsorsByClanTag
+    getSponsorsByClanTag,
+    resetForm
   }),
   withRouter,
   withHandlers({
     onSubmit: dialog => async (formData, dispatch, props) => {
-      const { addSponsorToClan, getSponsorsByClanTag, data, sponsor } = props;
+      const {
+        addSponsorToClan,
+        getSponsorsByClanTag,
+        data,
+        sponsor,
+        resetForm
+      } = props;
       const { acronym } = formData;
 
       if (
@@ -73,6 +81,7 @@ export default compose(
       ) {
         if (await addSponsorToClan(acronym, data.clanTag)) {
           getSponsorsByClanTag(data.clanTag);
+          resetForm("addSponsorToClanDialogForm");
           dialog.closeDialog();
         } else
           throw new SubmissionError({

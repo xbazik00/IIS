@@ -8,6 +8,7 @@ import TextField from "../form/TextField";
 import * as Validation from "../form/Validation";
 import DialogContainer from "./DialogContainer";
 
+import { resetForm } from "../../actions/appActions";
 import { createSponsor, getSponsors } from "../../actions/sponsorActions";
 
 const CreateSponsor = ({ handleSubmit, data }) => (
@@ -51,16 +52,18 @@ const CreateSponsor = ({ handleSubmit, data }) => (
 export default compose(
   connect(({ app: { dialog: { data } } }) => ({ data }), {
     createSponsor,
-    getSponsors
+    getSponsors,
+    resetForm
   }),
   withRouter,
   withHandlers({
     onSubmit: dialog => async (formData, dispatch, props) => {
-      const { createSponsor, getSponsors } = props;
+      const { createSponsor, getSponsors, resetForm } = props;
       const { acronym, name, seat, account_number } = formData;
 
       if (await createSponsor(acronym, name, seat, account_number)) {
         getSponsors();
+        resetForm("createSponsorDialogForm");
         dialog.closeDialog();
       } else
         throw new SubmissionError({

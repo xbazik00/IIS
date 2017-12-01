@@ -11,6 +11,7 @@ import DatePicker from "../form/DatePicker";
 import * as Validation from "../form/Validation";
 import DialogContainer from "./DialogContainer";
 
+import { resetForm } from "../../actions/appActions";
 import { newMatch } from "../../actions/matchActions";
 import { getTournament } from "../../actions/tournamentActions";
 
@@ -72,18 +73,26 @@ export default compose(
     }),
     {
       newMatch,
-      getTournament
+      getTournament,
+      resetForm
     }
   ),
   withRouter,
   withHandlers({
     onSubmit: dialog => async (formData, dispatch, props) => {
-      const { newMatch, getTournament, data, activeTournament } = props;
+      const {
+        newMatch,
+        getTournament,
+        data,
+        activeTournament,
+        resetForm
+      } = props;
       const { result, date, name1, name2 } = formData;
 
       if (activeTournament && !isEmpty(activeTournament.teams)) {
         if (await newMatch(result, date, data.id, name1, name2)) {
           getTournament(data.id);
+          resetForm("newMatchDialogForm");
           dialog.closeDialog();
         } else {
           throw new SubmissionError({

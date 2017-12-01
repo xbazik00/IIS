@@ -9,6 +9,7 @@ import SelectField from "../form/SelectField";
 import * as Validation from "../form/Validation";
 import DialogContainer from "./DialogContainer";
 
+import { resetForm } from "../../actions/appActions";
 import {
   addSponsorToTournament,
   getTournamentSponsors
@@ -55,7 +56,8 @@ const AddSponsorToTournament = ({ handleSubmit, data, sponsor, setState }) => {
 export default compose(
   connect(({ app: { dialog: { data } }, sponsor }) => ({ data, sponsor }), {
     addSponsorToTournament,
-    getTournamentSponsors
+    getTournamentSponsors,
+    resetForm
   }),
   withRouter,
   withHandlers({
@@ -64,7 +66,8 @@ export default compose(
         addSponsorToTournament,
         getTournamentSponsors,
         data,
-        sponsor
+        sponsor,
+        resetForm
       } = props;
       const { acronym } = formData;
 
@@ -85,6 +88,7 @@ export default compose(
       ) {
         if (await addSponsorToTournament(acronym, data.id)) {
           getTournamentSponsors(data.id);
+          resetForm("addSponsorToTournamentDialogForm");
           dialog.closeDialog();
         } else
           throw new SubmissionError({

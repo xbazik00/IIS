@@ -10,6 +10,7 @@ import SelectField from "../form/SelectField";
 import * as Validation from "../form/Validation";
 import DialogContainer from "./DialogContainer";
 
+import { resetForm } from "../../actions/appActions";
 import { createTeam } from "../../actions/teamActions";
 
 const CreateTeam = ({ handleSubmit, data, games }) => {
@@ -58,15 +59,16 @@ export default compose(
       games: list,
       initialValues: { game: !isEmpty(list) ? list[0].name : null }
     }),
-    { createTeam }
+    { createTeam, resetForm }
   ),
   withRouter,
   withHandlers({
     onSubmit: dialog => async (formData, dispatch, props) => {
-      const { createTeam, user } = props;
+      const { createTeam, user, resetForm } = props;
       const { name, game, number_of_players } = formData;
 
       if (await createTeam(name, user.userName, game, number_of_players)) {
+        resetForm("createTeamDialogForm");
         dialog.closeDialog();
       } else
         throw new SubmissionError({

@@ -9,6 +9,7 @@ import SelectField from "../form/SelectField";
 import * as Validation from "../form/Validation";
 import DialogContainer from "./DialogContainer";
 
+import { resetForm } from "../../actions/appActions";
 import { createClan, getClan } from "../../actions/clanActions";
 import { getUser } from "../../actions/usersActions";
 
@@ -59,17 +60,19 @@ export default compose(
   connect(({ app: { dialog: { data }, user } }) => ({ data, user }), {
     createClan,
     getClan,
-    getUser
+    getUser,
+    resetForm
   }),
   withRouter,
   withHandlers({
     onSubmit: dialog => async (formData, dispatch, props) => {
-      const { createClan, user, getClan, getUser } = props;
+      const { createClan, user, getClan, getUser, resetForm } = props;
       const { tag, name, logo, anthem, country } = formData;
 
       if (await createClan(tag, name, logo, anthem, country, user.userName)) {
         getUser(user.userName);
         getClan(tag);
+        resetForm("createClanDialogForm");
         dialog.closeDialog();
       } else
         throw new SubmissionError({

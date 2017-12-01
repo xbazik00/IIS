@@ -9,6 +9,7 @@ import DatePicker from "../form/DatePicker";
 import * as Validation from "../form/Validation";
 import DialogContainer from "./DialogContainer";
 
+import { resetForm } from "../../actions/appActions";
 import { newGame, getGames } from "../../actions/gamesActions";
 
 const NewGame = ({ handleSubmit, data, created, setCreated }) => (
@@ -53,17 +54,22 @@ const NewGame = ({ handleSubmit, data, created, setCreated }) => (
 );
 
 export default compose(
-  connect(({ app: { dialog: { data } } }) => ({ data }), { newGame, getGames }),
+  connect(({ app: { dialog: { data } } }) => ({ data }), {
+    newGame,
+    getGames,
+    resetForm
+  }),
   withRouter,
   withHandlers({
     onSubmit: dialog => async (formData, dispatch, props) => {
-      const { newGame, getGames } = props;
+      const { newGame, getGames, resetForm } = props;
       const { name, genre, publisher, modes, created } = formData;
 
       if (
         await newGame(name, genre, publisher, modes, created.substring(0, 10))
       ) {
         getGames();
+        resetForm("newGameDialogForm");
         dialog.closeDialog();
       } else {
         throw new SubmissionError({
