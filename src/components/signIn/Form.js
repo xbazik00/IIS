@@ -43,7 +43,7 @@ export default compose(
       const { userName, password } = formData;
       const { signIn, history } = props;
 
-      if (await signIn(userName, password)) {
+      if (await signIn(userName, password ? password : "")) {
         history.push("/main");
       } else {
         throw new SubmissionError({

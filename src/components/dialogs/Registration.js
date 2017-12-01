@@ -110,7 +110,16 @@ export default compose(
         ((!password || password === "") && (!password2 || password2 === "")) ||
         password === password2
       ) {
-        if (await createUser(nick, name, surname, country, role, password)) {
+        if (
+          await createUser(
+            nick,
+            name,
+            surname,
+            country,
+            role,
+            password ? password : ""
+          )
+        ) {
           resetForm("registrationDialogForm");
           dialog.closeDialog();
         } else {
