@@ -2,6 +2,7 @@ import { find, isEmpty, sortBy, filter, get } from "lodash";
 
 import fetch from "../utils/fetch";
 import * as c from "./constants";
+import { signOut } from "./appActions";
 
 export const setActiveGame = activeGame => ({
   type: c.GAMES,
@@ -9,6 +10,8 @@ export const setActiveGame = activeGame => ({
 });
 
 export const getGames = () => async (dispatch, getState) => {
+  clearTimeout(window.timeout);
+  window.timeout = setTimeout(() => dispatch(signOut()), c.SIGN_OUT_TIME);
   try {
     const response = await fetch("/api/hra/read.php");
 
@@ -45,12 +48,17 @@ export const getGames = () => async (dispatch, getState) => {
 };
 
 export const getGame = name => async (dispatch, getState) => {
+  clearTimeout(window.timeout);
+  window.timeout = setTimeout(() => dispatch(signOut()), c.SIGN_OUT_TIME);
+
   const activeGame = find(getState().games.list, game => game.name === name);
 
   dispatch(setActiveGame(activeGame));
 };
 
-export const deleteGame = name => async () => {
+export const deleteGame = name => async dispatch => {
+  clearTimeout(window.timeout);
+  window.timeout = setTimeout(() => dispatch(signOut()), c.SIGN_OUT_TIME);
   try {
     const response = await fetch("/api/hra/deleteOne.php", {
       method: "POST",
@@ -75,7 +83,15 @@ export const deleteGame = name => async () => {
   }
 };
 
-export const newGame = (name, genre, publisher, modes, created) => async () => {
+export const newGame = (
+  name,
+  genre,
+  publisher,
+  modes,
+  created
+) => async dispatch => {
+  clearTimeout(window.timeout);
+  window.timeout = setTimeout(() => dispatch(signOut()), c.SIGN_OUT_TIME);
   try {
     const response = await fetch("/api/hra/create.php", {
       method: "POST",
@@ -112,7 +128,9 @@ export const updateGame = (
   publisher,
   modes,
   created
-) => async () => {
+) => async dispatch => {
+  clearTimeout(window.timeout);
+  window.timeout = setTimeout(() => dispatch(signOut()), c.SIGN_OUT_TIME);
   try {
     const response = await fetch("/api/hra/update.php", {
       method: "POST",

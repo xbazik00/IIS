@@ -99,12 +99,8 @@
 - Konzistencia DB? V zadani ako priklad InnoDB
 
 #### TODO API
-- Ked vystupi vodca klanu?
 
 #### TODO FE
-- Pridat turnaje a zapasy pre hracov
-- Automaticke odhlasenie po nejakom case
-- Po vytvoreni hry zostavaju vo formulari ulozene data z predchadzajucej pridanej hry
 
 #### Zmeny oproti navrhu
 - Administrator:

@@ -2,8 +2,11 @@ import { isEmpty, sortBy, get, filter } from "lodash";
 
 import fetch from "../utils/fetch";
 import * as c from "./constants";
+import { signOut } from "./appActions";
 
 export const getClans = () => async (dispatch, getState) => {
+  clearTimeout(window.timeout);
+  window.timeout = setTimeout(() => dispatch(signOut()), c.SIGN_OUT_TIME);
   try {
     const response = await fetch("/api/klan/read.php");
 
@@ -49,7 +52,9 @@ export const createClan = (
   anthem,
   country,
   boss
-) => async () => {
+) => async dispatch => {
+  clearTimeout(window.timeout);
+  window.timeout = setTimeout(() => dispatch(signOut()), c.SIGN_OUT_TIME);
   try {
     const response = await fetch("/api/klan/create.php", {
       method: "POST",
@@ -74,7 +79,15 @@ export const createClan = (
   }
 };
 
-export const updateClan = (tag, name, logo, anthem, country) => async () => {
+export const updateClan = (
+  tag,
+  name,
+  logo,
+  anthem,
+  country
+) => async dispatch => {
+  clearTimeout(window.timeout);
+  window.timeout = setTimeout(() => dispatch(signOut()), c.SIGN_OUT_TIME);
   try {
     const response = await fetch("/api/klan/update.php", {
       method: "POST",
@@ -100,6 +113,8 @@ export const updateClan = (tag, name, logo, anthem, country) => async () => {
 };
 
 export const getClan = tag => async dispatch => {
+  clearTimeout(window.timeout);
+  window.timeout = setTimeout(() => dispatch(signOut()), c.SIGN_OUT_TIME);
   try {
     const response = await fetch("/api/klan/readOne.php", {
       method: "POST",
@@ -128,7 +143,9 @@ export const getClan = tag => async dispatch => {
   }
 };
 
-export const inviteUser = (tag, userName) => async () => {
+export const inviteUser = (tag, userName) => async dispatch => {
+  clearTimeout(window.timeout);
+  window.timeout = setTimeout(() => dispatch(signOut()), c.SIGN_OUT_TIME);
   try {
     const response = await fetch("/api/pozvanka_do_klanu/create.php", {
       method: "POST",
@@ -154,6 +171,8 @@ export const inviteUser = (tag, userName) => async () => {
 };
 
 export const getInvitations = userName => async dispatch => {
+  clearTimeout(window.timeout);
+  window.timeout = setTimeout(() => dispatch(signOut()), c.SIGN_OUT_TIME);
   try {
     const response = await fetch("/api/pozvanka_do_klanu/read.php", {
       method: "POST",
@@ -181,7 +200,9 @@ export const getInvitations = userName => async dispatch => {
   }
 };
 
-export const deleteClan = tag => async () => {
+export const deleteClan = tag => async dispatch => {
+  clearTimeout(window.timeout);
+  window.timeout = setTimeout(() => dispatch(signOut()), c.SIGN_OUT_TIME);
   try {
     const response = await fetch("/api/klan/delete.php", {
       method: "POST",
@@ -206,7 +227,9 @@ export const deleteClan = tag => async () => {
   }
 };
 
-export const deleteUserFromClan = (tag, userName) => async () => {
+export const deleteUserFromClan = (tag, userName) => async dispatch => {
+  clearTimeout(window.timeout);
+  window.timeout = setTimeout(() => dispatch(signOut()), c.SIGN_OUT_TIME);
   try {
     const response = await fetch("/api/uzivatele_v_klanu/deleteOne.php", {
       method: "POST",
@@ -231,7 +254,9 @@ export const deleteUserFromClan = (tag, userName) => async () => {
   }
 };
 
-export const acceptInvitation = (tag, userName) => async () => {
+export const acceptInvitation = (tag, userName) => async dispatch => {
+  clearTimeout(window.timeout);
+  window.timeout = setTimeout(() => dispatch(signOut()), c.SIGN_OUT_TIME);
   try {
     const response = await fetch("/api/pozvanka_do_klanu/accept.php", {
       method: "POST",
@@ -256,7 +281,9 @@ export const acceptInvitation = (tag, userName) => async () => {
   }
 };
 
-export const deleteInvitation = (tag, userName) => async () => {
+export const deleteInvitation = (tag, userName) => async dispatch => {
+  clearTimeout(window.timeout);
+  window.timeout = setTimeout(() => dispatch(signOut()), c.SIGN_OUT_TIME);
   try {
     const response = await fetch("/api/pozvanka_do_klanu/delete.php", {
       method: "POST",

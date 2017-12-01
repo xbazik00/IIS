@@ -2,13 +2,16 @@ import { isEmpty, sortBy, get, filter } from "lodash";
 
 import fetch from "../utils/fetch";
 import * as c from "./constants";
+import { signOut } from "./appActions";
 
 export const createSponsor = (
   acronym,
   name,
   seat,
   account_number
-) => async () => {
+) => async dispatch => {
+  clearTimeout(window.timeout);
+  window.timeout = setTimeout(() => dispatch(signOut()), c.SIGN_OUT_TIME);
   try {
     const response = await fetch("/api/sponzor/create.php", {
       method: "POST",
@@ -33,7 +36,9 @@ export const createSponsor = (
   }
 };
 
-export const deleteSponsor = acronym => async () => {
+export const deleteSponsor = acronym => async dispatch => {
+  clearTimeout(window.timeout);
+  window.timeout = setTimeout(() => dispatch(signOut()), c.SIGN_OUT_TIME);
   try {
     const response = await fetch("/api/sponzor/deleteOne.php", {
       method: "POST",
@@ -59,6 +64,8 @@ export const deleteSponsor = acronym => async () => {
 };
 
 export const getSponsors = () => async (dispatch, getState) => {
+  clearTimeout(window.timeout);
+  window.timeout = setTimeout(() => dispatch(signOut()), c.SIGN_OUT_TIME);
   try {
     const response = await fetch("/api/sponzor/read.php");
 
@@ -98,6 +105,8 @@ export const getSponsors = () => async (dispatch, getState) => {
 };
 
 export const getSponsorsByClanTag = tag => async dispatch => {
+  clearTimeout(window.timeout);
+  window.timeout = setTimeout(() => dispatch(signOut()), c.SIGN_OUT_TIME);
   try {
     const response = await fetch("/api/sponzor_klanu/read.php", {
       method: "POST",
@@ -127,7 +136,9 @@ export const getSponsorsByClanTag = tag => async dispatch => {
   }
 };
 
-export const addSponsorToClan = (acronym, tag) => async () => {
+export const addSponsorToClan = (acronym, tag) => async dispatch => {
+  clearTimeout(window.timeout);
+  window.timeout = setTimeout(() => dispatch(signOut()), c.SIGN_OUT_TIME);
   try {
     const response = await fetch("/api/sponzor_klanu/add.php", {
       method: "POST",
@@ -152,7 +163,9 @@ export const addSponsorToClan = (acronym, tag) => async () => {
   }
 };
 
-export const deleteSponsorFromClan = (acronym, tag) => async () => {
+export const deleteSponsorFromClan = (acronym, tag) => async dispatch => {
+  clearTimeout(window.timeout);
+  window.timeout = setTimeout(() => dispatch(signOut()), c.SIGN_OUT_TIME);
   try {
     const response = await fetch("/api/sponzor_klanu/delete.php", {
       method: "POST",
@@ -178,6 +191,8 @@ export const deleteSponsorFromClan = (acronym, tag) => async () => {
 };
 
 export const getTournamentSponsors = id => async dispatch => {
+  clearTimeout(window.timeout);
+  window.timeout = setTimeout(() => dispatch(signOut()), c.SIGN_OUT_TIME);
   try {
     const response = await fetch("/api/sponzor_turnaje/read.php", {
       method: "POST",
@@ -207,7 +222,9 @@ export const getTournamentSponsors = id => async dispatch => {
   }
 };
 
-export const deleteSponsorFromTournament = (acronym, id) => async () => {
+export const deleteSponsorFromTournament = (acronym, id) => async dispatch => {
+  clearTimeout(window.timeout);
+  window.timeout = setTimeout(() => dispatch(signOut()), c.SIGN_OUT_TIME);
   try {
     const response = await fetch("/api/sponzor_turnaje/delete.php", {
       method: "POST",
@@ -232,7 +249,9 @@ export const deleteSponsorFromTournament = (acronym, id) => async () => {
   }
 };
 
-export const addSponsorToTournament = (acronym, id) => async () => {
+export const addSponsorToTournament = (acronym, id) => async dispatch => {
+  clearTimeout(window.timeout);
+  window.timeout = setTimeout(() => dispatch(signOut()), c.SIGN_OUT_TIME);
   try {
     const response = await fetch("/api/sponzor_turnaje/add.php", {
       method: "POST",

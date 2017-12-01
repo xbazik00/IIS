@@ -19,3 +19,5 @@ export const FILTER = "FILTER";
 export const TOURNAMENT = "TOURNAMENT";
 
 export const MATCH = "MATCH";
+
+export const SIGN_OUT_TIME = 1000 * 60 * 5;

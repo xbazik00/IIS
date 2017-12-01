@@ -2,13 +2,16 @@ import { isEmpty, sortBy, get, filter } from "lodash";
 
 import fetch from "../utils/fetch";
 import * as c from "./constants";
+import { signOut } from "./appActions";
 
 export const createTeam = (
   name,
   userName,
   game,
   number_of_players
-) => async () => {
+) => async dispatch => {
+  clearTimeout(window.timeout);
+  window.timeout = setTimeout(() => dispatch(signOut()), c.SIGN_OUT_TIME);
   try {
     const response = await fetch("/api/tym/create.php", {
       method: "POST",
@@ -33,7 +36,9 @@ export const createTeam = (
   }
 };
 
-export const deleteTeam = name => async () => {
+export const deleteTeam = name => async dispatch => {
+  clearTimeout(window.timeout);
+  window.timeout = setTimeout(() => dispatch(signOut()), c.SIGN_OUT_TIME);
   try {
     const response = await fetch("/api/tym/delete.php", {
       method: "POST",
@@ -59,6 +64,8 @@ export const deleteTeam = name => async () => {
 };
 
 export const getInvitations = userName => async dispatch => {
+  clearTimeout(window.timeout);
+  window.timeout = setTimeout(() => dispatch(signOut()), c.SIGN_OUT_TIME);
   try {
     const response = await fetch("/api/pozvanka_do_tymu/read.php", {
       method: "POST",
@@ -87,6 +94,8 @@ export const getInvitations = userName => async dispatch => {
 };
 
 export const getTeams = () => async (dispatch, getState) => {
+  clearTimeout(window.timeout);
+  window.timeout = setTimeout(() => dispatch(signOut()), c.SIGN_OUT_TIME);
   try {
     const response = await fetch("/api/tym/read.php");
 
@@ -126,6 +135,8 @@ export const getTeams = () => async (dispatch, getState) => {
 };
 
 export const getTeamsByUserName = userName => async (dispatch, getState) => {
+  clearTimeout(window.timeout);
+  window.timeout = setTimeout(() => dispatch(signOut()), c.SIGN_OUT_TIME);
   try {
     const response = await fetch("/api/uzivatele_v_tymech/readTeams.php", {
       method: "POST",
@@ -171,6 +182,8 @@ export const getTeamsByUserName = userName => async (dispatch, getState) => {
 };
 
 export const getTeam = name => async dispatch => {
+  clearTimeout(window.timeout);
+  window.timeout = setTimeout(() => dispatch(signOut()), c.SIGN_OUT_TIME);
   try {
     const response = await fetch("/api/tym/readOne.php", {
       method: "POST",
@@ -200,7 +213,9 @@ export const getTeam = name => async dispatch => {
   }
 };
 
-export const inviteUser = (name, userName) => async () => {
+export const inviteUser = (name, userName) => async dispatch => {
+  clearTimeout(window.timeout);
+  window.timeout = setTimeout(() => dispatch(signOut()), c.SIGN_OUT_TIME);
   try {
     const response = await fetch("/api/pozvanka_do_tymu/create.php", {
       method: "POST",
@@ -225,7 +240,9 @@ export const inviteUser = (name, userName) => async () => {
   }
 };
 
-export const acceptInvitation = (name, userName) => async () => {
+export const acceptInvitation = (name, userName) => async dispatch => {
+  clearTimeout(window.timeout);
+  window.timeout = setTimeout(() => dispatch(signOut()), c.SIGN_OUT_TIME);
   try {
     const response = await fetch("/api/pozvanka_do_tymu/accept.php", {
       method: "POST",
@@ -250,7 +267,9 @@ export const acceptInvitation = (name, userName) => async () => {
   }
 };
 
-export const deleteInvitation = (name, userName) => async () => {
+export const deleteInvitation = (name, userName) => async dispatch => {
+  clearTimeout(window.timeout);
+  window.timeout = setTimeout(() => dispatch(signOut()), c.SIGN_OUT_TIME);
   try {
     const response = await fetch("/api/pozvanka_do_tymu/delete.php", {
       method: "POST",
@@ -275,7 +294,9 @@ export const deleteInvitation = (name, userName) => async () => {
   }
 };
 
-export const deleteUserFromTeam = (name, userName) => async () => {
+export const deleteUserFromTeam = (name, userName) => async dispatch => {
+  clearTimeout(window.timeout);
+  window.timeout = setTimeout(() => dispatch(signOut()), c.SIGN_OUT_TIME);
   try {
     const response = await fetch("/api/uzivatele_v_tymech/deleteOne.php", {
       method: "POST",

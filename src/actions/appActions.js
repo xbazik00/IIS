@@ -31,6 +31,7 @@ export const closeDialog = () => ({
 });
 
 export const signIn = (userName, password) => async dispatch => {
+  window.timeout = setTimeout(() => dispatch(signOut()), c.SIGN_OUT_TIME);
   try {
     const response = await fetch("/api/signIn.php", {
       method: "POST",

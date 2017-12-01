@@ -2,8 +2,11 @@ import { isEmpty, sortBy, filter, get } from "lodash";
 
 import fetch from "../utils/fetch";
 import * as c from "./constants";
+import { signOut } from "./appActions";
 
 export const getMatches = () => async (dispatch, getState) => {
+  clearTimeout(window.timeout);
+  window.timeout = setTimeout(() => dispatch(signOut()), c.SIGN_OUT_TIME);
   try {
     const response = await fetch("/api/zapas/read.php");
 
@@ -45,7 +48,9 @@ export const newMatch = (
   id_tourney,
   name1,
   name2
-) => async () => {
+) => async dispatch => {
+  clearTimeout(window.timeout);
+  window.timeout = setTimeout(() => dispatch(signOut()), c.SIGN_OUT_TIME);
   try {
     const response = await fetch("/api/zapas/create.php", {
       method: "POST",
@@ -76,7 +81,9 @@ export const newMatch = (
   }
 };
 
-export const deleteMatch = id => async () => {
+export const deleteMatch = id => async dispatch => {
+  clearTimeout(window.timeout);
+  window.timeout = setTimeout(() => dispatch(signOut()), c.SIGN_OUT_TIME);
   try {
     const response = await fetch("/api/zapas/deleteOne.php", {
       method: "POST",
