@@ -2,8 +2,11 @@ import { isEmpty, sortBy, filter, get } from "lodash";
 
 import fetch from "../utils/fetch";
 import * as c from "./constants";
+import { signOut } from "./appActions";
 
 export const getTournaments = () => async (dispatch, getState) => {
+  clearTimeout(window.timeout);
+  window.timeout = setTimeout(() => dispatch(signOut()), c.SIGN_OUT_TIME);
   try {
     const response = await fetch("/api/turnaj/read.php");
 
@@ -46,7 +49,9 @@ export const createTournament = (
   game,
   winner,
   id_organizer
-) => async () => {
+) => async dispatch => {
+  clearTimeout(window.timeout);
+  window.timeout = setTimeout(() => dispatch(signOut()), c.SIGN_OUT_TIME);
   try {
     const response = await fetch("/api/turnaj/create.php", {
       method: "POST",
@@ -71,7 +76,9 @@ export const createTournament = (
   }
 };
 
-export const deleteTournament = id => async () => {
+export const deleteTournament = id => async dispatch => {
+  clearTimeout(window.timeout);
+  window.timeout = setTimeout(() => dispatch(signOut()), c.SIGN_OUT_TIME);
   try {
     const response = await fetch("/api/turnaj/delete.php", {
       method: "POST",
@@ -97,6 +104,8 @@ export const deleteTournament = id => async () => {
 };
 
 export const getTournament = id => async dispatch => {
+  clearTimeout(window.timeout);
+  window.timeout = setTimeout(() => dispatch(signOut()), c.SIGN_OUT_TIME);
   try {
     const response = await fetch("/api/turnaj/readOne.php", {
       method: "POST",
@@ -133,7 +142,9 @@ export const updateTournament = (
   game,
   winner,
   id_organizer
-) => async () => {
+) => async dispatch => {
+  clearTimeout(window.timeout);
+  window.timeout = setTimeout(() => dispatch(signOut()), c.SIGN_OUT_TIME);
   try {
     const response = await fetch("/api/turnaj/update.php", {
       method: "POST",
@@ -166,7 +177,9 @@ export const updateTournament = (
   }
 };
 
-export const addTeamToTournament = (id, name) => async () => {
+export const addTeamToTournament = (id, name) => async dispatch => {
+  clearTimeout(window.timeout);
+  window.timeout = setTimeout(() => dispatch(signOut()), c.SIGN_OUT_TIME);
   try {
     const response = await fetch("/api/tymy_v_turnaji/add.php", {
       method: "POST",
@@ -194,7 +207,9 @@ export const addTeamToTournament = (id, name) => async () => {
   }
 };
 
-export const deleteTeamFromTournament = (id, name) => async () => {
+export const deleteTeamFromTournament = (id, name) => async dispatch => {
+  clearTimeout(window.timeout);
+  window.timeout = setTimeout(() => dispatch(signOut()), c.SIGN_OUT_TIME);
   try {
     const response = await fetch("/api/tymy_v_turnaji/deleteOne.php", {
       method: "POST",

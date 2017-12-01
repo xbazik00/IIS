@@ -3,8 +3,11 @@ import { isEmpty, sortBy, get, filter } from "lodash";
 import fetch from "../utils/fetch";
 import * as storage from "../utils/storage";
 import * as c from "./constants";
+import { signOut } from "./appActions";
 
 export const getUsers = () => async (dispatch, getState) => {
+  clearTimeout(window.timeout);
+  window.timeout = setTimeout(() => dispatch(signOut()), c.SIGN_OUT_TIME);
   try {
     const response = await fetch("/api/uzivatel/read.php");
 
@@ -43,6 +46,8 @@ export const getUsers = () => async (dispatch, getState) => {
 };
 
 export const getUser = userName => async dispatch => {
+  clearTimeout(window.timeout);
+  window.timeout = setTimeout(() => dispatch(signOut()), c.SIGN_OUT_TIME);
   try {
     const response = await fetch("/api/uzivatel/readOne.php", {
       method: "POST",
@@ -74,7 +79,9 @@ export const getUser = userName => async dispatch => {
   }
 };
 
-export const updateUser = user => async () => {
+export const updateUser = user => async dispatch => {
+  clearTimeout(window.timeout);
+  window.timeout = setTimeout(() => dispatch(signOut()), c.SIGN_OUT_TIME);
   try {
     const response = await fetch("/api/uzivatel/update.php", {
       method: "POST",
@@ -100,6 +107,8 @@ export const updateUser = user => async () => {
 };
 
 export const getUserByUserName = userName => async dispatch => {
+  clearTimeout(window.timeout);
+  window.timeout = setTimeout(() => dispatch(signOut()), c.SIGN_OUT_TIME);
   try {
     const response = await fetch("/api/uzivatel/readOne.php", {
       method: "POST",
@@ -130,6 +139,8 @@ export const getUserByUserName = userName => async dispatch => {
 };
 
 export const deleteUser = userName => async dispatch => {
+  clearTimeout(window.timeout);
+  window.timeout = setTimeout(() => dispatch(signOut()), c.SIGN_OUT_TIME);
   try {
     const response = await fetch("/api/uzivatel/deleteOne.php", {
       method: "POST",
@@ -162,6 +173,8 @@ export const createUser = (
   role,
   password
 ) => async dispatch => {
+  clearTimeout(window.timeout);
+  window.timeout = setTimeout(() => dispatch(signOut()), c.SIGN_OUT_TIME);
   try {
     const response = await fetch("/api/uzivatel/create.php", {
       method: "POST",
