@@ -7,6 +7,7 @@ import Header from "../components/Header";
 import GameHeader from "../components/game/Header";
 import Info from "../components/game/Info";
 
+import { setActiveForm } from "../actions/appActions";
 import { getGames, getGame, setActiveGame } from "../actions/gamesActions";
 
 const Game = ({ history, activeGame, user }) => {
@@ -30,7 +31,8 @@ export default compose(
     {
       getGames,
       getGame,
-      setActiveGame
+      setActiveGame,
+      setActiveForm
     }
   ),
   lifecycle({
@@ -41,9 +43,10 @@ export default compose(
       getGame(match.params.id);
     },
     componentWillUnmount() {
-      const { setActiveGame } = this.props;
+      const { setActiveGame, setActiveForm } = this.props;
 
       setActiveGame(null);
+      setActiveForm(null);
     }
   })
 )(Game);

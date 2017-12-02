@@ -14,7 +14,7 @@ import MatchTable from "../components/tournament/MatchTable";
 import SponsorsTable from "../components/sponsor/Table";
 
 import { getTournament } from "../actions/tournamentActions";
-import { setDialog, setFilter } from "../actions/appActions";
+import { setDialog, setFilter, setActiveForm } from "../actions/appActions";
 import { getTournamentSponsors, getSponsors } from "../actions/sponsorActions";
 
 import { isOrganizer } from "../utils";
@@ -159,7 +159,8 @@ export default compose(
       setDialog,
       getTournamentSponsors,
       getSponsors,
-      setFilter
+      setFilter,
+      setActiveForm
     }
   ),
   withState("tableState", "setTableState", 1),
@@ -168,6 +169,11 @@ export default compose(
       const { getTournament, match, getTournamentSponsors } = this.props;
       await getTournament(match.params.id);
       await getTournamentSponsors(match.params.id);
+    },
+    componentWillUnmount() {
+      const { setActiveForm } = this.props;
+
+      setActiveForm(null);
     }
   })
 )(Tournament);

@@ -13,7 +13,7 @@ import Table from "../components/clan/Table";
 import SponsorTable from "../components/sponsor/Table";
 
 import { getClan } from "../actions/clanActions";
-import { setDialog, setFilter } from "../actions/appActions";
+import { setDialog, setFilter, setActiveForm } from "../actions/appActions";
 import { getSponsorsByClanTag, getSponsors } from "../actions/sponsorActions";
 import { getUsers } from "../actions/usersActions";
 
@@ -142,7 +142,8 @@ export default compose(
       getSponsorsByClanTag,
       getSponsors,
       getUsers,
-      setFilter
+      setFilter,
+      setActiveForm
     }
   ),
   withState("tableState", "setTableState", 1),
@@ -151,6 +152,11 @@ export default compose(
       const { match, getClan, getSponsorsByClanTag } = this.props;
       await getClan(match.params.tag);
       await getSponsorsByClanTag(match.params.tag);
+    },
+    componentWillUnmount() {
+      const { setActiveForm } = this.props;
+
+      setActiveForm(null);
     }
   })
 )(Clan);

@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { compose } from "recompose";
+import { compose, lifecycle } from "recompose";
 import { Card, CardText } from "react-md";
 import { Button } from "react-bootstrap";
 
@@ -60,5 +60,12 @@ export default compose(
   connect(({ app: { form: { activeForm }, user } }) => ({ activeForm, user }), {
     setActiveForm,
     setDialog
+  }),
+  lifecycle({
+    componentWillUnmount() {
+      const { setActiveForm } = this.props;
+
+      setActiveForm(null);
+    }
   })
 )(Profile);
