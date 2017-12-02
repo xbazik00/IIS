@@ -96,6 +96,7 @@
 <br />
 
 #### TODO
+- Vstup do turnaja nejde
 
 #### TODO API
 

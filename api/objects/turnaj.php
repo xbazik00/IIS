@@ -29,21 +29,39 @@ class Turnaj{
             return false;
         }
 
+        if($this->vitez != ""){
+            $stmt = $this->conn->prepare("INSERT INTO turnaj SET nazev=:nazev, datum_konani=:datum_konani, hlavni_cena=:hlavni_cena, nazev_hry=:nazev_hry, vitez=:vitez, prezdivka_organizator_turnaje=:prezdivka_organizator_turnaje");
+
+            $stmt->bindParam(":datum_konani", htmlspecialchars(strip_tags($this->datum_konani)));
+            $stmt->bindParam(":nazev", htmlspecialchars(strip_tags($this->nazev)));
+            $stmt->bindParam(":hlavni_cena", htmlspecialchars(strip_tags($this->hlavni_cena)));
+            $stmt->bindParam(":nazev_hry", htmlspecialchars(strip_tags($this->nazev_hry)));
+            $stmt->bindParam(":vitez", htmlspecialchars(strip_tags($this->vitez)));
+            $stmt->bindParam(":prezdivka_organizator_turnaje", htmlspecialchars(strip_tags($this->prezdivka_organizator_turnaje)));
         
-        $stmt = $this->conn->prepare("INSERT INTO turnaj SET nazev=:nazev, datum_konani=:datum_konani, hlavni_cena=:hlavni_cena, nazev_hry=:nazev_hry, vitez=:vitez, prezdivka_organizator_turnaje=:prezdivka_organizator_turnaje");
 
-        $stmt->bindParam(":datum_konani", htmlspecialchars(strip_tags($this->datum_konani)));
-        $stmt->bindParam(":nazev", htmlspecialchars(strip_tags($this->nazev)));
-        $stmt->bindParam(":hlavni_cena", htmlspecialchars(strip_tags($this->hlavni_cena)));
-        $stmt->bindParam(":nazev_hry", htmlspecialchars(strip_tags($this->nazev_hry)));
-        $stmt->bindParam(":vitez", htmlspecialchars(strip_tags($this->vitez)));
-        $stmt->bindParam(":prezdivka_organizator_turnaje", htmlspecialchars(strip_tags($this->prezdivka_organizator_turnaje)));
+            if ($stmt->execute()){
+                return true;
+            }
 
-        if ($stmt->execute()){
-            return true;
+            return false;
         }
+        else{
+            $stmt = $this->conn->prepare("INSERT INTO turnaj SET nazev=:nazev, datum_konani=:datum_konani, hlavni_cena=:hlavni_cena, nazev_hry=:nazev_hry, prezdivka_organizator_turnaje=:prezdivka_organizator_turnaje");
+            
+            $stmt->bindParam(":datum_konani", htmlspecialchars(strip_tags($this->datum_konani)));
+            $stmt->bindParam(":nazev", htmlspecialchars(strip_tags($this->nazev)));
+            $stmt->bindParam(":hlavni_cena", htmlspecialchars(strip_tags($this->hlavni_cena)));
+            $stmt->bindParam(":nazev_hry", htmlspecialchars(strip_tags($this->nazev_hry)));
+            $stmt->bindParam(":prezdivka_organizator_turnaje", htmlspecialchars(strip_tags($this->prezdivka_organizator_turnaje)));
+        
 
-        return false;
+            if ($stmt->execute()){
+                return true;
+            }
+
+            return false;
+        }
     }
 
     function update(){

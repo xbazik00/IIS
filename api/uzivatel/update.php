@@ -37,20 +37,39 @@ $uzivatel->zeme_puvodu = $data->country;
 $uzivatel->role = $data->role;
 $uzivatel->heslo = $data->password;
 
-$trener->prezdivka = $data->nick;
-$trener->poznamky = $data->notes;
+if($data->role == "COACH"){
+    $trener->prezdivka = $data->nick;
+    $trener->poznamky = $data->notes;
+}
 
-$hrac->prezdivka = $data->nick;
-$hrac->herni_mys = $data->mouse;
-$hrac->klavesnice = $data->keyboard;
+if($data->role == "PLAYER"){    
+    $hrac->prezdivka = $data->nick;
+    $hrac->herni_mys = $data->mouse;
+    $hrac->klavesnice = $data->keyboard;
+}
 
-$organizator_turnaje->prezdivka = $data->nick;
-$organizator_turnaje->jmeno = $data->org_name;
-$organizator_turnaje->tel_cislo = $data->phone;
+if($data->role == "ORGANIZER"){    
+    $organizator_turnaje->prezdivka = $data->nick;
+    $organizator_turnaje->jmeno = $data->org_name;
+    $organizator_turnaje->tel_cislo = $data->phone;
+}
 
+$flag = $uzivatel->update();
+
+if($flag and $uzivatel->role == "PLAYER"){
+    $flag = $hrac->update();
+}
+
+if($flag and $uzivatel->role == "COACH"){
+    $flag = $trener->update();
+}
+
+if($flag and $uzivatel->role == "ORGANIZER"){
+    $flag = $organizator_turnaje->update();
+}
  
 // update the uzivatel
-if($uzivatel->update() && $trener->update() && $hrac->update() && $organizator_turnaje->update()){
+if($flag){
     echo '{';
         echo '"message": "OK"';
     echo '}';

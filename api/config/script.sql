@@ -119,7 +119,7 @@ CREATE TABLE IF NOT EXISTS `turnaj` (
     `datum_konani` date NOT NULL,
     `hlavni_cena` varchar(30) NOT NULL,
     `nazev_hry` varchar(30) NOT NULL,
-    `vitez` varchar(30) NOT NULL,
+    `vitez` varchar(30) NULL,
     `prezdivka_organizator_turnaje` varchar(30) NOT NULL,
     PRIMARY KEY (`id`)
 );
