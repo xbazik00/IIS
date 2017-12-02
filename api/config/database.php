@@ -1,9 +1,9 @@
 <?php
 class Database {
     private $host = "localhost";
-    private $db_name = "dbiis";
-    private $username = "useriis";
-    private $password = "userIIS123456";
+    private $db_name = "xbazik00";
+    private $username = "xbazik00";
+    private $password = "he5demhe";
     public $conn;
 
     public function getConnection() {
