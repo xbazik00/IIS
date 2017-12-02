@@ -63,6 +63,7 @@ export const signOut = () => async dispatch => {
     type: c.APP,
     payload: { user: null }
   });
+  dispatch(closeDialog());
   storage.remove("user");
 };
 
