@@ -6,7 +6,7 @@ import { Button } from "react-bootstrap";
 
 import TextField from "../form/TextField";
 
-import { setActiveForm } from "../../actions/appActions";
+import { setActiveForm, resetForm } from "../../actions/appActions";
 import { updateUser, getUser } from "../../actions/usersActions";
 
 const Form = ({ handleSubmit, setActiveForm, activeForm }) => {
@@ -60,12 +60,13 @@ export default compose(
     {
       setActiveForm,
       updateUser,
-      getUser
+      getUser,
+      resetForm
     }
   ),
   withHandlers({
     onSubmit: () => async (formData, dispatch, props) => {
-      const { setActiveForm, updateUser, getUser, user } = props;
+      const { setActiveForm, updateUser, getUser, user, resetForm } = props;
       const { passwordOld, password, password2 } = formData;
 
       if (
@@ -83,10 +84,11 @@ export default compose(
             ...user,
             nick: user.userName,
             name: user.firstName,
-            password
+            password: password ? password : ""
           })
         ) {
           getUser(user.userName);
+          resetForm("passwordChangeForm");
           setActiveForm(null);
         } else
           throw new SubmissionError({
