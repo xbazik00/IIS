@@ -43,13 +43,11 @@
 			<a href="mailto:xcecha04@stud.fit.vutbr.cz">xcecha04@stud.fit.vutbr.cz</a> - správa u¾ivatelù a u¾ivatelské rozhraní
 		</dd>
 		<dt>URL aplikace</dt>
+		<dd><a href="http://www.stud.fit.vutbr.cz/~xbazik00/IIS">http://www.stud.fit.vutbr.cz/~xbazik00/IIS</a></dd>
 		<dd><a href="http://iis-e-sport.jecool.net/">http://iis-e-sport.jecool.net/</a></dd>
-		<!--dd><a href="http://www.stud.fit.vutbr.cz/~xbazik00/IIS">http://www.stud.fit.vutbr.cz/~xbazik00/IIS</a></dd-->
-
 	</dl>
 
 	<h2>U¾ivatelé systému pro testování</h2>
-	<p>Uveïte prosím existující zástupce <strong>v¹ech rolí u¾ivatelù</strong>.</p>
 	<table>
 		<tr>
 			<th>Login</th>
@@ -84,8 +82,10 @@
 	</table>
 
 	<h2>Implementace</h2>
-	<p>Webová aplikácia bola vytvorená pomocou JavaScript kni¾nice <a href="https://reactjs.org/">React</a> pre u¾ívateµské rozhranie
-		a spracovanie u¾ívateµov. O prácu s databázovým subsystémom sa stará RESTful API napísané jazyku PHP.</p>
+	<p>Webová aplikácia bola vytvorená pomocou JavaScript kni¾nice <a href="https://reactjs.org/">ReactJS</a> a
+		<a href="https://redux.js.org">ReduxJS</a> pre u¾ívateµské rozhranie a spracovanie u¾ívateµov. O prácu s databázovým subsystémom
+		sa stará RESTful API napísané v jazyku PHP.
+	</p>
 	<h3>PHP skripty</h3>
 	<p>RESTful API je rozdelené na dva druhy skriptov. Jedna skupina skriptov umiestená v zlo¾ke <em>api/objects/</em> prestavuje
 		objekty komunikujúce s databázou. Druhá skupina skriptov je spú¹»aná ako samotné API. Tieto skripty sa v¾dy nachádzajú
@@ -108,8 +108,7 @@
 		</dd>
 		<dt>Modifikova» profil hráèa</dt>
 		<dd>
-			<em>api/uzivatel/update.php</em> -- Upraví profil u¾ívateµa, okrem hráèa mô¾e upravi» aj trénera a organizátora
-			turnaja.
+			<em>api/uzivatel/update.php</em> -- Upraví profil u¾ívateµa, okrem hráèa mô¾e upravi» aj trénera a organizátora turnaja.
 		</dd>
 		<dt>Vystúpi» z klanu</dt>
 		<dd>
@@ -241,7 +240,7 @@
 		</dd>
 		<dt>Správa polo¾iek</dt>
 		<dd>
-			<em>api/&lt;objekt&gt;/[delete,deleteOne].php</em> -- Odstráni polo¾ku/y objektu. 
+			<em>api/&lt;objekt&gt;/[delete,deleteOne].php</em> -- Odstráni polo¾ku/y objektu.
 		</dd>
 	</dl>
 	<h4>Organizátor turnaja:</h4>
@@ -282,10 +281,6 @@
 	</dl>
 
 	<h2>Instalace</h2>
-	<ul>
-		<li>Softwarové po¾adavky (verze PHP apod.)</li>
-		<li>Jak rozbalit, konfigurovat, inicializovat databází, ...</li>
-	</ul>
 	<p>
 		Na <a href="https://www.endora.cz/">https://www.endora.cz/</a>, kde je poskytnut hosting pro
 		<a href="http://iis-e-sport.jecool.net/">http://iis-e-sport.jecool.net/</a> jsou v¹echny potøebné soubory nahrány pøes
@@ -293,28 +288,26 @@
 		MySql skript, který vytvoøí potøebné tabulky a naplní je testovacími daty.
 	</p>
 	<p>
-		Av¹ak kvôli udr¾aniu kozistencie dát sme sa rozhodli projekt ulo¾i» aj na ¹kolský server <em>eva.fit.vutbr.cz</em>.
-		Na tomto serveri je toti¾ na rozdiel od Endory bezplatne vyu¾i» tabuµky InnoDB. Implementácia je
-		v ostatných bodoch zhodná.	
+		Av¹ak kvôli udr¾aniu kozistencie dát sme sa rozhodli projekt ulo¾i» aj na ¹kolský server <em>eva.fit.vutbr.cz</em>. Na
+		tomto serveri je toti¾ na rozdiel od Endory bezplatne vyu¾i» tabuµky InnoDB. Implementácia je v ostatných bodoch zhodná.
 	</p>
 	<p>
 		Projekt sa na in¹taluje jednoduchým vlo¾ení na server. Potom je potrebné nastavi» príslu¹né povolenia príslu¹ných zlo¾iek.
 		Aplikácia musí ma» toti¾ právo spú¹»a» PHP skripty. V súbore <em>api/config/database.php</em> je potrebné nastavi» príslu¹né
 		prihlasovacie údaje k lokálnej MySql databáze. Databázu je potrebné inicializova» skriptom <em>api/config/script.sql</em>.
-		Na spustenie aplikácie je potom potrebné zada» príkaz <em>yarn build</em>.
+		Na sestavení aplikácie je potom potrebné zada» príkaz <em>yarn build</em>.
 	</p>
 	<h4>Po¾iadavky:</h4>
 	<dl>
 		<dd>PHP 5.6</dd>
-		<dd>npm - na stiahnutie závislostí z <em>package.json</em></dd>
-		<dd>yarn - na postavenie aplikácie, stará sa o správu závislostí</dd>		
+		<dd>npm/yarn - na stiahnutie závislostí z <em>package.json</em></dd>
+		<dd>yarn - na postavenie aplikácie, stará sa o správu závislostí</dd>
 	</dl>
 
 
 	<h2>Známé problémy</h2>
-	<p>Zde popi¹te, které body zadání (IDS a IIS) nejsou implementovány a z jakého dùvodu. Napø. &bdquo;Z èasových dùvodù nebyla
-		implementována správa u¾ivatelù.&rdquo; Pomù¾ete tím zrychlit opravování, kdy¾ neimplementované funkce nebudeme muset dlouze
-		hledat.
+	<p>
+		V sekci Implementace je napsáno, která øe¹ení pøípadù u¾ití byla nahrazena jinými nebo nejsou zahrnuta.
 	</p>
 
 </body>
