@@ -64,12 +64,17 @@
 		<tr>
 			<td>Negan</td>
 			<td></td>
-			<td>Hráè</td>
+			<td>Hráè - Èlen klanu</td>
 		</tr>
 		<tr>
 			<td>Rick_Grimes</td>
 			<td></td>
-			<td>Vodca klanu, trenér</td>
+			<td>Hráè - Vodca klanu</td>
+		</tr>
+		<tr>
+			<td>Dumbledore</td>
+			<td></td>
+			<td>Tréner</td>
 		</tr>
 		<tr>
 			<td>gates</td>
@@ -86,49 +91,185 @@
 		objekty komunikujúce s databázou. Druhá skupina skriptov je spú¹»aná ako samotné API. Tieto skripty sa v¾dy nachádzajú
 		v zlo¾ke prislúchajúcej danému objektu, s ktorý komunikujeme, napr. <em>api/&lt;objekt&gt;/</em>.</p>
 	<p>Jednotlivé prípady u¾itia sú vykonané nasledovnými skriptami:</p>
+	<h4>U¾ívateµ:</h4>
+	<p>Je generalizáciou hráèa, trénera a organizátora turnaja. Bola pridaná z praktických dôvodou na správu rolí.</p>
+	<dl>
+		<dt>Zaregistrova» sa</dt>
+		<dd>
+			<em>api/uzivatel/create.php</em> -- Vytvorí u¾ívateµa.
+		</dd>
+	</dl>
+
+	<h4>Hráè:</h4>
 	<dl>
 		<dt>Vystúpi» z týmu</dt>
 		<dd>
-			<em>api/uzivatele_v_tymech/deleteOne.php</em> -- odstráni hráèa z týmu
+			<em>api/uzivatele_v_tymech/deleteOne.php</em> -- Odstráni hráèa z týmu
 		</dd>
 		<dt>Modifikova» profil hráèa</dt>
 		<dd>
-			<em>api/uzivatel/update.php</em> -- upraví profil u¾ívateµa, okrem hráèa mô¾e upravi» aj vodcu klanu (trénera) a organizátora
+			<em>api/uzivatel/update.php</em> -- Upraví profil u¾ívateµa, okrem hráèa mô¾e upravi» aj trénera a organizátora
 			turnaja.
 		</dd>
 		<dt>Vystúpi» z klanu</dt>
 		<dd>
-			<em>api/uzivatele_v_klanech/deleteOne.php</em> -- odstráni hráèa z klanu
+			<em>api/uzivatele_v_klanech/deleteOne.php</em> -- Odstráni hráèa z klanu, ak je hráè aj vodcom klanu, tak zrusi klan.
 		</dd>
 		<dt>Vytvori» klan</dt>
 		<dd>
-			<em>api/klan/create.php</em> -- vytvorí klan, hráè, ktorý ho vytvorí sa stáva jeho vodcom.
+			<em>api/klan/create.php</em> -- Vytvorí klan, hráè, ktorý ho vytvorí sa stáva jeho vodcom.
 		</dd>
 		<dt>Reagova» na pozvánku</dt>
 		<dd>
-			<p>Na rozdiel od návrhu existujú pozvánky pre tým aj klan.</p>
-			<em>api/pozvanka_do_tymu/accept.php</em> -- pridá hráèa do týmu a odstráni pozvánku<br />
-			<em>api/pozvanka_do_tymu/delete.php</em> -- odstráni pozvánku<br />
-			<br />
-			<em>api/pozvanka_do_klanu/accept.php</em> -- pridá hráèa do klanu a odstráni pozvánku<br />
-			<em>api/pozvanka_do_klanu/delete.php</em> -- odstráni pozvánku
+			<dl>
+				Na rozdiel od návrhu existujú pozvánky pre tým aj klan.<br />
+				<dt>Tým</dt>
+				<dd><em>api/pozvanka_do_tymu/accept.php</em> -- Pridá hráèa do týmu a odstráni pozvánku<br /></dd>
+				<dd><em>api/pozvanka_do_tymu/delete.php</em> -- Odstráni pozvánku<br /></dd>
+				<br />
+				<dt>Klan</dt>
+				<dd><em>api/pozvanka_do_klanu/accept.php</em> -- Pridá hráèa do klanu a odstráni pozvánku<br /></dd>
+				<dd><em>api/pozvanka_do_klanu/delete.php</em> -- Odstráni pozvánku</dd>
+			</dl>
 		</dd>
 		<dt>Prechádza» detaily hry</dt>
 		<dd>
-			<em>api/hra/read.php</em> -- vráti polo¾ky hry
+			<em>api/hra/read.php</em> -- Vráti polo¾ky hry.
 		</dd>
 		<dt>Zapísa» sa na odber informácií o chystaných turnajoch</dt>
 		<dd>
-			Zatiaµ neimplementované.
+			<em>api/turnaj/read.php</em> -- V¹etky turnaje.
 		</dd>
 		<dt>Vypísa» ¹tatistiky hráèov</dt>
 		<dd>
-			<em>api/uzivatel/read.php</em> -- vráti uzivatelov<br />
-			<em>api/uzivatel/read.php</em> -- vráti uzivatelov
+			Je dostupné vo v¹etkých rolách.<br />
+			<em>api/uzivatel/read.php</em> -- Vráti u¾ívateµov.
 		</dd>
+	</dl>
+	<h4>Vodca klanu:</h4>
+	<dl>
+		<dt>Evidova» priateµský zápas</dt>
 		<dd>
+			Nie je implementované, zápasy sa via¾u priamo na turnaje.
 		</dd>
+		<dt>Prida» sponzora klanu</dt>
 		<dd>
+			<em>api/sponzor_klanu/add.php</em> -- Pridá sponzora klanu, sponzor u¾ musí by» v systéme.
+		</dd>
+		<dt>Zru¹i» klan</dt>
+		<dd>
+			<em>api/klan/delete.php</em> -- Odstráni klan a v¹etky súvisiace polo¾ky.
+		</dd>
+		<dt>Modifikova» profil klanu</dt>
+		<dd>
+			<em>api/klan/update.php</em> -- Upraví profil klanu.
+		</dd>
+		<dt>Vymenova» vodcu klanu</dt>
+		<dd>
+			Nie je implementované, ka¾dý klan mô¾e ma» iba jedného vodcu.
+		</dd>
+		<dt>Prepusti» hráèa z klanu</dt>
+		<dd>
+			<em>api/uzivatele_v_klanu/deleteOne.php</em> -- Odstráni hráèa z klanu.
+		</dd>
+		<dt>Vyhµada» hráèa</dt>
+		<dd>
+			<em>api/uzivatel/read.php</em> -- Vráti u¾ívateµov
+			<em>api/uzivatel/readOne.php</em> -- Vráti dáta u¾ívateµa
+		</dd>
+		<dt>Pozva» hráèa do klanu</dt>
+		<dd>
+			<em>api/pozvanka_do_klanu/create.php</em> -- Vytvorí pozvánku do klanu
+		</dd>
+		<dt>Pozva» hráèa do týmu</dt>
+		<dd>
+			Je mo¾né pozva» iba hráèa z klanu. <br/>
+			<em>api/pozvanka_do_tymu/create.php</em> -- Vytvorí pozvánku do týmu
+		</dd>
+		<dt>Prepusti» hráèa z týmu</dt>
+		<dd>
+			<em>api/uzivatele_v_tyme/deleteOne.php</em> -- Odstráni hráèa z týmu.
+		</dd>
+		<dt>Zru¹i» tým</dt>
+		<dd>
+			<em>api/tym/delete.php</em> -- Zru¹í tým.
+		</dd>
+		<dt>Vytvori» tým</dt>
+		<dd>
+			<em>api/tym/create.php</em> -- Vytvorí tým, stáva sa jeho èlenom.
+		</dd>
+		<dt>Prihlási» tým na turnaj</dt>
+		<dd>
+			<em>api/tymy_v_turnaji/add.php</em> -- Pridá tým do turnaju.
+		</dd>
+		<dt>Odstráni tým z turnaja</dt>
+		<dd>
+			<em>api/tymy_v_turnaji/deleteOne.php</em> -- Odstráni tým do turnaju.
+		</dd>
+		<dt>Dohodnú» priateµský zápas.</dt>
+		<dd>
+			Nie je implementované. Zápasy sa via¾u na zápasy.
+		</dd>
+	</dl>
+	<h4>Administrátor:</h4>
+	<dl>
+		<dt>Aktualizova» hry</dt>
+		<dd>
+			<em>api/hra/create.php</em> -- Vytvorí hru.<br/>
+			<em>api/hra/deleteOne.php</em> -- Odstráni hru.<br/>
+			<em>api/hra/update.php</em> -- Upraví hru.
+		</dd>
+		<dt>Prida» hráèa</dt>
+		<dd>
+			Nie je implementované, hráèi sa registrujú sami.
+		</dd>
+		<dt>Prida» organizátora turnaja</dt>
+		<dd>
+			Nie je implementované, organizátori sa registrujú sami.
+		</dd>
+		<dt>Prida» sponzora</dt>
+		<dd>
+			<em>api/sponzor/create.php</em> -- Vytvorí sponzora.
+		</dd>
+		<dt>Správa polo¾iek</dt>
+		<dd>
+			<em>api/&lt;objekt&gt;/[delete,deleteOne].php</em> -- Odstráni polo¾ku/y objektu. 
+		</dd>
+	</dl>
+	<h4>Organizátor turnaja:</h4>
+	<dl>
+		<dt>Modifikova» profil organizátora</dt>
+		<dd>
+			<em>api/uzivatel/update.php</em> -- Upraví profil organizátora.
+		</dd>
+		<dt>Prida» sponzora turnaja</dt>
+		<dd>
+			<em>api/sponzor_turnaje/add.php</em> -- pridá sponzora turnaju, sponzor u¾ musí by» v systéme.
+		</dd>
+		<dt>Prida» ïal¹ieho organizátora</dt>
+		<dd>
+			Nie je implementované, ka¾dý turnaj mô¾e ma» iba jedného organizátora.
+		</dd>
+		<dt>Zru¹i» turnaj</dt>
+		<dd>
+			<em>api/turnaj/delete.php</em> -- Zru¹í turnaj.
+		</dd>
+		<dt>Vytvori» turnaj</dt>
+		<dd>
+			<em>api/turnaj/create.php</em> -- Vytvorí turnaj.
+		</dd>
+		<dt>Evidova» zápas</dt>
+		<dd>
+			<em>api/zapas/create.php</em> -- Vytvorí zápas.<br/>
+			<em>api/zapas/deleteOne.php</em> -- Zru¹í zápas zápas.<br/>
+		</dd>
+		<dt>Evidova» výhercu turnaja</dt>
+		<dd>
+			<em>api/turnaj/update.php</em> -- Upraví turnaj.
+		</dd>
+		<dt>Modifikova» profil turnaja</dt>
+		<dd>
+			<em>api/turnaj/update.php</em> -- Upraví turnaj.
 		</dd>
 	</dl>
 

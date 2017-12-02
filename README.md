@@ -99,6 +99,7 @@
 - Vstup do turnaja nejde
 
 #### TODO API
+- odstranit tym pri odstraneni klanu
 
 #### TODO FE
 
