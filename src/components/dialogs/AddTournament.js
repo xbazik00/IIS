@@ -73,7 +73,16 @@ export default compose(
       const { createTournament, user, getTournaments, resetForm } = props;
       const { name, date, prize, game } = formData;
 
-      if (await createTournament(name, date, prize, game, "", user.userName)) {
+      if (
+        await createTournament(
+          name,
+          date.substring(0, 10),
+          prize,
+          game,
+          "",
+          user.userName
+        )
+      ) {
         getTournaments();
         resetForm("addTournamentDialogForm");
         dialog.closeDialog();
