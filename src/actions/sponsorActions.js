@@ -13,7 +13,7 @@ export const createSponsor = (
   clearTimeout(window.timeout);
   window.timeout = setTimeout(() => dispatch(signOut()), c.SIGN_OUT_TIME);
   try {
-    const response = await fetch("/api/sponzor/create.php", {
+    const response = await fetch("/~xbazik00/IIS/api/sponzor/create.php", {
       method: "POST",
       headers: new Headers({
         "Content-Type": "application/json"
@@ -40,7 +40,7 @@ export const deleteSponsor = acronym => async dispatch => {
   clearTimeout(window.timeout);
   window.timeout = setTimeout(() => dispatch(signOut()), c.SIGN_OUT_TIME);
   try {
-    const response = await fetch("/api/sponzor/deleteOne.php", {
+    const response = await fetch("/~xbazik00/IIS/api/sponzor/deleteOne.php", {
       method: "POST",
       headers: new Headers({
         "Content-Type": "application/json"
@@ -67,7 +67,7 @@ export const getSponsors = () => async (dispatch, getState) => {
   clearTimeout(window.timeout);
   window.timeout = setTimeout(() => dispatch(signOut()), c.SIGN_OUT_TIME);
   try {
-    const response = await fetch("/api/sponzor/read.php");
+    const response = await fetch("/~xbazik00/IIS/api/sponzor/read.php");
 
     if (response.status === 200) {
       const content = await response.json();
@@ -108,7 +108,7 @@ export const getSponsorsByClanTag = tag => async dispatch => {
   clearTimeout(window.timeout);
   window.timeout = setTimeout(() => dispatch(signOut()), c.SIGN_OUT_TIME);
   try {
-    const response = await fetch("/api/sponzor_klanu/read.php", {
+    const response = await fetch("/~xbazik00/IIS/api/sponzor_klanu/read.php", {
       method: "POST",
       headers: new Headers({
         "Content-Type": "application/json"
@@ -140,7 +140,7 @@ export const addSponsorToClan = (acronym, tag) => async dispatch => {
   clearTimeout(window.timeout);
   window.timeout = setTimeout(() => dispatch(signOut()), c.SIGN_OUT_TIME);
   try {
-    const response = await fetch("/api/sponzor_klanu/add.php", {
+    const response = await fetch("/~xbazik00/IIS/api/sponzor_klanu/add.php", {
       method: "POST",
       headers: new Headers({
         "Content-Type": "application/json"
@@ -167,7 +167,7 @@ export const deleteSponsorFromClan = (acronym, tag) => async dispatch => {
   clearTimeout(window.timeout);
   window.timeout = setTimeout(() => dispatch(signOut()), c.SIGN_OUT_TIME);
   try {
-    const response = await fetch("/api/sponzor_klanu/delete.php", {
+    const response = await fetch("/~xbazik00/IIS/api/sponzor_klanu/delete.php", {
       method: "POST",
       headers: new Headers({
         "Content-Type": "application/json"
@@ -194,7 +194,7 @@ export const getTournamentSponsors = id => async dispatch => {
   clearTimeout(window.timeout);
   window.timeout = setTimeout(() => dispatch(signOut()), c.SIGN_OUT_TIME);
   try {
-    const response = await fetch("/api/sponzor_turnaje/read.php", {
+    const response = await fetch("/~xbazik00/IIS/api/sponzor_turnaje/read.php", {
       method: "POST",
       headers: new Headers({
         "Content-Type": "application/json"
@@ -226,7 +226,7 @@ export const deleteSponsorFromTournament = (acronym, id) => async dispatch => {
   clearTimeout(window.timeout);
   window.timeout = setTimeout(() => dispatch(signOut()), c.SIGN_OUT_TIME);
   try {
-    const response = await fetch("/api/sponzor_turnaje/delete.php", {
+    const response = await fetch("/~xbazik00/IIS/api/sponzor_turnaje/delete.php", {
       method: "POST",
       headers: new Headers({
         "Content-Type": "application/json"
@@ -253,7 +253,7 @@ export const addSponsorToTournament = (acronym, id) => async dispatch => {
   clearTimeout(window.timeout);
   window.timeout = setTimeout(() => dispatch(signOut()), c.SIGN_OUT_TIME);
   try {
-    const response = await fetch("/api/sponzor_turnaje/add.php", {
+    const response = await fetch("/~xbazik00/IIS/api/sponzor_turnaje/add.php", {
       method: "POST",
       headers: new Headers({
         "Content-Type": "application/json"

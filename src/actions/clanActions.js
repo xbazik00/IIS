@@ -8,7 +8,7 @@ export const getClans = () => async (dispatch, getState) => {
   clearTimeout(window.timeout);
   window.timeout = setTimeout(() => dispatch(signOut()), c.SIGN_OUT_TIME);
   try {
-    const response = await fetch("/api/klan/read.php");
+    const response = await fetch("/~xbazik00/IIS/api/klan/read.php");
 
     if (response.status === 200) {
       const content = await response.json();
@@ -56,7 +56,7 @@ export const createClan = (
   clearTimeout(window.timeout);
   window.timeout = setTimeout(() => dispatch(signOut()), c.SIGN_OUT_TIME);
   try {
-    const response = await fetch("/api/klan/create.php", {
+    const response = await fetch("/~xbazik00/IIS/api/klan/create.php", {
       method: "POST",
       headers: new Headers({
         "Content-Type": "application/json"
@@ -89,7 +89,7 @@ export const updateClan = (
   clearTimeout(window.timeout);
   window.timeout = setTimeout(() => dispatch(signOut()), c.SIGN_OUT_TIME);
   try {
-    const response = await fetch("/api/klan/update.php", {
+    const response = await fetch("/~xbazik00/IIS/api/klan/update.php", {
       method: "POST",
       headers: new Headers({
         "Content-Type": "application/json"
@@ -116,7 +116,7 @@ export const getClan = tag => async dispatch => {
   clearTimeout(window.timeout);
   window.timeout = setTimeout(() => dispatch(signOut()), c.SIGN_OUT_TIME);
   try {
-    const response = await fetch("/api/klan/readOne.php", {
+    const response = await fetch("/~xbazik00/IIS/api/klan/readOne.php", {
       method: "POST",
       headers: new Headers({
         "Content-Type": "application/json"
@@ -147,7 +147,7 @@ export const inviteUser = (tag, userName) => async dispatch => {
   clearTimeout(window.timeout);
   window.timeout = setTimeout(() => dispatch(signOut()), c.SIGN_OUT_TIME);
   try {
-    const response = await fetch("/api/pozvanka_do_klanu/create.php", {
+    const response = await fetch("/~xbazik00/IIS/api/pozvanka_do_klanu/create.php", {
       method: "POST",
       headers: new Headers({
         "Content-Type": "application/json"
@@ -174,7 +174,7 @@ export const getInvitations = userName => async dispatch => {
   clearTimeout(window.timeout);
   window.timeout = setTimeout(() => dispatch(signOut()), c.SIGN_OUT_TIME);
   try {
-    const response = await fetch("/api/pozvanka_do_klanu/read.php", {
+    const response = await fetch("/~xbazik00/IIS/api/pozvanka_do_klanu/read.php", {
       method: "POST",
       headers: new Headers({
         "Content-Type": "application/json"
@@ -204,7 +204,7 @@ export const deleteClan = tag => async dispatch => {
   clearTimeout(window.timeout);
   window.timeout = setTimeout(() => dispatch(signOut()), c.SIGN_OUT_TIME);
   try {
-    const response = await fetch("/api/klan/delete.php", {
+    const response = await fetch("/~xbazik00/IIS/api/klan/delete.php", {
       method: "POST",
       headers: new Headers({
         "Content-Type": "application/json"
@@ -231,7 +231,7 @@ export const deleteUserFromClan = (tag, userName) => async dispatch => {
   clearTimeout(window.timeout);
   window.timeout = setTimeout(() => dispatch(signOut()), c.SIGN_OUT_TIME);
   try {
-    const response = await fetch("/api/uzivatele_v_klanu/deleteOne.php", {
+    const response = await fetch("/~xbazik00/IIS/api/uzivatele_v_klanu/deleteOne.php", {
       method: "POST",
       headers: new Headers({
         "Content-Type": "application/json"
@@ -258,7 +258,7 @@ export const acceptInvitation = (tag, userName) => async dispatch => {
   clearTimeout(window.timeout);
   window.timeout = setTimeout(() => dispatch(signOut()), c.SIGN_OUT_TIME);
   try {
-    const response = await fetch("/api/pozvanka_do_klanu/accept.php", {
+    const response = await fetch("/~xbazik00/IIS/api/pozvanka_do_klanu/accept.php", {
       method: "POST",
       headers: new Headers({
         "Content-Type": "application/json"
@@ -285,7 +285,7 @@ export const deleteInvitation = (tag, userName) => async dispatch => {
   clearTimeout(window.timeout);
   window.timeout = setTimeout(() => dispatch(signOut()), c.SIGN_OUT_TIME);
   try {
-    const response = await fetch("/api/pozvanka_do_klanu/delete.php", {
+    const response = await fetch("/~xbazik00/IIS/api/pozvanka_do_klanu/delete.php", {
       method: "POST",
       headers: new Headers({
         "Content-Type": "application/json"

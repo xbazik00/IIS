@@ -8,7 +8,7 @@ export const getMatches = () => async (dispatch, getState) => {
   clearTimeout(window.timeout);
   window.timeout = setTimeout(() => dispatch(signOut()), c.SIGN_OUT_TIME);
   try {
-    const response = await fetch("/api/zapas/read.php");
+    const response = await fetch("/~xbazik00/IIS/api/zapas/read.php");
 
     if (response.status === 200) {
       const content = await response.json();
@@ -52,7 +52,7 @@ export const newMatch = (
   clearTimeout(window.timeout);
   window.timeout = setTimeout(() => dispatch(signOut()), c.SIGN_OUT_TIME);
   try {
-    const response = await fetch("/api/zapas/create.php", {
+    const response = await fetch("/~xbazik00/IIS/api/zapas/create.php", {
       method: "POST",
       headers: new Headers({
         "Content-Type": "application/json"
@@ -85,7 +85,7 @@ export const deleteMatch = id => async dispatch => {
   clearTimeout(window.timeout);
   window.timeout = setTimeout(() => dispatch(signOut()), c.SIGN_OUT_TIME);
   try {
-    const response = await fetch("/api/zapas/deleteOne.php", {
+    const response = await fetch("/~xbazik00/IIS/api/zapas/deleteOne.php", {
       method: "POST",
       headers: new Headers({
         "Content-Type": "application/json"

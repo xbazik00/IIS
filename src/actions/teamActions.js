@@ -13,7 +13,7 @@ export const createTeam = (
   clearTimeout(window.timeout);
   window.timeout = setTimeout(() => dispatch(signOut()), c.SIGN_OUT_TIME);
   try {
-    const response = await fetch("/api/tym/create.php", {
+    const response = await fetch("/~xbazik00/IIS/~xbazik00/IIS/api/tym/create.php", {
       method: "POST",
       headers: new Headers({
         "Content-Type": "application/json"
@@ -40,7 +40,7 @@ export const deleteTeam = name => async dispatch => {
   clearTimeout(window.timeout);
   window.timeout = setTimeout(() => dispatch(signOut()), c.SIGN_OUT_TIME);
   try {
-    const response = await fetch("/api/tym/delete.php", {
+    const response = await fetch("/~xbazik00/IIS/api/tym/delete.php", {
       method: "POST",
       headers: new Headers({
         "Content-Type": "application/json"
@@ -67,7 +67,7 @@ export const getInvitations = userName => async dispatch => {
   clearTimeout(window.timeout);
   window.timeout = setTimeout(() => dispatch(signOut()), c.SIGN_OUT_TIME);
   try {
-    const response = await fetch("/api/pozvanka_do_tymu/read.php", {
+    const response = await fetch("/~xbazik00/IIS/api/pozvanka_do_tymu/read.php", {
       method: "POST",
       headers: new Headers({
         "Content-Type": "application/json"
@@ -97,7 +97,7 @@ export const getTeams = () => async (dispatch, getState) => {
   clearTimeout(window.timeout);
   window.timeout = setTimeout(() => dispatch(signOut()), c.SIGN_OUT_TIME);
   try {
-    const response = await fetch("/api/tym/read.php");
+    const response = await fetch("/~xbazik00/IIS/api/tym/read.php");
 
     if (response.status === 200) {
       const content = await response.json();
@@ -138,7 +138,7 @@ export const getTeamsByUserName = userName => async (dispatch, getState) => {
   clearTimeout(window.timeout);
   window.timeout = setTimeout(() => dispatch(signOut()), c.SIGN_OUT_TIME);
   try {
-    const response = await fetch("/api/uzivatele_v_tymech/readTeams.php", {
+    const response = await fetch("/~xbazik00/IIS/api/uzivatele_v_tymech/readTeams.php", {
       method: "POST",
       headers: new Headers({
         "Content-Type": "application/json"
@@ -185,7 +185,7 @@ export const getTeam = name => async dispatch => {
   clearTimeout(window.timeout);
   window.timeout = setTimeout(() => dispatch(signOut()), c.SIGN_OUT_TIME);
   try {
-    const response = await fetch("/api/tym/readOne.php", {
+    const response = await fetch("/~xbazik00/IIS/api/tym/readOne.php", {
       method: "POST",
       headers: new Headers({
         "Content-Type": "application/json"
@@ -217,7 +217,7 @@ export const inviteUser = (name, userName) => async dispatch => {
   clearTimeout(window.timeout);
   window.timeout = setTimeout(() => dispatch(signOut()), c.SIGN_OUT_TIME);
   try {
-    const response = await fetch("/api/pozvanka_do_tymu/create.php", {
+    const response = await fetch("/~xbazik00/IIS/api/pozvanka_do_tymu/create.php", {
       method: "POST",
       headers: new Headers({
         "Content-Type": "application/json"
@@ -244,7 +244,7 @@ export const acceptInvitation = (name, userName) => async dispatch => {
   clearTimeout(window.timeout);
   window.timeout = setTimeout(() => dispatch(signOut()), c.SIGN_OUT_TIME);
   try {
-    const response = await fetch("/api/pozvanka_do_tymu/accept.php", {
+    const response = await fetch("/~xbazik00/IIS/api/pozvanka_do_tymu/accept.php", {
       method: "POST",
       headers: new Headers({
         "Content-Type": "application/json"
@@ -271,7 +271,7 @@ export const deleteInvitation = (name, userName) => async dispatch => {
   clearTimeout(window.timeout);
   window.timeout = setTimeout(() => dispatch(signOut()), c.SIGN_OUT_TIME);
   try {
-    const response = await fetch("/api/pozvanka_do_tymu/delete.php", {
+    const response = await fetch("/~xbazik00/IIS/api/pozvanka_do_tymu/delete.php", {
       method: "POST",
       headers: new Headers({
         "Content-Type": "application/json"
@@ -298,7 +298,7 @@ export const deleteUserFromTeam = (name, userName) => async dispatch => {
   clearTimeout(window.timeout);
   window.timeout = setTimeout(() => dispatch(signOut()), c.SIGN_OUT_TIME);
   try {
-    const response = await fetch("/api/uzivatele_v_tymech/deleteOne.php", {
+    const response = await fetch("/~xbazik00/IIS/api/uzivatele_v_tymech/deleteOne.php", {
       method: "POST",
       headers: new Headers({
         "Content-Type": "application/json"

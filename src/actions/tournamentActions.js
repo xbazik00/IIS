@@ -8,7 +8,7 @@ export const getTournaments = () => async (dispatch, getState) => {
   clearTimeout(window.timeout);
   window.timeout = setTimeout(() => dispatch(signOut()), c.SIGN_OUT_TIME);
   try {
-    const response = await fetch("/api/turnaj/read.php");
+    const response = await fetch("/~xbazik00/IIS/api/turnaj/read.php");
 
     if (response.status === 200) {
       const content = await response.json();
@@ -53,7 +53,7 @@ export const createTournament = (
   clearTimeout(window.timeout);
   window.timeout = setTimeout(() => dispatch(signOut()), c.SIGN_OUT_TIME);
   try {
-    const response = await fetch("/api/turnaj/create.php", {
+    const response = await fetch("/~xbazik00/IIS/api/turnaj/create.php", {
       method: "POST",
       headers: new Headers({
         "Content-Type": "application/json"
@@ -80,7 +80,7 @@ export const deleteTournament = id => async dispatch => {
   clearTimeout(window.timeout);
   window.timeout = setTimeout(() => dispatch(signOut()), c.SIGN_OUT_TIME);
   try {
-    const response = await fetch("/api/turnaj/delete.php", {
+    const response = await fetch("/~xbazik00/IIS/api/turnaj/delete.php", {
       method: "POST",
       headers: new Headers({
         "Content-Type": "application/json"
@@ -107,7 +107,7 @@ export const getTournament = id => async dispatch => {
   clearTimeout(window.timeout);
   window.timeout = setTimeout(() => dispatch(signOut()), c.SIGN_OUT_TIME);
   try {
-    const response = await fetch("/api/turnaj/readOne.php", {
+    const response = await fetch("/~xbazik00/IIS/api/turnaj/readOne.php", {
       method: "POST",
       headers: new Headers({
         "Content-Type": "application/json"
@@ -146,7 +146,7 @@ export const updateTournament = (
   clearTimeout(window.timeout);
   window.timeout = setTimeout(() => dispatch(signOut()), c.SIGN_OUT_TIME);
   try {
-    const response = await fetch("/api/turnaj/update.php", {
+    const response = await fetch("/~xbazik00/IIS/api/turnaj/update.php", {
       method: "POST",
       headers: new Headers({
         "Content-Type": "application/json"
@@ -181,7 +181,7 @@ export const addTeamToTournament = (id, name) => async dispatch => {
   clearTimeout(window.timeout);
   window.timeout = setTimeout(() => dispatch(signOut()), c.SIGN_OUT_TIME);
   try {
-    const response = await fetch("/api/tymy_v_turnaji/add.php", {
+    const response = await fetch("/~xbazik00/IIS/api/tymy_v_turnaji/add.php", {
       method: "POST",
       headers: new Headers({
         "Content-Type": "application/json"
@@ -211,7 +211,7 @@ export const deleteTeamFromTournament = (id, name) => async dispatch => {
   clearTimeout(window.timeout);
   window.timeout = setTimeout(() => dispatch(signOut()), c.SIGN_OUT_TIME);
   try {
-    const response = await fetch("/api/tymy_v_turnaji/deleteOne.php", {
+    const response = await fetch("/~xbazik00/IIS/api/tymy_v_turnaji/deleteOne.php", {
       method: "POST",
       headers: new Headers({
         "Content-Type": "application/json"

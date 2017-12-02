@@ -9,7 +9,7 @@ export const getUsers = () => async (dispatch, getState) => {
   clearTimeout(window.timeout);
   window.timeout = setTimeout(() => dispatch(signOut()), c.SIGN_OUT_TIME);
   try {
-    const response = await fetch("/api/uzivatel/read.php");
+    const response = await fetch("/~xbazik00/IIS/api/uzivatel/read.php");
 
     if (response.status === 200) {
       const content = await response.json();
@@ -49,7 +49,7 @@ export const getUser = userName => async dispatch => {
   clearTimeout(window.timeout);
   window.timeout = setTimeout(() => dispatch(signOut()), c.SIGN_OUT_TIME);
   try {
-    const response = await fetch("/api/uzivatel/readOne.php", {
+    const response = await fetch("/~xbazik00/IIS/api/uzivatel/readOne.php", {
       method: "POST",
       headers: new Headers({
         "Content-Type": "application/json"
@@ -83,7 +83,7 @@ export const updateUser = user => async dispatch => {
   clearTimeout(window.timeout);
   window.timeout = setTimeout(() => dispatch(signOut()), c.SIGN_OUT_TIME);
   try {
-    const response = await fetch("/api/uzivatel/update.php", {
+    const response = await fetch("/~xbazik00/IIS/api/uzivatel/update.php", {
       method: "POST",
       headers: new Headers({
         "Content-Type": "application/json"
@@ -110,7 +110,7 @@ export const getUserByUserName = userName => async dispatch => {
   clearTimeout(window.timeout);
   window.timeout = setTimeout(() => dispatch(signOut()), c.SIGN_OUT_TIME);
   try {
-    const response = await fetch("/api/uzivatel/readOne.php", {
+    const response = await fetch("/~xbazik00/IIS/api/uzivatel/readOne.php", {
       method: "POST",
       headers: new Headers({
         "Content-Type": "application/json"
@@ -142,7 +142,7 @@ export const deleteUser = userName => async dispatch => {
   clearTimeout(window.timeout);
   window.timeout = setTimeout(() => dispatch(signOut()), c.SIGN_OUT_TIME);
   try {
-    const response = await fetch("/api/uzivatel/deleteOne.php", {
+    const response = await fetch("/~xbazik00/IIS/api/uzivatel/deleteOne.php", {
       method: "POST",
       headers: new Headers({
         "Content-Type": "application/json"
@@ -176,7 +176,7 @@ export const createUser = (
   clearTimeout(window.timeout);
   window.timeout = setTimeout(() => dispatch(signOut()), c.SIGN_OUT_TIME);
   try {
-    const response = await fetch("/api/uzivatel/create.php", {
+    const response = await fetch("/~xbazik00/IIS/api/uzivatel/create.php", {
       method: "POST",
       headers: new Headers({
         "Content-Type": "application/json"
