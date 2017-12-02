@@ -283,7 +283,6 @@
 
 	<h2>Instalace</h2>
 	<ul>
-		<li>Struènì popi¹te postup instalace na server</li>
 		<li>Softwarové po¾adavky (verze PHP apod.)</li>
 		<li>Jak rozbalit, konfigurovat, inicializovat databází, ...</li>
 	</ul>
@@ -293,6 +292,24 @@
 		pøes FTP úèet a backend je hned pøipraven k pou¾ití. Databáze je spravována pøes phpMyAdmin, kde staèí pouze spustit vytvoøený
 		MySql skript, který vytvoøí potøebné tabulky a naplní je testovacími daty.
 	</p>
+	<p>
+		Av¹ak kvôli udr¾aniu kozistencie dát sme sa rozhodli projekt ulo¾i» aj na ¹kolský server <em>eva.fit.vutbr.cz</em>.
+		Na tomto serveri je toti¾ na rozdiel od Endory bezplatne vyu¾i» tabuµky InnoDB. Implementácia je
+		v ostatných bodoch zhodná.	
+	</p>
+	<p>
+		Projekt sa na in¹taluje jednoduchým vlo¾ení na server. Potom je potrebné nastavi» príslu¹né povolenia príslu¹ných zlo¾iek.
+		Aplikácia musí ma» toti¾ právo spú¹»a» PHP skripty. V súbore <em>api/config/database.php</em> je potrebné nastavi» príslu¹né
+		prihlasovacie údaje k lokálnej MySql databáze. Databázu je potrebné inicializova» skriptom <em>api/config/script.sql</em>.
+		Na spustenie aplikácie je potom potrebné zada» príkaz <em>yarn build</em>.
+	</p>
+	<h4>Po¾iadavky:</h4>
+	<dl>
+		<dd>PHP 5.6</dd>
+		<dd>npm - na stiahnutie závislostí z <em>package.json</em></dd>
+		<dd>yarn</dd>		
+	</dl>
+
 
 	<h2>Známé problémy</h2>
 	<p>Zde popi¹te, které body zadání (IDS a IIS) nejsou implementovány a z jakého dùvodu. Napø. &bdquo;Z èasových dùvodù nebyla
