@@ -58,12 +58,19 @@ const CreateClan = ({ handleSubmit, data }) => (
 );
 
 export default compose(
-  connect(({ app: { dialog: { data }, user } }) => ({ data, user }), {
-    createClan,
-    getClan,
-    getUser,
-    resetForm
-  }),
+  connect(
+    ({ app: { dialog: { data }, user } }) => ({
+      data,
+      user,
+      initialValues: { country: countries[0].value }
+    }),
+    {
+      createClan,
+      getClan,
+      getUser,
+      resetForm
+    }
+  ),
   withRouter,
   withHandlers({
     onSubmit: dialog => async (formData, dispatch, props) => {
