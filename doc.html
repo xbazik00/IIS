@@ -295,7 +295,8 @@
 		Projekt sa na in¹taluje jednoduchým vlo¾ení na server. Potom je potrebné nastavi» príslu¹né povolenia príslu¹ných zlo¾iek.
 		Aplikácia musí ma» toti¾ právo spú¹»a» PHP skripty. V súbore <em>api/config/database.php</em> je potrebné nastavi» príslu¹né
 		prihlasovacie údaje k lokálnej MySql databáze. Databázu je potrebné inicializova» skriptom <em>api/config/script.sql</em>.
-		Na sestavení aplikácie je potom potrebné zada» príkaz <em>yarn build</em>.
+		Na sestavení aplikácie je potom potrebné zada» príkaz <em>yarn build</em>. Prípadné chýbajúce závislosti sa automaticky nain¹talujú
+		zadaním príkazu <em>npm install</em>.
 	</p>
 	<h4>Po¾iadavky:</h4>
 	<dl>
@@ -307,7 +308,10 @@
 
 	<h2>Známé problémy</h2>
 	<p>
-		V sekci Implementace je napsáno, která øe¹ení pøípadù u¾ití byla nahrazena jinými nebo nejsou zahrnuta.
+		V sekcii Implementácia je napísané, které rie¹enia prípadov u¾itia boli nahradené inými alebo nie sú zahrnuté.<br/>
+
+		Nie je mo¾ný obnovenie stránky (refresh), server eva sa pokú¹a nájs» súbor, ktorý neexistuje. Cesta je toti¾ routovaná
+		cez ReactJS.
 	</p>
 
 </body>
