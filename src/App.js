@@ -34,7 +34,7 @@ const App = ({ store, user }) => {
   const admin = user && isAdmin(user.role);
   return (
     <Provider store={store}>
-      <Router>
+      <Router basename="/~xbazik00/IIS">
         <div>
           <Dialogs />
           <Route exact path="/" component={SignIn} />
