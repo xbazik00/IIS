@@ -27,19 +27,19 @@ const Form = ({ handleSubmit, setActiveForm, user }) => {
       </div>
       <Field
         component={TextField}
-        label="Jméno"
+        label="*Jméno"
         name="firstName"
         validate={[Validation.required, Validation.isShorterEqual30]}
       />
       <Field
         component={TextField}
-        label="Příjmení"
+        label="*Příjmení"
         name="surname"
         validate={[Validation.required, Validation.isShorterEqual30]}
       />
       <Field
         component={SelectField}
-        label="Země původu"
+        label="*Země původu"
         name="country"
         options={countries}
         validate={[Validation.required]}
@@ -85,6 +85,7 @@ const Form = ({ handleSubmit, setActiveForm, user }) => {
           validate={[Validation.isPhone]}
         />
       )}
+      <p>*Povinné</p>
       <div className="flex-row flex-right">
         <Button className="button" onClick={() => setActiveForm(null)}>
           Zrušit
@@ -135,7 +136,7 @@ export default compose(
         setActiveForm(null);
       } else
         throw new SubmissionError({
-          notes: "*Profil se nepodařilo aktualizovat!"
+          notes: "Profil se nepodařilo aktualizovat!"
         });
     }
   }),

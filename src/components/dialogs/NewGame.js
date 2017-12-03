@@ -21,25 +21,25 @@ const NewGame = ({ handleSubmit, data, created, setCreated }) => (
   >
     <Field
       component={TextField}
-      label="Název hry"
+      label="*Název hry"
       name="name"
       validate={[Validation.required, Validation.isShorterEqual30]}
     />
     <Field
       component={TextField}
-      label="Žánr"
+      label="*Žánr"
       name="genre"
       validate={[Validation.required, Validation.isShorterEqual30]}
     />
     <Field
       component={TextField}
-      label="Vydavatel"
+      label="*Vydavatel"
       name="publisher"
       validate={[Validation.required, Validation.isShorterEqual30]}
     />
     <Field
       component={DatePicker}
-      label="Datum vydání"
+      label="*Datum vydání"
       name="created"
       validate={[Validation.required]}
     />
@@ -50,6 +50,7 @@ const NewGame = ({ handleSubmit, data, created, setCreated }) => (
       componentClass="textarea"
       validate={[Validation.isShorterEqual100]}
     />
+    <p>*Povinné</p>
   </DialogContainer>
 );
 
@@ -79,7 +80,7 @@ export default compose(
         dialog.closeDialog();
       } else {
         throw new SubmissionError({
-          name: "*Hra s tímto názvem již existuje!"
+          name: "Hra s tímto názvem již existuje!"
         });
       }
     }

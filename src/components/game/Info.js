@@ -26,7 +26,7 @@ const Info = ({ game, handleSubmit, setActiveForm, activeForm, user }) => {
               </div>
               <Field
                 component={TextField}
-                label="Žánr"
+                label="*Žánr"
                 name="genre"
                 validate={[Validation.required, Validation.isShorterEqual30]}
               />
@@ -36,7 +36,7 @@ const Info = ({ game, handleSubmit, setActiveForm, activeForm, user }) => {
               </div>
               <Field
                 component={TextField}
-                label="Vydavatel"
+                label="*Vydavatel"
                 name="publisher"
                 validate={[Validation.required, Validation.isShorterEqual30]}
               />
@@ -47,6 +47,7 @@ const Info = ({ game, handleSubmit, setActiveForm, activeForm, user }) => {
                 componentClass="textarea"
                 validate={[Validation.isShorterEqual100]}
               />
+              <p>*Povinné</p>
               <div className="flex-row flex-right">
                 <Button className="button" onClick={() => setActiveForm(null)}>
                   Zrušit
@@ -125,7 +126,7 @@ export default compose(
         setActiveForm(null);
       } else
         throw new SubmissionError({
-          modes: "*Hru se nepodařilo aktualizovat!"
+          modes: "Hru se nepodařilo aktualizovat!"
         });
     }
   }),

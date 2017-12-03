@@ -40,7 +40,7 @@ const Info = ({
             <CardText>
               <Field
                 component={TextField}
-                label="Název"
+                label="*Název"
                 name="name"
                 validate={[Validation.required, Validation.isShorterEqual30]}
               />
@@ -50,7 +50,7 @@ const Info = ({
               </div>
               <Field
                 component={TextField}
-                label="Hlavní cena"
+                label="*Hlavní cena"
                 name="prize"
                 validate={[Validation.required, Validation.isShorterEqual30]}
               />
@@ -65,6 +65,7 @@ const Info = ({
                 options={options}
                 validate={[Validation.isShorterEqual30]}
               />
+              <p>*Povinné</p>
               <div className="flex-row flex-right">
                 <Button className="button" onClick={() => setActiveForm(null)}>
                   Zrušit
@@ -159,7 +160,7 @@ export default compose(
         setActiveForm(null);
       } else
         throw new SubmissionError({
-          modes: "*Turnaj se nepodařilo aktualizovat!"
+          modes: "Turnaj se nepodařilo aktualizovat!"
         });
     }
   }),

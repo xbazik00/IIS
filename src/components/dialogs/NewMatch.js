@@ -33,30 +33,31 @@ const NewMatch = ({ handleSubmit, data, activeTournament, setState }) => {
         <div>
           <Field
             component={DatePicker}
-            label="Datum konání"
+            label="*Datum konání"
             name="date"
             validate={[Validation.required]}
           />
           <Field
             component={SelectField}
-            label="Tým 1"
+            label="*Tým 1"
             name="name1"
             options={options}
             validate={[Validation.required]}
           />
           <Field
             component={SelectField}
-            label="Tým 2"
+            label="*Tým 2"
             name="name2"
             options={options}
             validate={[Validation.required]}
           />
           <Field
             component={TextField}
-            label="Výsledek"
+            label="*Výsledek"
             name="result"
             validate={[Validation.isShorterEqual30]}
           />
+          <p>*Povinné</p>
         </div>
       ) : (
         <p>V turnaji nejsou žádné týmy pro zaháhjení zápasu.</p>
@@ -96,7 +97,7 @@ export default compose(
           dialog.closeDialog();
         } else {
           throw new SubmissionError({
-            result: "*Zápas se nepodařilo vytvořit!"
+            result: "Zápas se nepodařilo vytvořit!"
           });
         }
       } else dialog.closeDialog();

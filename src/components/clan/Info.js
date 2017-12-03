@@ -35,7 +35,7 @@ const Info = ({
               </div>
               <Field
                 component={TextField}
-                label="Název klanu"
+                label="*Název klanu"
                 name="name"
                 validate={[Validation.required, Validation.isShorterEqual30]}
               />
@@ -52,23 +52,24 @@ const Info = ({
               </div>
               <Field
                 component={TextField}
-                label="Logo"
+                label="*Logo"
                 name="logo"
                 validate={[Validation.required, Validation.isShorterEqual30]}
               />
               <Field
                 component={TextField}
-                label="Hymna"
+                label="*Hymna"
                 name="anthem"
                 validate={[Validation.required, Validation.isShorterEqual30]}
               />
               <Field
                 component={SelectField}
-                label="Země působení"
+                label="*Země působení"
                 name="country"
                 options={countries}
                 validate={[Validation.required]}
               />
+              <p>*Povinné</p>
               <div className="flex-row flex-right">
                 <Button className="button" onClick={() => setActiveForm(null)}>
                   Zrušit
@@ -157,7 +158,7 @@ export default compose(
         setActiveForm(null);
       } else
         throw new SubmissionError({
-          country: "*Klan se nepodařilo aktualizovat!"
+          country: "Klan se nepodařilo aktualizovat!"
         });
     }
   }),

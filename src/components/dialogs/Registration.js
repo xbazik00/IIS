@@ -29,32 +29,32 @@ const Registration = ({ handleSubmit, data, created, setCreated }) => (
   >
     <Field
       component={TextField}
-      label="Přezdívka"
+      label="*Přezdívka"
       name="nick"
       validate={[Validation.required, Validation.isShorterEqual30]}
     />
     <Field
       component={TextField}
-      label="Jméno"
+      label="*Jméno"
       name="name"
       validate={[Validation.required, Validation.isShorterEqual30]}
     />
     <Field
       component={TextField}
-      label="Příjmení"
+      label="*Příjmení"
       name="surname"
       validate={[Validation.required, Validation.isShorterEqual30]}
     />
     <Field
       component={SelectField}
-      label="Role"
+      label="*Role"
       name="role"
       options={options}
       validate={[Validation.required]}
     />
     <Field
       component={SelectField}
-      label="Země původu"
+      label="*Země původu"
       name="country"
       options={countries}
       validate={[Validation.required]}
@@ -73,6 +73,7 @@ const Registration = ({ handleSubmit, data, created, setCreated }) => (
       type="password"
       validate={[Validation.isShorterEqual30]}
     />
+    <p>*Povinné</p>
   </DialogContainer>
 );
 
@@ -124,12 +125,12 @@ export default compose(
           dialog.closeDialog();
         } else {
           throw new SubmissionError({
-            nick: "*Uživatel s touto přezdívkou již existuje!"
+            nick: "Uživatel s touto přezdívkou již existuje!"
           });
         }
       } else {
         throw new SubmissionError({
-          password2: "*Zadaná hesla nejsou totožná!"
+          password2: "Zadaná hesla nejsou totožná!"
         });
       }
     }

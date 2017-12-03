@@ -24,35 +24,36 @@ const CreateClan = ({ handleSubmit, data }) => (
   >
     <Field
       component={TextField}
-      label="Tag klanu"
+      label="*Tag klanu"
       name="tag"
       validate={[Validation.required, Validation.isShorterEqual30]}
     />
     <Field
       component={TextField}
-      label="Název klanu"
+      label="*Název klanu"
       name="name"
       validate={[Validation.required, Validation.isShorterEqual30]}
     />
     <Field
       component={TextField}
-      label="Logo"
+      label="*Logo"
       name="logo"
       validate={[Validation.required, Validation.isShorterEqual30]}
     />
     <Field
       component={TextField}
-      label="Hymna"
+      label="*Hymna"
       name="anthem"
       validate={[Validation.required, Validation.isShorterEqual30]}
     />
     <Field
       component={SelectField}
-      label="Země působení"
+      label="*Země působení"
       name="country"
       options={countries}
       validate={[Validation.required]}
     />
+    <p>*Povinné</p>
   </DialogContainer>
 );
 
@@ -76,7 +77,7 @@ export default compose(
         dialog.closeDialog();
       } else
         throw new SubmissionError({
-          tag: "*Klan s tímto tagem již existuje."
+          tag: "Klan s tímto tagem již existuje."
         });
     }
   }),

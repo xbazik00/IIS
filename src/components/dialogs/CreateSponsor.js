@@ -20,25 +20,25 @@ const CreateSponsor = ({ handleSubmit, data }) => (
   >
     <Field
       component={TextField}
-      label="Zkratka"
+      label="*Zkratka"
       name="acronym"
       validate={[Validation.required, Validation.isShorterEqual30]}
     />
     <Field
       component={TextField}
-      label="Název"
+      label="*Název"
       name="name"
       validate={[Validation.required, Validation.isShorterEqual30]}
     />
     <Field
       component={TextField}
-      label="Sídlo"
+      label="*Sídlo"
       name="seat"
       validate={[Validation.required, Validation.isShorterEqual30]}
     />
     <Field
       component={TextField}
-      label="Číslo účtu"
+      label="*Číslo účtu"
       name="account_number"
       validate={[
         Validation.required,
@@ -46,6 +46,7 @@ const CreateSponsor = ({ handleSubmit, data }) => (
         Validation.isShorterEqual30
       ]}
     />
+    <p>*Povinné</p>
   </DialogContainer>
 );
 
@@ -67,7 +68,7 @@ export default compose(
         dialog.closeDialog();
       } else
         throw new SubmissionError({
-          acronym: "*Sponzor s touto zkratkou již existuje."
+          acronym: "Sponzor s touto zkratkou již existuje."
         });
     }
   }),

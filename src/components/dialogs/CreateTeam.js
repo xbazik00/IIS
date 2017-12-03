@@ -26,13 +26,13 @@ const CreateTeam = ({ handleSubmit, data, games }) => {
     >
       <Field
         component={TextField}
-        label="Název týmu"
+        label="*Název týmu"
         name="name"
         validate={[Validation.required, Validation.isShorterEqual30]}
       />
       <Field
         component={TextField}
-        label="Počet hráčů"
+        label="*Počet hráčů"
         name="number_of_players"
         validate={[
           Validation.required,
@@ -42,11 +42,12 @@ const CreateTeam = ({ handleSubmit, data, games }) => {
       />
       <Field
         component={SelectField}
-        label="Hra"
+        label="*Hra"
         name="game"
         options={options}
         validate={[Validation.required]}
       />
+      <p>*Povinné</p>
     </DialogContainer>
   );
 };
@@ -72,7 +73,7 @@ export default compose(
         dialog.closeDialog();
       } else
         throw new SubmissionError({
-          game: "*Tým se nepodařilo vytvořit!"
+          name: "Tým s tímto názvem již existuje!"
         });
     }
   }),

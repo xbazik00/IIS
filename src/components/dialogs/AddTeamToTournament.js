@@ -36,13 +36,16 @@ const AddTeamToTournament = ({
       {isEmpty(options) ? (
         <p>Nejsou k dispozici žádné turnaje.</p>
       ) : (
-        <Field
-          component={SelectField}
-          label="Turnaj"
-          name="id"
-          options={options}
-          validate={[Validation.required]}
-        />
+        <div>
+          <Field
+            component={SelectField}
+            label="*Turnaj"
+            name="id"
+            options={options}
+            validate={[Validation.required]}
+          />
+          <p>*Povinné</p>
+        </div>
       )}
     </DialogContainer>
   );
@@ -85,7 +88,7 @@ export default compose(
           dialog.closeDialog();
         } else
           throw new SubmissionError({
-            id: "*Do turnaje se nepodařilo vstoupit!"
+            id: "Do turnaje se nepodařilo vstoupit!"
           });
       } else dialog.closeDialog();
     }

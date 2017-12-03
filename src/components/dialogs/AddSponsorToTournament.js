@@ -41,13 +41,16 @@ const AddSponsorToTournament = ({ handleSubmit, data, sponsor, setState }) => {
       {isEmpty(options) ? (
         <p>Žádní sponzoři nejsou k dispozici.</p>
       ) : (
-        <Field
-          component={SelectField}
-          label="Zkratka"
-          name="acronym"
-          options={options}
-          validate={[Validation.required, Validation.isShorterEqual30]}
-        />
+        <div>
+          <Field
+            component={SelectField}
+            label="*Zkratka"
+            name="acronym"
+            options={options}
+            validate={[Validation.required, Validation.isShorterEqual30]}
+          />
+          <p>*Povinné</p>
+        </div>
       )}
     </DialogContainer>
   );
@@ -92,7 +95,7 @@ export default compose(
           dialog.closeDialog();
         } else
           throw new SubmissionError({
-            acronym: "*Nepodařilo se přidat sponzora!"
+            acronym: "Nepodařilo se přidat sponzora!"
           });
       } else dialog.closeDialog();
     }

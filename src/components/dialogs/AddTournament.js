@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { compose, withHandlers } from "recompose";
-import { reduxForm, Field } from "redux-form";
+import { reduxForm, Field, SubmissionError } from "redux-form";
 import { withRouter } from "react-router-dom";
 import { forEach, isEmpty } from "lodash";
 
@@ -30,29 +30,30 @@ const AddTournament = ({ handleSubmit, data, games }) => {
     >
       <Field
         component={TextField}
-        label="Název turnaje"
+        label="*Název turnaje"
         name="name"
         validate={[Validation.required, Validation.isShorterEqual30]}
       />
       <Field
         component={DatePicker}
-        label="Datum pořádání"
+        label="*Datum pořádání"
         name="date"
         validate={[Validation.required]}
       />
       <Field
         component={TextField}
-        label="Hlavní cena"
+        label="*Hlavní cena"
         name="prize"
         validate={[Validation.required, Validation.isShorterEqual30]}
       />
       <Field
         component={SelectField}
-        label="Hra"
+        label="*Hra"
         name="game"
         options={options}
         validate={[Validation.required]}
       />
+      <p>*Povinné</p>
     </DialogContainer>
   );
 };
@@ -86,6 +87,10 @@ export default compose(
         getTournaments();
         resetForm("addTournamentDialogForm");
         dialog.closeDialog();
+      } else {
+        throw new SubmissionError({
+          name: "Turnaj s tímto názvem již existuje!"
+        });
       }
     }
   }),
